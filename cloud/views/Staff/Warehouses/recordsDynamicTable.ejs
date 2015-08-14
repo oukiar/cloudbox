@@ -1,0 +1,34 @@
+
+<div id="recordsDynamic">
+  <ul id="list">
+ <table class="table table-bordered" id="blueRow">
+	<style>
+	#not:nth-child(even) {background: white}
+	#not:nth-child(odd) {background: #FBFBFC}
+	</style>
+ <tr>
+       <th>Receipt</th>
+	   <th>Client</th>
+       <th>Weight</th>
+       <th>Boxes</th>
+     <th>Content</th>
+	<th>Agent</th>
+
+ </tr>
+
+ <% results.forEach(function(label){
+
+        %>
+		
+       <tr id="not">
+       <td><a onclick="wareceipt('<%=label['objectId']%>')" href="#openModal"><%= label["ReceiptNum"]%></a></td>
+       <td><%= label["Consignee"]%></td>
+       <td><%= label["Weight"]%></td>
+       <td><%= label["TotalBoxes"]%></td>
+       <td><%= label["Content"]%></td>
+	   <td><%= label["Agent"]%></td>
+             </tr>
+              <% }) %>
+ </table>
+  </ul>
+</div>

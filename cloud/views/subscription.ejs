@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+	<meta charset="utf-8" />
+	<title>LC Cargo</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<meta content="" name="description" />
+	<meta content="" name="author" />
+	<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Jura&amp;subset=all">
+ <!--ADMIN REQUIREMENTS-->   
+	  <% include generals/ultraAdmin.ejs %>
+	
+    
+	        <script src="/cod/js/common.js"></script>
+	        <script src="/cod/js/moment.js"></script>
+        
+	        <!-- QR CODE GENERATOR -->
+	 
+    
+	        <script src="/cod/js/jquery-1.11.2.min.js"></script>
+	        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/themes/smoothness/jquery-ui.css" />
+	        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
+	        <script src="http://yui.yahooapis.com/3.6.0/build/yui/yui-min.js"></script>
+	        <script src="//www.parsecdn.com/js/parse-1.4.2.min.js"></script>
+	
+  
+
+    <style>
+
+
+	#geocomplete { width: 200px}
+
+	.map_canvas { 
+	  width:100%; 
+	  height: 400px; 
+	  margin: 10px 20px 10px 0;
+	  
+	}
+
+	#multiple li { 
+	  cursor: pointer; 
+	  text-decoration: underline; 
+	}
+	</style>
+	
+	<script>
+	function deleteRow(btn) {
+	  var row = btn.parentNode.parentNode;
+	  row.parentNode.removeChild(row);
+	}
+	</script>
+  </head>
+  <body>
+        <!-- START CONTAINER -->
+        <div class="page-container row-fluid">
+
+            <!-- SIDEBAR - START -->
+            <div class="page-sidebar " style="top:-55px; height:110%;">
+
+
+                <!-- MAIN MENU - START -->
+                <div class="page-sidebar-wrapper" id="main-menu-wrapper" style="top:55px;"> 
+                    <ul class='wraplist'>
+						
+                        <li class=""> 
+                            <a href="javascript:;">
+                                <i class="fa fa-sliders"></i>
+                                <span class="title">Subscribe</span>
+                                
+                            </a>
+                        </li>	
+                        <li class=""> 
+                            <a href="index.html">
+                                <i class="fa fa-dashboard"></i>
+                                <span class="title">Overview</span>
+                            </a>
+                        </li>					   
+                        <li class=""> 
+                            <a href="javascript:;">
+                                <i class="fa fa-suitcase"></i>
+                                <span class="title">Features</span>
+                                <span class="arrow "></span>
+                            </a>
+                            <ul class="sub-menu" >
+                                <li>
+                                    <a class="" href="ui-typography.html">Typography</a>
+                                </li>
+                                <li>
+                                    <a class="" href="ui-accordion.html">Tabs & Accordions</a>
+                                </li>
+                                <li>
+                                    <a class="" href="ui-progress.html">Progress Bars</a>
+                                </li>
+                                <li>
+                                    <a class="" href="ui-icons.html">Icons</a>
+                                </li>
+                                <li>
+                                    <a class="" href="ui-buttons.html">Buttons</a>
+                                </li>
+                                <li>
+                                    <a class="" href="ui-modals.html">Modals</a>
+                                </li>
+                                <li>
+                                    <a class="" href="ui-notifications.html">Alert & Notifications</a>
+                                </li>
+                                <li>
+                                    <a class="" href="ui-tooltips.html">Tooltips & Popovers</a>
+                                </li>
+                                <li>
+                                    <a class="" href="ui-sortable.html">Sortable Group</a>
+                                </li>
+                                <li>
+                                    <a class="" href="ui-navbars.html">Navbars & Dropdowns</a>
+                                </li>
+                                <li>
+                                    <a class="" href="ui-extra.html">Other Elements</a>
+                                </li>
+                                <li>
+                                    <a class="" href="ui-carousel.html">Carousel Slider</a>
+                                </li>
+                                <li>
+                                    <a class="" href="ui-tree.html">Tree</a>
+                                </li>
+                                <li>
+                                    <a class="" href="ui-panels.html">Draggable Panels</a>
+                                </li>
+                                <li>
+                                    <a class="" href="ui-grids.html">Grids</a>
+                                </li>
+                                <li>
+                                    <a class="" href="ui-tiles.html">Tile Widgets</a>
+                                </li>
+                            </ul>
+                        </li>
+                     
+                        <li class=""> 
+                            <a href="javascript:;">
+                                <i class="fa fa-gift"></i>
+                                <span class="title">Reviews</span>
+                            </a>
+                        </li>
+						
+                        <li class=""> 
+                            <a href="javascript:;">
+                                <i class="fa fa-envelope"></i>
+                                <span class="title">Contact</span>
+                            </a>
+                        </li>
+                
+                    </ul>
+
+                </div>
+                <!-- MAIN MENU - END -->
+
+
+
+                <div class="project-info">
+
+             
+
+                </div>
+
+
+
+            </div>
+            <!--  SIDEBAR - END -->
+            <!-- START CONTENT -->
+            <section id="main-content" class=" ">
+				
+				
+				
+				
+                <section class="wrapper" style='margin-top:-21px;display:inline-block;width:100%;padding:5px 0 0 5px;'>
+
+                    <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
+                        <div class="page-title">
+
+                            <div class="pull-left">
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+
+
+                    <div class="col-lg-12">
+                        <section class="box ">
+                            <header class="panel_header" style="background:rgba(50, 50, 58, 1.0);">
+                                <h2 class="title pull-left" style="color:white;">Subscription</h2>
+                                <div class="actions panel_actions pull-right">
+                          
+                               
+                                    
+                                </div>
+                            </header>
+                            <div class="content-body">    <div class="row">
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+
+                                        <form id="commentForm" method="post" action="/subscribe">
+
+                                            <div id="pills" class='wizardpills' >
+                                                <ul class="form-wizard">
+                                                    <li><a href="#pills-tab1" data-toggle="tab"><span></span></a></li>
+                                                    <li><a href="#pills-tab2" data-toggle="tab"><span></span></a></li>
+                              
+                                                    <li><a href="#pills-tab4" data-toggle="tab"><span></span></a></li>
+                                                  
+                                                </ul>
+                                                <div id="bar" class="progress active">
+                                                    <div class="progress-bar progress-bar-primary " role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
+                                                </div>
+												
+		                                       
+												 
+                                                <div class="tab-content">
+			                                        <ul class="pager wizard">
+			                                         <li class="previous first" style="display:none;"><a href="javascript:;"><b>First</b></a></li>
+			                                         <li class="previous"><a href="javascript:;"><b>Previous</b></a></li>
+			                                         <li class="next last" style="display:none;"><a href="javascript:;"><b>Last</b></a></li>
+			                                         <li class="next"><a href="javascript:;"><b>Next</b></a></li>
+			                                       
+			                                         </ul>
+                                                    <div class="tab-pane" id="pills-tab1">
+
+                                                        <h4 style="margin-left:37%;"><b>Company Information</b></h4><br>
+                                                        <font color="red" face="verdana"><%if(typeof(flash)!=="undefined" ){%><%= flash%><%}%></font>
+                                                        <div class="form-group">
+                                                            <label class="form-label" for="field-1"><b>Company's Name:</b></label>
+                                                            <div class="controls">
+                                                                <input type="text" placeholder="Full Name" class="form-control" name="companyName" id="companyName">
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        <div class="form-group">
+                                                            <label class="form-label" for="field-1"><b>Company's Address:</b></label>
+                                                            <div class="controls">
+                                                                <input type="text" placeholder="Full Address" class="form-control" name="companyAddress" id="companyAddress">
+                                                            </div>
+                                                        </div>
+
+                                               <div class="form-group">
+                                               <label class="form-label" for="field-1"><b>Contact Email:</b></label>
+                                             <div class="controls">
+                                <input type="text" placeholder="Email" class="form-control" name="contactEmail" id="contactEmail">
+                                         </div>
+                                            </div>
+                                                      
+
+                                                        <div class="form-group">
+                                                            <label class="form-label" for="field-1"><b>Contact Phone:</b></label>
+                                                            <div class="controls">
+                                                                <input type="text" placeholder="Phone" class="form-control" name="companyPhone" id="companyPhone">
+                                                            </div>
+                                                        </div>
+														
+                                                        <div class="form-group">
+                                                            <label class="form-label" for="field-1"><b>Website:</b></label>
+                                                            <div class="controls">
+                                                                <input type="text" placeholder="website" class="form-control" name="companyWebsite" id="companyWebsite">
+                                                            </div>
+                                                        </div>
+
+ <label class="form-label" for="field-1"><h4><b>Create Warehouses</b></b></h4></label></br>
+ 									    <form>
+									   <label class="form-label" for="field-1"><b>Warehouse Location</b></label></br>
+ 								       <input id="geocomplete" type="text" placeholder="Type in an address" size="90"/>
+ 									   <input id="find" type="button" value="Add warehouse"  class="pure-button pure-button-primary"/>
+ 				    			       </form></br></br>
+<pre><b>Warehouses List:</b>
+	<table id="logger">
+		
+</table>
+</pre>
+ 													    <div class="map_canvas" ></div>
+
+ 													
+
+                                                    </div>
+                                                    <div class="tab-pane" id="pills-tab2">
+                                                        <h4 style="margin-left:37%;"><b>Account Information</b></h4><br>
+														
+														
+											         <div class="form-group">
+											      <label class="form-label" for="field-1"><b>Company's Link</b></label>
+												  <label class="form-label" for="field-1"><h6><font color='#E08566'> Important- Only numbers and letter and no spaces.</font></h6></b></label>
+											      <div class="controls">
+					<input type="text" placeholder="Company's Link" class="form-control" name="companyLink" id="companyLink">
+											            </div>
+											         </div>
+														
+						                  <div class="form-group">
+						             <label class="form-label" for="field-1"><b>Root user full name:</b></label>
+						             <div class="controls">
+						            <input type="text" placeholder="rootName" class="form-control" name="rootFullName" id="rootFullName">
+						                                         </div>
+						                                            </div>
+														
+                              
+				
+                                 <div class="form-group">
+                                <label class="form-label" for="field-1"><b>Root user e-mail:</b></label>
+                                  <div class="controls">
+                                <input type="text" placeholder="Email" class="form-control" name="rootEmail" id="rootEmail">
+                                    </div>
+                                   </div>
+								   
+								   
+                                    <div class="form-group">
+                                   <label class="form-label" for="field-1"><b>Create root username:</b></label>
+                                     <div class="controls">
+                                   <input type="text" placeholder="username" class="form-control" name="rootUsrname" id="rootUsrname">
+                                       </div>
+                                      </div>
+									  
+									  
+                                       <div class="form-group">
+                                      <label class="form-label" for="field-1"><b>Create password:</b></label>
+                                        <div class="controls">
+                                      <input type="password" placeholder="password" class="form-control" name="rootPassword" id="rootPassword">
+                                          </div>
+                                         </div>
+										 
+                                          <div class="form-group">
+                                         <label class="form-label" for="field-1"><b>Re-type password:</b></label>
+                                           <div class="controls">
+                                         <input type="password" placeholder="re-typa password" class="form-control" name="rootRTPassword" id="rootRTPassword">
+                                             </div>
+                                            </div>
+ 			                           
+									   </div>
+
+													
+                                                    <div class="tab-pane" id="pills-tab4">
+                                                        <h4><b>Finish</b></h4><br>
+                                                     <input id="find" type="submit" value="Register company"  class="pure-button pure-button-primary"/>
+                                                    </div>
+													
+                                                   
+                                                   
+
+                                                    <div class="clearfix"></div>
+
+                                      <ul class="pager wizard">
+                                       <li class="previous first" style="display:none;"><a href="javascript:;"><b>First</b></a></li>
+                                       <li class="previous"><a href="javascript:;"><b>Previous</b></a></li>
+                                       <li class="next last" style="display:none;"><a href="javascript:;"><b>Last</b></a></li>
+                                       <li class="next"><a href="javascript:;"><b>Next</b></a></li>
+                                   
+                                       </ul>
+                                                </div>
+                                            </div>
+                                            
+                                            <input type="hidden" id="warehouseslist" name="warehouseslist[]">
+                                            
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </section></div>
+
+                </section>
+            </section>
+            <!-- END CONTENT -->
+   		 <script src="assets/js/jquery-1.11.2.min.js" type="text/javascript"></script> 
+            <script src="assets/js/jquery.easing.min.js" type="text/javascript"></script>
+    <%include generals/endFiles.ejs%>
+
+    <!-- OTHER SCRIPTS INCLUDED ON THIS PAGE - START --> 
+    <script src="assets/plugins/jquery-validation/js/jquery.validate.min.js" type="text/javascript"></script> 
+    <script src="assets/plugins/bootstrap-wizard/jquery.bootstrap.wizard.min.js" type="text/javascript"></script> 
+    <script src="assets/js/form-validation.js" type="text/javascript"></script> 
+    <!-- OTHER SCRIPTS INCLUDED ON THIS PAGE - END -->
+
+
+    <script src="https://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places" type="text/javascript"></script>
+    <script src="cod/js/jquery.geocomplete.js"></script>
+                                                    
+    
+    <script>
+		var nwarehouses = 1;
+
+        /* GEOCOMPLETE FOR ADDRESS OF THE COMPANY */
+      $(function(){
+        
+        var options = {
+          map: ".map_canvas"
+        };
+        
+        $("#companyAddress").geocomplete(options)
+          .bind("geocode:result", function(event, result){
+            $("#companyAddress").val(result.formatted_address);
+          })
+		  
+          .bind("geocode:error", function(event, status){
+            alert("ERROR: " + status);
+          })
+		  
+          .bind("geocode:multiple", function(event, results){
+            alert("Multiple: " + results.length + " results found");
+          });
+       
+      });
+		
+        /* GEOCOMPLETE FOR WAREHOUSES */
+      $(function(){
+        
+        var options = {
+          map: ".map_canvas"
+        };
+        
+        $("#geocomplete").geocomplete(options)
+          .bind("geocode:result", function(event, result){
+            $.log(result);
+          })
+		  
+          .bind("geocode:error", function(event, status){
+            /*$.log("ERROR: " + status);*/
+          })
+		  
+          .bind("geocode:multiple", function(event, results){
+            /*$.log("Multiple: " + results.length + " results found");*/
+          });
+       
+      });
+	  
+      $("#find").click(function(){
+        $("#geocomplete").val('');
+      });
+	  
+	  
+	  $.log = function(result){
+                var message = result.formatted_address;
+                var wareName = result["address_components"][0]["long_name"];
+                
+                var long_name;
+                var short_name;
+                
+                for( i in result["address_components"] )
+                {
+                    if( $.inArray("country", result["address_components"][i]["types"]) > -1)
+                    {
+                        wareName += " - " + result["address_components"][i]["long_name"];
+                        long_name = result["address_components"][i]["long_name"];
+                        short_name = result["address_components"][i]["short_name"];
+                        break;
+                    }
+                }
+                
+                var logger = $("#logger");
+                logger.html(logger.html()+ "<tr><td style='white-space: nowrap; padding-top: 2px;' align='left'>" + 
+                                "<input type='button' value='Delete' class='pure-button pure-button-primary' style='background:#E08566;' onclick='deleteRow(this)'>"  +
+                                "\n * " + message + "\n" + "<b><font color='#E08566'>Destination Name:</font></b>" + "\n" + 
+                                "<input type='text' name='Alias" + nwarehouses.toString() + "' value='"+ wareName +
+                                "' placeholder='Destination Name' style='width:34%; background:white; height:34px;'><input type='hidden' value='" + message +
+                                "' name='Address"+ nwarehouses.toString() +"'>"+  
+                                "<input type='hidden' name='Country"+ nwarehouses.toString() +"' value='"+ long_name +"'>" +
+                                "<input type='hidden' name='CountryCode"+ nwarehouses.toString() +"' value='"+ short_name +"'>" +
+                                "<input type='hidden' name='GeoCode"+ nwarehouses.toString() +"' value='"+ JSON.stringify(result) +"'></td></tr>");
+                                
+                nwarehouses += 1;
+                
+                $("#geocomplete").val('');
+
+	  }
+	  
+	 
+	  
+    </script>    
+
+  </body>
+</html>
+

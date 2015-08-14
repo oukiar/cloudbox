@@ -1,0 +1,30 @@
+<% var newreg = JSON.parse(params); %>
+
+<div id="modalmessage">
+	<div style="position: relative; left:10%; width: 377px; margin: 10% auto; padding: 5px 20px 13px 20px; border-radius: 10px; background: white;">
+		<table>
+			<tr>
+				<th>
+                    <h2> Repacked succesful </h2>
+                </th>
+            </tr>
+            <tr>
+                <td align="center">
+
+                    <a onclick="window.open('/printlabels/' + '<%= newreg["objectId"]%>','Microsoft')" class="btn btn-orange btn-md"><i class="fa fa-print"></i> &nbsp; Print labels </a>  
+                </td>
+            </tr>
+            <tr>
+                <td align="center">
+                    <br>
+                    <a href="#close" class="pure-button pure-button-primary">Ok</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+    
+</div>
+
+<script>
+
+</script>

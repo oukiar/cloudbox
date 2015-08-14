@@ -1,0 +1,143 @@
+<div id="repack_table">
+    <table class="table table-bordered" id="blueRow">
+        <tr>
+            <th>Repacked Boxes</th>
+            <th>Repack All  in Rcpt. #</th>
+            <th>Repack by Boxes</th>
+            <th>Shipper</th>
+            <th>Date</th>
+            <th>Country</th>
+            <th>Transport</th>
+            <th>Volume</th>
+            <th>WareHouse</th>
+        </tr>
+
+        <% results.forEach(function(label){%>
+            <tr>
+                <td align="center" id="staterepack-<%=label['objectId']%>"><%= label["PackedBoxes"]%>/<%= label["TotalBoxes"]%></td>
+                <td align="center">
+                    <input id="<%=JSON.stringify({"objectId":label['objectId'], "Receipt":label['ReceiptNum']})%>" name="checkware" class="checkreceipt" type="checkbox">
+                    &nbsp #<%= label["ReceiptNum"]%>
+                </td>
+                <td><a onclick="showboxes('<%=label['objectId']%>')" href="#openModalB">Choose Boxes</a></td>
+                <td><%= label["Shipper"]%></td>
+                <td><%= label["ReceiptDate"]%></td>
+                <td><%= label["Destination"]%></td>
+                <td><%= label["Transport"]%></td>
+                <td><%= label["Volume"]%></td>
+                <td><%= label["Warehouse"]%></td>
+            </tr>
+        <% }) %>        
+    </table>
+    
+    
+</div>
+
+<script>
+
+$(".checkreceipt").change(function(){
+        
+        dict = JSON.parse(this.id);
+
+        openedreceipt = dict["objectId"];
+
+        if(this.checked)
+        {
+            var query = new Parse.Query("Boxes");
+            
+            query.equalTo("Receipt", {__type: "Pointer", className: "Receipts", objectId: dict["objectId"]});
+            query.ascending('BoxNum');
+            query.include("Receipt");
+            
+            query.find({
+                success: 
+                    function(results)
+                    {
+                        boxes = [];
+                        
+                        for(i in results)
+                        {
+                            if(results[i].get("Status") != "Repacked")
+                                boxes.push({objectId:results[i].id, Receipt:results[i].get("Receipt").get("ReceiptNum"), Num:results[i].get("Num")});
+                        }
+                                           
+                        repack_receipts[dict["objectId"]] = boxes;
+                        
+                        update_totalboxes();
+                        
+                        update_boxestorepack(boxes);
+                    }
+                });
+        }
+        else
+        {
+            delete repack_receipts[dict["objectId"]];
+            update_totalboxes();
+            update_boxestorepack([]);
+        }
+    });
+
+/* ESTA FUNCION INICIALIZA LOS BOXES DEL RECEIPT AL QUE SE LE DIO CLICK QUE SERAN MOSTRADOS EN EL MODALBOX */
+function showboxes(objectId)
+{
+    openedreceipt = objectId;
+
+    var q=new Parse.Query("Receipts");
+    q.get(openedreceipt, {success: function(receipt){
+            $("#receiptBoxes").html(receipt.get("ReceiptNum") );
+        }});
+        
+    var query = new Parse.Query("Boxes");
+    
+    query.ascending('BoxNum');
+    query.include('Receipt');
+    query.include('PackedIn');
+    query.equalTo("Receipt", {__type: "Pointer", className: "Receipts", objectId: openedreceipt});
+    
+    query.find({
+        success: 
+            function(results)
+            {
+                
+                $("#boxes_table > tbody").html("");
+                
+                results.forEach(function(box){
+                    
+                        
+                    if(box.get("Status") == "Repacked")
+                        row = "<tr bgcolor='#FFF5E7'><td>"+box.get("Status")+
+                                " in receipt# <a onclick=\"showboxes('"+box.get("PackedIn").id +
+                                "')\" href='#openReceiptBoxes'>#"+ box.get("PackedIn").get("ReceiptNum") +
+                                "</a></td><td>"+box.get("Length")+"</td><td>"+box.get("Width")+
+                                "</td><td>"+box.get("Height")+"</td><td>"+box.get("Num")+"</td><td>"+
+                                box.get("Weight")+"</td></tr>";
+                    
+                    else if( isboxadded( box.get("Num") ) )
+                        row = "<tr><td><input type='checkbox' checked name='boxitems' id='"+ 
+                                JSON.stringify({objectId:box.id, Receipt:box.get("Receipt").get("ReceiptNum"), Num:box.get("Num")}) +
+                                "'></td><td>"+box.get("Length")+"</td><td>"+box.get("Width")+"</td><td>"+box.get("Height")+
+                                "</td><td>"+box.get("Num")+"</td><td>"+box.get("Weight")+"</td></tr>";
+                    else
+                        row = "<tr><td><input type='checkbox' name='boxitems' id='"+ 
+                                JSON.stringify({objectId:box.id, Receipt:box.get("Receipt").get("ReceiptNum"), Num:box.get("Num")}) +
+                                "'></td><td>"+box.get("Length")+"</td><td>"+box.get("Width")+"</td><td>"+box.get("Height")+
+                                "</td><td>"+box.get("Num")+"</td><td>"+box.get("Weight")+"</td></tr>";
+                    
+                    
+                    $("#boxes_table > tbody").append(row);
+                });
+            }
+        });
+}
+
+function isboxadded(num)
+{
+    for( i in repack_receipts[openedreceipt])
+    {
+        if(repack_receipts[openedreceipt][i]["Num"] == num)
+            return true;
+    }
+    return false;
+}
+
+</script>

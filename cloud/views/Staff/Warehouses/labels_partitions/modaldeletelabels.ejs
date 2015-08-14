@@ -1,0 +1,79 @@
+<div id="openModalE" class="modalRPBoxes">
+    <div>
+        <a href="#close" title="Close" class="closeB">X</a>
+        
+        <h1>Deleting labels:</h1><br>
+        
+        <div id="modalDeleteItems">
+            
+        </div>
+        
+        <br><br><button class="pure-button pure-button-primary" style="background:#E08566;" id="btn_dodelete">Delete !</button>
+    </div>
+</div>
+
+<script>
+    $("#btn_dodelete").click(
+        function(){
+            checkboxes = document.getElementsByName("checkdelete");
+            for(i in checkboxes)
+            {
+                if(checkboxes[i].checked)
+                {
+                    
+                    wh = JSON.parse(checkboxes[i].id);
+                        
+                    $("#delete-" + wh["objectId"]).replaceWith("<img id='delete-" + wh["objectId"] + "' src='/web/img/icons/loader_grey.gif' width=16 height=16>");
+                    
+                    /* SEND THIS WAREHOUSE TO TRASH */
+                    var Receipts = Parse.Object.extend("Receipts");
+                    
+                    var query = new Parse.Query(Receipts);
+                    
+                    query.get(wh["objectId"], {
+                        success: 
+                            function(label)
+                            {
+                                oldstatus = label.get("Status");
+                                
+                                if(label.get("PackedBoxes") > 0)
+                                {
+                                    alert("The receipt #" + label.get("ReceiptNum") + " have boxes repacked");
+                                    $("#delete-" + label.id).replaceWith("  OPS: This receipt has boxes repacked");
+                                    return;
+                                }
+                                
+                                label.set("Status", "Deleted:" + oldstatus)
+                                label.save();
+                                
+                                $("#delete-" + label.id).replaceWith("  DELETED");
+                            },
+                        error: 
+                            function(object, error)
+                            {
+                                // The object was not retrieved successfully.
+                                // error is a Parse.Error with an error code and description.
+                            }
+                        });
+                }
+            }
+            
+            $("#btn_dodelete").replaceWith("<a href='#close' id='btn_closedelete' class='pure-button pure-button-primary'> DONE </a>");
+            
+            $("#btn_closedelete").click(function(){
+                    Insert({document: "Staff/Warehouses/labels_partitions/modaldeletelabels", itemid:"openModalE"});
+                    update_table();
+                });
+                
+            
+            
+            $("#deleteDiv").css("display", "block");
+            $("#deleteconfirmDiv").css("display", "none");
+            $(".checkdelete").css("display", "none");
+            $("#deletecolumn").css("display", "none");
+            
+            $("#classifyDiv").css("display", "block");
+            
+        });
+
+</script>

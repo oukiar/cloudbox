@@ -1,0 +1,23 @@
+<div id="zonestable">
+    <table class="table table-bordered" id="blueRow">
+        <style>
+            #not:nth-child(even) {background: white}
+            #not:nth-child(odd) {background: #FBFBFC}
+        </style>
+        
+        <tr>
+            <th>Zone</th>
+			<th>Client</th>
+            <th>Boxes</th>          
+        </tr>
+
+        <% for(i in results){
+                for(j in results[i]["Names"]){%>
+            <tr>
+				<td><b><%= i %></b></td>
+                <td><%= j %></td>
+                <td><%= results[i]["Names"][j]%></td>
+            </tr>
+        <% }} %> 
+    </table>
+</div>

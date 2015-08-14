@@ -1,0 +1,30 @@
+<% var newreg = JSON.parse(params); %>
+
+<div id="modalmessage">
+	<div style="position:relative; left:18%;">
+    
+<div style="margin-top:8px;">
+		<table style="left:-3px;">
+			<tr style="margin-bottom:5px;">
+				<td>
+                    <h1>New receipt created!</h1></td>
+            </tr>
+            <tr>
+                <td align="center" >
+                    <a onclick="window.open('/printreceipt/' + '<%= newreg["objectId"]%>','Microsoft')" class="btn btn-purple btn-md"><i class="fa fa-print"></i> &nbsp; Print Receipt </a>        
+                    <!--<a onclick="window.open('/printlabels/' + '<%= newreg["objectId"]%>','Microsoft')" class="btn btn-orange btn-md"><i class="fa fa-print"></i> &nbsp; Print Labels </a>-->
+                    <a onclick="printLabel('<%= newreg["objectId"]%>');" class="btn btn-orange btn-md"><i class="fa fa-print"></i> &nbsp; Print Labels </a>  
+                <td>
+            </tr>
+            
+            <tr>
+                <td align="center">
+                    <br>
+                    <a href="#close" class="pure-button pure-button-primary">Ok</a>
+                </td>
+            </tr>
+        </table>
+	</div>
+    </div>
+</div>
+

@@ -1,0 +1,50 @@
+<div id="openModalC" class="modalDialog">
+    <div>
+        <a href="#close" title="Close" class="close" id="btn_closeclassifydialog">X</a>
+       <div style="position:relative; left:38%;">
+        </br>
+        <img src="/assets/images/classify.png" width="120" height="120" alt="Classify">
+       </div>
+       
+        <div id="transfersection">
+            </br>
+   
+            <select id="waretransfer" name="waretransfer" style="width:500px; height:34px; font-size:21px;">
+                <option value="-">Select the warehouse</option>
+            </select>
+            </br></br>
+       
+            <button id="btn_savetrans" class="pure-button pure-button-primary">Transfer</button>
+        </div>
+  
+    </div>
+</div>
+
+<script>
+    /* TRANSFER BETWEEN WAREHOUSES */
+    $("#btn_savetrans").click(function(){
+        
+            var warehouse = $("#waretransfer").val();
+            $("#transfersection").replaceWith("<img id='transfersection' src='/web/img/icons/loader_grey.gif'>");
+        
+            $.post("/update", {collection:"Receipts", 
+                    objectId:transferId, 
+                    values:{"Status":"TransferOut", TransferTo:{__type:"Pointer", className: "Cellars", objectId: warehouse}}}, /* FIX HERE, NO MEZCLAR LA WAREHOUSE DESTINO CON EL STATUS, MEJOR GUARDA EN TransferTo */
+                    function(data){
+                        
+                        $("#transfersection").replaceWith("<a id='btn_donetransfer' href='#close' class='pure-button pure-button-primary'>Done</a>");
+                        
+                        update_table();
+                        
+                        $("#btn_donetransfer").click(function(){
+                                /* RESTORE THE CONTENT OF THE MODAL */
+                                
+                                Insert({document: "Staff/Warehouses/labels_partitions/modaltransfer", itemid:"openModalC"});
+                            });
+                        
+                        });
+              
+        });
+        
+
+</script>

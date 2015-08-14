@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <meta charset="utf-8" />
+    <title>LC Cargo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta content="" name="description" />
+    <meta content="" name="author" />
+    <% include ../generals/ultraAdmin.ejs %>
+    <!--ADMIN REQUIREMENTS-->   
+
+	   <script src="/cod/js/moment.js"></script>
+	   <script src="/cod/js/common.js"></script>
+	   <script src="/cod/js/jquery-1.11.2.min.js"></script>
+	   <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/themes/smoothness/jquery-ui.css"/>
+	   <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
+    </head>
+    <!-- END HEAD -->
+    <!-- BEGIN BODY -->
+    <body>
+ 		<!--START TOPBAR-->
+ 		 
+		  <% include generals/topbar.ejs %>
+         <!-- START CONTAINER -->
+         <div class="page-container row-fluid">
+		<% include generals/sidebar.ejs %>
+         <!-- SIDEBAR - START -->
+ 		
+         <!--  SIDEBAR - END -->
+			
+			
+             <!-- START CONTENT -->
+         
+            <section class="wrapper" style='margin-top:60px;display:inline-block;width:100%;padding:15px 0 0 15px;'>
+
+               <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
+               <div class="page-title">
+               <div class="pull-left">
+ 			
+               <h1 class="title">Information</h1>
+ 		       <div style="margin-left:30%; width:500px;">
+			  
+ 	<form name="regClientform" action="/addStaff" method="post">
+      <div class="content-body">    <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+
+                  <div class="form-group">
+                      <label class="form-label" for="field-1">Full Name:</label>
+                      <div class="controls">
+                          <input type="text" class="form-control" maxlength="55" id="storeName" name="storeName" value="<%= client.get('Name') %>" >
+                      </div>
+                  </div>
+
+                  <div class="form-group">
+                      <label class="form-label" for="field-1">Language:</label>
+                      <div class="controls">
+                          <input type="text" class="form-control"  id="storeContact" name="storeContact">
+                      </div>
+                  </div>
+
+                  
+
+                  <div class="form-group">
+                      <label class="form-label" for="field-1">ID:</label>
+                      <div class="controls">
+                          <input type="text" class="form-control" maxlength="55" id="storeID" name="storeID" value="<%= client.get('ID1') %>">
+                      </div>
+                  </div>
+
+                  <div class="form-group">
+                      <label class="form-label" for="field-1">Telephone:</label>
+                      <div class="controls">
+                          <input maxlength="55" id="storeTelephone" name="storeTelephone" type="text" class="form-control"  value="<%= client.get('Telephone') %>">
+                      </div>
+                  </div>
+
+                  <div class="form-group">
+                      <label class="form-label" for="field-1">Email:</label>
+                      <div class="controls">
+                          <input type="text" class="form-control" maxlength="55" id="storeEmail" name="storeEmail" value="<%= client.get('Email') %>" >
+                      </div>
+                  </div>
+				  
+                 
+
+                  <div class="form-group">
+                      <label class="form-label" for="field-1">Destinations:</label>
+                      <div class="controls">
+  			 	        <input type="text" class="form-control" maxlength="200" id="storeAddress" name="storeAddress">
+                          <input type="hidden" id="storeAlias" name="storeAlias">
+                          <input type="hidden" id="storeAddress" name="storeAddress">
+                          <input type="hidden" id="storeCountry" name="storeCountry">
+                          <input type="hidden" id="storeCountryCode" name="storeCountryCode">
+                          <input type="hidden" id="storeGeoCode" name="storeGeoCode">
+                      </div>
+                  </div>
+
+             
+				 <div class="form-group">
+				  <input type="button" id="btn_registerStore" style="length:50px;" value="submit" class="pure-button pure-button-primary">
+                 </div>
+
+                 </div>
+              </div>
+            </div>
+       </section>
+     </form>
+   </div>
+ 		     </div>
+             </div>
+             </div>
+             </section>
+             </section>
+             <!-- END CONTENT -->
+             </div><!-- END CONTAINER -->
+             <!-- LOAD FILES AT PAGE END FOR FASTER LOADING -->
+             <!-- modal end -->
+			
+<%include ../generals/endFiles.ejs%>
+
+<script>
+    /* REGISTRATION STORE PROCESS */
+    $("#btn_registerStore").click(function(){
+            var Agencies = Parse.Object.extend("Agencies");
+            var agency = new Agencies();
+		
+            agency.set("Name", $("#storeName").val() );
+            agency.set("Email", $("#storeEmail").val() );
+			agency.set("Contact", $("#storeContact").val() );
+			agency.set("ID1", $("#storeID").val() );
+            agency.set("Telephone", $("#storeTelephone").val() );
+            agency.set("Address", $("#storeAddress").val() );
+            agency.set("Country", $("#storeCountry").val() );
+            agency.set("CountryCode", $("#storeCountryCode").val() );
+            agency.set("GeoCode", $("#storeGeoCode").val() );
+            agency.set("Company", user.get("Company") );
+            agency.save({success:function(agency){
+            
+                }});
+        });
+
+</script>
+    </body>
+</html>

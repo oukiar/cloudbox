@@ -1,0 +1,33 @@
+<div id="reservationstable">
+	              <ul id="list">
+	                <table class="table table-bordered" id="blueRow">
+	                <tr>
+	   				<th>Status</th>
+	   				<th>Client</th>
+	   	            <th>Arrival</th>
+	   	            <th>Departure</th>
+	   	            <th>Airline</th>
+	   				<th>Flight#</th>
+	   				<th>Phone</th>
+	   				<th>Destination</th>
+	                </tr>
+                
+        <% results.forEach(function(item){%>
+                    <tr dir-paginate="product in product | filter:q |" current-page="currentPage">
+                <td><%= item["Status"]%></td>
+                <td><%= item["ClientName"]%></td>
+                <td><%= item["Arrival"]%></td>
+                <td><%= item["Departure"]%></td>
+                
+                <td><%= item["Airline"]%></td>
+                <td><%= item["Flight"]%></td>
+                <td><%= item["Telephone"]%></td>
+                <td><%= item["Destination"]%></td>
+            
+                    </tr>
+                     <% }) %>
+								 
+								 
+	                </table>
+	              </ul>
+</div>

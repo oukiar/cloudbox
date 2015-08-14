@@ -1,0 +1,220 @@
+<div id="repack_content">
+
+        
+        <div class="row">
+            <div class="col-lg-12 col-md-12 container">
+                <div class="row">
+                
+                    
+                    <div class="col-md-6 col-xs-6">
+						<table>
+						<tr>
+						<th>
+						<label for="showWarehouse" class="pfont">WareHouse:</label>
+						</th>
+						<th>
+						<label for="filterby" class="pfont">By:</label>
+						</th>
+						<th>
+						<label class="pfont"  style="display: none;" id="fromTxt">From:</label>
+						</th>
+						<th>
+                        <label class="pfont" id="toTxt">Date:</label>
+                        </th>							
+						
+	            <tr><!--COLUMN 1-->			
+ 				<td style="padding: 5px;"> 
+				<select  id="warehousefilter" name="warehousefilter">
+                    <option value="All">All</option>
+ 			    </select>
+			    </td>
+							
+				<!--COLUMN 2-->
+                <td style="padding: 5px;">
+				<select  id="filterby" name="filterby">
+                    <option value="All">All</option>
+                    <option value="Shipper">Shipper</option>
+                    <option value="ReceiptNum">Receipt #</option>
+                    <option value="Date">Date</option>
+                    <option value="Destination">Destination</option>
+                </select>
+			    </td>
+                           
+               <!-- IF ALL OR DATE SELECTED THIS SEARCH INPUT IS NOT USE-->
+			   <!--COLUMN 3-->
+               <td style="padding: 5px;">
+			   <input type="hidden" placeholder="Search"  id="searchtext" name="searchtext">
+		       </td>
+			   
+               <!-- column 4-->
+               <td style="padding: 5px;"> 
+			   <select id="filterdate" name="filterdate">
+                     <option value="All">All</option>
+                     <option value="Today">Today</option>
+                     <option value="Yesterday">Yesterday</option>
+                     <option value="This week">This week</option>
+                     <option value="This month">This month</option>
+                     <option value="Last month">Last month</option>	
+                     <option value="Current year">Current Year</option>
+               </select>
+			   </td>
+			   		   
+		  	   <td style="padding: 7px;" align="center">
+				 <button id="btn_search" class="pure-button pure-button-primary">Search</button>
+			   </td>
+               
+               </tr>
+			   
+			   </table>
+                    <h3 id="boxes_text">Selected boxes for repack: 0</h3>
+
+                        </div>
+						
+		  	            <div class="col-md-6 col-xs-6">
+						<div style="float:right; margin-top:26px; margin-right:18px;">
+                           
+                        <a class="pure-button pure-button-primary" href="#openModalC" id='btn_repack' style="background:#E08566;"><b>Re-pack !</b></a>
+			 
+	                    </div>
+	                    </div>     
+									
+                    </div>
+					
+                  
+                  
+                    <div class="panel">
+                      <div class="panel-body">
+                        <ul id="list">
+                            <div id="repack_table">
+                                <% include RepackDynamicTable.ejs %>
+                            </div>
+                        </ul>
+   
+                    </div>
+                </div>
+                   
+            </div>
+        </div>
+ 
+        
+
+</div>
+
+<script>
+
+    
+    $("#btn_search").click(function(){
+            update_table_repack();
+        });
+
+    
+    
+	  	$("#warehousefilter").change(function(){
+                update_table_repack();
+            });
+      
+        
+            
+        $("#filterdate").change(function(){
+            update_table_repack();
+        });
+
+	  	$("#filterby").change(function(){
+            filterby_changed();
+	  	});
+		
+		
+	    $("#btn_repack").click(function(){
+        
+	        if(usrID == -1)
+	        {
+	            alert("User not selected");
+	            return false;
+	        }
+            
+            var nboxes = 0;
+            
+            /* COUNT ALL BOXES */
+            for(i in repack_receipts)
+            {
+                nboxes += repack_receipts[i].length;
+            }
+            
+            /* NEW BOXES REPACK */
+            if(nboxes < 1)
+	        {
+	            alert("You must select almost one box");
+	            return false;
+	        }
+            
+            /* SHOW RECEIPT-BOXES SUMMARY */
+            $("#confirmation_boxes").html("");
+             
+            for(receipt in repack_receipts)
+            {
+                if(repack_receipts[receipt].length == 0)
+                    continue;
+                
+                $("#confirmation_boxes").append("<h2>Receipt #: " + repack_receipts[receipt][0]["Receipt"] + "</h2>");
+                
+                for(box in repack_receipts[receipt])
+                {
+                    $("#confirmation_boxes").append("    Box: " + repack_receipts[receipt][box]["Num"] + "<br>");
+                }
+            }     
+            
+        
+	    });
+       
+    /* FUNCION ENCARGADA DE LLENAR EL FORM DEL LABEL (DE LA TABLA DE LABELS MOSTRADOS PARA REPACK) */
+    function wareceipt(objectId)
+    {
+        
+        $.post("/getby", 
+                {by:"objectId", value:objectId, classvar:"Warehouses"}, 
+                function(data){
+                
+                    wh = JSON.parse(data);
+                    
+                    $("#ReceiptLabel").val(wh["Receipt"]);
+                    $("#ReceiptDateLabel").val(moment(wh["ReceiptDate"]).format("MM[/]DD[/]YYYY") );
+                    $("#AgentLabel").val(wh["Agent"]);
+                    $("#TransportLabel").val(wh["Transport"]);
+                    $("#WarehouseLabel").val(wh["Warehouse"]);
+                    $("#CountryLabel").val(wh["Country"]);
+                    $("#PricesLabel").val(wh["Prices"]);
+                    $("#WeightLabel").val(wh["Weight"]);
+                    $("#WeightVolLabel").val(wh["WeightVol"]);
+                    $("#VolumeLabel").val(wh["Volume"]);
+                    $("#ExtraCostLabel").val(wh["ExtraCost"]);
+                    $("#InvoiceLabel").val(wh["Invoice"]);
+                    $("#ValueLabel").val(wh["Value"]);
+                    $("#ZoneLabel").val(wh["Zone"]);
+                    $("#ContentLabel").val(wh["Content"]);
+                    $("#GeneralNotesLabel").val(wh["GeneralNotes"]);
+                    $("#InternalNotesLabel").val(wh["InternalNotes"]);
+                    
+                    
+                    var nrows = 1;
+                    boxes = JSON.parse(wh["Boxes"]);
+                    
+                    for(box in boxes)
+                    {
+                        
+                        if(typeof $("#LengthLabel-"+nrows.toString() ).val() == "undefined" )
+                        {
+                            $( "#btn_addboxLabel" ).trigger("click");
+                        }
+                        
+                        $("#LengthLabel-"+nrows.toString() ).val(boxes[box]["length"]);
+                        $("#WidthLabel-"+nrows.toString() ).val(boxes[box]["width"]);
+                        $("#HeightLabel-"+nrows.toString() ).val(boxes[box]["height"]);
+                        $("#WeightLabel-"+nrows.toString() ).val(boxes[box]["weight"]);
+                        $("#BoxesLabel-"+nrows.toString() ).val(boxes[box]["boxes"]);
+                        
+                        nrows += 1;
+                    }
+                });
+    }
+       
+</script>

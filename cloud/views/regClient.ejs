@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+    <head>
+		
+        <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+        <meta charset="utf-8" />
+        <title>LC Cargo</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <meta content="" name="description" />
+        <meta content="" name="author" />
+        <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Jura&amp;subset=all">
+		   
+	
+        <!--ADMIN REQUIREMENTS-->   
+        <% include generals/ultraAdmin.ejs %>
+        <script src="/cod/js/common.js"></script>
+        <script src="/cod/js/moment.js"></script>
+        <!-- QR CODE GENERATOR -->
+        <script src="/cod/js/qrcode/qrcode.js"></script>
+        <script src="/cod/js/jquery-1.11.2.min.js"></script>
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/themes/smoothness/jquery-ui.css" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
+        <script src="http://yui.yahooapis.com/3.6.0/build/yui/yui-min.js"></script>
+        <script src="//www.parsecdn.com/js/parse-1.4.2.min.js"></script>
+      
+	  <style>
+	  #username{height: 34px; 
+width: 233px; 
+padding: 3px 5px 3px 5px; 
+border-style: none; 
+background-image: url(./media/textfieldwidget.png); 
+font-family: courier new; 
+font-size: 21px}
+
+	  #password{height: 34px; 
+width: 233px; 
+padding: 3px 5px 3px 5px; 
+border-style: none; 
+background-image: url(./media/textfieldwidget.png); 
+font-family: courier new; 
+font-size: 21px}
+</style>
+	       
+    </head>
+    <!-- END HEAD -->
+
+    <!-- BEGIN BODY -->
+    <body>
+		<div class="screen">
+            <!--START TOPBAR-->
+   		<!-- START TOPBAR -->
+           <div class='page-topbar sidebar_shift'>
+               <div class='quick-area'>
+                   <div class='pull-left'>
+                       <ul class="info-menu left-links list-inline list-unstyled">
+                           <li class="">
+                               <a href="#" data-toggle="sidebar" class="sidebar_toggle">
+                                   <i class="fa fa-bars"></i>
+                               </a>
+                           </li>
+  
+                   
+                       </ul>
+                   </div>		
+                   <div class='pull-right'  style="z-index:9999;">
+                       <ul class="info-menu right-links list-inline list-unstyled">
+                           <li class="profile">
+                               <a href="#" data-toggle="dropdown" class="toggle">
+                                   <span>Options  <i class="fa fa-angle-down"></i></span>
+                               </a>
+                               <ul class="dropdown-menu profile animated fadeIn">
+                                   <li>
+                                       <a href="/staff_mainSettings">
+                                           <i class="fa fa-wrench"></i>
+                                        About
+                                       </a>
+                                   </li>
+                           </li>
+                           </ul>			
+                          </div>		
+                          </div>
+
+           </div>
+           <!-- END TOPBAR -->
+            <!-- START CONTAINER -->
+            <div class="page-container row-fluid">
+                <!-- SIDEBAR - START -->
+	          <div class="page-sidebar" style="z-index:9999;">
+	          <!-- MAIN MENU - START -->
+	          <div class="page-sidebar-wrapper" id="main-menu-wrapper"> 
+	          <!-- USER INFO - START -->
+	          <div class="profile-info row">
+	          <div class="profile-details col-md-8 col-sm-8 col-xs-8">
+	          <h3>
+	  		<a href="ui-profile.html">LC Cargo</a>
+	          </h3>
+	          </div>
+	          </div>
+	          <!-- USER INFO - END -->
+	          <ul class='wraplist'>	
+
+	                          <li class="">
+	                              <a href="/profile">
+	                                  <i class="fa fa-sign-out"></i>
+	                                  <span class="title" >Log In</span>
+	                              </a>
+	                          </li>
+	                      
+
+	                          <li class="">
+	                               <a href="javascript:;">
+	                                  <i class="fa fa-users"></i>
+	                                 <span class="title">Register</span><span class="arrow "></span>
+	  						   </a>
+	  							   <ul class="sub-menu" >
+	  							   <li><a href="/staff_sending">Consignee</a></li>
+	  							   <li><a href="/staff_storestransit">Store</a><li>
+	  							   </ul>
+	                                 </li>
+						
+						
+	                       
+	                      </ul>
+
+	                  </div>
+	                  <!-- MAIN MENU - END -->
+
+
+
+	                  <div class="project-info">
+
+	                      <div class="block1">
+	                          <div class="data">
+	                              <span class='title'>Welcome!</span>
+	                              
+	                          </div>
+                        
+	                      </div>
+
+	                  </div>
+	              </div>
+			
+			
+	  			 <section id="main-content" class="sidebar_shift">
+                <!--  SIDEBAR - END -->	
+                <!-- START CONTENT -->
+                <section class="wrapper" style='margin-top:60px;display:inline-block;width:100%;padding:15px 0 0 15px;'>
+                    <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
+                        <div class="page-title">
+                            <div class="pull-left" style="with:110% !important;">
+                                
+                     
+
+					                  <!-- container -->
+					                  <div class="container">
+					                      <!-- row -->
+					                      <div class="row">
+
+					                      
+
+					                      </div><!-- /row -->
+					                  </div><!-- /container -->
+
+					              </div><!-- /navbar -->
+					          </div><!-- /nav-wrapper -->
+
+    
+			
+					          <!-- home-section -->
+					          <div id="home-section" style="position:relative; left:-8px;">
+					                                       
+		<h1 align="center" style="margin-top:21px; margin-bottom:42px; font-size: 6em; "><%= company.get("companyLink") %> </h1></div>
+            <form class="formlog" align="center" method="post" action="/logins">
+            <p class="input-field"><input type="text" name="username" id="username" placeholder="Username" /></p>
+			<input type="hidden" name="company" id="company" value="<%=company.get("companyLink")%>" />
+			<p class="input-field" ><input type="password" name="password" id="password" placeholder="Password" /></p>                 <button type="submit" id="nesto-submit" class="pure-button pure-button-primary" style="float:center; margin-top:3px;">
+			<span>Log In</span>
+		    </button>
+            <a href="#openModal" class="btn btn-lg btn-nesto-o" style="position:float:right; z-index:9999; background:#eee; color:rgba(50, 50, 58, 1.0);" />Forgot?</a>
+	        </form>
+			</div>
+				<!--MODAL PARA MOSTAR LABEL-->
+					         <div id="openModal" class="modalDialog">
+					                     <div>
+					                     <a href="#close" title="Close" class="close">X</a>
+					  										</br></br>
+					  										<form method="post" action="/reset">
+					                                              <p>
+					                                                  <label><font color="#35353C">E-mail address:</font></label></br></br>
+					                                                  <input type="email" name="re_email" id="re_email" class="input" placeholder="e-mail" size="34" />
+					  												<input type="hidden" value="<%= company.get("companyLink") %>" name="companyLink">
+					                                              </p>
+
+					                                              </br>
+					                                              <p class="submit">
+					                                                  <input type="submit" name="wp-submit" id="wp-submit" class="btn btn-orange" value="Recover" />  &nbsp &nbsp<a href="#close" style="color:black;" >Cancel</a>
+					                                              </p>
+									
+					                                          </form> 
+									  
+					  							    
+
+
+					                           
+                    </div>
+                </section>
+		
+            <!-- END CONTENT -->
+
+            </div><!-- END CONTAINER -->
+		</div>
+	
+		
+		
+
+
+
+ 
+					
+			
+    </div>
+    <!-- LOAD FILES AT PAGE END FOR FASTER LOADING -->
+
+    <%include generals/endFiles.ejs%>
+
+
+    </div>
+        <!-- modal end -->
+    </body>
+</html>

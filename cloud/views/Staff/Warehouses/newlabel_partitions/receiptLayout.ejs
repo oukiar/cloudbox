@@ -1,0 +1,223 @@
+<%moment = require('cloud/moment')%>
+<!doctype html>
+<html lang="en">
+    <head>
+        
+        <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+        <meta charset="utf-8" />
+        <title>LC Cargo</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <meta content="" name="description" />
+        <meta content="" name="author" />
+
+ <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Jura&amp;subset=all">
+     <link rel="stylesheet" href="cod/css/styleWareHouse.css">
+
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+        <link rel="stylesheet" href="/resources/demos/style.css">
+        
+        <script src="//www.parsecdn.com/js/parse-1.4.2.min.js"></script>
+        
+        <script src="/cod/js/qrcode/qrcode.js"></script>
+        
+        <!--ADMIN REQUIREMENTS-->   
+        <% include ../../../generals/ultraAdmin.ejs %>
+    
+        <script src="/cod/js/common.js"></script>
+        
+        
+    </head>
+<body>
+
+    <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
+                       
+    </div>
+                
+    <div class="clearfix"></div>
+
+        <div class="col-lg-12">
+            <section class="box ">
+                <header class="panel_header">
+      
+                    <div class="text-center" style="margin-top:5px; margin-bottom:5px;">
+                       <a onclick="printReceipt()" class="btn btn-purple btn-md"><i class="fa fa-print"></i> &nbsp; Print </a>        
+                       <a href="#" target="_blank" class="btn btn-orange btn-md"><i class="fa fa-send"></i> &nbsp; Send </a>        
+                    </div>
+                </header>
+                
+                <div id="section-to-print">
+                
+                    <div class="content-body">    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+
+                            <!-- start -->
+
+                            <div class="row">
+                            
+                                
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <div>
+                                          
+                                        <div class="col-md-2 col-sm-12 col-xs-12 invoice-title">
+                                           <img src="/assets/images/lccargo.png" class="img-reponsive" width="333" height="129"> 
+                                        </div>
+                                        
+                                        <div class="text-right" style="margin-right:3px;">
+                                            <span class='text-muted'>
+                                                <%= receipt.get("Company").get("address") %></br>
+                                                <b>Receipt # <div id="NumReceipt"><%= receipt.get("ReceiptNum")%></div></b></br>
+                                                <div id="DateReceipt"><%=moment(receipt.get("ReceiptHour")).format("MM[/]DD[/]YYYY h:mm:ss") %></div>
+                                        
+                                            </span>
+                                        </div>
+                                        
+                                        <div class="text-right" ></div>
+                            
+                                        <div class="col-md-3 col-sm-12 col-xs-12 invoice-logo col-md-offset-1">
+                                        
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!--  ------------------------------- -->
+
+                                <div class="clearfix"></div><br>
+
+                                    <div class="invoice-head">
+                                        <div class="col-xs-6 invoice-infoblock pull-left">
+                                        <h3><b>Store:</b></h3>
+                                        <address>
+                                            <%if(typeof( receipt.get("Shipper") ) == "undefined"){%>
+                                            <h4><div id="ShipperReceipt">Repack</div></h4>
+                                            <%}else{%>
+                                            <h4><div id="ShipperReceipt"><%= receipt.get("Shipper").get("Name")%></div></h4>
+                                            <span class='text-muted'>
+                                                <div id="AddrReceipt"><%= receipt.get("Shipper").get("Address")%></div>
+                                            </span>
+                                            <%}%>
+                                        </address>
+                                    </div>
+
+                                    <div class="col-xs-6 invoice-infoblock text-right">
+                                        <h3><b>Consignee:</b></h3>
+                                        <address>
+                                            <h4><div id="ConsigneeReceipt"><%= receipt.get("Consignee").get("Name")%></div></h4>
+                                            <span class='text-muted'>
+                                                <div id="ConsigneeAddrReceipt"><%= receipt.get("Consignee").get("Destinations")%></div>
+                                            </span>
+                                        </address>
+                                    </div>
+                                  
+                                </div>                                
+                                
+                                <!--  ------------------------------- -->
+
+                                <div class="pull-right">
+                                    <table>
+                                        <tr>
+                                            <td style="padding:0 4px 0 4px"><b>Destination:</b>  <div id="DestReceipt"><%= receipt.get("Destination")%></div></td>
+                                            <td style="padding:0 4px 0 4px"><b>Declared value:</b>  <div id="PriceReceipt">$ <%= receipt.get("Value")%></div></td>
+                                        </tr>
+                                    </table>         
+                                </div>
+                                
+                                <div class="clearfix"></div><br>
+
+                                </div>
+                                
+                                <!--  ------------------------------- -->
+
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        <h3>Receipt Breakdown:</h3><br>
+                                        <div class="table-responsive">
+                                            <table class="table table-hover invoice-table">
+                                                <thead>
+                                                    <tr>
+                                                        <td><h4>Length</h4></td>
+                                                        <td class="text-center"><h4>Width</h4></td>
+                                                        <td class="text-center"><h4>Height</h4></td>
+                                                        <td class="text-right"><h4>Pieces</h4></td>
+                                                        <td class="text-right"><h4>Weight</h4></td>
+                                                        <td class="text-right"><h4>#</h4></td>
+                                                    </tr>
+                                                </thead>
+                                                
+                                                <% boxes.forEach(function(box){ %>
+                                                    <tr>
+                                                        <td><%= box.get("Length")%></td>
+                                                        <td class="text-center"><%= box.get("Width")%></td>
+                                                        <td class="text-center"><%= box.get("Height")%></td>
+                                                        <td class="text-right"><%= box.get("Boxes")%></td>
+                                                        <td class="text-right"><%= box.get("Weight")%></td>
+                                                        <td class="text-right"><%= box.get("Num")%></td>
+                                                    </tr>
+                                                <% }) %>
+                                            </table>
+                                            
+                                            
+                                        <table class="table table-hover invoice-table">
+                                            <thead>
+                                                <tr>
+                                                <tr style="background:#FF8080;">
+                                                    <td>Total Pieces:</td>
+                                                    <%if(typeof( receipt.get("Shipper") ) == "undefined"){%>
+                                                        <td class="text-center">Total Price</td>
+                                                    <%}else{%>
+                                                        <td class="text-center">Total Weight</td>
+                                                    <%}%>
+                                                    <td class="text-right">Total Volume</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="text-center"><h5><b><div id="TotalPieces"><%= receipt.get("TotalBoxes")%></div></b></h5></td>
+                                                    <td class="text-center"><h5><b><div id="TotalWeight">
+                                                        <%if(typeof( receipt.get("Shipper") ) == "undefined"){%>
+                                                            <%= receipt.get("Value")%></div></b></h5>
+                                                        <%}else{%>
+                                                            <%= receipt.get("Weight")%></div></b></h5>
+                                                        <%}%>
+                                                    </td>
+                                                    <td class="text-right"><h5><b><div id="TotalVolume"><%= receipt.get("Volume")%></div></b></h5></td>
+                                                </tr>
+                                            <tr><td></td><td></td></tr>
+                                                <tr><td></td><td></td></tr>
+                                                    <tr>
+                                                        <td style="padding:0 7px 0 7px">Printed: <div id="PrintedReceipt"><%=moment(new Date() ).format("MM[/]DD[/]YYYY h:mm:ss") %></div></td>
+                                                        <td style="padding:0 7px 0 7px">User who made the Receipt: <div id="UserReceipt"><%=receipt.get("Usr").get("Name")%></div></td>
+                                                    </tr>
+                                                </tbody>
+                                            </tr>
+                                        </table>
+                                                
+                                                </br></br></br>
+                                                <img src="assets/images/us_seal.png" width="155" height="119" alt="Us Logo"><h6>PER TSA REGULATION ALL CARGO IS SUBJECT TO INSPECTION</h6>
+                                            <div class="page-break"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            <!-- end -->
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+        
+        </div>
+              
+    </div>
+						
+    <script>
+        
+        function printReceipt() {
+            window.print();
+        }
+        
+    </script>
+
+</body>
+</html>

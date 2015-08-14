@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js"> <!--<![endif]-->
+    <!-- =========================================
+    head
+    ========================================== -->
+    <head>
+
+
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>CARGO</title>
+        <meta name="keywords" content="Thirteen22, HTML5, CSS3, responsive, APP, landing page, template" />
+        <meta name="author" content="NestoLab" />
+        <meta name="robots" content="index follow" />
+        <meta name="description" content="Thirteen22 - Responsive HTML5 / CSS3 APP Landing Page Template" />
+
+  
+        <meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=no" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+        <meta name="GOOGLEBOT" content="index follow" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+
+      
+        <link rel="shortcut icon" href="login/images/icons/favicon.ico" />
+        <link rel="apple-touch-icon-precomposed" href="login/images/icons/icon.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="login/images/logo.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="login/images/logo.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="login/images/logo.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="60x60" href="login/images/logo.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="120x120" href="login/images/logo.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="76x76" href="login/images/logo.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="login/images/logo.png" />
+
+        
+        <link rel="stylesheet" media="screen" href="login/css/bootstrap.min.css" />
+        <link rel="stylesheet" media="screen" href="login/css/style.css" />
+        <link rel="stylesheet" media="screen" href="login/js/plugins/wow/animate.min.css" />
+        <link rel="stylesheet" media="screen" href="login/css/style-4.css" />
+
+     
+        <script type="text/javascript" src="login/js/vendor/modernizr.custom.js"></script>
+			<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=VT323">
+		
+            	
+			  <style>
+			  
+			  .modalDialogB {
+			  	position: absolute;
+				z-index:99999;
+			  	font-family: Arial, Helvetica, sans-serif;
+			  	top: 0;
+			  	right: 0;
+			  	bottom: 0;
+			  	left: 0;
+				height:100%;
+			  	background: rgba(0,0,0,0.8);
+			  	z-index: 99999;
+			  	opacity:0;
+			  	-webkit-transition: opacity 400ms ease-in;
+			  	-moz-transition: opacity 400ms ease-in;
+			  	transition: opacity 400ms ease-in;
+			  	pointer-events: none;
+			  }
+  
+			  .modalDialogB:target {
+			  	opacity:1;
+			  	pointer-events: auto;
+				z-index:99999;
+			  }
+
+			  .modalDialogB > div {
+			  	width: 544px;
+			  	position: relative;
+				z-index:99999;
+			  	margin: 10% auto;
+			  	padding: 5px 20px 13px 20px;
+			  	border-radius: 10px;
+			  	background: white;
+			  }
+  
+	
+			  .modalDialog {
+			  	position: fixed;
+			  	font-family: Arial, Helvetica, sans-serif;
+			  	top: 0;
+			  	right: 0;
+			  	bottom: 0;
+			  	left: 0;
+				height:100%;
+			  	background: rgba(0,0,0,0.8);
+			  	z-index: 99999;
+			  	opacity:0;
+			  	-webkit-transition: opacity 400ms ease-in;
+			  	-moz-transition: opacity 400ms ease-in;
+			  	transition: opacity 400ms ease-in;
+			  	pointer-events: none;
+			  }
+  
+			  .modalDialog:target {
+			  	opacity:1;
+			  	pointer-events: auto;
+			  }
+
+			  .modalDialog > div {
+			  	width: 544px;
+			  	position: relative;
+			  	margin: 10% auto;
+			  	padding: 5px 20px 13px 20px;
+			  	border-radius: 10px;
+			  	background: white;
+			  }
+  
+  
+			  .close {
+			  	background: #606061;
+			  	color: #FFFFFF;
+			  	line-height: 25px;
+			  	position: absolute;
+			  	right: -12px;
+			  	text-align: center;
+			  	top: -10px;
+			  	width: 24px;
+			  	text-decoration: none;
+			  	font-weight: bold;
+			  	-webkit-border-radius: 12px;
+			  	-moz-border-radius: 12px;
+			  	border-radius: 12px;
+			  	-moz-box-shadow: 1px 1px 3px #000;
+			  	-webkit-box-shadow: 1px 1px 3px #000;
+			  	box-shadow: 1px 1px 3px #000;
+			  }
+
+			  .close:hover { background: #00d9ff; }
+  
+
+
+			</style>
+			
+			
+		    <style>
+
+
+			#geocomplete { width: 200px}
+
+			.map_canvas { 
+			  width:100%; 
+			  height: 400px; 
+			  margin: 10px 20px 10px 0;
+	  
+			}
+
+			#multiple li { 
+			  cursor: pointer; 
+			  text-decoration: underline; 
+			}
+			</style>
+	
+			<script>
+			function deleteRow(btn) {
+			  var row = btn.parentNode.parentNode;
+			  row.parentNode.removeChild(row);
+			}
+			</script>
+
+
+    </head>
+
+    <body class="static-color">
+
+
+
+
+
+        <div id="loader">
+            <div id="loader-container">
+                <img src="login/images/loader.gif" alt="Loader" />
+            </div>
+        </div>
+
+
+
+
+        <!-- nav-wrapper -->
+        <div id="nav-wrapper">
+            <!-- navbar -->
+            <div class="navbar" style="background:rgba(50, 50, 58, 1.0); top:-40px;">
+
+                <!-- container -->
+                <div class="container">
+                    <!-- row -->
+                    <div class="row">
+
+                        <!-- col-md-12 -->
+                        <div class="col-md-12">
+                            <!-- navbar-header -->
+                            <div class="navbar-header">
+                                <!-- Mobile Menu -->
+                                <button data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle" type="button">
+                                    <i class="fa fa-bars"></i>
+                                </button><!-- / mobile Menu -->
+                                
+                                <!-- logo -->
+                                <a href="#home-section" class="navbar-brand" data-scroll title="Thirteen22">        
+                                </a><!-- /logo -->
+                            </div><!-- /navbar-header -->
+
+                            <!-- navbar-collapse -->
+                            <div class="navbar-collapse collapse">
+
+                                <!-- nav -->
+                                <ul class="nav navbar-nav navbar-right">
+
+                                    <!-- Home -->
+                                    <li>
+                                        <a href="http://<%=company.get("website")%>" title="Home">
+                                            Home
+                                        </a>
+                                    </li><!-- /Home -->
+
+                                 
+                                    <!-- Download -->
+                                    <li>
+                                        <a href="#contact-section" title="Client" data-scroll class="scrollto">
+                                          Register as a Client
+                                        </a>
+                                    </li><!-- /Download -->
+
+                                    <!-- ScreenShots -->
+                                    <li>
+                                        <a href="#store-section" title="Store" data-scroll class="scrollto">
+                                            Register as a Store
+                                        </a>
+                                    </li><!-- /ScreenShots -->
+
+
+                                    <!-- Contact Us -->
+                                    <li>
+                                        <a href="#contact-section" title="Contact Us" data-scroll class="scrollto">
+                                            Contact
+                                        </a>
+                                    </li><!-- /Contact Us -->
+
+                                </ul><!-- /nav -->
+
+                            </div><!-- /navbar-collapse -->
+
+                        </div><!-- /col-md-12 -->
+
+                    </div><!-- /row -->
+                </div><!-- /container -->
+
+            </div><!-- /navbar -->
+        </div><!-- /nav-wrapper -->
+
+    
+			
+        <!-- home-section -->
+        <div id="home-section">
+            <!-- home-section-wrapper -->
+            <div id="home-section-wrapper"></div>
+                <!-- home-section-container -->
+                <div id="home-section-container">
+
+                    <!-- container -->
+                    <div class="container">
+                        <!-- row -->
+                        <div class="row">
+                          
+                         
+                         <div class="col-lg-12 loginset">
+                           <div class="col-lg-12 col-md-12">
+                            <h1 align="center" style="margin-top:16px; margin-bottom:39px; font-size: 6em; color:rgba(50, 50, 58, 1.0);"><%= company.get("companyLink").toUpperCase() %></h1></div>
+            	
+                                    <form class="formlog" method="post" action="/logins">
+                                        
+                                        <p class="input-field"><input type="text" name="username" id="username" placeholder="Username" style="background:white;"/></p>
+                                        <input type="hidden" name="company" id="company" value="<%=company.get("companyLink")%>" />
+                                        <p class="input-field" ><input type="password" name="password" id="password" placeholder="Password" style="background:white;" /></p>        
+
+                                        <button type="submit" id="nesto-submit" class="btn btn-lg btn-nesto-o center-block" style="float:center; margin-top:3px;">
+                                            <span>Log In</span>
+                                        </button>
+                              
+                                        <a href="#openModal" class="btn btn-lg btn-nesto-o" style="position:float:right; z-index:9999; background:#eee; color:rgba(50, 50, 58, 1.0);" />Forgot?</a>
+                                    </form>
+			   
+					            </div>
+								
+	
+                                <!--MODAL PARA MOSTAR LABEL-->
+                                <div id="openModal" class="modalDialog">
+                                    <div>
+                                        <a href="#close" title="Close" class="close">X</a>
+										</br></br>
+										<form method="post" action="/reset">
+                                            <p>
+                                            <label><font color="#35353C">E-mail address:</font></label></br></br>
+                                            <input type="email" name="re_email" id="re_email" class="input" placeholder="e-mail" size="34" />
+										    <input type="hidden" value="<%= company.get("companyLink") %>" name="companyLink">
+                                            </p>
+                                            </br>
+                                            <p class="submit">
+                                                <input type="submit" name="wp-submit" id="wp-submit" class="btn btn-orange" value="Recover" />  &nbsp &nbsp<a href="#close" style="color:black;" >Cancel</a>
+                                            </p>
+									
+                                        </form> 
+									  
+							        </div>
+							    </div>
+								
+					     
+
+                                <!-- col-md-8 -->
+                                <div class="col-md-8">
+                                    
+
+                                    <!-- slogan -->
+                                    <div class="slogan wow fadeInLeft" data-wow-duration="1.5s">
+                                       <b style="position:relative; top:-8px;"> Register</b></br>
+                                    </div><!-- /slogan -->
+
+                                    <!-- slogan-desc -->
+                                    </br>
+
+                                    <!-- home-buttons -->
+                                    <div class="home-buttons wow fadeInLeft" data-wow-duration="1.5s">
+                                        <a href="#contact-section" title="Download Now" class="btn btn-lg btn-nesto-home-o" style="border: black !important;" data-scroll>
+                                        As a Client
+                                        </a>
+                                        or
+                                        <a href="#store-section" title="Read More" class="btn btn-lg btn-nesto-home-o" style="border: black !important;" data-scroll>
+                                        As a Store
+                                        </a>
+                                    </div><!-- /home-buttons -->
+
+                                </div><!-- /col-md-8 -->
+
+						
+						
+                                <!-- AQUIIII -->
+
+
+                            </div><!-- /row -->
+                        </div><!-- /container -->
+
+                    </div><!-- /home-section-container -->
+                </div><!-- /home-section -->
+
+
+
+                <!-- contact-section -->
+                <div id="contact-section">
+
+                    <!-- container -->
+                    <div class="container">
+                        <!-- row -->
+                        <div class="row">
+
+
+                            <!-- col-md-12 -->
+                            <div class="col-md-12">
+
+                                <!-- section-title -->
+                                <div class="section-title wow fadeInDown" data-wow-duration="1.5s">
+                                   <font color="#35353C">Client Registration</font>
+                                </div><!-- /section-title -->
+
+                            </div><!-- /col-md-12 -->
+
+
+                            <!-- col-md-12 -->
+                            <div class="col-md-12">
+                                <!-- row -->
+                                <div class="row">
+
+                                  <!-- form -->
+                                  <form id="contactform" class="contactform" method="post" action="/<%= company.get("companyLink") %>" align="center">
+                                        <!-- col-md-4 -->
+                                        <div class="col-md-12">
+                                            <!-- Contact Name -->
+                                            <div class="form-group">
+                                                <div class="controls">
+                                                    <label class="form-label" for="field-1"><font color="#35353C">Full Name:</font></label>
+                                                    <input type="text" class="form-control" maxlength="55" id="usrFullName" name="usrFullName">
+                                              
+
+                                    
+                                                    <label class="form-label" for="field-1"><font color="#35353C">Language:</font></label>
+                                                    <select  class="form-control" id="usrLanguage" name="usrLanguage">
+                                                    <option value="Spanish">Spanish</option>
+                                                    <option value="English">English</option>
+                                                    </select>
+                                            
+                                       
+                                                   <label class="form-label" for="field-1"><font color="#35353C">ID1:</font></label>
+                                               <input type="text" class="form-control" maxlength="55" id="usrID1" name="usrID1">
+                                            
+                                                    <label class="form-label" for="field-1"><font color="#35353C">Telephone:</font></label>
+                                                    <input type="text" class="form-control" maxlength="21" id="usrTel" name="usrTel">
+                                    
+                                                    <label class="form-label" for="field-1"><font color="#35353C">Email:</font></label>
+                                                    <input type="text" class="form-control" maxlength="55" id="usrEmail" name="usrEmail">
+                                            
+                                       
+                                                    <label class="form-label" for="field-1"><font color="#35353C">Create username:</font></label>
+                                                    <input type="text" class="form-control" maxlength="55" id="usrUsername" name="usrUsername">
+                                               
+										
+                                        <!-- col-md-12 -->
+                                      
+                                                    <label class="form-label" for="field-1"><font color="#35353C">Create password:</font></label>
+                                                    <input type="password" class="form-control" maxlength="55" id="usrPassword" name="usrPassword">
+                                   
+                                     <label class="form-label" for="field-1"><font color="#35353C">Re-type password:</font></label>
+                                      <input type="password" class="form-control" maxlength="55" id="usrRePassword" name="usrRePassword">
+                                                  </div>
+                                              </div><!-- /Contact Name -->
+                                          </div><!-- /col-md-4 --> 
+								
+								
+                                   <div class="col-md-12">
+                                   <!-- Contact Message -->
+                                   <div class="form-group">
+                                   <div class="controls">
+                                                    
+                                 
+                                 <!--<form>-->
+                       <label class="form-label" for="field-1"><font color="#35353C"><b>Destionations:</b></label></br>
+			   
+                      <input id="geocomplete" type="text" placeholder="Type in an address" size="90" class="form-control" style="width:80%; margin-right:5px;"/>
+					  <button id="find" type="button"  id="nesto-submit" class="btn btn-lg btn-nesto-o" style="top:-80px; left:40%;"/><span>Add Destination</span></button>
+					  <div style="position:relative; top:-34px; ">
+                                                    <!--</form>-->
+                                                    <pre><b>Destinations List:</b> To add another destination click on the Add Destination button and write a new address.
+															
+                                            
+                                                        <table id="logger" style="position:relative; top:-34px;">
+                    
+                                                        </table>
+                                                    </pre>
+                                                    <div class="map_canvas" >
+                                                    
+                                                    </div>
+                                        </div>
+                                                </div>
+                                            </div><!-- /Contact Message -->
+                                        </div><!-- /col-md-12 -->
+
+                                        <!-- col-md-12 -->
+                                        <div class="col-md-12">
+                                        <!-- Submit Button --> 
+                            <!-- DONT WORK   
+                                    <input type="hidden" name="companyID" value="<%= company.get('objectId')%>">
+                                            -->
+                                            
+                       <button id="find"  type="submit"  id="clientSubmit" class="btn btn-lg btn-nesto-o"/><span>Register</span></button> 
+                                            
+                                        </div><!-- /col-md-12 -->
+
+                                        <!-- col-md-12 -->
+                                        <div class="col-md-12">
+                                            <!-- Form Message -->
+                                            <div id="contact-form-message"></div>
+                                        </div><!-- /col-md-12 -->
+                                            
+                                        <input type="hidden" name="companyID" value="<%= company.id%>">
+
+                                    </form><!-- /form -->
+
+
+                                </div><!-- /row -->
+                            </div><!-- /col-md-12 -->
+
+
+                        </div><!-- /row -->
+                    </div><!-- /container -->
+
+                </div><!-- /contact-section -->
+                
+                <br><br>
+                
+              <!-- store-section -->
+              <div id="store-section">
+
+                    <!-- container -->
+                    <div class="container">
+                        <!-- row -->
+                        <div class="row">
+
+
+                            <!-- col-md-12 -->
+                            <div class="col-md-12">
+
+                                <!-- section-title -->
+                                <div class="section-title wow fadeInDown" data-wow-duration="1.5s">
+                                   <font color="#FFFFFF">Store Registration</font>
+                                </div><!-- /section-title -->
+
+                            </div><!-- /col-md-12 -->
+
+
+                            <!-- col-md-12 -->
+                            <div class="col-md-12">
+                                <!-- row -->
+                                <div class="row">
+
+
+                                    <!-- form -->
+                                    <form id="storeform" class="storeform" method="post" action="/<%= company.get("companyLink") %>" align="center">
+                                   <!-- col-md-4 -->
+                                   <div class="col-md-12">
+                                    <!-- Contact Name -->
+                                            <div class="form-group">
+                                                <div class="controls">
+                                                    <label class="form-label" for="storeName"><font color="#FFFFFF">Full Name:</font></label>
+                                                    <input type="text" class="form-control" maxlength="55" id="storeName" name="storeName">
+                                              
+                                      
+                                                    <label class="form-label" for="storeLanguage"><font color="#FFFFFF">Language:</font></label>
+                                                    <select  class="form-control" id="storeLanguage" name="storeLanguage">
+                                                        <option value="Spanish">Spanish</option>
+                                                        <option value="English">English</option>
+                                                    </select>
+                                            
+                                                   <label class="form-label" for="field-1"><font color="#FFFFFF">ID1:</font></label>
+                                               <input type="text" class="form-control" maxlength="55" id="storeID1" name="storeID1">
+                                       
+                                                    <label class="form-label" for="field-1"><font color="#FFFFFF">Telephone:</font></label>
+                                                    <input type="text" class="form-control" maxlength="21" id="storeTel" name="storeTel">
+                                          
+                                                    <label class="form-label" for="storeEmail"><font color="#FFFFFF">Email:</font></label>
+                                                    <input type="text" class="form-control" maxlength="55" id="storeEmail" name="storeEmail">
+													
+                                   <label class="form-label" for="storeEmail"><font color="#FFFFFF">Website:</font></label>
+                                 <input type="text" class="form-control" maxlength="55" id="storeWebsite" name="storeWebsite">
+													
+													
+                                                    <label class="form-label" for="storeEmail"><font color="#FFFFFF">Create Username:</font></label>
+                                                    <input type="text" class="form-control" maxlength="55" id="storeUsername" name="storeUsername">
+													
+													
+                                                    <label class="form-label" for="storeEmail"><font color="#FFFFFF">Password:</font></label>
+                                                    <input type="password" class="form-control" maxlength="55" id="storePassword" name="storePassword">
+													
+													
+                                                    <label class="form-label" for="storeEmail"><font color="#FFFFFF">Re-type Password:</font></label>
+                                                    <input type="password" class="form-control" maxlength="55" id="storeRTpassword" name="storeRTpassword">
+                                                </div>
+                                            </div><!-- /Contact Message -->
+                                        </div><!-- /col-md-12 -->
+								
+								
+                                        <div class="col-md-12">
+                                            <!-- Contact Message -->
+                                            <div class="form-group">
+                                                <div class="controls">
+                                                    
+                                                    <label class="form-label" for="field-1"><h4><b>Store Address:</b></b></h4></label></br>
+                         <input id="geocompleteStore" type="text" placeholder="Type in an address" size="90" name="storeAddress"/>
+                                                       
+                                                    <!--</form>--></br></br>
+                                                    
+                                                   
+                                                    <div class="map_canvasStore" >
+                                                    
+                                                    </div>
+                                        
+                                                </div>
+                                            </div><!-- /Contact Message -->
+                                        </div><!-- /col-md-12 -->
+
+                                        <!-- col-md-12 -->
+                                        <div class="col-md-12">
+                                            <!-- Submit Button -->
+                                            
+                                            <input type="submit" id="storeSubmit" class="btn btn-lg btn-nesto-o" value="Register as Store">
+                                                
+                                            
+                                        </div><!-- /col-md-12 -->
+
+                                        <!-- col-md-12 -->
+                                        <div class="col-md-12">
+                                            <!-- Form Message -->
+                                            <div id="contact-form-message"></div>
+                                        </div><!-- /col-md-12 -->
+                                            
+                                        <input type="hidden" name="companyIDStore" value="<%= company.id%>">
+
+                                    </form><!-- /form -->
+
+
+                                </div><!-- /row -->
+                            </div><!-- /col-md-12 -->
+
+
+                        </div><!-- /row -->
+                    </div><!-- /container -->
+
+                </div><!-- /store-section -->
+                
+                
+                <!-- footer-section -->
+                <div id="footer-section">
+                    <!-- footer-section-container -->
+                    <div id="footer-section-container">
+
+
+                        <!-- container -->
+                        <div class="container">
+                            <!-- row -->
+                            <div class="row">
+                                
+                                <!-- col-md-12 -->
+                                <div class="col-md-12">
+                                    <div id="footer-logo">
+                                        <a href="#home-section" title="Home" data-scroll>
+                                            <img src="login/images/logo.png" alt="Logo" width="55" height="55" />
+                                        </a>
+                                    </div>
+                                </div><!-- /col-md-12 -->
+
+
+                                <!-- col-md-12 -->
+                                <div class="col-md-12">
+
+                                    <!-- social-icons -->
+                                    <div id="social-icons">
+                                        <ul>
+                                            <li>
+                                                <!-- Facebook -->
+                                                <a href="#" title="Facebook">
+                                                    <i class="fa fa-facebook"></i>
+                                                </a>
+                                            </li><li>
+                                                <!-- Twitter -->
+                                                <a href="#" title="Twitter">
+                                                    <i class="fa fa-twitter"></i>
+                                                </a>
+                                            </li><li>
+                                                <!-- Google Plus -->
+                                                <a href="#" title="Google Plus">
+                                                    <i class="fa fa-google-plus"></i>
+                                                </a>
+                                            </li><li>
+                                                <!-- Dribbble -->
+                                                <a href="#" title="Dribbble">
+                                                    <i class="fa fa-dribbble"></i>
+                                                </a>
+                                            </li><li>
+                                                <!-- Youtube -->
+                                                <a href="#" title="Youtube">
+                                                    <i class="fa fa-youtube-play"></i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div><!-- /social-icons -->
+
+                                </div><!-- /col-md-12 -->
+
+
+                       
+
+
+                                <!-- col-md-12 -->
+                                <div class="col-md-12">
+                                    <!-- copyright -->
+                                    <div id="copyright">
+                                        &copy; Copyright 2014  |  All rights reserved to Neurons Art & Technology  |  designed by <a href="http://themeforest.net/user/vishnusathyan" title="Vishnu Sathyan" target="_blank">Waven Art</a>  |  developed by <a href="http://NestoLab.com" title="NestoLab" target="_blank">c0deBreakers</a>
+                                        Made in California
+                                    </div><!-- /copyright -->
+                                </div><!-- /col-md-12 -->
+
+
+                            </div><!-- /row -->
+                        </div><!-- /container -->
+
+
+                    </div><!-- /footer-section-container -->
+                    
+                </div><!-- /footer-section -->
+        
+            </div>
+        </div>
+        
+        <script src="/cod/js/jquery-1.11.2.min.js"></script>
+        
+        <script src="https://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
+        <script src="cod/js/jquery.geocomplete.js"></script>
+     
+      
+        <script>
+            
+            var $j = jQuery.noConflict();
+            var nwarehouses = 1;
+            $j(function(){
+                var options = {
+                  map: ".map_canvas",
+                    details: "form ul",
+                  detailsAttribute: "data-geo"
+                };
+                
+                $j("#geocomplete").geocomplete(options)
+                  .bind("geocode:result", function(event, result){
+                      /*alert(JSON.stringify(result) );*/  
+                    $j.log(result);
+                  })
+				  
+                  .bind("geocode:error", function(event, status){
+                    /*$j.log("ERROR: " + status);*/
+                  })
+                  
+                  .bind("geocode:multiple", function(event, results){
+                    /*$j.log("Multiple: " + results.length + " results found");*/
+                  });
+               
+              });
+              
+              $j("#find").click(function(){
+                $j("#geocomplete").val('');
+              });
+              
+              
+              $j.log = function(result){
+                var message = result.formatted_address;
+                var wareName = result["address_components"][0]["long_name"];
+                var long_name;
+                var short_name;
+                
+                for( i in result["address_components"] )
+                {
+                    if( $.inArray("country", result["address_components"][i]["types"]) > -1)
+                    {
+                        wareName += " - " + result["address_components"][i]["long_name"];
+                        long_name = result["address_components"][i]["long_name"];
+                        short_name = result["address_components"][i]["short_name"];
+                        break;
+                    }
+                }
+                
+                var logger = $j("#logger");
+                logger.html(logger.html()+ "<tr><td style='white-space: nowrap; padding-top: 2px;' align='left'>" + 
+                                "<input type='button' value='Delete' class='pure-button pure-button-primary' style='background:#E08566;' onclick='deleteRow(this)'>"  +
+                                "\n * " + message + "\n" + "<b><font color='#E08566'>Destination Name:</font></b>" + "\n" + 
+                                "<input type='text' name='Alias" + nwarehouses.toString() + "' value='"+ wareName +
+                                "' placeholder='Destination Name' style='width:34%; background:white; height:34px;'><input type='hidden' value='" + message +
+                                "' name='Address"+ nwarehouses.toString() +"'>"+  
+                                "<input type='hidden' name='Country"+ nwarehouses.toString() +"' value='"+ long_name +"'>" +
+                                "<input type='hidden' name='CountryCode"+ nwarehouses.toString() +"' value='"+ short_name +"'>" +
+                                "<input type='hidden' name='GeoCode"+ nwarehouses.toString() +"' value='"+ JSON.stringify(result) +"'></td></tr>");
+                                
+                nwarehouses += 1;
+                
+                $j("#geocomplete").val('');
+              };
+              
+            
+        </script>
+        
+        <script>
+            
+            var nwarehousesStore = 1;
+            
+            $j(function(){
+                
+                var options = {
+                  map: ".map_canvasStore"
+                };
+                
+                $j("#geocompleteStore").geocomplete(options)
+                
+                  .bind("geocode:result", function(event, result){
+                    $j.logStore(result.formatted_address);
+                  })
+                  
+                  .bind("geocode:error", function(event, status){
+                    $j.logStore("ERROR: " + status);
+                  })
+                  
+                  .bind("geocode:multiple", function(event, results){
+                    $j.logStore("Multiple: " + results.length + " results found");
+                  });
+                  
+               
+              });
+              
+          $j("#findStore").click(function(){
+                $j("#geocompleteStore").val('');
+            });
+          
+          
+          $j.logStore = function(message){
+                var logger = $j("#loggerStore");
+                logger.html(logger.html()+ "<tr><td style='white-space: nowrap; padding-top: 2px;'>" + "<input type='button' value='Delete' class='pure-button pure-button-primary' style='background:#E08566;' onclick='deleteRow(this)'>"  + "\n * " + message + "\n" + "<b><font color='#E08566'>Warehouse Name:</font></b>" + "\n" + "<input type='text' name='shop" + nwarehousesStore.toString() + "' placeholder='Warehouse Name'><input type='hidden' value='" + message +"' name='Address"+ nwarehousesStore.toString() +"'></td></tr>");
+                nwarehousesStore += 1;
+              };
+            
+        </script>
+
+        <script type="text/javascript" src="login/js/vendor/jquery-1.11.0.js"></script>
+        <script type="text/javascript" src="login/js/vendor/bootstrap.min.js"></script>
+        
+        <script type="text/javascript" src="login/js/plugins/jquery.placeholder.js"></script>
+        <script type="text/javascript" src="login/js/plugins/jquery.easing.1.3.js"></script>
+        <script type="text/javascript" src="login/js/plugins/smoothscroll/smooth-scroll.min.js"></script>
+        <script type="text/javascript" src="login/js/plugins/okvideo/okvideo.min.js"></script>
+        <script type="text/javascript" src="login/js/plugins/nivo/nivo-lightbox.min.js"></script>
+        <script type="text/javascript" src="login/js/plugins/owl-carousel/owl.carousel.min.js"></script>
+        <script type="text/javascript" src="login/js/plugins/ajaxchimp/jquery.ajaxchimp.min.js"></script>
+        <script type="text/javascript" src="login/js/plugins/retina-1.1.0.js"></script>
+        <script type="text/javascript" src="login/js/plugins/wow/wow.min.js"></script>
+        <script type="text/javascript" src="login/js/1322.js"></script>
+      
+      
+        <script>        
+        // JavaScript Document
+
+        $(document).ready(function(){
+        
+                $(window).resize(changeSize.init);
+                $(window).load(changeSize.init);
+
+                function initSlider() 
+                {
+                    $('#layerslider').layerSlider({
+                                skinsPath : 'skins/',
+                                skin : 'fullwidth',
+                                thumbnailNavigation : 'hover',
+                                hoverPrevNext : false,
+                                responsive : false,
+                                responsiveUnder : 1200,
+                                sublayerContainer : 1000,
+                                autoStart : true,
+                                pauseOnHover : false,
+                                firstLayer : 1,
+                                animateFirstLayer : true,
+                        });
+                }
+
+    
+            // Plugin que calcula el offset top de los elementos para poder animarlos al hacer scroll
+            var wpOffset = 85;
+            if( /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) ) {
+		        wpOffset = 100;
+		     }
+             
+		     $.fn.waypoint.defaults = {
+		        context: window,
+		        continuous: true,
+		        enabled: true,
+		        horizontal: false,
+		        offset: 0,
+		        triggerOnce: false
+		     };
+		     $('.animated').waypoint(function(direction) {
+		        var elem = $(this);
+		        var animation = elem.data('animation');
+		        if ( !elem.hasClass('visible') ) {
+		            if ( elem.attr('data-animation-delay') !== undefined ) {
+		                var timeout = elem.data('animation-delay');
+
+		                setTimeout(function(){
+		                    elem.addClass( animation + " visible" );
+		                }, timeout);
+		            } else {
+		                elem.addClass( elem.data('animation') + " visible" );
+		            }
+		        }
+		     }, { offset: wpOffset+'%' });
+	 
+	 
+	 
+	 
+			 });
+	 
+	 
+			 // Funcion para arregar el alto de las imagenes en el Onload y Resize
+	 
+	 	
+				var changeSize = {
+					init:function() {
+				
+				
+				var $window = $(window);
+
+	
+	
+					if ($window.scrollTop() > 10) {
+				
+					$('#layerslider').removeClass('topload')	
+					}
+		  
+		 		
+			
+				var anchoScreen = ($(window).width())/2;
+		
+				var anchoCirculo = $('.circle_down').width()/2;
+				var ResultadoAncho =  anchoScreen -  anchoCirculo ;
+				$('.circle_down').css({left:Math.round(ResultadoAncho)});
+		
+		
+				var WindowHeight = $(window).height();
+		
+		
+				$('#layerslider').height(WindowHeight)
+		
+				var WindowHeightDiv = $(window).height()/2;
+				var anchoImg_1 =  $('.contImg1 > img').width()/2;
+				var anchoImg_2 =  $('.contImg2 > img').width()/2;
+				var anchoImg_3 =  $('.contImg3 > img').width()/2;
+				var anchoImg_4 =  $('.contImg4 > img').width()/2;
+				var anchoImg_5 =  $('.contImg5 > img').width()/2;
+		
+		
+			
+				$('.ls-bg').height(WindowHeight);
+	
+				// Igualo la altura del contenedor de las imagenes de cada feature con la imagen mas grande del contenedor para mantener espacio
+		
+				if ( $(window).width() >  1000  ) {
+				var altoImagenThird = $('.contanimations_third img.baseheigh').height();
+				$('.contanimations_third').height(altoImagenThird);
+		
+				}else {
+		
+				var altoImagenThird2 = $('.contanimations_third img.baseheightwo').height();
+				$('.contanimations_third').height(altoImagenThird2);
+				}
+		
+				if ( $(window).width() <  1511  ) {
+		
+				var altoImagen = $('.contanimations img.img-responsive').height();
+				$('.contanimations').height(altoImagen);
+		
+				var altoImagenSecond = $('.contanimations_second img.baseheighstaff').height();
+				$('.contanimations_second').height(altoImagenSecond);
+		
+		
+		
+				var altoImagenFourth = $('.contanimations_fourth img.img-responsive').height();
+				$('.contanimations_fourth').height(altoImagenFourth);
+		
+		
+				var altoImagenFive = $('.contanimations_five img.img-responsive').height();
+				$('.contanimations_five').height(altoImagenFive);
+		
+		
+				}
+		
+		
+		
+			// Hago aparecer los elemetos que se animan cuando hago scroll de pantalla
+	
+	
+			$('#mesure').waypoint(function() {
+				excLight();
+			}, { offset:200 });
+	
+	
+				$('.rotated').waypoint(function() {
+				 TweenLite.to($('.rotated '), 0.5, {css:{opacity:1}, ease:Power1.easeIn})
+			}, { offset:280 });
+	
+	
+				$('.rotated').waypoint(function() {
+				 TweenLite.to($('.rotated '), 0.5, {css:{opacity:1}, ease:Power1.easeOut})
+			}, { offset:320 });
+	
+	
+	
+				$('.opacitylayer').waypoint(function() {
+				 TweenLite.to($('.opacitylayer '), 0.5, {css:{visibility:'visible'}, ease:Power1.easeOut})
+			}, { offset:280 });
+	
+				$('.opacitylayerfirst').waypoint(function() {
+				 TweenLite.to($('.opacitylayerfirst '), 0.5, {css:{visibility:'visible'}, ease:Power1.easeOut})
+			}, { offset:350 });
+	
+	
+	
+		
+	
+				function excLight() {
+			
+					var tl3 = new TimelineLite({delay:0.3,onComplete:myFunction});
+		
+						var anime9 = $('.light');
+						function myFunction() {
+							tl3.restart();
+						}
+						tl3.to(anime9, 1, {css:{opacity:1,},ease:Power2.easeIn});
+						tl3.to(anime9, 1.6, {css:{opacity:0 },ease:Power2.easeIn});
+						tl3.to(anime9, 1, {css:{opacity:1,},ease:Power2.easeIn});
+						tl3.to(anime9, 1.6, {css:{opacity:0},ease:Power2.easeIn});
+						tl3.to(anime9, 1, {css:{opacity:1},ease:Power2.easeIn});
+						tl3.to(anime9, 1.6, {css:{opacity:0},ease:Power2.easeIn});
+			
+					}
+		
+				
+				}};
+                
+                
+                
+        </script>
+
+    
+
+
+
+
+
+    </body>
+</html>

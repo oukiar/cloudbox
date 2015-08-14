@@ -1,0 +1,148 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="viewport" content="width=device-width"/>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>New Receipt</title>
+
+</head>
+
+<body bgcolor="#f6f6f6" style="-webkit-font-smoothing: antialiased;
+	-webkit-text-size-adjust: none;
+	width: 100%!important;
+	height: 100%;">
+<!-- body -->
+    <div style="position:relative; float:right; left:-15px; top:8px;">
+        <img src="http://lccargoxpress.com/images/logo-Cargo-Express.png" alt="Package" width="233" height="89" style="max-width: 100%;"/> </div>
+<table class="body-wrap" bgcolor="#f6f6f6" style="width: 100%;
+	padding: 20px;">
+	<tr>
+		<td></td>
+		<td class="container" bgcolor="#FFFFFF" style="border: 1px solid #f0f0f0; display: block!important;
+	max-width: 600px!important;
+	margin: 0 auto!important;
+	clear: both!important;">
+
+			<!-- content -->
+            <div class="content" style="width:100%; max-width: 600px;
+	margin: 0 auto;
+	display: block;">
+		
+                <h1 style="font-size: 36px; font-family: 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
+	color: #000;
+	margin: 40px 0 10px;
+	line-height: 1.2;
+	font-weight: 200;"><font color="color:rgba(50, 50, 58, 1.0)"><%= company.get("name")%></font></h1>
+                        <p style="font-size: 12px;
+	color: #666;"><%= company.get("address")%></p>
+                        <p style="font-size: 12px;
+	color: #666;">Los Angeles, CA 90021</p>
+						
+               
+						<h1 style="font-size: 36px; font-family: 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
+	color: #000;
+	margin: 40px 0 10px;
+	line-height: 1.2;
+	font-weight: 200;">Recipt # <%=receipt.get("ReceiptNum")%></h1>
+                <div>
+                        <p style="font-size: 12px;
+	color: #666;"><b>Date:</b> <%=receipt.get("ReceiptDate")%></p>
+                        <p style="font-size: 12px;
+	color: #666;"><b>Boxes:</b> <%=receipt.get("TotalBoxes")%></p>
+                        <p style="font-size: 12px;
+	color: #666;"><b>Total Weight:</b> <%=receipt.get("Weight")%></p>
+                        <p style="font-size: 12px;
+	color: #666;"><b>Received By:</b> <%=receipt.get("Usr").get("Name")%></p>
+                </div>
+                <div>
+                   
+                        <div style="position:relative; left:55%; top:-122px;">
+                        <p style="font-size: 12px;
+	color: #666;"><b>Shipper:</b> <%=receipt.get("Shipper").get("Name")%></p>
+                        <p style="font-size: 12px;
+	color: #666;"><b>Destination:</b> <%=receipt.get("Destination")%></p>
+                        <p style="font-size: 12px;
+	color: #666;"><b>Total Volume:</b> <%=receipt.get("Volume")%></p>
+                        </div>
+                </div>
+                        
+                          <div style="position:relative;  top:-55px;">
+                        <h2 style="font-size: 28px; font-family: 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
+	color: #000;
+	margin: 40px 0 10px;
+	line-height: 1.2;
+	font-weight: 200;">Summary:</h2>
+                              
+                              <table style="width:96%; background:#F0F0FF;">
+                                  <tr>
+                                     <td><b>Volume: </b><%=receipt.get("Volume")%></td>
+                                     <td><b>Weight: </b><%=receipt.get("Weight")%></td>
+                                     <td><b>Boxes: </b><%=receipt.get("TotalBoxes")%></td>
+                                     <td><b>Extra cost: </b><%=receipt.get("ExtraCost")%></td>
+                                     <td><b>Invoice: </b><%=receipt.get("Invoice")%></td>
+                                  </tr>
+                              </table>
+                               
+                              <table>
+							<tr>
+								<td class="padding">
+									<p style="font-size: 12px;
+	color: #666;"><a href="https://github.com/leemunroe/html-email-template" class="btn-primary" style="text-decoration: none;
+	color: #348eda;
+	background-color: #348eda;
+	border: solid #348eda;
+	border-width: 10px 20px;
+	line-height: 2;
+	font-weight: bold;
+	margin-right: 10px;
+	text-align: center;
+	cursor: pointer;
+	display: inline-block;
+	border-radius: 25px;">Go to your Profile</a></p>
+								</td>
+							</tr>
+						</table>
+                              
+						<p style="font-size: 12px;
+	color: #666;">PER TSA REGULATION ALL CARGO IS SUBJECT TO INSPECTION</p>
+						<p style="font-size: 12px;
+	color: #666;">Thank you for choosing <%= company.get("name")%>.</p>
+						
+				
+            </div>
+			</div>
+			<!-- /content -->
+<!-- /body -->
+<!-- footer -->
+<table class="footer-wrap" style="width: 100%;	
+	clear: both!important;">
+	<tr>
+		<td></td>
+		<td class="container" style="border: 1px solid #f0f0f0; display: block!important;
+	max-width: 600px!important;
+	margin: 0 auto!important;
+	clear: both!important;">
+			
+			<!-- content 
+			<div class="content" style="max-width: 600px;
+	margin: 0 auto;
+	display: block;">
+				<table>
+					<tr>
+						<td align="center">
+							<p style="font-size: 12px;
+	color: #666;">Don't like these annoying emails? <a style="color: #348eda;" href="#">Unsubscribe</a>.
+							</p>
+						</td>
+					</tr>
+				</table>
+			</div>
+			/content -->
+			
+		</td>
+		<td></td>
+	</tr>
+</table>
+<!-- /footer -->
+
+</body>
+</html>

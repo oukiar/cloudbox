@@ -1,0 +1,595 @@
+<div id="ware_table">
+
+
+    <table class="table table-bordered">
+		<style>
+		#not:nth-child(even) {background: white}
+		#not:nth-child(odd) {background: #FBFBFC}
+		</style>
+    <tr>
+            <th>WH. Rcpt.</th>
+			<th>Boxes</th>
+			<th>Shipper</th>
+            <th>Consignee</th>
+            <th style="display:none;">Invoice</th>
+            <th>
+                Date
+            </th>
+            <th>Destination</th>
+            <th>WareHouse</th>
+			<th>Shipment</th>
+			<th>Confirm</th>
+            <th id="classifycolumn" style="display:none">Ship</th>
+            <th id="deletecolumn" style="display:none">Delete</th>
+    </tr>
+
+    <% results.forEach(function(label){
+        if(label["Status"] == "Repack")
+        {
+        %>
+         <tr bgcolor="">
+        <%
+        }
+        else
+        {
+        %>
+		 <tr style="" id="not">
+        <%}%>
+        
+			 <td align="center">
+             <a class=" pop" data-container="body" data-toggle="popover" data-placement="right" data-content="
+            <a href='#openModalB' onclick=&quot;fillEditable('<%=label['objectId']%>')&quot;>Edit Warehouse Rcpt.</a></br>
+            <a href='' onclick=&quot;window.open('/printreceipt/' + '<%= label["objectId"]%>','Microsoft')&quot;>Print Warehouse Rcpt.</a></br>
+            <a href='' onclick=&quot;window.open('/printlabels/' + '<%= label["objectId"]%>','Microsoft')&quot;>Print Labels</a></br>
+            <a href='#openEmail'>Email</a></br>
+            <a href='#openReceiptLog'>Receipt Log</a></br>
+            <%if(label["Status"] == "Repack"){%><a onclick=&quot;initUnpack('<%= label["objectId"]%>')&quot; href='#openUnpack'>Unpack</a></br><%}%>"
+                        data-original-title="" title="" style="cursor:crosshair">
+            <div style="width:100%;"><b><%= label["ReceiptNum"]%></b></div>
+            </a>
+			</td>
+	       
+            <td align="center"> <a onclick="showboxes('<%=label['objectId']%>')" href='#openReceiptBoxesRepack'><%=label['TotalBoxes']%></a></td>
+         
+			<td><%= label["RepackShipper"]%></td>
+            <td><%= label["RepackConsignee"]%></td>
+		
+            <td style="display:none;"><%= label["Invoice"]%></td>
+            <td><%= label["ReceiptDate"] %></td>
+            <td><%if( label["Destination"] != null && typeof(label["Destination"]) != "undefined"){%><%= label["Destination"]%><%}else{%><%= label["Country"]%><%}%></td>
+			
+        
+            <td><a onclick="opentransfer('<%=label['objectId']%>')" href="#openModalC"><b><%= label["Warehouse"]%></b></a></td>
+	        <td>
+				   
+	        <select name="Shipment-<%=label['objectId']%>" id="Shipment-<%=label['objectId']%>" class="input-5" value="<%= label["Shipment"]%>">
+                <option value="Aereal" <%if(label["Shipment"]=="Aereal"){%>selected<%}%> >Aereal</option>
+                <option value="Terrestral" <%if(label["Shipment"]=="Terrestral"){%>selected<%}%> >Land Freight</option>
+                <option value="Sea" <%if(label["Shipment"]=="Sea"){%>selected<%}%> >Ocean</option>
+		    </select>
+		    </td>
+			
+			<td>
+		    <a id="<%=label['objectId']%>" class="btn btn-orange btn-md myclass">&nbsp; Confirm</a> 
+		    </td>
+		
+            <td style="display:none" class="checkship"><input name="checkship" id="<%=JSON.stringify({objectId:label['objectId'], ReceiptNum:label['ReceiptNum']})%>" type="checkbox"></td>
+            <td style="display:none" class="checkdelete"><input name="checkdelete" id="<%=JSON.stringify({objectId:label['objectId'], Receipt:label['ReceiptNum']})%>" type="checkbox"></td>
+			
+			 </tr>
+    <% }) %>   
+
+    </table>
+</div>
+
+
+<script>
+
+    function reactivatepopup()
+    { 
+        $(".pop").popover({ trigger: "manual" , html: true, animation:false})
+            .on("mouseenter", function () {
+                var _this = this;
+                $(this).popover("show");
+                $(".popover").on("mouseleave", function () {
+                    $(_this).popover('hide');
+                });
+            }).on("mouseleave", function () {
+                var _this = this;
+                setTimeout(function () {
+                    if (!$(".popover:hover").length) {
+                        $(_this).popover("hide");
+                    }
+                }, 300);
+        });
+    }
+    
+    window.setTimeout(reactivatepopup, 1000);
+
+    $(".myclass").click(function(){
+            alert("Pending functionality: " + this.id);
+            /*
+            var receipt = new Parse.Object.extend("Receipts");
+            receipt.id = this.id;
+            receipt.set("Shipment", $("#Shipment-"+receipt.id).val() );
+            receipt.save();*/
+        });
+
+    var unpacking = -1;
+
+    function initUnpack(objectId)
+    {
+        unpacking = objectId;
+    }
+
+    var wareEditing = -1;
+
+    function fillEditable(objectId)
+    {
+        /* ALMACENAR EL ID DEL LABEL QUE SE ESTA EDITANDO */
+        wareEditing = objectId;
+        
+    
+        var query = new Parse.Query("Receipts");
+
+        query.descending('createdAt');
+        query.include("Company");
+        query.include("Shipper");
+        query.include("Consignee");
+        
+        
+        query.get(objectId, {
+            success: 
+                function(object)
+                {
+                    if(object.get("Status") == "Repack")
+                    {
+                        /* SHOW REPACK FORM */                            
+                        $.post("/getrendered", 
+                            {document: "Staff/Warehouses/repack_partitions/RepackForm"},
+                            function(result)
+                            {
+                                $("#receipt_edit").html(result);
+                                            
+                                
+                                                                    
+                                /* FILL THE DESTINATIONS */
+                                var qdestinations = new Parse.Query("Destinations");
+                                qdestinations.equalTo("Client", {__type: "Pointer", className: "Clients", objectId: object.get("Consignee").id});
+                                qdestinations.descending('createdAt');
+                                
+                                qdestinations.find({success: function(results){
+                                        for(i in results)
+                                        {
+                                            select = document.getElementById("Country");
+                                            select.options[select.options.length] = new Option(results[i].get("Alias"), results[i].get("Alias"));
+                                        }
+                                    }});
+                                
+                                usrID = object.get("Consignee").id;
+                                currentWareHouse = object.get("Warehouse").get("Name");
+                                
+                                /* FILL THE REST OF THE FORM */
+                                $("#Consignee").val( object.get("Consignee").get("Name") );
+                                
+                                $("#Agent").val( object.get("Agent") );
+                                $("#Receipt").val( object.get("ReceiptNum") );
+                                $("#ReceiptDate").val( moment( object.get("ReceiptDate") ).format("MM[/]DD[/]YYYY") );
+                                $("#Shipment").val( object.get("Shipment") );
+                                $("#Country").val( object.get("Destination") );
+                                $("#Pieces").val( object.get("TotalBoxes") );
+                                $("#ExtraCost").val( object.get("ExtraCost") );
+                                $("#Weight").val( object.get("Weight") );
+                                $("#WeightVol").val( object.get("WeightVol") );
+                                $("#Value").val( object.get("Value") );
+                                $("#Volume").val( object.get("Volume") );
+                                $("#Zone").val( object.get("Zone") );
+                                $("#Content").val( object.get("Content") );
+                                $("#GeneralNotes").val( object.get("GeneralNotes") );
+                                $("#InternalNotes").val( object.get("InternalNotes") );
+                                $("#TotalWeight").val( object.get("TotalWeight") );
+                                $("#TotalWeightKG").val( object.get("TotalWeightKG") );
+                                
+                                /* LLENAR BOXES */
+                                qboxes = new Parse.Query("Boxes");
+                                qboxes.equalTo("Receipt", {__type: "Pointer", className: "Receipts", objectId: object.id});
+                                
+                                qboxes.find({success: function(results){
+                                        
+                                        var nrows = 1;
+
+                                        var boxesgrouped = groupBoxes(results);
+
+
+                                        for(var i=0; i<boxesgrouped.length; i++)
+                                        {
+                                            if(typeof $("#Length-"+nrows.toString() ).val() == "undefined" )
+                                            {
+                                                $( "#btn_addbox" ).trigger("click");
+                                            }
+                                            
+                                            $("#RPrice-"+nrows.toString() ).val(boxesgrouped[i].get("RPrice") );
+                                            $("#Boxes-"+nrows.toString() ).val(boxesgrouped[i].get("Boxes") );
+                                            $("#Length-"+nrows.toString() ).val(boxesgrouped[i].get("Length") );
+                                            $("#Width-"+nrows.toString() ).val(boxesgrouped[i].get("Width") );
+                                            $("#Height-"+nrows.toString() ).val(boxesgrouped[i].get("Height") );
+                                            
+                                            nrows += 1;
+                                            
+                                        }                                       
+                                    }});
+                                
+                                
+                            }
+                        ); 
+                    
+                    }
+                    else
+                    {
+                        /* GET THE CORRECT FORM FROM THE SERVER */                     
+                        $.post("/getrendered", 
+                            {document: "Staff/Warehouses/newlabel_partitions/LabelForm"},
+                            function(result)
+                            {
+                                $("#receipt_edit").html(result);
+                                
+                                /* FILL THE WAREHOUSES */
+                                var qwarehouses = new Parse.Query("Cellars");
+                                qwarehouses.equalTo("Company", {__type: "Pointer", className: "Companies", objectId: user.get("Company").id});
+                                qwarehouses.descending('createdAt');
+                                
+                                qwarehouses.find({success: function(results){
+                                        
+                                        for(i in results)
+                                        {
+                                            wareselect = document.getElementById("Warehouse");
+                                            wareselect.options[wareselect.options.length] = new Option(results[i].get("Name"), results[i].id);
+                                        }
+                                    }});
+                                    
+                                /* FILL THE DESTINATIONS */
+                                var qdestinations = new Parse.Query("Destinations");
+                                qdestinations.equalTo("Client", {__type: "Pointer", className: "Clients", objectId: object.get("Consignee").id});
+                                qdestinations.descending('createdAt');
+                                
+                                qdestinations.find({success: function(results){
+                                        for(i in results)
+                                        {
+                                            select = document.getElementById("Country");
+                                            select.options[select.options.length] = new Option(results[i].get("Alias"), results[i].get("Alias"));
+                                        }
+                                    }});
+                                
+                                /* IDs FOR CONSIGNEE AND SHIPPER */
+                                shipperID = object.get("Shipper").id;
+                                consigneeID = object.get("Consignee").id;
+                                
+                                
+                                /* FILL THE REST OF THE FORM */
+                                $("#Shipper").val( object.get("Shipper").get("Name") );
+                                $("#Consignee").val( object.get("Consignee").get("Name") );
+                                
+                                $("#Agent").val( object.get("Agent") );
+                                $("#Receipt").val( object.get("ReceiptNum") );
+                                $("#ReceiptDate").val( moment( object.get("ReceiptDate") ).format("MM[/]DD[/]YYYY") );
+                                $("#Transport").val( object.get("Transport") );
+                                $("#Country").val( object.get("Destination") );
+                                $("#Boxes").val( object.get("TotalBoxes") );
+                                $("#ExtraCost").val( object.get("ExtraCost") );
+                                $("#Invoice").val( object.get("Invoice") );
+                                $("#Weight").val( object.get("Weight") );
+                                $("#WeightVol").val( object.get("WeightVol") );
+                                $("#Value").val( object.get("Value") );
+                                $("#Volume").val( object.get("Volume") );
+                                $("#Zone").val( object.get("Zone") );
+                                $("#Content").val( object.get("Content") );
+                                $("#GeneralNotes").val( object.get("GeneralNotes") );
+                                $("#InternalNotes").val( object.get("InternalNotes") );
+                                
+                                /* LLENAR BOXES */
+                                qboxes = new Parse.Query("Boxes");
+                                qboxes.equalTo("Receipt", {__type: "Pointer", className: "Receipts", objectId: object.id});
+                                
+                                qboxes.find({success: function(results){
+                                        
+                                        var nrows = 1;
+
+                                        var boxesgrouped = groupBoxes(results);
+
+
+                                        for(var i=0; i<boxesgrouped.length; i++)
+                                        {
+                                            if(typeof $("#Length-"+nrows.toString() ).val() == "undefined" )
+                                            {
+                                                $( "#btn_addbox" ).trigger("click");
+                                            }
+                                            
+                                            $("#Weight-"+nrows.toString() ).val(boxesgrouped[i].get("Weight") );
+                                            $("#Boxes-"+nrows.toString() ).val(boxesgrouped[i].get("Boxes") );
+                                            $("#Length-"+nrows.toString() ).val(boxesgrouped[i].get("Length") );
+                                            $("#Width-"+nrows.toString() ).val(boxesgrouped[i].get("Width") );
+                                            $("#Height-"+nrows.toString() ).val(boxesgrouped[i].get("Height") );
+                                            
+                                            nrows += 1;
+                                            
+                                        }                                       
+                                    }});
+                                
+                            }
+                        ); 
+                        
+                    }
+                    
+                }
+            });
+                
+    }
+    
+    function groupBoxes(boxes)
+    {
+        var res=[];
+        
+        for(i in boxes)
+        {
+            res = has_broths(boxes[i], res);
+        }
+        
+        return res;
+    }
+    
+    function has_broths(box, res)
+    {
+        for(i in res)
+        {
+            if(box.get("Width")==res[i].get("Width") && 
+                box.get("Height")==res[i].get("Height") &&
+                box.get("Length")==res[i].get("Length") &&
+                box.get("Weight")==res[i].get("Weight") )
+            {
+                return res;
+            }
+        }
+        
+        res.push(box);
+        return res;
+    }
+          
+    $("#DateSelect").change(function(){
+            update_table();
+        });
+
+    transferId = -1;
+
+    function opentransfer(objectId)
+    {
+        transferId = objectId;
+    }
+    
+    classifyId = -1;
+
+    function wareclassify(objectId, Receipt)
+    {
+        classifyId = objectId;
+        classifyReceipt = Receipt;
+    }
+
+    function wareceipt(objectId)
+    {
+    
+        $.post("/getby", 
+                {by:"objectId", value:objectId, classvar:"Receipts"}, 
+                function(data){
+                
+                    wh = JSON.parse(data);
+                    
+                    $("#qrcode").replaceWith("<div id='qrcode'></div>");
+                    new QRCode(document.getElementById("qrcode"), wh["objectId"] );
+                    
+                    $("#Receipt").val(wh["ReceiptNum"]);
+                    $("#ReceiptDate").val(moment(wh["ReceiptDate"]).format("MM[/]DD[/]YYYY") );
+                    $("#Agent").val(wh["Agent"]);
+                    $("#Transport").val(wh["Transport"]);
+                    $("#Warehouse").val(wh["Warehouse"]);
+                    $("#Country").val(wh["Country"]);
+                    $("#Prices").val(wh["Prices"]);
+                    $("#Weight").val(wh["Weight"]);
+                    $("#WeightVol").val(wh["WeightVol"]);
+                    $("#Volume").val(wh["Volume"]);
+                    $("#ExtraCost").val(wh["ExtraCost"]);
+                    $("#Invoice").val(wh["Invoice"]);
+                    $("#Value").val(wh["Value"]);
+                    $("#Zone").val(wh["Zone"]);
+                    $("#Content").val(wh["Content"]);
+                    $("#GeneralNotes").val(wh["GeneralNotes"]);
+                    $("#InternalNotes").val(wh["InternalNotes"]);
+                    
+                    
+                    var nrows = 1;
+                    boxes = JSON.parse(wh["Boxes"]);
+                    
+                    for(box in boxes)
+                    {
+                        
+                        if(typeof $("#Length-"+nrows.toString() ).val() == "undefined" )
+                        {
+                            $( "#btn_addbox" ).trigger("click");
+                        }
+                        
+                        $("#Length-"+nrows.toString() ).val(boxes[box]["length"]);
+                        $("#Width-"+nrows.toString() ).val(boxes[box]["width"]);
+                        $("#Height-"+nrows.toString() ).val(boxes[box]["height"]);
+                        $("#Weight-"+nrows.toString() ).val(boxes[box]["weight"]);
+                        $("#Boxes-"+nrows.toString() ).val(boxes[box]["boxes"]);
+                        
+                        nrows += 1;
+                    }
+                    
+                    
+                    
+                });
+    }
+
+    $("#btn_classify").click(
+        function()
+        {
+            $("#classifycolumn").css("display", "block");
+			$("#classifyDiv").css("display", "none");
+            $("#shipoptions").css("display", "block");
+			$("#deleteDiv").css("display", "none");
+            
+            $(".checkship").css("display", "block");
+        });
+        
+        
+    $("#btn_back").click(
+			function(){
+				$("#classifyDiv").css("display", "block");
+				$("#shipoptions").css("display", "none");
+				$(".checkship").css("display", "none");
+				$("#classifycolumn").css("display", "none");
+				$("#deleteDiv").css("display", "");
+				
+			});
+		
+
+    $("#btn_delete").click(
+        function()
+        {
+            $("#deletecolumn").css("display", "block");
+			$("#deleteDiv").css("display", "none");
+            $("#deleteconfirmDiv").css("display", "block");
+            $("#classifyDiv").css("display", "none");
+            $(".checkdelete").css("display", "block");
+        });
+        
+    $("#btn_deleteconfirm").click(function(){
+            
+            checkboxes = document.getElementsByName("checkdelete");
+            
+            $("#modalDeleteItems").replaceWith("<div id='modalDeleteItems'></div>");
+                    
+            
+            var bdel = false;
+            
+            for(i in checkboxes)
+            {
+                if(checkboxes[i].checked)
+                {        
+                
+                    wh = JSON.parse(checkboxes[i].id);
+                
+                    str = "<b>Receipt: " + wh["Receipt"] + "<div id='delete-" + wh["objectId"] + "'></div></b><br>";
+                    $("#modalDeleteItems").append(str);
+                    bdel = true;
+                }
+            }
+            
+            
+            if(bdel == false)
+            {
+                alert("You must select almost one label");
+                return false;
+            }
+        });
+
+                
+    $("#btn_deletecancel").click(
+			function(){
+				$("#deleteDiv").css("display", "block");
+				$("#deleteconfirmDiv").css("display", "none");
+				$(".checkdelete").css("display", "none");
+				$("#deletecolumn").css("display", "none");
+				$("#classifyDiv").css("display", "");
+				
+			});
+			
+
+    /* ESTA FUNCION INICIALIZA LOS BOXES DEL RECEIPT AL QUE SE LE DIO CLICK QUE SERAN MOSTRADOS EN EL MODALBOX */
+    function showboxes(objectId)
+    {
+        openedreceipt = objectId;
+
+        var q=new Parse.Query("Receipts");
+        q.get(openedreceipt, {success: function(receipt){
+                if(receipt.get("Status") == "Repack")
+                {
+                    $("#totalrepackprice").html(receipt.get("Value") );
+                    $("#totalweight").html(receipt.get("Weight") );
+                    $("#weightvolume").html(receipt.get("WeightVol"));
+                    $("#totalvolume").html(receipt.get("Volume"));
+                
+                    $("#receiptBoxesRepack").html(receipt.get("ReceiptNum") );
+                }
+                else
+                    $("#receiptBoxes").html(receipt.get("ReceiptNum") );
+            
+            }});
+
+        var query = new Parse.Query("Boxes");
+        
+        query.ascending('BoxNum');
+        query.include('Receipt');
+        query.include('PackedIn');
+        query.equalTo("Receipt", {__type: "Pointer", className: "Receipts", objectId: openedreceipt});
+        
+        query.find({
+            success: 
+                function(results)
+                {
+                    var table = "";
+                
+                    if(results[0].get("Receipt").get("Status") == "Repack")
+                        table = "#boxes_Repacktable > tbody";
+                    else
+                        table = "#boxes_table > tbody";
+                        
+                        $(table).html("");
+                    
+                    results.forEach(function(box){
+                        
+                        /* DEPENDIENDO DEL ESTADO DE LA CAJA */
+                        if(box.get("Status") == "Repacked")
+                        {
+                            row = "<tr bgcolor='#FFF5E7'><td>"+box.get("Status")+
+                                    " in receipt# <a onclick=\"showboxes('"+box.get("PackedIn").id+
+                                    "')\" href='#openReceiptBoxesRepack'>#"+ box.get("PackedIn").get("ReceiptNum") +
+                                    "</a></td><td>"+box.get("Length")+"</td><td>"+box.get("Width")+
+                                    "</td><td>"+box.get("Height")+"</td><td>"+box.get("Num")+"</td><td>"+
+                                    box.get("Weight")+"</td></tr>";
+                        }
+                        else if(box.get("Receipt").get("Status") == "Repack")
+                        {
+                            row = "<tr><td>"+box.get("Status")+"</td><td>"+box.get("Length")+
+                                    "</td><td>"+box.get("Width")+"</td><td>"+box.get("Height")+
+                                    "</td><td>"+box.get("Num")+"</td><td>"+box.get("RPrice")+"</td></tr>";
+                        
+                                    
+                        }   
+                        else    /* RECEIVED: THE NATURAL STATUS OF THE BOXES ON THE  RECEIPTS */
+                        {
+                            row = "<tr><td>"+box.get("Status")+"</td><td>"+box.get("Length")+
+                                    "</td><td>"+box.get("Width")+"</td><td>"+box.get("Height")+
+                                    "</td><td>"+box.get("Num")+"</td><td>"+box.get("Weight")+"</td></tr>";
+                        }
+                            
+                            /* SHIPMENT OF THIS BOX  ....   DISABLED
+                            if(box.get("Shipment") == "Aereal")
+                                row += "<td><select name='shiptype' id='"+box.id+"'><option>Pending</option><option selected>Aereal</option><option>Terrestral</option><option>Sea</option></select></td></tr>";
+                            
+                            else if(box.get("Shipment") == "Terrestral")
+                                row += "<td><select name='shiptype' id='"+box.id+"'><option>Pending</option><option>Aereal</option><option selected>Terrestral</option><option>Sea</option></select></td></tr>";
+                            
+                            else if(box.get("Shipment") == "Sea")
+                                row += "<td><select name='shiptype' id='"+box.id+"'><option>Pending</option><option>Aereal</option><option>Terrestral</option><option selected>Sea</option></select></td></tr>";
+                            
+                            else 
+                                row += "<td><select name='shiptype' id='"+box.id+"'><option>Pending</option><option>Aereal</option><option>Terrestral</option><option>Sea</option></select></td></tr>";
+                            */
+                        
+                        $(table).append(row);
+                    });
+                }
+            });
+    }			
+	 
+</script>

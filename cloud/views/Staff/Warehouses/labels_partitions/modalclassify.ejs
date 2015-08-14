@@ -1,0 +1,104 @@
+<div id="openModal" class="modalDialog" >
+    <div>
+        <a id="btn_closeclassifydialog" href="#close" title="Close" class="close">X</a>
+        
+        <div style="position:relative; left:38%;">
+            </br>
+            <img src="/assets/images/divide.png" width="120" height="120" alt="Classify">
+        </div></br>
+            
+        <div id="div_classify">
+            
+            <select id="shipment" name="shipment"  style="width:500px; height:34px; font-size:21px;">
+                <option value="Aereal">Aereal</option>
+                <option value="Terrestral">Terrestral</option>
+                <option value="Sea">Sea</option>
+                <option value="Pending">Pending</option>
+            </select>
+            </br></br>
+            <button id="btn_saveclassify" class="pure-button pure-button-primary">Save</button>
+            <div id="classify_items"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    $("#btn_saveclassify").click(
+        function()
+        {
+            var shipment = $("#shipment").val();
+            
+            $("#div_classify").replaceWith("<div id='div_classify'>New shipment classification: " + shipment + "<br></div>");
+            
+            
+            checkboxes = document.getElementsByName("checkship");
+            
+            for(i in checkboxes)
+            {
+                if(checkboxes[i].checked)
+                {        
+                    
+                    wh = JSON.parse(checkboxes[i].id);
+                
+                    var str = "Saving receipt: " + wh["ReceiptNum"] + " <img id='save-" + wh["objectId"] + "' src='/web/img/icons/loader_grey.gif' width=16 height=16><br>";
+                        
+                        
+                    $("#div_classify").append( str );
+                    
+                    kwargs = {
+                                collection:"Receipts", 
+                                objectId: wh["objectId"],
+                                values:{Status:"NotProcessed", "Shipment":shipment}
+                            };                                               
+                        
+                    $.post("/update", 
+                        kwargs, 
+                        function(data)
+                        {
+                            kwargs = JSON.parse(data);
+                            $("#save-" + kwargs["objectId"]).replaceWith("SAVED");
+                        }
+                    );
+                    
+                    /* ESTABLECER TODAS LAS CAJAS DE CADA RECEIPT CON EL SHIPMENT SELECCIONADO */
+                    var query = new Parse.Query("Boxes");
+                    
+                    query.equalTo("Receipt", {__type:"Pointer", className:"Receipts", objectId:wh["objectId"]});
+                    
+                    query.find(function(results){
+                            for(box in results)
+                            {
+                                /* SOLO CONFIGURAR EL SHIPMENT DE LAS CAJAS QUE NO HAN ENTRADO A REPACK */
+                                if(results[box].get("Status") != "Repacked")
+                                {
+                                    results[box].set("Shipment", shipment);
+                                    results[box].save();
+                                }
+                            }
+                        });
+                    
+                }
+            }
+            
+            $("#div_classify").append("<a id='btn_doneclassifydialog' href='#close' class='pure-button pure-button-primary'>Done</a>");
+ 
+            $("#btn_doneclassifydialog").click(function(){
+                    update_table();
+                        
+                    /* RESET THE STATE OF THE CONTROLS */
+                    $("#classifyDiv").css("display", "block");
+                    $("#shipoptions").css("display", "none");
+                    $(".checkship").css("display", "none");
+                    $("#classifycolumn").css("display", "none");
+                    
+                    /* RESTORE THE CONTENT OF THE MODAL */
+                    Insert({document: "Staff/Warehouses/labels_partitions/modalclassify", itemid:"openModal"});
+                    
+                });
+        });
+
+    $("#btn_closeclassifydialog").click(function(){
+        update_table();
+    });
+</script>

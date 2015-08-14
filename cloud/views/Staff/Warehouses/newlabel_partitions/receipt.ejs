@@ -1,0 +1,370 @@
+<%moment = require('cloud/moment')%>
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=960">
+		<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=VT323|Lustria|EB+Garamond&amp;subset=all">
+		<title>Receipt</title>
+		<link rel="stylesheet" type="text/css" href="/receipt/css/site.20150804193205.css">
+		<!--[if lte IE 7]>
+		<link rel="stylesheet" type="text/css" href="css/site.20150804193205-lteIE7.css">
+		<![endif]-->
+		<!--[if lte IE 8]>
+		<link rel="stylesheet" type="text/css" href="css/site.20150804193205-lteIE8.css">
+		<![endif]-->
+		<!--[if gte IE 9]>
+		<link rel="stylesheet" type="text/css" href="css/site.20150804193205-gteIE9.css">
+		<![endif]-->
+	</head>
+	<body id="body">
+		<div class="section">
+			<div class="cont">
+				<div class="cont-2">
+					<div class="colwrapper">
+						<div class="cont-3"></div>
+						<div class="cont-4">
+							<img src="/receipt/images/lccargo-307.png" alt="" class="img">
+						</div>
+					</div>
+					<div class="colwrapper-2">
+						<div class="cont-5">
+							<div class="cont-6"><p class="para"><span class="font"><b><%= company.get("name")%></b></span></p></div>
+						</div>
+						<div class="cont-7">
+							<div class="cont-8"><p class="para-2"><span class="font-2"><b><%= company.get("address")%></b></span></p></div>
+						</div>
+						<div class="cont-9">
+							<div class="colwrapper-3">
+								<div class="cont-10">
+									<div class="cont-11"><p class="para-3"><span class="font-3"><b>Phone: <%= company.get("phone")%></b></span></p></div>
+								</div>
+							</div>
+							<div class="colwrapper-4">
+								<div class="cont-12">
+									<div class="cont-13"><p class="para-4"><span class="font-4"><b><%= company.get("website")%></b></span></p></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="cont-14">
+					<div class="colwrapper-5">
+						<div class="cont-15">
+							<div class="cont-16"><p class="para-5"><span class="font-5"><b>Date Received: </b> <%=moment(receipt.get("ReceiptDate"), "YYYYMMDD").format("MM/DD/YYYY")%> <%=receipt.get("Hour")%></span></p></div>
+						</div>
+					</div>
+					<div class="colwrapper-6">
+						<div class="cont-17">
+							<div class="cont-18"><p class="para-6"><span class="font-6"><b>Received By:</b> <%=receipt.get("Usr").get("Name")%></span></p></div>
+						</div>
+					</div>
+				</div>
+				<div class="cont-19">
+					<div class="colwrapper-7">
+						<div class="cont-20">
+							<div class="cont-21">
+								<div class="cont-22"><p class="para-7"><span class="font-7">Receipt #: </span></p></div>
+							</div>
+							<div class="cont-23">
+								<div class="cont-24"><p class="para-8"><span class="font-8"><%=receipt.get("ReceiptNum")%></span></p></div>
+							</div>
+						</div>
+					</div>
+					<div class="colwrapper-8">
+						<div class="cont-25">
+							<div class="cont-26">
+								<div class="cont-27"><p class="para-9"><span class="font-9">Consignee:</span></p></div>
+							</div>
+							<div class="cont-28">
+								<div class="cont-29"><p class="para-10"><span class="font-10"><%=receipt.get("Consignee").get("Name")%> </span></p></div>
+							</div>
+							<div class="cont-30">
+								<div class="cont-31"><p class="para-11"><span class="font-11">Destination: <%=receipt.get("Destination")%></span></p></div>
+							</div>
+						</div>
+					</div>
+					<div class="colwrapper-9">
+						<div class="cont-32">
+							<div class="cont-33">
+								<div class="cont-34"><p class="para-12"><span class="font-12">Shipper:</span></p></div>
+							</div>
+							<div class="cont-35">
+								<div class="cont-36"><p class="para-13"><span class="font-13"><%=receipt.get("Shipper").get("Name")%></span></p></div>
+							</div>
+							<div class="cont-37">
+								<div class="cont-38"><p class="para-14"><span class="font-14"><b>Address:</b> <% if(receipt.get("Shipper").get("Address") === ""){ %>
+							-
+								<% }else {%>
+						<%= receipt.get("Shipper").get("Address") %>	
+								<% }%></span></p></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="cont-39">
+					<div class="cont-40">
+						<div class="colwrapper-10">
+							<ul class="menu-horizontal-dropdown menu" id="menu-1">
+								<li class="menu-item">
+									<a href="index.html">
+										<div class="menu-content">
+											<div class="cont-41"></div>
+											<div class="cont-42">
+												<div class="cont-43"><p class="para-15"><span class="font-15">Length</span></p></div>
+											</div>
+										</div>
+									</a>
+								</li>
+							</ul>
+						</div>
+						<div class="colwrapper-11">
+							<ul class="menu-horizontal-dropdown menu-2" id="menu-2">
+								<li class="menu-item-2">
+									<a href="index.html">
+										<div class="menu-content">
+											<div class="cont-44"></div>
+											<div class="cont-45">
+												<div class="cont-46"><p class="para-16"><span class="font-16">Width</span></p></div>
+											</div>
+										</div>
+									</a>
+								</li>
+							</ul>
+						</div>
+						<div class="colwrapper-12">
+							<ul class="menu-horizontal-dropdown menu-3" id="menu-3">
+								<li class="menu-item-3">
+									<a href="index.html">
+										<div class="menu-content">
+											<div class="cont-47"></div>
+											<div class="cont-48">
+												<div class="cont-49"><p class="para-17"><span class="font-17">Height</span></p></div>
+											</div>
+										</div>
+									</a>
+								</li>
+							</ul>
+						</div>
+						<div class="colwrapper-13">
+							<ul class="menu-horizontal-dropdown menu-4" id="menu-4">
+								<li class="menu-item-4">
+									<a href="index.html">
+										<div class="menu-content">
+											<div class="cont-50"></div>
+											<div class="cont-51">
+												<div class="cont-52"><p class="para-18"><span class="font-18">Pieces</span></p></div>
+											</div>
+										</div>
+									</a>
+								</li>
+							</ul>
+						</div>
+						<div class="colwrapper-14">
+							<ul class="menu-horizontal-dropdown menu-5" id="menu-5">
+								<li class="menu-item-5">
+									<a href="index.html">
+										<div class="menu-content">
+											<div class="cont-53"></div>
+											<div class="cont-54">
+												<div class="cont-55"><p class="para-19"><span class="font-19">Weight</span></p></div>
+											</div>
+										</div>
+									</a>
+								</li>
+							</ul>
+						</div>
+						<div class="colwrapper-15">
+							<ul class="menu-horizontal-dropdown menu-6" id="menu-6">
+								<li class="menu-item-6">
+									<a href="index.html">
+										<div class="menu-content">
+											<div class="cont-56"></div>
+											<div class="cont-57">
+												<div class="cont-58"><p class="para-20"><span class="font-20">Description</span></p></div>
+											</div>
+										</div>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+                    
+                    <% var primero=true; boxes.forEach(function(box){%>
+					<div class="cont-59">
+						<div class="colwrapper-16">
+							<div class="cont-60">
+								<div class="cont-61"><p class="para-21"><span class="font-21"><%=box.get("Length")%></span></p></div>
+							</div>
+						</div>
+						<div class="colwrapper-17">
+							<div class="cont-62">
+								<div class="cont-63"><p class="para-22"><span class="font-22"><%=box.get("Width")%></span></p></div>
+							</div>
+						</div>
+						<div class="colwrapper-18">
+							<div class="cont-64">
+								<div class="cont-65"><p class="para-23"><span class="font-23"><%=box.get("Height")%></span></p></div>
+							</div>
+						</div>
+						<div class="colwrapper-19">
+							<div class="cont-66">
+								<div class="cont-67"><p class="para-24"><span class="font-24"><%=box.get("Boxes")%></span></p></div>
+							</div>
+						</div>
+						<div class="colwrapper-20">
+							<div class="cont-68">
+								<div class="cont-69"><p class="para-25"><span class="font-25"><%=box.get("Weight")%></span></p></div>
+							</div>
+						</div>
+                        <%if(primero){ primero=false;%>
+						<div class="colwrapper-21">
+							<div class="cont-70">
+								<div class="cont-71"><p class="para-26"><span class="font-26"> <%=receipt.get("Content")%></span></p></div>
+							</div>
+						</div>
+                        <%}%>
+					</div>
+                    <%});%>
+                    
+				</div>
+				<div class="cont-72">
+					<div class="colwrapper-22">
+						<div class="cont-73" id="qrcode_receipt"></div>
+					</div>
+					<div class="colwrapper-23">
+						<div class="cont-74">
+							<div class="cont-75">
+								<div class="colwrapper-24">
+									<ul class="menu-horizontal-dropdown-1 menu-7" id="menu-7">
+										<li class="menu-item-7">
+											<a href="index.html">
+												<div class="menu-content">
+													<div class="cont-76"></div>
+													<div class="cont-77">
+														<div class="cont-78"><p class="para-27"><span class="font-27">Total Pieces</span></p></div>
+													</div>
+												</div>
+											</a>
+										</li>
+									</ul>
+								</div>
+								<div class="colwrapper-25">
+									<ul class="menu-horizontal-dropdown-1 menu-8" id="menu-8">
+										<li class="menu-item-8">
+											<a href="index.html">
+												<div class="menu-content">
+													<div class="cont-79"></div>
+													<div class="cont-80">
+														<div class="cont-81"><p class="para-28"><span class="font-28">Total Weight</span></p></div>
+													</div>
+												</div>
+											</a>
+										</li>
+									</ul>
+								</div>
+								<div class="colwrapper-26">
+									<ul class="menu-horizontal-dropdown-1 menu-9" id="menu-9">
+										<li class="menu-item-9">
+											<a href="index.html">
+												<div class="menu-content">
+													<div class="cont-82"></div>
+													<div class="cont-83">
+														<div class="cont-84"><p class="para-29"><span class="font-29">Total Weight-Volume</span></p></div>
+													</div>
+												</div>
+											</a>
+										</li>
+									</ul>
+								</div>
+								<div class="colwrapper-27">
+									<ul class="menu-horizontal-dropdown-1 menu-10" id="menu-10">
+										<li class="menu-item-10">
+											<a href="index.html">
+												<div class="menu-content">
+													<div class="cont-85"></div>
+													<div class="cont-86">
+														<div class="cont-87"><p class="para-30"><span class="font-30">Total Volume</span></p></div>
+													</div>
+												</div>
+											</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+							<div class="cont-88">
+								<div class="colwrapper-28">
+									<div class="cont-89">
+										<div class="cont-90"><p class="para-31"><span class="font-31"><%=receipt.get("TotalBoxes")%></span></p></div>
+									</div>
+								</div>
+								<div class="colwrapper-29">
+									<div class="cont-91">
+										<div class="cont-92"><p class="para-32"><span class="font-32"><%=parseFloat(receipt.get("Weight")).toFixed(2)%></span></p></div>
+									</div>
+								</div>
+								<div class="colwrapper-30">
+									<div class="cont-93">
+										<div class="cont-94"><p class="para-33"><span class="font-33"><%=parseFloat(receipt.get("WeightVol")).toFixed(2)%></span></p></div>
+									</div>
+								</div>
+								<div class="colwrapper-31">
+									<div class="cont-95">
+										<div class="cont-96"><p class="para-34"><span class="font-34"><%=parseFloat(receipt.get("Volume")).toFixed(2)%></span></p></div>
+									</div>
+								</div>
+							</div>
+							<div class="cont-97">
+								<div class="colwrapper-32">
+									<div class="cont-98">
+										<div class="cont-99"><p class="para-35"><span class="font-35">Declared Value:</span></p></div>
+									</div>
+								</div>
+								<div class="colwrapper-33">
+									<div class="cont-100">
+										<div class="cont-101"><p class="para-36"><span class="font-36"><%=receipt.get("Value")%></span></p></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="cont-102">
+					<div class="colwrapper-34">
+						<div class="cont-103">
+							<img src="/receipt/images/screen-shot-2015-08-04-at-6.48.37-pm-88.png" alt="" class="img-2">
+						</div>
+					</div>
+					<div class="colwrapper-35">
+						<div class="cont-104">
+							<div class="cont-105"><p class="para-37"><span class="font-37">PER TSA REGULATION ALL CARGO IS SUBJECT TO INSPECTION</span></p></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="/receipt/js/jquery.js"></script>
+		<script type="text/javascript" src="/receipt/js/jqueryui.js"></script>
+		<script type="text/javascript" src="js/menu.js"></script>
+		<script type="text/javascript" src="js/menu-horizontal-dropdown.js"></script>
+		<script type="text/javascript" src="js/menu-horizontal-dropdown-1.js"></script>
+		<script type="text/javascript" src="js/index.js"></script>
+        
+        <script type="text/javascript" src="js/index.js"></script>
+        
+        <script type="text/javascript" src="/cod/js/qrcode/qrcode.js"></script>
+        
+		<script type="text/javascript">
+			var androidBrowserVersion = RegExp(/Mozilla\/5\.0 \(Linux; .; Android ([\d.]+)/).exec(navigator.userAgent);
+            if(androidBrowserVersion && parseFloat(androidBrowserVersion[1]) < 5) 
+            { 
+                document.getElementsByTagName('body')[0].className+=' whitespacefix'; 
+            }
+            
+            /*  */
+            new QRCode(document.getElementById("qrcode_receipt"), "<%= JSON.stringify({objectId:receipt.id, type:"Receipt"})%>");
+
+            
+		</script>
+	</body>
+</html>

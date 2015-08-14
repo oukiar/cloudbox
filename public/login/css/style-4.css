@@ -1,0 +1,150 @@
+/*
+
+Notes:
+    Color 1: #3498db
+    Color 2: #2ecc71
+
+*/
+/* ------------------------------------------------------------------------*/
+/* ------------------------------------------------------------------------*/
+/* ------------------------------------------------------------------------*/
+a:focus,
+a:hover,
+.btn-nesto-home,
+.btn.btn-nesto-home,
+.feature-box-style-1:hover .feature-title,
+a.desktop-play:hover,
+a.desktop-close:hover,
+.feature-box-style-2:hover .feature-title,
+.owl-shots-navigation a i,
+p.nesto-response,
+.owl-moreapps-navigation a i,
+#contact-form-message,
+#social-icons ul li a:hover {
+    color: #3498db;
+}
+/* ------------------------------------------------------------------------*/
+/* ------------------------------------------------------------------------*/
+/* ------------------------------------------------------------------------*/
+.btn-nesto,
+.btn.btn-nesto,
+.btn-nesto-o,
+.btn.btn-nesto-o,
+.btn-nesto-download:after,
+.btn-nesto-download:before,
+.btn-nesto-download.hover,
+.btn-nesto-download:hover,
+.btn-nesto-download.focus,
+.btn-nesto-download:focus,
+.btn-nesto-download:active,
+.btn-nesto-download.active,
+#nav-wrapper.tiny,
+#home-section-wrapper,
+.slogan:after,
+.feature-box-style-1 .feature-icon,
+.feature-box-style-1:hover .feature-icon i,
+.feature-box-style-2 .feature-icon,
+.feature-box-style-2:hover .feature-icon i,
+#download-section-wrapper,
+.owl-shots-navigation a,
+#owl-testimonials-wrapper .testimonials-img,
+#owl-home-wrapper .owl-theme .owl-controls .owl-page span,
+#owl-testimonials-wrapper .owl-theme .owl-controls .owl-page span,
+.owl-moreapps-navigation a,
+.owl-moreapps div.slide-content > a:hover,
+#footer-section {
+    background-image: -webkit-linear-gradient(0deg, #3498db,  #3498db);
+    background-image: -moz-linear-gradient(0deg, #3498db,  #3498db);
+    background-image: -ms-linear-gradient(0deg, #3498db,  #3498db);
+    background-image: -o-linear-gradient(0deg, #3498db,  #3498db);
+    background-image: linear-gradient(90deg, #3498db,  #3498db);
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=1, startColorstr='#3498db', endColorstr='#2ecc71')";
+}
+/* ------------------------------------------------------------------------*/
+/* ------------------------------------------------------------------------*/
+/* ------------------------------------------------------------------------*/
+span.nesto-download:before {
+    left: 0;
+    background-image: -webkit-linear-gradient(90deg, #3498db, #3498db);
+    background-image: -moz-linear-gradient(90deg, #3498db, #3498db);
+    background-image: -ms-linear-gradient(90deg, #3498db, #3498db);
+    background-image: -o-linear-gradient(90deg, #3498db, #3498db);
+    background-image: linear-gradient(0deg, #3498db, #3498db);
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr='#3498db', endColorstr='#3498db')";
+}
+span.nesto-download:after {
+    right: 0;
+    background-image: -webkit-linear-gradient(90deg, #2ecc71, #2ecc71);
+    background-image: -moz-linear-gradient(90deg, #2ecc71, #2ecc71);
+    background-image: -ms-linear-gradient(90deg, #2ecc71, #2ecc71);
+    background-image: -o-linear-gradient(90deg, #2ecc71, #2ecc71);
+    background-image: linear-gradient(0deg, #2ecc71, #2ecc71);
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr='#2ecc71', endColorstr='#2ecc71')";
+}
+/* ------------------------------------------------------------------------*/
+/* ------------------------------------------------------------------------*/
+/* ------------------------------------------------------------------------*/
+.owl-shots div.slide-content a:after {
+    background-image: -webkit-linear-gradient(90deg, #3498db, #2ecc71);
+    background-image: -moz-linear-gradient(90deg, #3498db, #2ecc71);
+    background-image: -ms-linear-gradient(90deg, #3498db, #2ecc71);
+    background-image: -o-linear-gradient(90deg, #3498db, #2ecc71);
+    background-image: linear-gradient(0deg, #3498db, #2ecc71);
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr='#2ecc71', endColorstr='#3498db')";
+}
+/* ------------------------------------------------------------------------*/
+/* ------------------------------------------------------------------------*/
+/* ------------------------------------------------------------------------*/
+.btn-nesto-home-o.hover,
+.btn-nesto-home-o:hover,
+.btn-nesto-home-o.focus,
+.btn-nesto-home-o:focus,
+.btn-nesto-home-o:active,
+.btn-nesto-home-o.active {
+    color: #3498db !important;
+}
+/* ------------------------------------------------------------------------*/
+/* ------------------------------------------------------------------------*/
+/* ------------------------------------------------------------------------*/
+#newsletter-form .form-control:hover,
+#newsletter-form .form-control:focus,
+#contactform .form-control:hover,
+#contactform .form-control:focus {
+    -webkit-border: 1px solid #3498db;
+       -moz-border: 1px solid #3498db;
+         -o-border: 1px solid #3498db;
+            border: 1px solid #3498db;
+}
+/* ------------------------------------------------------------------------*/
+/* ------------------------------------------------------------------------*/
+/* ------------------------------------------------------------------------*/
+#subscribe-section {
+    background: #1e1e1e url(../images/background/subscribebg-4.jpg) repeat-x center top;
+}
+/* ------------------------------------------------------------------------*/
+/* ------------------------------------------------------------------------*/
+/* ------------------------------------------------------------------------*/
+@media only screen and (max-width: 599px) {
+
+    #nav-wrapper {
+        background-image: -webkit-linear-gradient(0deg, #3498db, #2ecc71);
+        background-image: -moz-linear-gradient(0deg, #3498db, #2ecc71);
+        background-image: -ms-linear-gradient(0deg, #3498db, #2ecc71);
+        background-image: -o-linear-gradient(0deg, #3498db, #2ecc71);
+        background-image: linear-gradient(90deg, #3498db, #2ecc71);
+        -ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=1, startColorstr='#3498db', endColorstr='#2ecc71')";
+    }
+
+}
+/* ----------------------------------------------------------------------- */
+/* ------------------------- New from version 2.0 ------------------------ */
+/* ----------------------------------------------------------------------- */
+.price-table,
+.table-price {
+    background-image: -webkit-linear-gradient(0deg, #3498db, #2ecc71);
+    background-image: -moz-linear-gradient(0deg, #3498db, #2ecc71);
+    background-image: -ms-linear-gradient(0deg, #3498db, #2ecc71);
+    background-image: -o-linear-gradient(0deg, #3498db, #2ecc71);
+    background-image: linear-gradient(90deg, #3498db, #2ecc71);
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=1, startColorstr='#3498db', endColorstr='#2ecc71')";
+}

@@ -1,0 +1,202 @@
+<!--MODAL PARA MOSTAR LABEL-->
+    <div id="openModalR" class="modalDialogR">
+      <div>
+	    <a href="#close" title="Close" class="closeB">X</a>
+		   <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>                       
+            </div>
+               <div class="clearfix"></div>
+                  <div class="col-lg-12">
+                      <section class="box ">
+                          <header class="panel_header">
+               <div class="text-center" style="margin-top:5px; margin-bottom:5px;">
+       <a onclick="printReceipt()" class="btn btn-purple btn-md"><i class="fa fa-print"></i> &nbsp; Print </a>        
+       <a href="#" target="_blank" class="btn btn-orange btn-md"><i class="fa fa-send"></i> &nbsp; Send </a>        
+                                    </div>
+                               
+                            </header>
+							
+							<div id="section-to-print">
+							
+                            <div class="content-body">    <div class="row">
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+
+                                   
+
+                                        <!-- start -->
+
+                                        <div class="row">
+										
+											
+                                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                                <div>
+													  
+                                                    <div class="col-md-2 col-sm-12 col-xs-12 invoice-title">
+                                                       <img src="/assets/images/lccargo.png" class="img-reponsive" width="333" height="129"> 
+                                                    </div>
+                                                    <div class="text-right" style="margin-right:3px;">
+                                                        <span class='text-muted'>
+                                                            795 Folsom Ave, Suite 600<br>
+                                                            San Francisco, CA 94107<br>
+                                                            P: (123) 456-7890</br></br>
+															<b>Receipt # <div id="NumReceipt"></div></b></br><div id="DateReceipt">21st October 2014</div>
+													
+                                                        </span>
+                                                    </div>
+                    <div class="text-right" ></div>
+                                                    <div class="col-md-3 col-sm-12 col-xs-12 invoice-logo col-md-offset-1">
+                                                    
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="clearfix"></div><br>
+
+                                            <div class="invoice-head">
+												<div class="col-xs-6 invoice-infoblock pull-left">
+                                                <h3><b>Shipper:</b></h3>
+                                                <address>
+                                                    <h4><div id="ShipperReceipt">John Smith</div></h4>
+                                                    <span class='text-muted'>
+                                                        <div id="AddrReceipt"></div>
+                                                    </span>
+                                                </address>
+                                            </div>
+
+                                            <div class="col-xs-6 invoice-infoblock text-right">
+                                                <h3><b>Consignee:</b></h3>
+                                                <address>
+                                                    <h4><div id="ConsigneeReceipt">John Snow</div></h4>
+                                                    <span class='text-muted'>
+                                                        <div id="ConsigneeAddrReceipt"></div>
+                                                    </span>
+                                                </address>
+</div>
+                                              
+                                            </div>
+											
+                                            <div class="pull-right">
+												<table>
+													<tr>
+                                                <td style="padding:0 4px 0 4px"><b>Destination:</b>  <div id="DestReceipt"></div></td>
+												<td style="padding:0 4px 0 4px"><b>Country:</b>  <div id="CountryReceipt">Venezuela</div></td> 
+												<td style="padding:0 4px 0 4px"><b>Declared value:</b>  <div id="PriceReceipt">$ 00.00</div></td>
+											</tr></table>         
+                                            </div>
+
+
+                                            <div class="clearfix"></div><br>
+
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                                <h3>Receipt Breakdown:</h3><br>
+                                                <div class="table-responsive">
+                                                    <table class="table table-hover invoice-table">
+                                                        <thead>
+                                                            <tr>
+                                                                <td><h4>Length</h4></td>
+                                                                <td class="text-center"><h4>Width</h4></td>
+                                                                <td class="text-center"><h4>Height</h4></td>
+                                                                <td class="text-right"><h4>Pieces</h4></td>
+																<td class="text-right"><h4>Weight</h4></td>
+																<td class="text-right"><h4>Description</h4></td>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody id="BoxesReceipt">
+                                                            <!-- foreach ($order->lineItems as $line) or some such thing here -->
+                                                            
+                                                            
+                                                            <!--
+                                                            <tr>
+                                                                <td>24"</td>
+                                                                <td class="text-center">34"</td>
+                                                                <td class="text-center">50"</td>
+                                                                <td class="text-right">1</td>
+																<td class="text-right">1.00 lb</td>
+																<td><div id="DescriptionReceipt">This is the description of the content.
+																	It should be only one for the whole receipt.</div></td>
+                                                            </tr>
+                                                           <tr>
+                                                               <td>14"</td>
+                                                               <td class="text-center">34"</td>
+                                                               <td class="text-center">53"</td>
+                                                               <td class="text-right">1</td>
+															<td class="text-right">3.00 lb</td>
+															<td></td>
+                                                           </tr>
+                                                            <tr>
+                                                                <td>24"</td>
+                                                                <td class="text-center">34"</td>
+                                                                <td class="text-center">53"</td>
+                                                                <td class="text-right">1</td>
+ 															<td class="text-right">2.00 lb</td>
+ 															<td></td>
+                                                            </tr>
+                                                            -->
+                                                        </tbody>
+														
+                                                    </table>
+													
+													
+                                                <table class="table table-hover invoice-table">
+                                                    <thead>
+                                                        <tr>
+                                                        <tr style="background:#FF8080;">
+                                                            <td>Total Pieces:</td>
+                                                            <td class="text-center">Total Weight</td>
+                                                            <td class="text-center">Total Weight-Volume</td>
+                                                            <td class="text-right">Total Volume</td>
+                                                        </tr>
+													</thead>
+													<tbody>
+                                                        <tr>
+                                                            <td class="text-center"><h5><b><div id="TotalPieces"></div></b></h5></td>
+                                                            <td class="text-center"><h5><b><div id="TotalWeight"></div></b></h5></td>
+                                                            <td class="text-center"><h5><b><div id="TotalWeightVol"></div></b></h5></td>
+                                                            <td class="text-right"><h5><b><div id="TotalVolume"></div></b></h5></td>
+                                                        </tr>
+													<tr><td></td><td></td></tr>
+														<tr><td></td><td></td></tr>
+															<tr>
+																<td style="padding:0 7px 0 7px">Printed: <div id="PrintedReceipt"></div></td>
+																<td style="padding:0 7px 0 7px">User who made the Receipt: <div id="UserReceipt"></div></td>
+															</tr>
+														</tbody>
+													</tr>
+												</table>
+														
+														</br></br></br>
+														<img src="assets/images/us_seal.png" width="155" height="119" alt="Us Logo"><h6>PER TSA REGULATION ALL CARGO IS SUBJECT TO INSPECTION</h6>
+													<div class="page-break"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+                                 	</div>
+
+			   					<script>
+			   					function printReceipt() {
+			   					    window.print();
+			   					}
+                                
+                                
+                                
+			   					</script>
+
+                                        <!-- end -->
+
+                                    </div>
+                                </div>
+                            </div>
+                        </section></div>
+						  
+					        </div>
+					    </div>
+						
+<script>
+
+    
+
+</script>

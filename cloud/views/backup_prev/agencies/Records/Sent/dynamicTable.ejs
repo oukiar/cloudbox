@@ -1,0 +1,86 @@
+<div id="ware_table">
+
+
+    <table class="table table-bordered" id="blueRow">
+    <tr>
+            <th>Rcpt.</th>
+            
+            <th>Store Sending:</th>
+            <th>Warehouse Receiving:</th>
+			<th>Client</th>
+			<!--ATTENTION WE NEED TO MAKE THIS-->
+            <th>Date Sent</th><!--ATTENTION WE NEED TO MAKE THIS-->
+            <!--<th>Receive</th>-->
+    </tr>
+
+    <% results.forEach(function(label){%>
+	<%if(label["Status"]==="Received"){%>
+		 <tr style="">
+			 <%}else if(label["Status"]==="Repack"){%>
+				  <tr style="background:#FFFAF3">
+					  <%}else if(label["Status"]==="NotProcessed"){%>
+				  <tr style="background:#F3FAF0">
+					  <%}%>
+            <td align="center"><a onclick="wareceipt('<%=label['objectId']%>')" href="#openModalB"><%= label["ReceiptNum"]%></a></td>
+            <td><%= label["Shipper"]%></td>
+            <td><%= label["Warehouse"]%></td>
+			   <td><%= label["Consignee"]%></td>
+            <td><%= label["ReceiptDate"]%></td><!--ATTENTION WE NEED DATE TRANSFERED-->
+             <!--<td align="center"> <a id="<%=label['objectId']%>" class="btn btn-orange btn-md myclass"> &nbsp; Receive </a>  </td>-->
+			 </tr>
+		
+    <% }) %>   
+
+    </table>
+</div>
+
+
+<script>
+    $(".myclass").click(function(){
+    
+            var query = new Parse.Query("Receipts");
+            
+            query.get(this.id, {success: function(obj){
+            
+                    obj.set("Status", "Received" );
+                    
+                    obj.save(null, {success:function(){update_table();}});
+                }});
+
+        });
+        
+
+    function wareceipt(objectId)
+    {
+        
+        $.post("/getby", 
+                {by:"objectId", value:objectId, classvar:"Warehouses"}, 
+                function(data){
+                
+                    wh = JSON.parse(data);
+                    
+                    
+                    $("#ReceiptDate").val(moment(wh["ReceiptDate"]).format("MM[/]DD[/]YYYY") );
+                    $("#Agent").val(wh["Agent"]);
+                    $("#Transport").val(wh["Transport"]);
+                    $("#Warehouse").val(wh["Warehouse"]);
+                    $("#Country").val(wh["Country"]);
+                    $("#Prices").val(wh["Prices"]);
+                    $("#Weight").val(wh["Weight"]);
+                    $("#WeightVol").val(wh["WeightVol"]);
+                    $("#Volume").val(wh["Volume"]);
+                    $("#ExtraCost").val(wh["ExtraCost"]);
+                    $("#Invoice").val(wh["Invoice"]);
+                    $("#Value").val(wh["Value"]);
+                    $("#Zone").val(wh["Zone"]);
+                    $("#Content").val(wh["Content"]);
+                    $("#GeneralNotes").val(wh["GeneralNotes"]);
+                    $("#InternalNotes").val(wh["InternalNotes"]);
+                    
+                    
+                });
+    }
+
+
+
+</script>

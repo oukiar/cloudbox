@@ -1,0 +1,151 @@
+<%moment = require('cloud/moment')%>
+<!doctype html>
+<html lang="en">
+    <head>
+         
+        <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+        <meta charset="utf-8" />
+        <title>LC Cargo</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <meta content="" name="description" />
+        <meta content="" name="author" />
+        <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Jura&amp;subset=all">
+        <link rel="stylesheet" href="cod/css/styleWareHouse.css">
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+        <link rel="stylesheet" href="/resources/demos/style.css">
+        <script src="//www.parsecdn.com/js/parse-1.4.2.min.js"></script>
+        <script src="/cod/js/qrcode/qrcode.js"></script>
+         
+        <!--ADMIN REQUIREMENTS-->   
+        <% include ../../../generals/ultraAdmin.ejs %>
+     
+    <script src="/cod/js/common.js"></script>
+    <style type="text/css">
+    body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        background-color: #FAFAFA;
+        font: 6pt "Tahoma";
+    }
+    * {
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+    }
+    .page{
+        width: 8.0in;
+        min-height: 4in;
+        padding: 8mm;
+        margin: 21mm auto;
+        border: 1px #CCD6E0 solid;
+        border-radius: 5px;
+        background: white;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+           }
+    .subpage {
+        padding: 2mm;
+        border: 3px #718DA9 solid;
+        height: 3.7in;
+        outline: .5cm #CCD6E0 solid;
+    }
+       
+    @media print {
+        html, body {
+            width: 6in;
+            height: 4in;        
+        }
+        .page {
+            margin: 0;
+            border: initial;
+            border-radius: initial;
+            width: initial;
+            min-height: initial;
+            box-shadow: initial;
+            background: initial;
+            page-break-after: always;
+        }
+    }
+</style>
+ 
+ 
+ 
+ 
+</head>
+<body>
+ 
+         
+<script>
+    function onprint(){
+        /* OCULTAR ICONO PARA QUE NO SE IMPRIMA */
+        $("#printButton").hide();
+        window.print();
+        $("#printButton").show();
+    }
+</script>
+     
+    <div style="position:fixed; left:100px;">
+        <a onclick="onprint()"><img src="/assets/images/printer.png" width="89" height="89" alt="Printer" id="printButton"></a>
+    </div>
+     
+    <% var i=0; boxes.forEach(function(box){ %>
+     
+     
+    <div class="page">
+        <div class="subpage">
+     
+       <!--MODAL PARA MOSTAR LABEL-->
+       <table align="center" style="width:100%;">
+       <tr>
+       <td align="center">
+       <h3 style="font-size: 21px;"><b><%= receipt.get("Company").get("name")%></b></h3></td>
+       </tr>
+       <tr>
+       <td align="center" style="position:relative; top:-21px; border-bottom:1pt solid black;"><h2>Rcpt#<b><%= receipt.get("ReceiptNum")%> - <%= receipt.get("Destination")%></b>
+       </h2></td>
+       </tr>
+       </table>
+   
+       <table style="position:relative; top:-13px;">
+       <tr><td><h5 style="font-size: 17px;"><b>Shipper: </b><%if(typeof receipt.get("Shipper") != "undefined"){ %><%= receipt.get("Shipper").get("Name")%><%}%></h5></td></tr>
+       <tr><td><h5 style="font-size: 17px;"><b>Consignee:</b> <%= receipt.get("Consignee").get("Name")%></h5></td></tr>
+       <tr><td><h5 style="font-size: 17px;"><b>Box:</b> <%= box.get("Num")%></h5></td></tr>
+       <tr><td><h5 style="font-size: 17px;"><b>Zone:</b> <%= receipt.get("Zone")%></h5></td></tr>
+       <tr><td><h5 style="font-size: 17px;"><b>Receipt By:</b><%= receipt.get("ReceiptBy").get("Name")%></h5></td></tr>
+       <tr><td><h5 style="font-size: 17px;"><b>Time:</b> <%= moment(receipt.get("ReceiptHour")).format("MM[/]DD[/]YYYY h:mm:ss")  %></h5></td></tr>
+		</table>
+			 
+			      
+            <table align="right" style="position:relative; top:-233px; left:-30px;">
+            <tr>
+            <td colspan=2>
+            <div id="qrcodeLabel-<%=i%>"></div>
+            </td>
+            </tr>
+            </table>  
+			
+			<table align="right" style="position:relative; top:-49px; left:90px;">
+	        <tr>
+	        <td><h5><b>Weight:</b> <%= receipt.get("Weight")%> lb</b></h5></td>
+	        <td><h5><b>Volume:</b> <%= receipt.get("Volume")%> cuft</h5></td>
+	        </tr>
+	        </table> 
+      
+        </div>
+    </div>
+ 
+        <script> new QRCode(document.getElementById("qrcodeLabel-<%=i%>"), 
+                                {
+                                    text:"<%= JSON.stringify({Receipt:receipt.id, NumBox:box.get("Num")}) %>",
+                                    width: 128,
+                                    height: 128,
+                                }); 
+        </script>
+ 
+    <% i+=1; }) %>
+ 
+ 
+</body>
+</html>
