@@ -1,59 +1,59 @@
 
 /*! normalize.css v3.0.0 | MIT License | git.io/normalize */html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,summary{display:block}audio,canvas,progress,video{display:inline-block;vertical-align:baseline}audio:not([controls]){display:none;height:0}[hidden],template{display:none}a{background:0 0}a:active,a:hover{outline:0}abbr[title]{border-bottom:1px dotted}b,strong{font-weight:700}dfn{font-style:italic}h1{font-size:2em;margin:.67em 0}mark{background:#ff0;color:#000}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sup{top:-.5em}sub{bottom:-.25em}img{border:0}svg:not(:root){overflow:hidden}figure{margin:1em 40px}hr{-moz-box-sizing:content-box;box-sizing:content-box;height:0}pre{overflow:auto}code,kbd,pre,samp{font-family:monospace,monospace;font-size:1em}button,input,optgroup,select,textarea{color:inherit;font:inherit;margin:0}button{overflow:visible}button,select{text-transform:none}button,html input[type=button],input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer}button[disabled],html input[disabled]{cursor:default}button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}input{line-height:normal}input[type=checkbox],input[type=radio]{box-sizing:border-box;padding:0}input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-spin-button{height:auto}input[type=search]{-webkit-appearance:textfield;-moz-box-sizing:content-box;-webkit-box-sizing:content-box;box-sizing:content-box}input[type=search]::-webkit-search-cancel-button,input[type=search]::-webkit-search-decoration{-webkit-appearance:none}fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}legend{border:0;padding:0}textarea{overflow:auto}optgroup{font-weight:700}table{border-collapse:collapse;border-spacing:0}td,th{padding:0}
-body-REGNEW {
+body-REG {
 	font-size: 0px;
 }
-div-REGNEW {
+div-REG {
 	font-size: 0px;
 }
-p-REGNEW {
+p-REG {
 	margin: 0em;
 	word-spacing: normal;
 }
-h1-REGNEW {
+h1-REG {
 	margin: 0em;
 	word-spacing: normal;
 }
-h2-REGNEW {
+h2-REG {
 	margin: 0em;
 	word-spacing: normal;
 }
-h3-REGNEW {
+h3-REG {
 	margin: 0em;
 	word-spacing: normal;
 }
-h4-REGNEW {
+h4-REG {
 	margin: 0em;
 	word-spacing: normal;
 }
-h5-REGNEW {
+h5-REG {
 	margin: 0em;
 	word-spacing: normal;
 }
-h6-REGNEW {
+h6-REG {
 	margin: 0em;
 	word-spacing: normal;
 }
-form-REGNEW {
+form-REG {
 	display: inline-block;
 }
-input-REGNEW {
+input-REG {
 	box-sizing: border-box;
 }
-textarea-REGNEW {
+textarea-REG {
 	box-sizing: border-box;
 }
-a-REGNEW {
+a-REG {
 	text-decoration: inherit;
 	color: inherit;
 }
-.whitespacefix-REGNEW {
+.whitespacefix-REG {
 	word-spacing: -1px;
 }
-#body-REGNEW {
+#body-REG {
 	background-color: rgba(192,192,192,0.361);
 }
-.section-REGNEW {
+.section-REG {
 	position: relative;
 	margin-top: 68px;
 	min-width: 960px;
@@ -62,7 +62,7 @@ a-REGNEW {
 	margin-right: auto;
 	display: block;
 }
-.cont-REGNEW {
+.cont-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 577px;
@@ -72,7 +72,7 @@ a-REGNEW {
 	margin-left: 193px;
 	margin-top: 0px;
 }
-.colwrapper-REGNEW {
+.colwrapper-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 577px;
@@ -83,7 +83,7 @@ a-REGNEW {
 	margin-top: 0px;
 	line-height: 0;
 }
-.cont-2-REGNEW {
+.cont-2-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 574px;
@@ -96,7 +96,7 @@ a-REGNEW {
 	border: 1px solid rgb(103,122,133);
 	background-color: rgb(255,255,255);
 }
-.cont-3-REGNEW {
+.cont-3-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 574px;
@@ -109,7 +109,7 @@ a-REGNEW {
 	border: 0;
 	background-color: rgb(130,147,158);
 }
-.cont-4-REGNEW {
+.cont-4-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 565px;
@@ -121,14 +121,14 @@ a-REGNEW {
 	margin-top: 0px;
 	overflow: visible;
 }
-.para-REGNEW {
+.para-REG {
 	text-indent: 0;
 	padding-top: 2pt;
 	margin-top: 0pt;
 	margin-bottom: -2pt;
 	text-align: left;
 }
-.font-REGNEW {
+.font-REG {
 	font-family: VT323;
 	font-size: 24.00pt;
 	font-weight: 400;
@@ -138,10 +138,10 @@ a-REGNEW {
 	line-height: 28.79pt;
 	letter-spacing: normal;
 }
-.cont-5-REGNEW {
+.cont-5-REG {
 	overflow: hidden;
 }
-.cont-6-REGNEW {
+.cont-6-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 553px;
@@ -151,7 +151,7 @@ a-REGNEW {
 	margin-left: 9px;
 	margin-top: 17px;
 }
-.colwrapper-2-REGNEW {
+.colwrapper-2-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 77px;
@@ -162,7 +162,7 @@ a-REGNEW {
 	margin-top: 0px;
 	line-height: 0;
 }
-.cont-7-REGNEW {
+.cont-7-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 77px;
@@ -174,14 +174,14 @@ a-REGNEW {
 	margin-top: 0px;
 	overflow: visible;
 }
-.para-2-REGNEW {
+.para-2-REG {
 	text-indent: 0;
 	padding-top: 2pt;
 	margin-top: 0pt;
 	margin-bottom: -2pt;
 	text-align: left;
 }
-.font-2-REGNEW {
+.font-2-REG {
 	font-family: Jura;
 	font-size: 11.25pt;
 	font-weight: 400;
@@ -191,10 +191,10 @@ a-REGNEW {
 	line-height: 16.04pt;
 	letter-spacing: normal;
 }
-.cont-8-REGNEW {
+.cont-8-REG {
 	overflow: hidden;
 }
-.colwrapper-3-REGNEW {
+.colwrapper-3-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 173px;
@@ -205,7 +205,7 @@ a-REGNEW {
 	margin-top: 4px;
 	line-height: 0;
 }
-.cont-9-REGNEW {
+.cont-9-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 173px;
@@ -216,7 +216,7 @@ a-REGNEW {
 	margin-left: 0px;
 	margin-top: 0px;
 }
-.input-REGNEW {
+.input-REG {
 	width: 173px;
 	height: 25px;
 	font-size: 9.00pt;
@@ -233,7 +233,7 @@ a-REGNEW {
 	margin-bottom: 0pt;
 	text-align: left;
 }
-.colwrapper-4-REGNEW {
+.colwrapper-4-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 77px;
@@ -244,7 +244,7 @@ a-REGNEW {
 	margin-top: 3px;
 	line-height: 0;
 }
-.cont-10-REGNEW {
+.cont-10-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 77px;
@@ -256,14 +256,14 @@ a-REGNEW {
 	margin-top: 0px;
 	overflow: visible;
 }
-.para-3-REGNEW {
+.para-3-REG {
 	text-indent: 0;
 	padding-top: 2pt;
 	margin-top: 0pt;
 	margin-bottom: -2pt;
 	text-align: left;
 }
-.font-3-REGNEW {
+.font-3-REG {
 	font-family: Jura;
 	font-size: 11.25pt;
 	font-weight: 400;
@@ -273,10 +273,10 @@ a-REGNEW {
 	line-height: 16.04pt;
 	letter-spacing: normal;
 }
-.cont-11-REGNEW {
+.cont-11-REG {
 	overflow: hidden;
 }
-.colwrapper-5-REGNEW {
+.colwrapper-5-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 185px;
@@ -287,7 +287,7 @@ a-REGNEW {
 	margin-top: 7px;
 	line-height: 0;
 }
-.cont-12-REGNEW {
+.cont-12-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 185px;
@@ -298,7 +298,7 @@ a-REGNEW {
 	margin-left: 0px;
 	margin-top: 0px;
 }
-.input-2-REGNEW {
+.input-2-REG {
 	width: 185px;
 	height: 25px;
 	font-size: 9.00pt;
@@ -315,7 +315,7 @@ a-REGNEW {
 	margin-bottom: 0pt;
 	text-align: left;
 }
-.cont-13-REGNEW {
+.cont-13-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 553px;
@@ -325,7 +325,7 @@ a-REGNEW {
 	margin-left: 9px;
 	margin-top: 5px;
 }
-.colwrapper-6-REGNEW {
+.colwrapper-6-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 77px;
@@ -336,7 +336,7 @@ a-REGNEW {
 	margin-top: 0px;
 	line-height: 0;
 }
-.cont-14-REGNEW {
+.cont-14-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 77px;
@@ -348,14 +348,14 @@ a-REGNEW {
 	margin-top: 0px;
 	overflow: visible;
 }
-.para-4-REGNEW {
+.para-4-REG {
 	text-indent: 0;
 	padding-top: 2pt;
 	margin-top: 0pt;
 	margin-bottom: -2pt;
 	text-align: left;
 }
-.font-4-REGNEW {
+.font-4-REG {
 	font-family: Jura;
 	font-size: 11.25pt;
 	font-weight: 400;
@@ -365,10 +365,10 @@ a-REGNEW {
 	line-height: 16.04pt;
 	letter-spacing: normal;
 }
-.cont-15-REGNEW {
+.cont-15-REG {
 	overflow: hidden;
 }
-.colwrapper-7-REGNEW {
+.colwrapper-7-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 144px;
@@ -379,7 +379,7 @@ a-REGNEW {
 	margin-top: 4px;
 	line-height: 0;
 }
-.cont-16-REGNEW {
+.cont-16-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 144px;
@@ -390,7 +390,7 @@ a-REGNEW {
 	margin-left: 0px;
 	margin-top: 0px;
 }
-.input-3-REGNEW {
+.input-3-REG {
 	width: 144px;
 	height: 25px;
 	font-size: 9.00pt;
@@ -407,7 +407,7 @@ a-REGNEW {
 	margin-bottom: 0pt;
 	text-align: left;
 }
-.colwrapper-8-REGNEW {
+.colwrapper-8-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 21px;
@@ -418,7 +418,7 @@ a-REGNEW {
 	margin-top: 6px;
 	line-height: 0;
 }
-.cont-17-REGNEW {
+.cont-17-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 21px;
@@ -432,7 +432,7 @@ a-REGNEW {
 	border: 0;
 	background-color: rgb(184,200,210);
 }
-.colwrapper-9-REGNEW {
+.colwrapper-9-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 77px;
@@ -443,7 +443,7 @@ a-REGNEW {
 	margin-top: 6px;
 	line-height: 0;
 }
-.cont-18-REGNEW {
+.cont-18-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 77px;
@@ -455,14 +455,14 @@ a-REGNEW {
 	margin-top: 0px;
 	overflow: visible;
 }
-.para-5-REGNEW {
+.para-5-REG {
 	text-indent: 0;
 	padding-top: 2pt;
 	margin-top: 0pt;
 	margin-bottom: -2pt;
 	text-align: left;
 }
-.font-5-REGNEW {
+.font-5-REG {
 	font-family: Jura;
 	font-size: 11.25pt;
 	font-weight: 400;
@@ -472,10 +472,10 @@ a-REGNEW {
 	line-height: 16.04pt;
 	letter-spacing: normal;
 }
-.cont-19-REGNEW {
+.cont-19-REG {
 	overflow: hidden;
 }
-.colwrapper-10-REGNEW {
+.colwrapper-10-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 185px;
@@ -486,7 +486,7 @@ a-REGNEW {
 	margin-top: 9px;
 	line-height: 0;
 }
-.cont-20-REGNEW {
+.cont-20-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 185px;
@@ -497,7 +497,7 @@ a-REGNEW {
 	margin-left: 0px;
 	margin-top: 0px;
 }
-.input-4-REGNEW {
+.input-4-REG {
 	width: 185px;
 	height: 25px;
 	font-size: 9.00pt;
@@ -514,7 +514,7 @@ a-REGNEW {
 	margin-bottom: 0pt;
 	text-align: left;
 }
-.cont-21-REGNEW {
+.cont-21-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 553px;
@@ -524,7 +524,7 @@ a-REGNEW {
 	margin-left: 9px;
 	margin-top: 3px;
 }
-.colwrapper-11-REGNEW {
+.colwrapper-11-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 77px;
@@ -535,7 +535,7 @@ a-REGNEW {
 	margin-top: 0px;
 	line-height: 0;
 }
-.cont-22-REGNEW {
+.cont-22-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 77px;
@@ -547,14 +547,14 @@ a-REGNEW {
 	margin-top: 0px;
 	overflow: visible;
 }
-.para-6-REGNEW {
+.para-6-REG {
 	text-indent: 0;
 	padding-top: 2pt;
 	margin-top: 0pt;
 	margin-bottom: -2pt;
 	text-align: left;
 }
-.font-6-REGNEW {
+.font-6-REG {
 	font-family: Jura;
 	font-size: 11.25pt;
 	font-weight: 400;
@@ -564,7 +564,7 @@ a-REGNEW {
 	line-height: 16.04pt;
 	letter-spacing: normal;
 }
-.font-7-REGNEW {
+.font-7-REG {
 	font-family: Jura;
 	font-size: 11.25pt;
 	font-weight: 400;
@@ -574,10 +574,10 @@ a-REGNEW {
 	line-height: 16.04pt;
 	letter-spacing: normal;
 }
-.cont-23-REGNEW {
+.cont-23-REG {
 	overflow: hidden;
 }
-.colwrapper-12-REGNEW {
+.colwrapper-12-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 173px;
@@ -588,7 +588,7 @@ a-REGNEW {
 	margin-top: 4px;
 	line-height: 0;
 }
-.cont-24-REGNEW {
+.cont-24-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 173px;
@@ -599,7 +599,7 @@ a-REGNEW {
 	margin-left: 0px;
 	margin-top: 0px;
 }
-.input-5-REGNEW {
+.input-5-REG {
 	width: 173px;
 	height: 25px;
 	font-size: 9.00pt;
@@ -616,7 +616,7 @@ a-REGNEW {
 	margin-bottom: 0pt;
 	text-align: left;
 }
-.colwrapper-13-REGNEW {
+.colwrapper-13-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 77px;
@@ -627,7 +627,7 @@ a-REGNEW {
 	margin-top: 4px;
 	line-height: 0;
 }
-.cont-25-REGNEW {
+.cont-25-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 77px;
@@ -639,14 +639,14 @@ a-REGNEW {
 	margin-top: 0px;
 	overflow: visible;
 }
-.para-7-REGNEW {
+.para-7-REG {
 	text-indent: 0;
 	padding-top: 2pt;
 	margin-top: 0pt;
 	margin-bottom: -2pt;
 	text-align: left;
 }
-.font-8-REGNEW {
+.font-8-REG {
 	font-family: Jura;
 	font-size: 11.25pt;
 	font-weight: 400;
@@ -656,7 +656,7 @@ a-REGNEW {
 	line-height: 16.04pt;
 	letter-spacing: normal;
 }
-.font-9-REGNEW {
+.font-9-REG {
 	font-family: Jura;
 	font-size: 11.25pt;
 	font-weight: 400;
@@ -666,10 +666,10 @@ a-REGNEW {
 	line-height: 16.04pt;
 	letter-spacing: normal;
 }
-.cont-26-REGNEW {
+.cont-26-REG {
 	overflow: hidden;
 }
-.colwrapper-14-REGNEW {
+.colwrapper-14-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 185px;
@@ -680,7 +680,7 @@ a-REGNEW {
 	margin-top: 8px;
 	line-height: 0;
 }
-.cont-27-REGNEW {
+.cont-27-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 185px;
@@ -691,7 +691,7 @@ a-REGNEW {
 	margin-left: 0px;
 	margin-top: 0px;
 }
-.input-6-REGNEW {
+.input-6-REG {
 	width: 185px;
 	height: 25px;
 	font-size: 9.00pt;
@@ -708,7 +708,7 @@ a-REGNEW {
 	margin-bottom: 0pt;
 	text-align: left;
 }
-.cont-28-REGNEW {
+.cont-28-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 553px;
@@ -718,7 +718,7 @@ a-REGNEW {
 	margin-left: 9px;
 	margin-top: 6px;
 }
-.colwrapper-15-REGNEW {
+.colwrapper-15-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 77px;
@@ -729,7 +729,7 @@ a-REGNEW {
 	margin-top: 0px;
 	line-height: 0;
 }
-.cont-29-REGNEW {
+.cont-29-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 77px;
@@ -741,14 +741,14 @@ a-REGNEW {
 	margin-top: 0px;
 	overflow: visible;
 }
-.para-8-REGNEW {
+.para-8-REG {
 	text-indent: 0;
 	padding-top: 2pt;
 	margin-top: 0pt;
 	margin-bottom: -2pt;
 	text-align: left;
 }
-.font-10-REGNEW {
+.font-10-REG {
 	font-family: Jura;
 	font-size: 11.25pt;
 	font-weight: 400;
@@ -758,10 +758,10 @@ a-REGNEW {
 	line-height: 16.04pt;
 	letter-spacing: normal;
 }
-.cont-30-REGNEW {
+.cont-30-REG {
 	overflow: hidden;
 }
-.colwrapper-16-REGNEW {
+.colwrapper-16-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 173px;
@@ -772,7 +772,7 @@ a-REGNEW {
 	margin-top: 4px;
 	line-height: 0;
 }
-.cont-31-REGNEW {
+.cont-31-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 173px;
@@ -783,7 +783,7 @@ a-REGNEW {
 	margin-left: 0px;
 	margin-top: 0px;
 }
-.input-7-REGNEW {
+.input-7-REG {
 	width: 173px;
 	height: 25px;
 	font-size: 9.00pt;
@@ -800,7 +800,7 @@ a-REGNEW {
 	margin-bottom: 0pt;
 	text-align: left;
 }
-.colwrapper-17-REGNEW {
+.colwrapper-17-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 77px;
@@ -811,7 +811,7 @@ a-REGNEW {
 	margin-top: 3px;
 	line-height: 0;
 }
-.cont-32-REGNEW {
+.cont-32-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 77px;
@@ -823,14 +823,14 @@ a-REGNEW {
 	margin-top: 0px;
 	overflow: visible;
 }
-.para-9-REGNEW {
+.para-9-REG {
 	text-indent: 0;
 	padding-top: 2pt;
 	margin-top: 0pt;
 	margin-bottom: -2pt;
 	text-align: left;
 }
-.font-11-REGNEW {
+.font-11-REG {
 	font-family: Jura;
 	font-size: 11.25pt;
 	font-weight: 400;
@@ -840,7 +840,7 @@ a-REGNEW {
 	line-height: 16.04pt;
 	letter-spacing: normal;
 }
-.font-12-REGNEW {
+.font-12-REG {
 	font-family: Jura;
 	font-size: 11.25pt;
 	font-weight: 400;
@@ -850,10 +850,10 @@ a-REGNEW {
 	line-height: 16.04pt;
 	letter-spacing: normal;
 }
-.cont-33-REGNEW {
+.cont-33-REG {
 	overflow: hidden;
 }
-.colwrapper-18-REGNEW {
+.colwrapper-18-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 185px;
@@ -864,7 +864,7 @@ a-REGNEW {
 	margin-top: 7px;
 	line-height: 0;
 }
-.cont-34-REGNEW {
+.cont-34-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 185px;
@@ -875,7 +875,7 @@ a-REGNEW {
 	margin-left: 0px;
 	margin-top: 0px;
 }
-.input-8-REGNEW {
+.input-8-REG {
 	width: 185px;
 	height: 25px;
 	font-size: 9.00pt;
@@ -892,7 +892,7 @@ a-REGNEW {
 	margin-bottom: 0pt;
 	text-align: left;
 }
-.cont-35-REGNEW {
+.cont-35-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 553px;
@@ -902,7 +902,7 @@ a-REGNEW {
 	margin-left: 9px;
 	margin-top: 8px;
 }
-.colwrapper-19-REGNEW {
+.colwrapper-19-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 77px;
@@ -913,7 +913,7 @@ a-REGNEW {
 	margin-top: 0px;
 	line-height: 0;
 }
-.cont-36-REGNEW {
+.cont-36-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 77px;
@@ -925,14 +925,14 @@ a-REGNEW {
 	margin-top: 0px;
 	overflow: visible;
 }
-.para-10-REGNEW {
+.para-10-REG {
 	text-indent: 0;
 	padding-top: 2pt;
 	margin-top: 0pt;
 	margin-bottom: -2pt;
 	text-align: left;
 }
-.font-13-REGNEW {
+.font-13-REG {
 	font-family: Jura;
 	font-size: 11.25pt;
 	font-weight: 400;
@@ -942,10 +942,10 @@ a-REGNEW {
 	line-height: 16.04pt;
 	letter-spacing: normal;
 }
-.cont-37-REGNEW {
+.cont-37-REG {
 	overflow: hidden;
 }
-.colwrapper-20-REGNEW {
+.colwrapper-20-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 173px;
@@ -956,7 +956,7 @@ a-REGNEW {
 	margin-top: 4px;
 	line-height: 0;
 }
-.cont-38-REGNEW {
+.cont-38-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 173px;
@@ -967,7 +967,7 @@ a-REGNEW {
 	margin-left: 0px;
 	margin-top: 0px;
 }
-.input-9-REGNEW {
+.input-9-REG {
 	width: 173px;
 	height: 25px;
 	font-size: 9.00pt;
@@ -984,7 +984,7 @@ a-REGNEW {
 	margin-bottom: 0pt;
 	text-align: left;
 }
-.colwrapper-21-REGNEW {
+.colwrapper-21-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 40px;
@@ -995,7 +995,7 @@ a-REGNEW {
 	margin-top: 4px;
 	line-height: 0;
 }
-.cont-39-REGNEW {
+.cont-39-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 40px;
@@ -1006,7 +1006,7 @@ a-REGNEW {
 	margin-left: 0px;
 	margin-top: 0px;
 }
-.input-10-REGNEW {
+.input-10-REG {
 	width: 40px;
 	height: 25px;
 	font-size: 9.00pt;
@@ -1023,7 +1023,7 @@ a-REGNEW {
 	margin-bottom: 0pt;
 	text-align: left;
 }
-.colwrapper-22-REGNEW {
+.colwrapper-22-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 55px;
@@ -1034,7 +1034,7 @@ a-REGNEW {
 	margin-top: 1px;
 	line-height: 0;
 }
-.cont-40-REGNEW {
+.cont-40-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 55px;
@@ -1046,14 +1046,14 @@ a-REGNEW {
 	margin-top: 0px;
 	overflow: visible;
 }
-.para-11-REGNEW {
+.para-11-REG {
 	text-indent: 0;
 	padding-top: 2pt;
 	margin-top: 0pt;
 	margin-bottom: -2pt;
 	text-align: left;
 }
-.font-14-REGNEW {
+.font-14-REG {
 	font-family: Jura;
 	font-size: 11.25pt;
 	font-weight: 400;
@@ -1063,10 +1063,10 @@ a-REGNEW {
 	line-height: 16.04pt;
 	letter-spacing: normal;
 }
-.cont-41-REGNEW {
+.cont-41-REG {
 	overflow: hidden;
 }
-.colwrapper-23-REGNEW {
+.colwrapper-23-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 40px;
@@ -1077,7 +1077,7 @@ a-REGNEW {
 	margin-top: 4px;
 	line-height: 0;
 }
-.cont-42-REGNEW {
+.cont-42-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 40px;
@@ -1088,7 +1088,7 @@ a-REGNEW {
 	margin-left: 0px;
 	margin-top: 0px;
 }
-.input-11-REGNEW {
+.input-11-REG {
 	width: 40px;
 	height: 25px;
 	font-size: 9.00pt;
@@ -1105,7 +1105,7 @@ a-REGNEW {
 	margin-bottom: 0pt;
 	text-align: left;
 }
-.colwrapper-24-REGNEW {
+.colwrapper-24-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 77px;
@@ -1116,7 +1116,7 @@ a-REGNEW {
 	margin-top: 0px;
 	line-height: 0;
 }
-.cont-43-REGNEW {
+.cont-43-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 77px;
@@ -1128,14 +1128,14 @@ a-REGNEW {
 	margin-top: 0px;
 	overflow: visible;
 }
-.para-12-REGNEW {
+.para-12-REG {
 	text-indent: 0;
 	padding-top: 2pt;
 	margin-top: 0pt;
 	margin-bottom: -2pt;
 	text-align: left;
 }
-.font-15-REGNEW {
+.font-15-REG {
 	font-family: Jura;
 	font-size: 11.25pt;
 	font-weight: 400;
@@ -1145,10 +1145,10 @@ a-REGNEW {
 	line-height: 16.04pt;
 	letter-spacing: normal;
 }
-.cont-44-REGNEW {
+.cont-44-REG {
 	overflow: hidden;
 }
-.cont-45-REGNEW {
+.cont-45-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 553px;
@@ -1158,7 +1158,7 @@ a-REGNEW {
 	margin-left: 9px;
 	margin-top: 8px;
 }
-.colwrapper-25-REGNEW {
+.colwrapper-25-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 77px;
@@ -1169,7 +1169,7 @@ a-REGNEW {
 	margin-top: 0px;
 	line-height: 0;
 }
-.cont-46-REGNEW {
+.cont-46-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 77px;
@@ -1181,14 +1181,14 @@ a-REGNEW {
 	margin-top: 0px;
 	overflow: visible;
 }
-.para-13-REGNEW {
+.para-13-REG {
 	text-indent: 0;
 	padding-top: 2pt;
 	margin-top: 0pt;
 	margin-bottom: -2pt;
 	text-align: left;
 }
-.font-16-REGNEW {
+.font-16-REG {
 	font-family: Jura;
 	font-size: 11.25pt;
 	font-weight: 400;
@@ -1198,10 +1198,10 @@ a-REGNEW {
 	line-height: 16.04pt;
 	letter-spacing: normal;
 }
-.cont-47-REGNEW {
+.cont-47-REG {
 	overflow: hidden;
 }
-.colwrapper-26-REGNEW {
+.colwrapper-26-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 173px;
@@ -1212,7 +1212,7 @@ a-REGNEW {
 	margin-top: 4px;
 	line-height: 0;
 }
-.cont-48-REGNEW {
+.cont-48-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 173px;
@@ -1223,7 +1223,7 @@ a-REGNEW {
 	margin-left: 0px;
 	margin-top: 0px;
 }
-.input-12-REGNEW {
+.input-12-REG {
 	width: 173px;
 	height: 25px;
 	font-size: 9.00pt;
@@ -1240,7 +1240,7 @@ a-REGNEW {
 	margin-bottom: 0pt;
 	text-align: left;
 }
-.colwrapper-27-REGNEW {
+.colwrapper-27-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 94px;
@@ -1251,7 +1251,7 @@ a-REGNEW {
 	margin-top: 0px;
 	line-height: 0;
 }
-.cont-49-REGNEW {
+.cont-49-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 94px;
@@ -1263,14 +1263,14 @@ a-REGNEW {
 	margin-top: 0px;
 	overflow: visible;
 }
-.para-14-REGNEW {
+.para-14-REG {
 	text-indent: 0;
 	padding-top: 2pt;
 	margin-top: 0pt;
 	margin-bottom: -2pt;
 	text-align: left;
 }
-.font-17-REGNEW {
+.font-17-REG {
 	font-family: Nunito;
 	font-size: 9.00pt;
 	font-weight: 400;
@@ -1280,10 +1280,10 @@ a-REGNEW {
 	line-height: 16.64pt;
 	letter-spacing: normal;
 }
-.cont-50-REGNEW {
+.cont-50-REG {
 	overflow: hidden;
 }
-.cont-51-REGNEW {
+.cont-51-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 216px;
@@ -1293,7 +1293,7 @@ a-REGNEW {
 	margin-left: 346px;
 	margin-top: 320px;
 }
-.colwrapper-28-REGNEW {
+.colwrapper-28-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 93px;
@@ -1304,7 +1304,7 @@ a-REGNEW {
 	margin-top: 0px;
 	line-height: 0;
 }
-.cont-52-REGNEW {
+.cont-52-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 93px;
@@ -1315,7 +1315,7 @@ a-REGNEW {
 	margin-left: 0px;
 	margin-top: 0px;
 }
-.button-REGNEW {
+.button-REG {
 	width: 93px;
 	display: inline-block;
 	overflow: hidden;
@@ -1336,17 +1336,17 @@ a-REGNEW {
 	margin-bottom: 0;
 	height: 25px;
 }
-.button-REGNEW :hover {
+.button-REG :hover {
 	background-color: rgb(220,50,47);
 	border-color: rgb(0,0,0);
 	color: rgb(0,0,0);
 }
-.button-REGNEW :active {
+.button-REG :active {
 	background-color: rgb(82,100,111);
 	border-color: rgb(0,0,0);
 	color: rgb(255,255,255);
 }
-.colwrapper-29-REGNEW {
+.colwrapper-29-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 109px;
@@ -1357,7 +1357,7 @@ a-REGNEW {
 	margin-top: 0px;
 	line-height: 0;
 }
-.cont-53-REGNEW {
+.cont-53-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 109px;
@@ -1368,7 +1368,7 @@ a-REGNEW {
 	margin-left: 0px;
 	margin-top: 0px;
 }
-.button-2-REGNEW {
+.button-2-REG {
 	width: 109px;
 	display: inline-block;
 	overflow: hidden;
@@ -1389,17 +1389,17 @@ a-REGNEW {
 	margin-bottom: 0;
 	height: 25px;
 }
-.button-2-REGNEW :hover {
+.button-2-REG :hover {
 	background-color: rgb(42,161,152);
 	border-color: rgb(0,0,0);
 	color: rgb(234,177,0);
 }
-.button-2-REGNEW :active {
+.button-2-REG :active {
 	background-color: rgb(82,100,111);
 	border-color: rgb(0,0,0);
 	color: rgb(255,255,255);
 }
-.cont-54-REGNEW {
+.cont-54-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 574px;
@@ -1412,7 +1412,7 @@ a-REGNEW {
 	border: 0;
 	background-color: rgba(221,236,247,0.177);
 }
-.cont-55-REGNEW {
+.cont-55-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 185px;
@@ -1424,14 +1424,14 @@ a-REGNEW {
 	margin-top: 0px;
 	overflow: visible;
 }
-.para-15-REGNEW {
+.para-15-REG {
 	text-indent: 0;
 	padding-top: 3pt;
 	margin-top: 0pt;
 	margin-bottom: -3pt;
 	text-align: left;
 }
-.font-18-REGNEW {
+.font-18-REG {
 	font-family: Nunito;
 	font-size: 11.25pt;
 	font-weight: 700;
@@ -1441,10 +1441,10 @@ a-REGNEW {
 	line-height: 21.49pt;
 	letter-spacing: normal;
 }
-.cont-56-REGNEW {
+.cont-56-REG {
 	overflow: hidden;
 }
-.cont-57-REGNEW {
+.cont-57-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 555px;
@@ -1454,7 +1454,7 @@ a-REGNEW {
 	margin-left: 9px;
 	margin-top: 9px;
 }
-.colwrapper-30-REGNEW {
+.colwrapper-30-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 77px;
@@ -1465,7 +1465,7 @@ a-REGNEW {
 	margin-top: 1px;
 	line-height: 0;
 }
-.cont-58-REGNEW {
+.cont-58-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 77px;
@@ -1477,14 +1477,14 @@ a-REGNEW {
 	margin-top: 0px;
 	overflow: visible;
 }
-.para-16-REGNEW {
+.para-16-REG {
 	text-indent: 0;
 	padding-top: 2pt;
 	margin-top: 0pt;
 	margin-bottom: -2pt;
 	text-align: left;
 }
-.font-19-REGNEW {
+.font-19-REG {
 	font-family: Jura;
 	font-size: 11.25pt;
 	font-weight: 400;
@@ -1494,10 +1494,10 @@ a-REGNEW {
 	line-height: 16.04pt;
 	letter-spacing: normal;
 }
-.cont-59-REGNEW {
+.cont-59-REG {
 	overflow: hidden;
 }
-.colwrapper-31-REGNEW {
+.colwrapper-31-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 173px;
@@ -1508,7 +1508,7 @@ a-REGNEW {
 	margin-top: 5px;
 	line-height: 0;
 }
-.cont-60-REGNEW {
+.cont-60-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 173px;
@@ -1519,7 +1519,7 @@ a-REGNEW {
 	margin-left: 0px;
 	margin-top: 0px;
 }
-.input-13-REGNEW {
+.input-13-REG {
 	width: 173px;
 	height: 25px;
 	font-size: 9.00pt;
@@ -1536,7 +1536,7 @@ a-REGNEW {
 	margin-bottom: 0pt;
 	text-align: left;
 }
-.colwrapper-32-REGNEW {
+.colwrapper-32-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 77px;
@@ -1547,7 +1547,7 @@ a-REGNEW {
 	margin-top: 0px;
 	line-height: 0;
 }
-.cont-61-REGNEW {
+.cont-61-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 77px;
@@ -1559,14 +1559,14 @@ a-REGNEW {
 	margin-top: 0px;
 	overflow: visible;
 }
-.para-17-REGNEW {
+.para-17-REG {
 	text-indent: 0;
 	padding-top: 2pt;
 	margin-top: 0pt;
 	margin-bottom: -2pt;
 	text-align: left;
 }
-.font-20-REGNEW {
+.font-20-REG {
 	font-family: Jura;
 	font-size: 11.25pt;
 	font-weight: 400;
@@ -1576,10 +1576,10 @@ a-REGNEW {
 	line-height: 16.04pt;
 	letter-spacing: normal;
 }
-.cont-62-REGNEW {
+.cont-62-REG {
 	overflow: hidden;
 }
-.colwrapper-33-REGNEW {
+.colwrapper-33-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 185px;
@@ -1590,7 +1590,7 @@ a-REGNEW {
 	margin-top: 4px;
 	line-height: 0;
 }
-.cont-63-REGNEW {
+.cont-63-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 185px;
@@ -1601,7 +1601,7 @@ a-REGNEW {
 	margin-left: 0px;
 	margin-top: 0px;
 }
-.input-14-REGNEW {
+.input-14-REG {
 	width: 185px;
 	height: 25px;
 	font-size: 9.00pt;
@@ -1618,7 +1618,7 @@ a-REGNEW {
 	margin-bottom: 0pt;
 	text-align: left;
 }
-.cont-64-REGNEW {
+.cont-64-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 555px;
@@ -1628,7 +1628,7 @@ a-REGNEW {
 	margin-left: 9px;
 	margin-top: 9px;
 }
-.colwrapper-34-REGNEW {
+.colwrapper-34-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 77px;
@@ -1639,7 +1639,7 @@ a-REGNEW {
 	margin-top: 0px;
 	line-height: 0;
 }
-.cont-65-REGNEW {
+.cont-65-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 77px;
@@ -1651,14 +1651,14 @@ a-REGNEW {
 	margin-top: 0px;
 	overflow: visible;
 }
-.para-18-REGNEW {
+.para-18-REG {
 	text-indent: 0;
 	padding-top: 2pt;
 	margin-top: 0pt;
 	margin-bottom: -2pt;
 	text-align: left;
 }
-.font-21-REGNEW {
+.font-21-REG {
 	font-family: Jura;
 	font-size: 11.25pt;
 	font-weight: 400;
@@ -1668,10 +1668,10 @@ a-REGNEW {
 	line-height: 16.04pt;
 	letter-spacing: normal;
 }
-.cont-66-REGNEW {
+.cont-66-REG {
 	overflow: hidden;
 }
-.colwrapper-35-REGNEW {
+.colwrapper-35-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 173px;
@@ -1682,7 +1682,7 @@ a-REGNEW {
 	margin-top: 3px;
 	line-height: 0;
 }
-.cont-67-REGNEW {
+.cont-67-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 173px;
@@ -1693,7 +1693,7 @@ a-REGNEW {
 	margin-left: 0px;
 	margin-top: 0px;
 }
-.input-15-REGNEW {
+.input-15-REG {
 	width: 173px;
 	height: 25px;
 	font-size: 9.00pt;
@@ -1710,7 +1710,7 @@ a-REGNEW {
 	margin-bottom: 0pt;
 	text-align: left;
 }
-.colwrapper-36-REGNEW {
+.colwrapper-36-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 185px;
@@ -1721,7 +1721,7 @@ a-REGNEW {
 	margin-top: 3px;
 	line-height: 0;
 }
-.cont-68-REGNEW {
+.cont-68-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 185px;
@@ -1732,7 +1732,7 @@ a-REGNEW {
 	margin-left: 0px;
 	margin-top: 0px;
 }
-.input-16-REGNEW {
+.input-16-REG {
 	width: 185px;
 	height: 25px;
 	font-size: 9.00pt;
@@ -1749,7 +1749,7 @@ a-REGNEW {
 	margin-bottom: 0pt;
 	text-align: left;
 }
-.cont-69-REGNEW {
+.cont-69-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 555px;
@@ -1759,7 +1759,7 @@ a-REGNEW {
 	margin-left: 9px;
 	margin-top: 9px;
 }
-.colwrapper-37-REGNEW {
+.colwrapper-37-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 77px;
@@ -1770,7 +1770,7 @@ a-REGNEW {
 	margin-top: 0px;
 	line-height: 0;
 }
-.cont-70-REGNEW {
+.cont-70-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 77px;
@@ -1782,14 +1782,14 @@ a-REGNEW {
 	margin-top: 0px;
 	overflow: visible;
 }
-.para-19-REGNEW {
+.para-19-REG {
 	text-indent: 0;
 	padding-top: 2pt;
 	margin-top: 0pt;
 	margin-bottom: -2pt;
 	text-align: left;
 }
-.font-22-REGNEW {
+.font-22-REG {
 	font-family: Jura;
 	font-size: 11.25pt;
 	font-weight: 400;
@@ -1799,10 +1799,10 @@ a-REGNEW {
 	line-height: 16.04pt;
 	letter-spacing: normal;
 }
-.cont-71-REGNEW {
+.cont-71-REG {
 	overflow: hidden;
 }
-.colwrapper-38-REGNEW {
+.colwrapper-38-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 173px;
@@ -1813,7 +1813,7 @@ a-REGNEW {
 	margin-top: 3px;
 	line-height: 0;
 }
-.cont-72-REGNEW {
+.cont-72-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 173px;
@@ -1824,7 +1824,7 @@ a-REGNEW {
 	margin-left: 0px;
 	margin-top: 0px;
 }
-.input-17-REGNEW {
+.input-17-REG {
 	width: 173px;
 	height: 25px;
 	font-size: 9.00pt;
@@ -1841,7 +1841,7 @@ a-REGNEW {
 	margin-bottom: 0pt;
 	text-align: left;
 }
-.colwrapper-39-REGNEW {
+.colwrapper-39-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 77px;
@@ -1852,7 +1852,7 @@ a-REGNEW {
 	margin-top: 0px;
 	line-height: 0;
 }
-.cont-73-REGNEW {
+.cont-73-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 77px;
@@ -1864,14 +1864,14 @@ a-REGNEW {
 	margin-top: 0px;
 	overflow: visible;
 }
-.para-20-REGNEW {
+.para-20-REG {
 	text-indent: 0;
 	padding-top: 2pt;
 	margin-top: 0pt;
 	margin-bottom: -2pt;
 	text-align: left;
 }
-.font-23-REGNEW {
+.font-23-REG {
 	font-family: Jura;
 	font-size: 11.25pt;
 	font-weight: 400;
@@ -1881,10 +1881,10 @@ a-REGNEW {
 	line-height: 16.04pt;
 	letter-spacing: normal;
 }
-.cont-74-REGNEW {
+.cont-74-REG {
 	overflow: hidden;
 }
-.colwrapper-40-REGNEW {
+.colwrapper-40-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 185px;
@@ -1895,7 +1895,7 @@ a-REGNEW {
 	margin-top: 3px;
 	line-height: 0;
 }
-.cont-75-REGNEW {
+.cont-75-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 185px;
@@ -1906,7 +1906,7 @@ a-REGNEW {
 	margin-left: 0px;
 	margin-top: 0px;
 }
-.input-18-REGNEW {
+.input-18-REG {
 	width: 185px;
 	height: 25px;
 	font-size: 9.00pt;
@@ -1923,7 +1923,7 @@ a-REGNEW {
 	margin-bottom: 0pt;
 	text-align: left;
 }
-.cont-76-REGNEW {
+.cont-76-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 271px;
@@ -1933,7 +1933,7 @@ a-REGNEW {
 	margin-left: 293px;
 	margin-top: 7px;
 }
-.colwrapper-41-REGNEW {
+.colwrapper-41-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 77px;
@@ -1944,7 +1944,7 @@ a-REGNEW {
 	margin-top: 0px;
 	line-height: 0;
 }
-.cont-77-REGNEW {
+.cont-77-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 77px;
@@ -1956,14 +1956,14 @@ a-REGNEW {
 	margin-top: 0px;
 	overflow: visible;
 }
-.para-21-REGNEW {
+.para-21-REG {
 	text-indent: 0;
 	padding-top: 2pt;
 	margin-top: 0pt;
 	margin-bottom: -2pt;
 	text-align: left;
 }
-.font-24-REGNEW {
+.font-24-REG {
 	font-family: Jura;
 	font-size: 11.25pt;
 	font-weight: 400;
@@ -1973,10 +1973,10 @@ a-REGNEW {
 	line-height: 16.04pt;
 	letter-spacing: normal;
 }
-.cont-78-REGNEW {
+.cont-78-REG {
 	overflow: hidden;
 }
-.colwrapper-42-REGNEW {
+.colwrapper-42-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 185px;
@@ -1987,7 +1987,7 @@ a-REGNEW {
 	margin-top: 4px;
 	line-height: 0;
 }
-.cont-79-REGNEW {
+.cont-79-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 185px;
@@ -1998,7 +1998,7 @@ a-REGNEW {
 	margin-left: 0px;
 	margin-top: 0px;
 }
-.input-19-REGNEW {
+.input-19-REG {
 	width: 185px;
 	height: 25px;
 	font-size: 9.00pt;
@@ -2015,7 +2015,7 @@ a-REGNEW {
 	margin-bottom: 0pt;
 	text-align: left;
 }
-.cont-80-REGNEW {
+.cont-80-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 271px;
@@ -2025,7 +2025,7 @@ a-REGNEW {
 	margin-left: 293px;
 	margin-top: 9px;
 }
-.colwrapper-43-REGNEW {
+.colwrapper-43-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 77px;
@@ -2036,7 +2036,7 @@ a-REGNEW {
 	margin-top: 0px;
 	line-height: 0;
 }
-.cont-81-REGNEW {
+.cont-81-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 77px;
@@ -2048,14 +2048,14 @@ a-REGNEW {
 	margin-top: 0px;
 	overflow: visible;
 }
-.para-22-REGNEW {
+.para-22-REG {
 	text-indent: 0;
 	padding-top: 2pt;
 	margin-top: 0pt;
 	margin-bottom: -2pt;
 	text-align: left;
 }
-.font-25-REGNEW {
+.font-25-REG {
 	font-family: Jura;
 	font-size: 11.25pt;
 	font-weight: 400;
@@ -2065,10 +2065,10 @@ a-REGNEW {
 	line-height: 16.04pt;
 	letter-spacing: normal;
 }
-.cont-82-REGNEW {
+.cont-82-REG {
 	overflow: hidden;
 }
-.colwrapper-44-REGNEW {
+.colwrapper-44-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 185px;
@@ -2079,7 +2079,7 @@ a-REGNEW {
 	margin-top: 4px;
 	line-height: 0;
 }
-.cont-83-REGNEW {
+.cont-83-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 185px;
@@ -2090,7 +2090,7 @@ a-REGNEW {
 	margin-left: 0px;
 	margin-top: 0px;
 }
-.input-20-REGNEW {
+.input-20-REG {
 	width: 185px;
 	height: 25px;
 	font-size: 9.00pt;
@@ -2107,7 +2107,7 @@ a-REGNEW {
 	margin-bottom: 0pt;
 	text-align: left;
 }
-.cont-84-REGNEW {
+.cont-84-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 94px;
@@ -2119,14 +2119,14 @@ a-REGNEW {
 	margin-top: 0px;
 	overflow: visible;
 }
-.para-23-REGNEW {
+.para-23-REG {
 	text-indent: 0;
 	padding-top: 2pt;
 	margin-top: 0pt;
 	margin-bottom: -2pt;
 	text-align: left;
 }
-.font-26-REGNEW {
+.font-26-REG {
 	font-family: Nunito;
 	font-size: 9.00pt;
 	font-weight: 400;
@@ -2136,63 +2136,63 @@ a-REGNEW {
 	line-height: 16.64pt;
 	letter-spacing: normal;
 }
-.cont-85-REGNEW {
+.cont-85-REG {
 	overflow: hidden;
 }
-body-REGNEW {
+body-REG {
 	font-size: 0px;
 }
-div-REGNEW {
+div-REG {
 	font-size: 0px;
 }
-p-REGNEW {
+p-REG {
 	margin: 0em;
 	word-spacing: normal;
 }
-h1-REGNEW {
+h1-REG {
 	margin: 0em;
 	word-spacing: normal;
 }
-h2-REGNEW {
+h2-REG {
 	margin: 0em;
 	word-spacing: normal;
 }
-h3-REGNEW {
+h3-REG {
 	margin: 0em;
 	word-spacing: normal;
 }
-h4-REGNEW {
+h4-REG {
 	margin: 0em;
 	word-spacing: normal;
 }
-h5-REGNEW {
+h5-REG {
 	margin: 0em;
 	word-spacing: normal;
 }
-h6-REGNEW {
+h6-REG {
 	margin: 0em;
 	word-spacing: normal;
 }
-form-REGNEW {
+form-REG {
 	display: inline-block;
 }
-input-REGNEW {
+input-REG {
 	box-sizing: border-box;
 }
-textarea-REGNEW {
+textarea-REG {
 	box-sizing: border-box;
 }
-a-REGNEW {
+a-REG {
 	text-decoration: inherit;
 	color: inherit;
 }
-.whitespacefix-REGNEW {
+.whitespacefix-REG {
 	word-spacing: -1px;
 }
-#body-2-REGNEW {
+#body-2-REG {
 	background-color: rgba(192,192,192,0.361);
 }
-.section-2-REGNEW {
+.section-2-REG {
 	position: relative;
 	margin-top: 68px;
 	min-width: 960px;
@@ -2201,7 +2201,7 @@ a-REGNEW {
 	margin-right: auto;
 	display: block;
 }
-.cont-86-REGNEW {
+.cont-86-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 574px;
@@ -2214,7 +2214,7 @@ a-REGNEW {
 	border: 1px solid rgb(103,122,133);
 	background-color: rgb(255,255,255);
 }
-.cont-87-REGNEW {
+.cont-87-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 574px;
@@ -2227,7 +2227,7 @@ a-REGNEW {
 	border: 0;
 	background-color: rgb(130,147,158);
 }
-.cont-88-REGNEW {
+.cont-88-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 565px;
@@ -2239,14 +2239,14 @@ a-REGNEW {
 	margin-top: 0px;
 	overflow: visible;
 }
-.para-24-REGNEW {
+.para-24-REG {
 	text-indent: 0;
 	padding-top: 2pt;
 	margin-top: 0pt;
 	margin-bottom: -2pt;
 	text-align: left;
 }
-.font-27-REGNEW {
+.font-27-REG {
 	font-family: VT323;
 	font-size: 24.00pt;
 	font-weight: 400;
@@ -2256,7 +2256,7 @@ a-REGNEW {
 	line-height: 28.79pt;
 	letter-spacing: normal;
 }
-.font-28-REGNEW {
+.font-28-REG {
 	font-family: VT323;
 	font-size: 24.00pt;
 	font-weight: 400;
@@ -2266,10 +2266,10 @@ a-REGNEW {
 	line-height: 28.79pt;
 	letter-spacing: normal;
 }
-.cont-89-REGNEW {
+.cont-89-REG {
 	overflow: hidden;
 }
-.cont-90-REGNEW {
+.cont-90-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 553px;
@@ -2279,7 +2279,7 @@ a-REGNEW {
 	margin-left: 9px;
 	margin-top: 17px;
 }
-.colwrapper-45-REGNEW {
+.colwrapper-45-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 77px;
@@ -2290,7 +2290,7 @@ a-REGNEW {
 	margin-top: 0px;
 	line-height: 0;
 }
-.cont-91-REGNEW {
+.cont-91-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 77px;
@@ -2302,14 +2302,14 @@ a-REGNEW {
 	margin-top: 0px;
 	overflow: visible;
 }
-.para-25-REGNEW {
+.para-25-REG {
 	text-indent: 0;
 	padding-top: 2pt;
 	margin-top: 0pt;
 	margin-bottom: -2pt;
 	text-align: left;
 }
-.font-29-REGNEW {
+.font-29-REG {
 	font-family: Jura;
 	font-size: 11.25pt;
 	font-weight: 400;
@@ -2319,10 +2319,10 @@ a-REGNEW {
 	line-height: 16.04pt;
 	letter-spacing: normal;
 }
-.cont-92-REGNEW {
+.cont-92-REG {
 	overflow: hidden;
 }
-.colwrapper-46-REGNEW {
+.colwrapper-46-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 173px;
@@ -2333,7 +2333,7 @@ a-REGNEW {
 	margin-top: 4px;
 	line-height: 0;
 }
-.cont-93-REGNEW {
+.cont-93-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 173px;
@@ -2344,7 +2344,7 @@ a-REGNEW {
 	margin-left: 0px;
 	margin-top: 0px;
 }
-.input-21-REGNEW {
+.input-21-REG {
 	width: 173px;
 	height: 25px;
 	font-size: 9.00pt;
@@ -2361,7 +2361,7 @@ a-REGNEW {
 	margin-bottom: 0pt;
 	text-align: left;
 }
-.colwrapper-47-REGNEW {
+.colwrapper-47-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 77px;
@@ -2372,7 +2372,7 @@ a-REGNEW {
 	margin-top: 3px;
 	line-height: 0;
 }
-.cont-94-REGNEW {
+.cont-94-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 77px;
@@ -2384,14 +2384,14 @@ a-REGNEW {
 	margin-top: 0px;
 	overflow: visible;
 }
-.para-26-REGNEW {
+.para-26-REG {
 	text-indent: 0;
 	padding-top: 2pt;
 	margin-top: 0pt;
 	margin-bottom: -2pt;
 	text-align: left;
 }
-.font-30-REGNEW {
+.font-30-REG {
 	font-family: Jura;
 	font-size: 11.25pt;
 	font-weight: 400;
@@ -2401,10 +2401,10 @@ a-REGNEW {
 	line-height: 16.04pt;
 	letter-spacing: normal;
 }
-.cont-95-REGNEW {
+.cont-95-REG {
 	overflow: hidden;
 }
-.colwrapper-48-REGNEW {
+.colwrapper-48-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 185px;
@@ -2415,7 +2415,7 @@ a-REGNEW {
 	margin-top: 7px;
 	line-height: 0;
 }
-.cont-96-REGNEW {
+.cont-96-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 185px;
@@ -2426,7 +2426,7 @@ a-REGNEW {
 	margin-left: 0px;
 	margin-top: 0px;
 }
-.input-22-REGNEW {
+.input-22-REG {
 	width: 185px;
 	height: 25px;
 	font-size: 9.00pt;
@@ -2443,7 +2443,7 @@ a-REGNEW {
 	margin-bottom: 0pt;
 	text-align: left;
 }
-.cont-97-REGNEW {
+.cont-97-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 553px;
@@ -2453,7 +2453,7 @@ a-REGNEW {
 	margin-left: 9px;
 	margin-top: 5px;
 }
-.colwrapper-49-REGNEW {
+.colwrapper-49-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 77px;
@@ -2464,7 +2464,7 @@ a-REGNEW {
 	margin-top: 0px;
 	line-height: 0;
 }
-.cont-98-REGNEW {
+.cont-98-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 77px;
@@ -2476,14 +2476,14 @@ a-REGNEW {
 	margin-top: 0px;
 	overflow: visible;
 }
-.para-27-REGNEW {
+.para-27-REG {
 	text-indent: 0;
 	padding-top: 2pt;
 	margin-top: 0pt;
 	margin-bottom: -2pt;
 	text-align: left;
 }
-.font-31-REGNEW {
+.font-31-REG {
 	font-family: Jura;
 	font-size: 11.25pt;
 	font-weight: 400;
@@ -2493,10 +2493,10 @@ a-REGNEW {
 	line-height: 16.04pt;
 	letter-spacing: normal;
 }
-.cont-99-REGNEW {
+.cont-99-REG {
 	overflow: hidden;
 }
-.colwrapper-50-REGNEW {
+.colwrapper-50-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 144px;
@@ -2507,7 +2507,7 @@ a-REGNEW {
 	margin-top: 4px;
 	line-height: 0;
 }
-.cont-100-REGNEW {
+.cont-100-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 144px;
@@ -2518,7 +2518,7 @@ a-REGNEW {
 	margin-left: 0px;
 	margin-top: 0px;
 }
-.input-23-REGNEW {
+.input-23-REG {
 	width: 144px;
 	height: 25px;
 	font-size: 9.00pt;
@@ -2535,7 +2535,7 @@ a-REGNEW {
 	margin-bottom: 0pt;
 	text-align: left;
 }
-.colwrapper-51-REGNEW {
+.colwrapper-51-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 21px;
@@ -2546,7 +2546,7 @@ a-REGNEW {
 	margin-top: 6px;
 	line-height: 0;
 }
-.cont-101-REGNEW {
+.cont-101-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 21px;
@@ -2560,7 +2560,7 @@ a-REGNEW {
 	border: 0;
 	background-color: rgb(184,200,210);
 }
-.colwrapper-52-REGNEW {
+.colwrapper-52-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 77px;
@@ -2571,7 +2571,7 @@ a-REGNEW {
 	margin-top: 6px;
 	line-height: 0;
 }
-.cont-102-REGNEW {
+.cont-102-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 77px;
@@ -2583,14 +2583,14 @@ a-REGNEW {
 	margin-top: 0px;
 	overflow: visible;
 }
-.para-28-REGNEW {
+.para-28-REG {
 	text-indent: 0;
 	padding-top: 2pt;
 	margin-top: 0pt;
 	margin-bottom: -2pt;
 	text-align: left;
 }
-.font-32-REGNEW {
+.font-32-REG {
 	font-family: Jura;
 	font-size: 11.25pt;
 	font-weight: 400;
@@ -2600,10 +2600,10 @@ a-REGNEW {
 	line-height: 16.04pt;
 	letter-spacing: normal;
 }
-.cont-103-REGNEW {
+.cont-103-REG {
 	overflow: hidden;
 }
-.colwrapper-53-REGNEW {
+.colwrapper-53-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 185px;
@@ -2614,7 +2614,7 @@ a-REGNEW {
 	margin-top: 9px;
 	line-height: 0;
 }
-.cont-104-REGNEW {
+.cont-104-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 185px;
@@ -2625,7 +2625,7 @@ a-REGNEW {
 	margin-left: 0px;
 	margin-top: 0px;
 }
-.input-24-REGNEW {
+.input-24-REG {
 	width: 185px;
 	height: 25px;
 	font-size: 9.00pt;
@@ -2642,7 +2642,7 @@ a-REGNEW {
 	margin-bottom: 0pt;
 	text-align: left;
 }
-.cont-105-REGNEW {
+.cont-105-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 553px;
@@ -2652,7 +2652,7 @@ a-REGNEW {
 	margin-left: 9px;
 	margin-top: 3px;
 }
-.colwrapper-54-REGNEW {
+.colwrapper-54-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 77px;
@@ -2663,7 +2663,7 @@ a-REGNEW {
 	margin-top: 0px;
 	line-height: 0;
 }
-.cont-106-REGNEW {
+.cont-106-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 77px;
@@ -2675,14 +2675,14 @@ a-REGNEW {
 	margin-top: 0px;
 	overflow: visible;
 }
-.para-29-REGNEW {
+.para-29-REG {
 	text-indent: 0;
 	padding-top: 2pt;
 	margin-top: 0pt;
 	margin-bottom: -2pt;
 	text-align: left;
 }
-.font-33-REGNEW {
+.font-33-REG {
 	font-family: Jura;
 	font-size: 11.25pt;
 	font-weight: 400;
@@ -2692,10 +2692,10 @@ a-REGNEW {
 	line-height: 16.04pt;
 	letter-spacing: normal;
 }
-.cont-107-REGNEW {
+.cont-107-REG {
 	overflow: hidden;
 }
-.colwrapper-55-REGNEW {
+.colwrapper-55-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 173px;
@@ -2706,7 +2706,7 @@ a-REGNEW {
 	margin-top: 4px;
 	line-height: 0;
 }
-.cont-108-REGNEW {
+.cont-108-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 173px;
@@ -2717,7 +2717,7 @@ a-REGNEW {
 	margin-left: 0px;
 	margin-top: 0px;
 }
-.input-25-REGNEW {
+.input-25-REG {
 	width: 173px;
 	height: 25px;
 	font-size: 9.00pt;
@@ -2734,7 +2734,7 @@ a-REGNEW {
 	margin-bottom: 0pt;
 	text-align: left;
 }
-.colwrapper-56-REGNEW {
+.colwrapper-56-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 77px;
@@ -2745,7 +2745,7 @@ a-REGNEW {
 	margin-top: 4px;
 	line-height: 0;
 }
-.cont-109-REGNEW {
+.cont-109-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 77px;
@@ -2757,14 +2757,14 @@ a-REGNEW {
 	margin-top: 0px;
 	overflow: visible;
 }
-.para-30-REGNEW {
+.para-30-REG {
 	text-indent: 0;
 	padding-top: 2pt;
 	margin-top: 0pt;
 	margin-bottom: -2pt;
 	text-align: left;
 }
-.font-34-REGNEW {
+.font-34-REG {
 	font-family: Jura;
 	font-size: 11.25pt;
 	font-weight: 400;
@@ -2774,10 +2774,10 @@ a-REGNEW {
 	line-height: 16.04pt;
 	letter-spacing: normal;
 }
-.cont-110-REGNEW {
+.cont-110-REG {
 	overflow: hidden;
 }
-.colwrapper-57-REGNEW {
+.colwrapper-57-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 185px;
@@ -2788,7 +2788,7 @@ a-REGNEW {
 	margin-top: 8px;
 	line-height: 0;
 }
-.cont-111-REGNEW {
+.cont-111-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 185px;
@@ -2799,7 +2799,7 @@ a-REGNEW {
 	margin-left: 0px;
 	margin-top: 0px;
 }
-.input-26-REGNEW {
+.input-26-REG {
 	width: 185px;
 	height: 25px;
 	font-size: 9.00pt;
@@ -2816,7 +2816,7 @@ a-REGNEW {
 	margin-bottom: 0pt;
 	text-align: left;
 }
-.cont-112-REGNEW {
+.cont-112-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 553px;
@@ -2826,7 +2826,7 @@ a-REGNEW {
 	margin-left: 9px;
 	margin-top: 6px;
 }
-.colwrapper-58-REGNEW {
+.colwrapper-58-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 77px;
@@ -2837,7 +2837,7 @@ a-REGNEW {
 	margin-top: 0px;
 	line-height: 0;
 }
-.cont-113-REGNEW {
+.cont-113-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 77px;
@@ -2849,14 +2849,14 @@ a-REGNEW {
 	margin-top: 0px;
 	overflow: visible;
 }
-.para-31-REGNEW {
+.para-31-REG {
 	text-indent: 0;
 	padding-top: 2pt;
 	margin-top: 0pt;
 	margin-bottom: -2pt;
 	text-align: left;
 }
-.font-35-REGNEW {
+.font-35-REG {
 	font-family: Jura;
 	font-size: 11.25pt;
 	font-weight: 400;
@@ -2866,10 +2866,10 @@ a-REGNEW {
 	line-height: 16.04pt;
 	letter-spacing: normal;
 }
-.cont-114-REGNEW {
+.cont-114-REG {
 	overflow: hidden;
 }
-.colwrapper-59-REGNEW {
+.colwrapper-59-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 173px;
@@ -2880,7 +2880,7 @@ a-REGNEW {
 	margin-top: 4px;
 	line-height: 0;
 }
-.cont-115-REGNEW {
+.cont-115-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 173px;
@@ -2891,7 +2891,7 @@ a-REGNEW {
 	margin-left: 0px;
 	margin-top: 0px;
 }
-.input-27-REGNEW {
+.input-27-REG {
 	width: 173px;
 	height: 25px;
 	font-size: 9.00pt;
@@ -2908,7 +2908,7 @@ a-REGNEW {
 	margin-bottom: 0pt;
 	text-align: left;
 }
-.colwrapper-60-REGNEW {
+.colwrapper-60-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 77px;
@@ -2919,7 +2919,7 @@ a-REGNEW {
 	margin-top: 3px;
 	line-height: 0;
 }
-.cont-116-REGNEW {
+.cont-116-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 77px;
@@ -2931,14 +2931,14 @@ a-REGNEW {
 	margin-top: 0px;
 	overflow: visible;
 }
-.para-32-REGNEW {
+.para-32-REG {
 	text-indent: 0;
 	padding-top: 2pt;
 	margin-top: 0pt;
 	margin-bottom: -2pt;
 	text-align: left;
 }
-.font-36-REGNEW {
+.font-36-REG {
 	font-family: Jura;
 	font-size: 11.25pt;
 	font-weight: 400;
@@ -2948,10 +2948,10 @@ a-REGNEW {
 	line-height: 16.04pt;
 	letter-spacing: normal;
 }
-.cont-117-REGNEW {
+.cont-117-REG {
 	overflow: hidden;
 }
-.colwrapper-61-REGNEW {
+.colwrapper-61-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 185px;
@@ -2962,7 +2962,7 @@ a-REGNEW {
 	margin-top: 7px;
 	line-height: 0;
 }
-.cont-118-REGNEW {
+.cont-118-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 185px;
@@ -2973,7 +2973,7 @@ a-REGNEW {
 	margin-left: 0px;
 	margin-top: 0px;
 }
-.input-28-REGNEW {
+.input-28-REG {
 	width: 185px;
 	height: 25px;
 	font-size: 9.00pt;
@@ -2990,7 +2990,7 @@ a-REGNEW {
 	margin-bottom: 0pt;
 	text-align: left;
 }
-.cont-119-REGNEW {
+.cont-119-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 553px;
@@ -3000,7 +3000,7 @@ a-REGNEW {
 	margin-left: 9px;
 	margin-top: 8px;
 }
-.colwrapper-62-REGNEW {
+.colwrapper-62-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 77px;
@@ -3011,7 +3011,7 @@ a-REGNEW {
 	margin-top: 0px;
 	line-height: 0;
 }
-.cont-120-REGNEW {
+.cont-120-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 77px;
@@ -3023,14 +3023,14 @@ a-REGNEW {
 	margin-top: 0px;
 	overflow: visible;
 }
-.para-33-REGNEW {
+.para-33-REG {
 	text-indent: 0;
 	padding-top: 2pt;
 	margin-top: 0pt;
 	margin-bottom: -2pt;
 	text-align: left;
 }
-.font-37-REGNEW {
+.font-37-REG {
 	font-family: Jura;
 	font-size: 11.25pt;
 	font-weight: 400;
@@ -3040,10 +3040,10 @@ a-REGNEW {
 	line-height: 16.04pt;
 	letter-spacing: normal;
 }
-.cont-121-REGNEW {
+.cont-121-REG {
 	overflow: hidden;
 }
-.colwrapper-63-REGNEW {
+.colwrapper-63-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 173px;
@@ -3054,7 +3054,7 @@ a-REGNEW {
 	margin-top: 4px;
 	line-height: 0;
 }
-.cont-122-REGNEW {
+.cont-122-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 173px;
@@ -3065,7 +3065,7 @@ a-REGNEW {
 	margin-left: 0px;
 	margin-top: 0px;
 }
-.input-29-REGNEW {
+.input-29-REG {
 	width: 173px;
 	height: 25px;
 	font-size: 9.00pt;
@@ -3082,7 +3082,7 @@ a-REGNEW {
 	margin-bottom: 0pt;
 	text-align: left;
 }
-.colwrapper-64-REGNEW {
+.colwrapper-64-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 77px;
@@ -3093,7 +3093,7 @@ a-REGNEW {
 	margin-top: 4px;
 	line-height: 0;
 }
-.cont-123-REGNEW {
+.cont-123-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 77px;
@@ -3105,14 +3105,14 @@ a-REGNEW {
 	margin-top: 0px;
 	overflow: visible;
 }
-.para-34-REGNEW {
+.para-34-REG {
 	text-indent: 0;
 	padding-top: 2pt;
 	margin-top: 0pt;
 	margin-bottom: -2pt;
 	text-align: left;
 }
-.font-38-REGNEW {
+.font-38-REG {
 	font-family: Jura;
 	font-size: 11.25pt;
 	font-weight: 400;
@@ -3122,10 +3122,10 @@ a-REGNEW {
 	line-height: 16.04pt;
 	letter-spacing: normal;
 }
-.cont-124-REGNEW {
+.cont-124-REG {
 	overflow: hidden;
 }
-.colwrapper-65-REGNEW {
+.colwrapper-65-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 185px;
@@ -3136,7 +3136,7 @@ a-REGNEW {
 	margin-top: 8px;
 	line-height: 0;
 }
-.cont-125-REGNEW {
+.cont-125-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 185px;
@@ -3147,7 +3147,7 @@ a-REGNEW {
 	margin-left: 0px;
 	margin-top: 0px;
 }
-.input-30-REGNEW {
+.input-30-REG {
 	width: 185px;
 	height: 25px;
 	font-size: 9.00pt;
@@ -3164,7 +3164,7 @@ a-REGNEW {
 	margin-bottom: 0pt;
 	text-align: left;
 }
-.cont-126-REGNEW {
+.cont-126-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 259px;
@@ -3174,7 +3174,7 @@ a-REGNEW {
 	margin-left: 9px;
 	margin-top: 5px;
 }
-.colwrapper-66-REGNEW {
+.colwrapper-66-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 77px;
@@ -3185,7 +3185,7 @@ a-REGNEW {
 	margin-top: 0px;
 	line-height: 0;
 }
-.cont-127-REGNEW {
+.cont-127-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 77px;
@@ -3197,14 +3197,14 @@ a-REGNEW {
 	margin-top: 0px;
 	overflow: visible;
 }
-.para-35-REGNEW {
+.para-35-REG {
 	text-indent: 0;
 	padding-top: 2pt;
 	margin-top: 0pt;
 	margin-bottom: -2pt;
 	text-align: left;
 }
-.font-39-REGNEW {
+.font-39-REG {
 	font-family: Jura;
 	font-size: 11.25pt;
 	font-weight: 400;
@@ -3214,10 +3214,10 @@ a-REGNEW {
 	line-height: 16.04pt;
 	letter-spacing: normal;
 }
-.cont-128-REGNEW {
+.cont-128-REG {
 	overflow: hidden;
 }
-.colwrapper-67-REGNEW {
+.colwrapper-67-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 173px;
@@ -3228,7 +3228,7 @@ a-REGNEW {
 	margin-top: 4px;
 	line-height: 0;
 }
-.cont-129-REGNEW {
+.cont-129-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 173px;
@@ -3239,7 +3239,7 @@ a-REGNEW {
 	margin-left: 0px;
 	margin-top: 0px;
 }
-.input-31-REGNEW {
+.input-31-REG {
 	width: 173px;
 	height: 25px;
 	font-size: 9.00pt;
@@ -3256,7 +3256,7 @@ a-REGNEW {
 	margin-bottom: 0pt;
 	text-align: left;
 }
-.cont-130-REGNEW {
+.cont-130-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 216px;
@@ -3266,7 +3266,7 @@ a-REGNEW {
 	margin-left: 78px;
 	margin-top: 70px;
 }
-.colwrapper-68-REGNEW {
+.colwrapper-68-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 93px;
@@ -3277,7 +3277,7 @@ a-REGNEW {
 	margin-top: 0px;
 	line-height: 0;
 }
-.cont-131-REGNEW {
+.cont-131-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 93px;
@@ -3288,7 +3288,7 @@ a-REGNEW {
 	margin-left: 0px;
 	margin-top: 0px;
 }
-.button-3-REGNEW {
+.button-3-REG {
 	width: 93px;
 	display: inline-block;
 	overflow: hidden;
@@ -3309,17 +3309,17 @@ a-REGNEW {
 	margin-bottom: 0;
 	height: 25px;
 }
-.button-3-REGNEW :hover {
+.button-3-REG :hover {
 	background-color: rgb(220,50,47);
 	border-color: rgb(0,0,0);
 	color: rgb(0,0,0);
 }
-.button-3-REGNEW :active {
+.button-3-REG :active {
 	background-color: rgb(82,100,111);
 	border-color: rgb(0,0,0);
 	color: rgb(255,255,255);
 }
-.colwrapper-69-REGNEW  {
+.colwrapper-69-REG  {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 109px;
@@ -3330,7 +3330,7 @@ a-REGNEW {
 	margin-top: 0px;
 	line-height: 0;
 }
-.cont-132-REGNEW {
+.cont-132-REG {
 	display: inline-block;
 	vertical-align: top;
 	min-width: 109px;
@@ -3341,7 +3341,7 @@ a-REGNEW {
 	margin-left: 0px;
 	margin-top: 0px;
 }
-.button-4-REGNEW {
+.button-4-REG {
 	width: 109px;
 	display: inline-block;
 	overflow: hidden;
@@ -3362,12 +3362,12 @@ a-REGNEW {
 	margin-bottom: 0;
 	height: 25px;
 }
-.button-4-REGNEW :hover {
+.button-4-REG :hover {
 	background-color: rgb(42,161,152);
 	border-color: rgb(0,0,0);
 	color: rgb(234,177,0);
 }
-.button-4-REGNEW :active {
+.button-4-REG :active {
 	background-color: rgb(82,100,111);
 	border-color: rgb(0,0,0);
 	color: rgb(255,255,255);
