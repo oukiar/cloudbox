@@ -156,7 +156,7 @@
 							</div>
 							<div class="colwrapper-29-REG">
 								<div class="cont-53-REG">
-									<a class="button-2-REG" href="index.html">Save</a>
+									<a class="button-2-REG" id="btn_regConsignee">Save</a>
 								</div>
 							</div>
 						</div>
@@ -173,7 +173,7 @@
 							</div>
 							<div class="colwrapper-31-REG">
 								<div class="cont-60-REG">
-									<input type="text" name="text" class="input-13-REG">
+									<input type="text" name="text" id="Fullname" class="input-13-REG">
 								</div>
 							</div>
 							<div class="colwrapper-32-REG">
@@ -183,7 +183,7 @@
 							</div>
 							<div class="colwrapper-33-REG">
 								<div class="cont-63-REG">
-									<input type="text" name="text" class="input-14-REG">
+									<input type="text" name="text" id="Address" class="input-14-REG">
 								</div>
 							</div>
 						</div>
@@ -195,12 +195,12 @@
 							</div>
 							<div class="colwrapper-35-REG">
 								<div class="cont-67-REG">
-									<input type="text" name="text" class="input-15-REG">
+									<input type="text" name="text" id="Tel" class="input-15-REG">
 								</div>
 							</div>
 							<div class="colwrapper-36-REG">
 								<div class="cont-68-REG">
-									<input type="text" name="text" class="input-16-REG">
+									<input type="text" name="text" id="Tel2" class="input-16-REG">
 								</div>
 							</div>
 						</div>
@@ -212,7 +212,7 @@
 							</div>
 							<div class="colwrapper-38-REG">
 								<div class="cont-72-REG">
-									<input type="text" name="text" class="input-17-REG">
+									<input type="text" name="text" id="Cel" class="input-17-REG">
 								</div>
 							</div>
 							<div class="colwrapper-39-REG">
@@ -222,7 +222,7 @@
 							</div>
 							<div class="colwrapper-40-REG">
 								<div class="cont-75-REG">
-									<input type="text" name="text" class="input-18-REG">
+									<input type="text" name="text" id="State" class="input-18-REG">
 								</div>
 							</div>
 						</div>
@@ -234,7 +234,7 @@
 							</div>
 							<div class="colwrapper-42-REG">
 								<div class="cont-79-REG">
-									<input type="text" name="text" class="input-19-REG">
+									<input type="text" name="text" id="Country" class="input-19-REG">
 								</div>
 							</div>
 						</div>
@@ -246,7 +246,7 @@
 							</div>
 							<div class="colwrapper-44-REG">
 								<div class="cont-83-REG">
-									<input type="text" name="text" class="input-20-REG">
+									<input type="text" name="text" id="Zip"  class="input-20-REG">
 								</div>
 							</div>
 						</div>
@@ -257,3 +257,46 @@
 				</div>
 			</div>
         </div>
+        
+        <script>
+        
+        $("#btn_regConsignee").click(function(){
+                
+                var Clients = Parse.Object.extend("Clients");
+                var client = new Clients();
+                
+                client.set("Name", $("#Fullname").val() );
+                client.set("Address", $("#Address").val() );
+                client.set("Telephone", $("#Tel").val() );
+                client.set("Telephone2", $("#Tel2").val() );
+                client.set("Cellphone", $("#Cel").val() );
+                client.set("State", $("#State").val() );
+                client.set("Country", $("#Country").val() );
+                client.set("Zip", $("#Zip").val() );
+                
+                client.save({success: function(client){
+                        alert("SAVED");
+                        
+                        $("#Consignee").val(client.get("Name") );
+                                
+                        consigneeEmail = client.get("Email");
+
+                        fillDestinations(client.id);
+                        
+                        $("#clientNameInfo").html(client.get("Name") );
+                        $("#clientAccount").html(client.get("AccountID") ); 
+                        $("#clientCountryInfo").html(client.get("Country") );
+                        $("#clientEmailInfo").html(client.get("Email") );
+                        $("#clientTelephoneInfo").html(client.get("Telephone"));
+                        $("#clientIDInfo").html(client.get("ID1") );
+                        $("#clientStatusInfo").html(client.get("Status") );
+                        
+                        hideClient();
+                        
+                    }, error:function(){
+                        alert("Error guardando");
+                    }});
+                
+            });
+        
+        </script>
