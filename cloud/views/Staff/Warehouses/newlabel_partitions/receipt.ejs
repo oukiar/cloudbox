@@ -90,10 +90,10 @@
 								<div class="cont-34"><p class="para-12"><span class="font-12">Shipper:</span></p></div>
 							</div>
 							<div class="cont-35">
-								<div class="cont-36"><p class="para-13"><span class="font-13"><%=receipt.get("Shipper").get("Name")%></span></p></div>
+								<div class="cont-36"><p class="para-13"><span class="font-13"><%=receipt.get("ShipperName")%></span></p></div>
 							</div>
 							<div class="cont-37">
-								<div class="cont-38"><p class="para-14"><span class="font-14"><b>Address:</b> <% if(receipt.get("Shipper").get("Address") === ""){ %>
+								<div class="cont-38"><p class="para-14"><span class="font-14"><b>Address:</b> <% if(typeof(receipt.get("Shipper"))!="undefined") if(receipt.get("Shipper").get("Address") === ""){ %>
 							-
 								<% }else {%>
 						<%= receipt.get("Shipper").get("Address") %>	
