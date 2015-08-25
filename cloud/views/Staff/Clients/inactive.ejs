@@ -403,8 +403,15 @@
         </script>
         
     <script>
+    
+    /*
+    - Tabla clientside
+    - Bottom event para seguir haciendo fetch de la tabla en caso de tener mas de 100 registros
+    
+    - Cliente con sus consignees
+    */
 
-    Parse.initialize("XEPryFHrd5Tztu45du5Z3kpqxDsweaP1Q0lt8JOb", "MDhb1hBngr2tx2v9TjyzoUhMcOFeWGJ56TWvChqi");
+    Parse.initialize("Slh0vzK6DCaarshvF1Vu0ku3Rx2hwDdTaYwW7DLU", "TkJgyQRuMqqKtzZ6bEjdESPiUZ6sVkg3QntIxmh7");
         
     /* GLOBAL USER */
     var user;
@@ -470,8 +477,70 @@
                 }});
         });
         
-
+        /* inactiveClientsTable */
         function update_table()
+        {            
+            var query = new Parse.Query("Clients");
+            
+            query.include("MainClient");
+            
+            /*query.ascending(orderby);*/
+            
+            /* COMPANY */
+            query.equalTo("Company", {__type: "Pointer", className: "Companies", objectId: user.get("Company").id});
+            
+            /* SECTION CONDITIONS ... RECEIPT LIST IN THIS CASE */
+            /*query.containedIn("Status", ["Received","NotProcessed"]);*/
+                
+            /* FILTERBY */
+            /*
+            if($("#filterby").val() != "All")
+            {
+                switch($("#filterby").val())
+                {
+                    case "Shipper":
+                        var querymatch = new Parse.Query("Agencies");
+                        querymatch.startsWith("Name", $("#searchtext").val().toUpperCase());
+                        query.matchesQuery("Shipper", querymatch);
+                        break;
+                    case "Consignee":
+                        var querymatch = new Parse.Query("Clients");
+                        querymatch.startsWith("Name", $("#searchtext").val().toUpperCase());
+                        query.matchesQuery("Consignee", querymatch);
+                        break;
+                    case "ReceiptNum":
+                        query.equalTo("ReceiptNum", parseInt($("#searchtext").val()));
+                        break;
+                    case "Destination":
+                        query.matches("Destination", $("#searchtext").val(), 'i');
+                        break;
+                }
+            }*/
+                        
+            query.find({success: function(results){
+                
+                    console.log( results.length + " rows returned");
+                                    
+                    $("#inactiveClientsTable > tbody").html("");
+                
+                    for(i in results)
+                    {                        
+                        var row = "<tr><td>Activate</td><td>"+ 
+                                    results[i].get("Name") +"</td><td>"+
+                                    results[i].get("Company").get("Name") +"</td><td>"+
+                                    results[i].get("Country") +"</td><td>"+
+                                    results[i].get("Telephone") +"</td><td>"+
+                                    results[i].get("Email") +"</td><td>"+
+                                    results[i].get("AccountID") +"</td><td>"+
+                                    "Options</td></tr>";
+                        
+                        $("#inactiveClientsTable > tbody").append(row);
+                    }
+                    
+                }});
+        }
+
+        function update_table2()
         {   
             
             conditions = {notContainedIn: {'Status' : ["Active", "Pending"]},
