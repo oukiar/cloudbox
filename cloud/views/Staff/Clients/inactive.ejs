@@ -533,6 +533,23 @@
                                     results[i].get("Email") +"</td><td>"+
                                     results[i].get("AccountID") +"</td><td>"+
                                     "Options</td></tr>";
+                                    
+                                    
+                                    
+                                    
+                                    
+        <% results.forEach(function(client){%>
+        <tr dir-paginate="product in product | filter:q |" current-page="currentPage">
+        <td><a href="#openModal" onclick="fillClient('<%= JSON.stringify(client)%>')">Activate</a></td>
+        <td><%= client["Name"]%></td>
+        <td><% if(typeof(client["Company"])!="undefined"){%><%= client["Company"]%><%}else{%>-<%}%></td>
+        <td><% if(typeof(client["Country"])!="undefined"){%><%= client["Country"]%><%}else{%>-<%}%></td>
+        <td><%= client["Telephone"]%></td>
+        <td><a href="mailto:<%= client["Email"]%>"><%= client["Email"]%></a></td>
+		<td><% if(typeof(client["AccountID"])!="undefined"){%><%= client["AccountID"]%><%}else{%>-<%}%></td>
+	    <td align="center" style="white-space:nowrap"><a href="/#" class="btn btn-border btn-orange"><i class="fa fa-pencil-square-o"></i> Edit</a> &nbsp &nbsp <a class="btn btn-border btn-danger" id="<%=client["objectId"] %>" onclick="byeByeClient(this.id, user.get("Company").id, '/inactive_clients')"><i class="fa fa-trash-o"></i></a></td>
+         </tr>
+         <% }) %>
                         
                         $("#inactiveClientsTable > tbody").append(row);
                     }
