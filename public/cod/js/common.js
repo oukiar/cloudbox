@@ -1,6 +1,11 @@
 
 
-
+function tryget(myvar)
+{
+    if(typeof(myvar)!="undefined")
+        return myvar;
+    else return "-";
+}
 
 function InsertForm(kwargs)
 {

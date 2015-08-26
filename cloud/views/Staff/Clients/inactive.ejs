@@ -135,7 +135,7 @@
               </div><!-- END CONTAINER -->
   		</div>
         
-    <div id="openModal" class="modalDialogREGCL">
+    <div id="openModal" class="modalDialog">
         <div>
             <a href="#close" title="Close" class="close">X</a>
 
@@ -159,12 +159,9 @@
             </table>
             </br>
             User: <input id="txt_user" type="text">
-            Password: <input id="txt_pass" type="text"><br><br>
+            Password: <input id="txt_pass" type="password"><br><br>
             
-            <form class="form-inline" method="POST" action="/activateClient">
-                
-            <a type="submit" href="#close" class="btn btn-primary" id="btn_activate">Activate</a>
-            </form>
+            <a href="#close" class="btn btn-primary" id="btn_activate">Activate</a>
             </br>
             </br>
         </div>
@@ -173,7 +170,7 @@
         
 		
 	  
-	    <div id="openModalRegClient" class="modalDialogB">
+	    <div id="openModalRegClient" class="modalDialog">
 	        <div>
 	          <a href="#close" title="Close" class="closeB">X</a>
 	            <div id="receipt_edit">	  		
@@ -411,6 +408,7 @@
     - Cliente con sus consignees
     */
 
+    /*Parse.User.enableRevocableSession();*/
     Parse.initialize("Slh0vzK6DCaarshvF1Vu0ku3Rx2hwDdTaYwW7DLU", "TkJgyQRuMqqKtzZ6bEjdESPiUZ6sVkg3QntIxmh7");
         
     /* GLOBAL USER */
@@ -429,6 +427,7 @@
                 /* SAVE USER FOR FUTURE OPERATIONS */
                 user = object;
                 
+                update_table();
             }
         });
         
@@ -442,7 +441,7 @@
                             
                     clientres.set("Status", "Active");
                     clientres.save({success: function(){
-                            $.post("/get_activation_template_clientInactive", {user:$("#txt_user").val(), pass:$("#txt_pass").val(), clientID:clientID}, function(template){
+                            $.post("/get_activation_template_clientInactive", {user:$("#txt_user").val(), pass:$("#txt_pass").val(), clientID:clientID, companyID:user.get("Company").id, companyName:user.get("Company").get("name")}, function(template){
                         
                                                                 
                                     /* EMAIL PARAMETERS */
@@ -491,6 +490,12 @@
             
             /* SECTION CONDITIONS ... RECEIPT LIST IN THIS CASE */
             /*query.containedIn("Status", ["Received","NotProcessed"]);*/
+            
+            /* OBTENER TODOS LOS QUE SEAN MAINCLIENT */
+            query.equalTo("MainClient", undefined);
+            
+            query.notContainedIn('Status', ["Active", "Pending"]);
+            
                 
             /* FILTERBY */
             /*
@@ -523,38 +528,52 @@
                                     
                     $("#inactiveClientsTable > tbody").html("");
                 
+                
                     for(i in results)
-                    {                        
-                        var row = "<tr><td>Activate</td><td>"+ 
-                                    results[i].get("Name") +"</td><td>"+
-                                    results[i].get("Company").get("Name") +"</td><td>"+
-                                    results[i].get("Country") +"</td><td>"+
-                                    results[i].get("Telephone") +"</td><td>"+
-                                    results[i].get("Email") +"</td><td>"+
-                                    results[i].get("AccountID") +"</td><td>"+
-                                    "Options</td></tr>";
+                    {
+                                            
+                        var row = "<tr><td><a href='#openModal' onclick=\"fillClient('" + results[i].id + "', '" + results[i].get("Name") + "', '" + results[i].get("Telephone") + "', '" + results[i].get("Email") + "')\">Activate</a></td><td><a onclick='openSubClients(\""+results[i].id+"\")'>"+ 
+                                    results[i].get("Name") +"</a><ul id='"+results[i].id+"' class='nav'></ul></td><td>"+
+                                    /*tryget(results[i].get("Company").get("Name")) +"</td><td>"+*/
+                                    tryget(results[i].get("Country")) +"</td><td>"+
+                                    tryget(results[i].get("Telephone")) +"</td><td>"+
+                                    tryget(results[i].get("Email")) +"</td><td>"+
+                                    tryget(results[i].get("AccountID")) +"</td>"+
+                                    "<td align='center' style='white-space:nowrap'><a href='/#' class='btn btn-border btn-orange'><i class='fa fa-pencil-square-o'></i> Edit</a> &nbsp &nbsp <a class='btn btn-border btn-danger' id='"+results[i].id+"' onclick='byeByeClient(this.id, \""+user.get("Company").id+"\", \"/inactive_clients\")'><i class='fa fa-trash-o'></i></a></td></tr>";
                                     
-                                    
-                                    
-                                    
-                                    
-        <% results.forEach(function(client){%>
-        <tr dir-paginate="product in product | filter:q |" current-page="currentPage">
-        <td><a href="#openModal" onclick="fillClient('<%= JSON.stringify(client)%>')">Activate</a></td>
-        <td><%= client["Name"]%></td>
-        <td><% if(typeof(client["Company"])!="undefined"){%><%= client["Company"]%><%}else{%>-<%}%></td>
-        <td><% if(typeof(client["Country"])!="undefined"){%><%= client["Country"]%><%}else{%>-<%}%></td>
-        <td><%= client["Telephone"]%></td>
-        <td><a href="mailto:<%= client["Email"]%>"><%= client["Email"]%></a></td>
-		<td><% if(typeof(client["AccountID"])!="undefined"){%><%= client["AccountID"]%><%}else{%>-<%}%></td>
-	    <td align="center" style="white-space:nowrap"><a href="/#" class="btn btn-border btn-orange"><i class="fa fa-pencil-square-o"></i> Edit</a> &nbsp &nbsp <a class="btn btn-border btn-danger" id="<%=client["objectId"] %>" onclick="byeByeClient(this.id, user.get("Company").id, '/inactive_clients')"><i class="fa fa-trash-o"></i></a></td>
-         </tr>
-         <% }) %>
+                              
                         
                         $("#inactiveClientsTable > tbody").append(row);
                     }
                     
                 }});
+        }
+        
+        $(".nav ul").hide();
+        
+        function openSubClients(objectId)
+        {
+            
+            var query = new Parse.Query("Clients");
+            
+            /* OBTENER TODOS LOS QUE SEAN MAINCLIENT */
+            query.equalTo("MainClient", {__type: "Pointer", className:"Clients", objectId:objectId});
+            
+            query.find({success:function(results){
+                    
+                    /* CLEAR PREVIOUS */
+                    $("#"+objectId).html("");
+                    
+                    for(i in results)
+                    {                        
+                        $("#"+objectId).append("<li>" + results[i].get("Name") + "</li>");
+                    }
+                    
+                    $("#"+objectId).slideToggle();
+                    
+                }});
+                
+            return false;
         }
 
         function update_table2()
