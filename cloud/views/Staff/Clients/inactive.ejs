@@ -94,9 +94,6 @@
 	    }
 
 	    .close:hover { background: #00d9ff; }
-  
-	    /*MODAL FOR REPACK FORM */
-  
 	
 		</style>
 
@@ -122,7 +119,7 @@
         <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
         <div class="page-title"> 
             <% include clientsMenu.ejs%>
-       <h1 class="title" style="font-family: 'VT323', serif; font-size:50px; padding-left:13px;">Consignees - Inactive</h1>
+       <h1 class="title" style="font-family: 'VT323', serif; font-size:50px; padding-left:13px; margin-top:50px;">Consignees - Inactive</h1>
 	   <div id="content">
 	   <% include pendings_partitions/table.ejs %>
        </div>   
@@ -167,238 +164,120 @@
         </div>
     </div>
      
-        
+     
+
+    <div id="modalEditClient" class="modalDialog">
+        <a href="#close" title="Close" class="close">X</a>
+
+        <div>
+            <a href="#close" title="Close" class="closeB">X</a>
+            <h3>Consignee Information</h3>
+            
+            <br>
+            
+            <table class="table table-bordered" id="blueRow">
+                <tr>
+                    <td><b>Name:</b></td><td id="tdCName" contenteditable='false'><div id='clientNameInfo'></div></td>
+                </tr>
+                <tr>
+                <td><b>Account # 
+                </b></td><td id="tdCAccount" contenteditable='false'><div id="clientAccount"></div></td>
+                </tr>
+                <tr>
+                    <td><b>Country:</b></td><td id="tdCCountry" contenteditable='false'><div id='clientCountryInfo'></div></td>
+                </tr>
+                <tr>
+                    <td><b>Email:</b></td><td id="tdCEmail" contenteditable='false'><div id='clientEmailInfo'></div></td>
+                </tr>
+                <tr>
+                    <td><b>Telephone:</b></td><td id="tdCTel" contenteditable='false'><div id='clientTelephoneInfo'></div></td>
+                </tr>
+                <tr>
+                <td><b>ID:</b></td><td id="tdCID" contenteditable='false'><div id='clientIDInfo'></div></td>
+                </tr>
+                <!--<tr>
+                <td><b>Destinations:</b></td><td id="tdCDest" contenteditable='false'><div id='clientDestinationInfo'></div></td>
+                </tr>
+                <tr>
+                <td><b>Status:</b></td><td id="tdCStatus" contenteditable='false'><div id='clientStatusInfo'></div></td>
+                </tr>-->
+            </table>
+            
+            <button id="btn_Cli_edit" class="pure-button pure-button-primary" style="background:#E08566;" onclick="clientTableEdit();">Edit</button>
+            <button id="btn_Cli_cancel" class="pure-button pure-button-primary" style="background:#E08566; display:none;" onclick="cancelClientEdit();" >Cancel</button>
+            <a href="#close" id="btn_Cli_saveTable" class="pure-button pure-button-primary" onclick="updateClientTable();" style="display:none;">Save</a>
+        </div>
+
+    </div>
 		
-	  
-	    <div id="openModalRegClient" class="modalDialog">
-	        <div>
-	          <a href="#close" title="Close" class="closeB">X</a>
-	            <div id="receipt_edit">	  		
-			  		  		<div class="section-3-REG" id="regClient">
-			  		  			<div class="cont-135-REG" id="regClient">
-			  		  				<div class="cont-136-REG" id="regClient">
-			  		  					<div class="cont-137-REG" id="regClient">
-			  		  						<div class="cont-138-REG" id="regClient"><p class="para-57"><span class="font-57-REG">Register Client</span></p></div>
-			  		  					</div>
-			  		  				</div>
-			  		  				<div class="cont-139-REG" id="regClient">
-			  		  					<div class="colwrapper-42-REG" id="regClient">
-			  		  						<div class="cont-140-REG" id="regClient">
-			  		  							<div class="cont-141-REG" id="regClient"><p class="para-58-REG"><span class="font-58-REG">Full Name</span><span class="font-59">:</span></p></div>
-			  		  						</div>
-			  		  					</div>
-			  		  					<div class="colwrapper-43-REG" id="regClient">
-			  		  						<div class="cont-142-REG" id="regClient">
-			  		  							<input type="text" id="clientName" name="clientName" class="input-REG">
-			  		  						</div>
-			  		  					</div>
-			  		  					<div class="colwrapper-44-REG" id="regClient">
-			  		  						<div class="cont-143-REG" id="regClient">
-			  		  							<div class="cont-144-REG" id="regClient"><p class="para-59-REG"><span class="font-60-REG">Destinations:</span></p></div>
-			  		  						</div>
-			  		  					</div>
-			  		  					<div class="colwrapper-45-REG">
-			  		  						<div class="cont-145-REG">
-			  		  			<input id="geocomplete" type="text" placeholder="Type in an address" class="input-2-REG"/><button id="find" style="display:none;"  id="nesto-submit" class="btn btn-lg btn-nesto-o" style="top:-80px; left:40%;"/>Add</button>
-			  		  						</div>
-			  		  					</div>
-			  		  				</div>
-			  		  				<div class="cont-146-REG" id="regClient">
-			  		  					<div class="colwrapper-46-REG" id="regClient">
-			  		  						<div class="cont-147-REG" id="regClient">
-			  		  							<div class="cont-148-REG" id="regClient"><p class="para-60-REG"><span class="font-61-REG">Language</span><span class="font-62-REG">:</span></p></div>
-			  		  						</div>
-			  		  						<div class="cont-149-REG" id="regClient">
-			  		  							<div class="cont-150-REG" id="regClient"><p class="para-61-REG"><span class="font-63-REG">ID</span><span class="font-64-REG">:</span></p></div>
-			  		  						</div>
-			  		  					</div>
-			  		  					<div class="colwrapper-47-REG" id="regClient">
-			  		  						<div class="cont-151-REG" id="regClient">
-			  		  							<input type="text" maxlength="55" id="clientAccountID" name="clientAccountID" class="input-3-REG">
-			  		  						</div>
-			  		  						<div class="cont-152-REG" id="regClient">
-			  		  							<input type="text" name="text" class="input-4-REG">
-			  		  						</div>
-			  		  					</div>
-			  		  					<div class="colwrapper-48-REG" >
-			  		  						<div class="cont-153-REG" >
-			                                  <pre><b>Destinations List:</b> 
-			                                        <table id="logger" style='overflow:scroll;'>
-			                                        </table>
-			                                  </pre>
-			  		  						</div>
-			  		  					</div>
-			  		  				</div>
-			  		  				<div class="cont-154-REG" id="regClient">
-			  		  					<div class="colwrapper-49-REG" id="regClient">
-			  		  						<div class="cont-155-REG" id="regClient">
-			  		  							<div class="cont-156-REG" id="regClient"><p class="para-62-REG"><span class="font-65-REG">Tel:</span></p></div>
-			  		  						</div>
-			  		  					</div>
-			  		  					<div class="colwrapper-50-REG" id="regClient">
-			  		  						<div class="cont-157-REG" id="regClient">
-			  		  							<input type="text" maxlength="55" id="clientTelephone" name="clientTelephone" class="input-5-REG">
-			  		  						</div>
-			  		  					</div>
-			  		  				</div>
-			  		  				<div class="cont-158-REG" id="regClient">
-			  		  					<div class="colwrapper-51-REG" id="regClient">
-			  		  						<div class="cont-159-REG" id="regClient">
-			  		  							<div class="cont-160-REG" id="regClient"><p class="para-63-REG"><span class="font-66-REG">Cel:</span></p></div>
-			  		  						</div>
-			  		  						<div class="cont-161-REG" id="regClient">
-			  		  							<div class="cont-162-REG" id="regClient"><p class="para-64-REG"><span class="font-67-REG">Email:</span></p></div>
-			  		  						</div>
-			  		  						<div class="cont-163-REG" id="regClient">
-			  		  							<div class="cont-164-REG" id="regClient"><p class="para-65-REG"><span class="font-68-REG">Username:</span></p></div>
-			  		  						</div>
-			  		  						<div class="cont-165-REG" id="regClient">
-			  		  							<div class="cont-166-REG" id="regClient"><p class="para-66-REG"><span class="font-69-REG">Password</span><span class="font-70-REG">:</span></p></div>
-			  		  						</div>
-			  		  					</div>
-			  		  					<div class="colwrapper-52-REG" id="regClient">
-			  		  						<div class="cont-167-REG" id="regClient">
-			  		  							<input type="text" name="text" class="input-6-REG">
-			  		  						</div>
-			  		  						<div class="cont-168-REG" id="regClient">
-			  		  							<input type="text" maxlength="55" id="clientEmail" name="clientEmail" class="input-7-REG">
-			  		  						</div>
-			  		  						<div class="cont-169-REG" id="regClient">
-			  		  							<input type="text" name="text" class="input-8-REG">
-			  		  						</div>
-			  		  						<div class="cont-170-REG" id="regClient">
-			  		  							<input type="text" name="text" class="input-9-REG">
-			  		  						</div>
-			  		  					</div>
-			  		  					<div class="colwrapper-53-REG" id="regClient">
-			  		  						<div class="cont-171-REG">
-                                     
-			                                             <div class="map_canvas1" >
-                     
-			                                             </div>                       
-			                              
-			  		  						</div>
-			  		  					</div>
-			  		  				</div>
-			  		  				<div class="cont-172-REG" id="regClient">
-			  		  					<div class="colwrapper-54-REG" id="regClient">
-			  		  						<div class="cont-173-REG" id="regClient">
-			  		  							<div class="cont-174-REG" id="regClient"><p class="para-67-REG"><span class="font-71-REG">Re-type Password:</span></p></div>
-			  		  						</div>
-			  		  					</div>
-			  		  					<div class="colwrapper-55-REG" id="regClient">
-			  		  						<div class="cont-175-REG" id="regClient">
-			  		  							<input type="text" name="text" class="input-10-REG">
-			  		  						</div>
-			  		  					</div>
-			  		  					<div class="colwrapper-56-REG" id="regClient">
-			  		  						<div class="cont-176-REG" id="regClient">
-			  		  							<a class="button-REG" href="index.html">Clear</a>
-			  		  						</div>
-			  		  					</div>
-			  		  					<div class="colwrapper-57-REG" id="regClient">
-			  		  						<div class="cont-177-REG" id="regClient">
-			  		  							<input type="submit" class="button-2-REG">Save</a>
-			  		  						</div>
-			  		  					</div>
-			  		  				</div>
-			  		  				<div class="cont-178-REG" id="regClient"></div>
-			  		  			</div>
-			  		  		</div>
-			  		  		<script type="text/javascript">
-			  		  			var androidBrowserVersion = RegExp(/Mozilla\/5\.0 \(Linux; .; Android ([\d.]+)/).exec(navigator.userAgent);
-			  		  if(androidBrowserVersion && parseFloat(androidBrowserVersion[1]) < 5) { document.getElementsByTagName('body')[0].className+=' whitespacefix'; }
-			  		  		</script>
-           
-			                </div>
-		          </div>
-		      </div>
-           
-              
+    <script>
+        function clientTableEdit(){
+            $("#tdCName").attr('contentEditable', true);
+            $("#tdCAccount").attr('contentEditable', true);
+            $("#tdCCountry").attr('contentEditable',true);
+            $("#tdCEmail").attr('contentEditable',true);
+            $("#tdCTel").attr('contentEditable',true);
+            $("#tdCID").attr('contentEditable',true);
+            /*
+            $("#tdCDest").attr('contentEditable',true);
+            $("#tdCStatus").attr('contentEditable',true);
+            */
+            $("#btn_Cli_edit").hide();
+            $("#btn_Cli_cancel").show();
+            $("#btn_Cli_saveTable").show();
+        }
+        
+        function cancelClientEdit(){
+            $("#tdCName").attr('contentEditable', false);
+            $("#tdCAccount").attr('contentEditable', false);
+            $("#tdCCountry").attr('contentEditable',false);
+            $("#tdCEmail").attr('contentEditable',false);
+            $("#tdCTel").attr('contentEditable',false);
+            $("#tdCID").attr('contentEditable',false);
+            /*
+            $("#tdCDest").attr('contentEditable',false);
+            $("#tdCStatus").attr('contentEditable',false);
+            */
+            $("#btn_Cli_edit").show();
+            $("#btn_Cli_cancel").hide();
+            $("#btn_Cli_saveTable").hide();
+            /*location.reload();*/
+        }
+            
+        function updateClientTable(){
+            
+            if(consigneeID != -1)
+            {            
+                var Clients = Parse.Object.extend("Clients");
+                var client = new Clients();
+                client.id = consigneeID;
+                
+                client.set("Name", $("#tdCName").text() );
+                client.set("AccountID", $("#tdCAccount").text() );
+                client.set("Country", $("#tdCCountry").text() );
+                client.set("Email", $("#tdCEmail").text() );
+                client.set("Telephone", $("#tdCTel").text() );
+                client.set("ID1", $("#tdCID").text() );
+                
+                client.save(null, {success: function(){
+                        update_table();
+                        cancelClientEdit();
+                    }});
+                
+            }
+            else alert("Consignee not selected");
+            
+        }
+    
+    </script>
+	          
         <!-- END CONTAINER -->
         <!-- LOAD FILES AT PAGE END FOR FASTER LOADING -->
         <%include ../../generals/endFiles.ejs%>
 
         <!-- modal end -->
         <script src="/cod/js/jquery-1.11.2.min.js"></script>
-     
-        <script src="https://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
-        <script src="cod/js/jquery.geocomplete.js"></script>
-     
-        <script>
-         
-            var $j = jQuery.noConflict();
 
-            var nwarehouses = 1;
-         
-            $j(function(){
-
-                var options = {
-                  map: ".map_canvas",
-                    details: "form ul",
-                  detailsAttribute: "data-geo"
-                };
-             
-                $j("#geocomplete").geocomplete(options)
-                  .bind("geocode:result", function(event, result){
-                      /*alert(JSON.stringify(result) );*/
-                   
-                    $j.log(result);
-                  })
-			  
-
-                  .bind("geocode:error", function(event, status){
-                    /*$j.log("ERROR: " + status);*/
-                  })
-               
-                  .bind("geocode:multiple", function(event, results){
-                    /*$j.log("Multiple: " + results.length + " results found");*/
-                  });
-            
-              });
-           
-              $j("#find").click(function(){
-                $j("#geocomplete").val('');
-              });
-           
-           
-              $j.log = function(result){
-                var message = result.formatted_address;
-                var wareName = result["address_components"][0]["long_name"];
-             
-                var long_name;
-                var short_name;
-             
-                for( i in result["address_components"] )
-                {
-                    if( $.inArray("country", result["address_components"][i]["types"]) > -1)
-                    {
-                        wareName += " - " + result["address_components"][i]["long_name"];
-                        long_name = result["address_components"][i]["long_name"];
-                        short_name = result["address_components"][i]["short_name"];
-                        break;
-                    }
-                }
-             
-                var logger = $j("#logger");
-                logger.html(logger.html()+ "<tr><td style='white-space: nowrap; padding-top: 2px;' align='left'>" + 
-                                "<a onclick='deleteRow(this)'>Delete</a>"  +
-                                "\n * " + message + "\n" + "<b><font color='#E08566'>Destination Name:</font></b>" + "\n" + 
-                                "<input type='text' name='Alias" + nwarehouses.toString() + "' value='"+ wareName +
-                                "' placeholder='Destination Name' style='width:34%; background:white; height:34px;'><input type='hidden' value='" + message +
-                                "' name='Address"+ nwarehouses.toString() +"'>"+  
-                                "<input type='hidden' name='Country"+ nwarehouses.toString() +"' value='"+ long_name +"'>" +
-                                "<input type='hidden' name='CountryCode"+ nwarehouses.toString() +"' value='"+ short_name +"'>" +
-                                "<input type='hidden' name='GeoCode"+ nwarehouses.toString() +"' value='"+ JSON.stringify(result) +"'></td></tr>");
-                             
-                nwarehouses += 1;
-             
-                $j("#geocomplete").val('');
-              };
-           
-         
-        </script>
-        
     <script>
     
     /*
@@ -433,44 +312,72 @@
         
     $("#btn_activate").click(function(){
             
-            /* CREAR EL NUEVO USUARIO */
-            /*var user = new Parse.User();*/
+            if($("#txt_user").val() == "" || $("#txt_pass").val() == "")
+            {
+                alert("User or pass is empty");
+                return;
+            }
             
             var query = new Parse.Query("Clients");
             query.get(clientID, {success: function(clientres){
                             
                     clientres.set("Status", "Active");
                     clientres.save({success: function(){
-                            $.post("/get_activation_template_clientInactive", {user:$("#txt_user").val(), pass:$("#txt_pass").val(), clientID:clientID, companyID:user.get("Company").id, companyName:user.get("Company").get("name")}, function(template){
-                        
-                                                                
-                                    /* EMAIL PARAMETERS */
-                                    emailparams = {
-                                                    "text": template,
-                                                    "subject": "Account activated",
-                                                    "from_email": "cargoparse@notifications.com",
-                                                    "from_name":"Notifier",
-                                                    "to_email": clientres.get("Email"),
-                                                    "to_name":clientres.get("Name")
-                                                };
+                    
+                            Parse.Cloud.run('regClientByStaff', 
+                                                {user:$("#txt_user").val(), pass:$("#txt_pass").val(), clientID:clientID, companyID:user.get("Company").id, companyName:user.get("Company").get("name")}, 
+                                                {
+                                                    success: 
+                                                        function(result) 
+                                                        {     
+                                                            /* INIT EMAIL SEND */
+                                                            $.post("/get_activation_template_clientInactive", {user:$("#txt_user").val(), pass:$("#txt_pass").val(), clientID:clientID, companyID:user.get("Company").id, companyName:user.get("Company").get("name")}, function(template){
+                                                        
+                                                                                                
+                                                                    /* EMAIL PARAMETERS */
+                                                                    emailparams = {
+                                                                                    "text": template,
+                                                                                    "subject": "Account activated",
+                                                                                    "from_email": "cargoparse@notifications.com",
+                                                                                    "from_name":"Notifier",
+                                                                                    "to_email": clientres.get("Email"),
+                                                                                    "to_name":clientres.get("Name")
+                                                                                };
+                                                                                                    
+                                                                    /* SEND EMAIL */
+                                                                    Parse.Cloud.run('sendMail', emailparams, {
+                                                                        success: 
+                                                                            function(result) 
+                                                                            {
+                                                                                /*alert(result);*/
+                                                                            },
+                                                                        error:
+                                                                            function()
+                                                                            {
+                                                                            }
+                                                                        });  
                                                                     
-                                    /* SEND EMAIL */
-                                    Parse.Cloud.run('sendMail', emailparams, {
-                                        success: 
-                                            function(result) 
-                                            {
-                                                alert(result);
-                                            },
-                                        error:
-                                            function()
-                                            {
-                                            }
-                                        });  
-                                    
-                                    update_table();
-                                    alert("Activated");
-                                    
-                                });                    
+                                                                    
+                                                                }); 
+                                                                    
+                                                            /* END EMAIL SEND */
+                                                            
+                                                            $("#txt_user").val("");
+                                                            $("#txt_pass").val("");
+                                                            
+                                                            /* ACTUALIZAR INTERFACE DE USUARIO */                                                                    
+                                                            update_table();
+                                                            alert("Activated");
+                                                            
+                                                        },
+                                                    error:
+                                                        function()
+                                                        {
+                                                            alert("Error agregando usuario");
+                                                        }
+                                                });  
+                    
+                                      
                         }});
 
                 }});
@@ -483,7 +390,7 @@
             
             query.include("MainClient");
             
-            /*query.ascending(orderby);*/
+            query.ascending("Name");
             
             /* COMPANY */
             query.equalTo("Company", {__type: "Pointer", className: "Companies", objectId: user.get("Company").id});
@@ -498,29 +405,30 @@
             
                 
             /* FILTERBY */
-            /*
+            
             if($("#filterby").val() != "All")
             {
                 switch($("#filterby").val())
                 {
-                    case "Shipper":
-                        var querymatch = new Parse.Query("Agencies");
-                        querymatch.startsWith("Name", $("#searchtext").val().toUpperCase());
-                        query.matchesQuery("Shipper", querymatch);
+
+                    case "Name":
+                        query.startsWith("Name", $("#searchtext").val().toUpperCase());
                         break;
-                    case "Consignee":
-                        var querymatch = new Parse.Query("Clients");
-                        querymatch.startsWith("Name", $("#searchtext").val().toUpperCase());
-                        query.matchesQuery("Consignee", querymatch);
+                    case "AccountID":
+                        query.startsWith("AccountID", $("#searchtext").val() );
                         break;
-                    case "ReceiptNum":
-                        query.equalTo("ReceiptNum", parseInt($("#searchtext").val()));
+                    case "Country":
+                        query.matches("Country", $("#searchtext").val(), 'i');
                         break;
-                    case "Destination":
-                        query.matches("Destination", $("#searchtext").val(), 'i');
+                    case "Telephone":
+                        query.startsWith("Telephone", $("#searchtext").val() );
                         break;
+                    case "Email":
+                        query.startsWith("Email", $("#searchtext").val() );
+                        break;
+                        
                 }
-            }*/
+            }
                         
             query.find({success: function(results){
                 
@@ -539,10 +447,8 @@
                                     tryget(results[i].get("Telephone")) +"</td><td>"+
                                     tryget(results[i].get("Email")) +"</td><td>"+
                                     tryget(results[i].get("AccountID")) +"</td>"+
-                                    "<td align='center' style='white-space:nowrap'><a href='/#' class='btn btn-border btn-orange'><i class='fa fa-pencil-square-o'></i> Edit</a> &nbsp &nbsp <a class='btn btn-border btn-danger' id='"+results[i].id+"' onclick='byeByeClient(this.id, \""+user.get("Company").id+"\", \"/inactive_clients\")'><i class='fa fa-trash-o'></i></a></td></tr>";
+                                    "<td align='center' style='white-space:nowrap'><a href='#modalEditClient' onclick='onEditClient(\""+ results[i].id +"\")' class='btn btn-border btn-orange'><i class='fa fa-pencil-square-o'></i> Edit</a> &nbsp &nbsp <a class='btn btn-border btn-danger' id='"+results[i].id+"' onclick='byeByeClient(this.id, \"" + user.get("Company").id + "\" )'><i class='fa fa-trash-o'></i></a></td></tr>";
                                     
-                              
-                        
                         $("#inactiveClientsTable > tbody").append(row);
                     }
                     
@@ -576,40 +482,40 @@
             return false;
         }
 
-        function update_table2()
-        {   
+        var consigneeID = -1;
+
+        function onEditClient(objectId)
+        {
+            consigneeID = objectId;
+        
+            var query = new Parse.Query("Clients");
             
-            conditions = {notContainedIn: {'Status' : ["Active", "Pending"]},
-                            equalTo:{"Company":{__type: "Pointer", className: "Companies", objectId: user.get("Company").id} }};
-            
-            InsertTable({
-                    cols:   
-                         {
+            query.get(objectId, {success: function(client){
                             
-                            "Name":"",
-                            "Country":"", 
-                            "Company":{"name":""},
-                            "Telephone":"",
-                            "Email":"",
-                            "objectId":""
-                        },
-                    collection: "Clients", 
-                    conditions: conditions,
-                    like: filter_like(),
-                    document: "Staff/Clients/pendings_partitions/dynamictable",
-                    itemid: "clientstable"
-                });
-                       
+                    $("#tdCName").html(client.get("Name") );
+                    $("#tdCAccount").html(client.get("AccountID"));
+                    $("#tdCCountry").html(client.get("Country"));
+                    $("#tdCEmail").html(client.get("Email"));
+                    $("#tdCTel").html(client.get("Telephone"));
+                    $("#tdCID").html(client.get("ID1"));
+                    /*$("#tdCDest").html(client.get("Name"));*/
+                    $("#tdCStatus").html(client.get("Status"));
+                }});
+            
         }
 
-
         $("#btn_search").click(function(){
-                if($("#searchtext").val() == "")
+                
+                if($("#filterby").val() != "All")
                 {
-                    alert("Search text void, please enter keyword to find");
+                    if($("#searchtext").val() == "")
+                    {
+                        alert("Search text void, please enter keyword to find");
+                        return;
+                    }
                 }
-                else
-                    update_table();
+                
+                update_table();
             });        
 
         $("#filterby").change(function()

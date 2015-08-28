@@ -198,26 +198,32 @@ Parse.Cloud.define("createPDF", function(request, response) {
         }});
 });
 
-//SERVER SIDE QR GENERATION
-/*
-Parse.Cloud.beforeSave("Boxes", function(request, response){
+//CLIENT SIGNUP ADD FROM STAFF SESSION
+Parse.Cloud.define("regClientByStaff", function(request, response){
+    
+    var currentUser = Parse.User.current();
+    
+    //var currentToken = ._sessionToken;
+    
+    var newuser = new Parse.User();
         
-    var QRCode = require('cloud/qrcode.js');
-
-    QRCode.toDataURL(request.object.id, function(err,url){
-
-            //console.log(url);
-            
-            //var file = new Parse.File("qr.png", { "base64": qr.toImage("png").toDataURL()} );
-            //file.save();
-
-            request.object.set("QR", url);
+    newuser.set('username', request.params.user + "@" + request.params.companyName.toLowerCase() );
+    newuser.set('password', request.params.pass);
+    
+    newuser.set('Class', "client");
+    newuser.set('ClientID', {__type: "Pointer", className: "Clients", objectId:request.params.clientID});
+    newuser.set("Company", {__type: "Pointer", className: "Companies", objectId:request.params.companyID });
+    
+    newuser.signUp(null, {success: function(newuser){    
+        response.success("OK");
+        /*
+        Parse.User.become(currentUser._sessionToken).then(function (user) {
                 
-            response.success();
-        });
+                response.success();
+            });*/
+    }});
     
-    
-});*/
+});
 
 
 //Edit Staff Info
@@ -231,3 +237,22 @@ Parse.Cloud.define("editStaffInfo", function(request, response) {
 	usrStaff.save();
 		  response.success(); 
 });
+
+//DELETE A SUBCLIENTS-CONSIGNEES
+Parse.Cloud.afterDelete("Clients", function(request) {
+    
+    var query = new Parse.Query("Clients");
+    query.equalTo("MainClient", {__type:"Pointer", className:"Clients", objectId:request.object.id});
+
+    query.find().then(function(clients) {
+            return Parse.Object.destroyAll(clients);
+        }).then(function(success) {
+            //SUB-CLIENTS DELETED
+            response.success(); 
+        }, function(error){
+            console.error("Error deleting related clients " + error.code + ": " + error.message);
+        }
+    );
+});
+
+

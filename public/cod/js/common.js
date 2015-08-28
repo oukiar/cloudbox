@@ -491,22 +491,28 @@ function filterby_changed(filterby, searchtext, filterdate, updatetable)
     }
 }
 
-function byeByeClient(clientId, companyId, url){
-  swal({   
-	  title: "This user will be deleted permanently!",   text: "Do you want to continue?",   
-           type: "warning",   showCancelButton: true,   confirmButtonColor: "#DD6B55",   
-           confirmButtonText: "Yes, delete it!",   closeOnConfirm: false },
-           function(){    
-			   Parse.Cloud.run('byeByeClient', { clientId: clientId, companyId: companyId, url:url}, {
-  success: function() {
-	window.location.assign(url);
-	    },
-  error: function() {
-	  alert("Sorry something went wrong, please refresh the page and try again!");
-	    }
-	  });
-  });
-  }
+function byeByeClient(clientId, companyId){
+    swal({   
+                title: "This user will be deleted permanently!",   
+                text: "Do you want to continue?",   
+                type: "warning",   
+                showCancelButton: true,   
+                confirmButtonColor: "#DD6B55",   
+                confirmButtonText: "Yes, delete it!",   
+                closeOnConfirm: true
+            },
+            function()
+            {    
+                var query = new Parse.Query("Clients");
+                
+                query.get(clientId, {success: function(client){
+                        client.destroy({success:function(){
+                                update_table();
+                            }});
+                    }});
+                
+            });
+}
   
   function byeByeStaff(staffId, companyId, url){
     swal({   
