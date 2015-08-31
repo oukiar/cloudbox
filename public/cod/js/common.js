@@ -2,7 +2,7 @@
 
 function tryget(myvar)
 {
-    if(typeof(myvar)!="undefined")
+    if(typeof(myvar)!="undefined" || myvar == "")
         return myvar;
     else return "-";
 }

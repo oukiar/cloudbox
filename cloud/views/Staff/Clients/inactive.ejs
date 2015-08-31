@@ -287,8 +287,10 @@
     - Cliente con sus consignees
     */
 
-    /*Parse.User.enableRevocableSession();*/
-    Parse.initialize("Slh0vzK6DCaarshvF1Vu0ku3Rx2hwDdTaYwW7DLU", "TkJgyQRuMqqKtzZ6bEjdESPiUZ6sVkg3QntIxmh7");
+    if( window.location.href.indexOf("cloudbox.parseapp") !=-1 )
+        Parse.initialize("Slh0vzK6DCaarshvF1Vu0ku3Rx2hwDdTaYwW7DLU", "TkJgyQRuMqqKtzZ6bEjdESPiUZ6sVkg3QntIxmh7");
+    else
+        Parse.initialize("XEPryFHrd5Tztu45du5Z3kpqxDsweaP1Q0lt8JOb", "MDhb1hBngr2tx2v9TjyzoUhMcOFeWGJ56TWvChqi");
         
     /* GLOBAL USER */
     var user;
@@ -492,14 +494,14 @@
             
             query.get(objectId, {success: function(client){
                             
-                    $("#tdCName").html(client.get("Name") );
-                    $("#tdCAccount").html(client.get("AccountID"));
-                    $("#tdCCountry").html(client.get("Country"));
-                    $("#tdCEmail").html(client.get("Email"));
-                    $("#tdCTel").html(client.get("Telephone"));
-                    $("#tdCID").html(client.get("ID1"));
-                    /*$("#tdCDest").html(client.get("Name"));*/
-                    $("#tdCStatus").html(client.get("Status"));
+                    $("#tdCName").html(tryget(client.get("Name") ));
+                    $("#tdCAccount").html(tryget(client.get("AccountID")));
+                    $("#tdCCountry").html(tryget(client.get("Country")));
+                    $("#tdCEmail").html(tryget(client.get("Email")) );
+                    $("#tdCTel").html(tryget(client.get("Telephone")));
+                    $("#tdCID").html(tryget(client.get("ID1")));
+                    /*$("#tdCDest").html(tryget(client.get("Name"));*/
+                    $("#tdCStatus").html(tryget(client.get("Status")));
                 }});
             
         }
