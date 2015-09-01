@@ -92,6 +92,10 @@
 	    	box-shadow: 1px 1px 3px #000;
 			 
 	    }
+        
+        .w200 {
+            width: 100px;
+        }
 
 	    .close:hover { background: #00d9ff; }
 	
@@ -177,7 +181,7 @@
             
             <table class="table table-bordered" id="blueRow">
                 <tr>
-                    <td><b>Name:</b></td><td id="tdCName" contenteditable='false'><div id='clientNameInfo'></div></td>
+                    <td class="w200"><b>Name:</b></td><td id="tdCName" contenteditable='false'><div id='clientNameInfo'></div></td>
                 </tr>
                 <tr>
                 <td><b>Account # 
@@ -261,6 +265,7 @@
                 
                 client.save(null, {success: function(){
                         update_table();
+                        /* RESET NO EDITABLE STATE ... CHECK IF THIS IS CORRECT */
                         cancelClientEdit();
                     }});
                 
