@@ -168,7 +168,6 @@
         </div>
     </div>
      
-     
 
     <div id="modalEditClient" class="modalDialog">
         <a href="#close" title="Close" class="close">X</a>
@@ -181,23 +180,77 @@
             
             <table class="table table-bordered" id="blueRow">
                 <tr>
-                    <td class="w200"><b>Name:</b></td><td id="tdCName" contenteditable='false'><div id='clientNameInfo'></div></td>
+                    <td><b>Name:</b></td><td id="tdCName" contenteditable='true'><div id='clientNameInfo'></div></td>
                 </tr>
                 <tr>
-                <td><b>Account # 
-                </b></td><td id="tdCAccount" contenteditable='false'><div id="clientAccount"></div></td>
+                    <td>
+                        <b>Address</b>
+                    </td>
+                    <td id="tdCAddress" contenteditable='true'>
+                        <div id="clientAddress"></div>
+                    </td>
                 </tr>
                 <tr>
-                    <td><b>Country:</b></td><td id="tdCCountry" contenteditable='false'><div id='clientCountryInfo'></div></td>
+                    <td>
+                        <b>Account #</b>
+                    </td>
+                    <td id="tdCAccount" contenteditable='true'>
+                        <div id="clientAccount"></div>
+                    </td>
                 </tr>
                 <tr>
-                    <td><b>Email:</b></td><td id="tdCEmail" contenteditable='false'><div id='clientEmailInfo'></div></td>
+                    <td>
+                        <b>State:</b>
+                    </td>
+                    <td id="tdCState" contenteditable='true'>
+                        <div id='clientState'></div>
+                    </td>
                 </tr>
                 <tr>
-                    <td><b>Telephone:</b></td><td id="tdCTel" contenteditable='false'><div id='clientTelephoneInfo'></div></td>
+                    <td>
+                        <b>Country:</b>
+                    </td>
+                    <td id="tdCCountry" contenteditable='true'>
+                        <div id='clientCountryInfo'></div>
+                    </td>
                 </tr>
                 <tr>
-                <td><b>ID:</b></td><td id="tdCID" contenteditable='false'><div id='clientIDInfo'></div></td>
+                    <td>
+                        <b>Zip:</b>
+                    </td>
+                    <td id="tdCZip" contenteditable='true'>
+                        <div id='clientZip'></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>Cellphone:</b>
+                    </td>
+                    <td id="tdCCel" contenteditable='true'>
+                        <div id='clientCel'></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>Email:</b>
+                    </td>
+                    <td id="tdCEmail" contenteditable='true'>
+                        <div id='clientEmailInfo'></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>Telephone:</b>
+                    </td>
+                    <td id="tdCTel" contenteditable='true'>
+                        <div id='clientTelephoneInfo'></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>ID:</b></td><td id="tdCID" contenteditable='true'>
+                        <div id='clientIDInfo'></div>
+                    </td>
                 </tr>
                 <!--<tr>
                 <td><b>Destinations:</b></td><td id="tdCDest" contenteditable='false'><div id='clientDestinationInfo'></div></td>
@@ -207,12 +260,13 @@
                 </tr>-->
             </table>
             
-            <button id="btn_Cli_edit" class="pure-button pure-button-primary" style="background:#E08566;" onclick="clientTableEdit();">Edit</button>
-            <button id="btn_Cli_cancel" class="pure-button pure-button-primary" style="background:#E08566; display:none;" onclick="cancelClientEdit();" >Cancel</button>
-            <a href="#close" id="btn_Cli_saveTable" class="pure-button pure-button-primary" onclick="updateClientTable();" style="display:none;">Save</a>
+            <a  href="#close" id="cancelConsignee" class="pure-button pure-button-primary" style="background:#E08566;">Cancel</a>
+            <a href="#close" id="saveConsignee" class="pure-button pure-button-primary" onclick="updateClientTable();">Save</a>
         </div>
 
     </div>
+         
+
 		
     <script>
         function clientTableEdit(){
@@ -257,16 +311,19 @@
                 client.id = consigneeID;
                 
                 client.set("Name", $("#tdCName").text() );
+                client.set("Address", $("#tdCAddress").text() );
                 client.set("AccountID", $("#tdCAccount").text() );
+                client.set("State", $("#tdCState").text() );
                 client.set("Country", $("#tdCCountry").text() );
-                client.set("Email", $("#tdCEmail").text() );
-                client.set("Telephone", $("#tdCTel").text() );
+                client.set("Zip", $("#tdCZip").text() );
+                client.set("Cellphone", $("#tdCCel").text() );
+                
                 client.set("ID1", $("#tdCID").text() );
+                client.set("Telephone", $("#tdCTel").text() );
+                client.set("Email", $("#tdCEmail").text() );
                 
                 client.save(null, {success: function(){
                         update_table();
-                        /* RESET NO EDITABLE STATE ... CHECK IF THIS IS CORRECT */
-                        cancelClientEdit();
                     }});
                 
             }
@@ -441,6 +498,10 @@
                 
                     console.log( results.length + " rows returned");
                                     
+                    /* LO SIGUIENTE ES PARA OBTENER MAS ROWS EN EL EVENTO BOTTOM DE LA PAGINA */
+                    lastrowcount = results.length;
+                    rowcounter = results.length;
+                                    
                     $("#inactiveClientsTable > tbody").html("");
                 
                 
@@ -530,6 +591,105 @@
                 filterby_changed(); 
             });
         
+        
+    /* VARIABLE USEFULL TO KNOW IF WE MUST GET MORE ROWS */
+    var lastrowcount = 0;
+    var rowcounter = 0;
+    
+    var totalboxes = 0;
+    var totalweight = 0;
+
+    /* EVENTO DE BOTTOM PAGE PARA CARGAR MAS REGISTROS ASINCRONAMENTE */
+    $(window).scroll(function(){
+            if($(window).scrollTop() + $(window).height() > $(document).height() - 10)
+            {                
+                if(lastrowcount == -1)
+                {
+                    console.log("No more rows to fetch");
+                    return;
+                }
+                
+                if(lastrowcount == 100)
+                {
+                    lastrowcount = -1;
+                    
+                    console.log("Fetching more 100 rows");
+                    
+                    get_morerows();
+                }
+                
+            }
+        });
+        
+    function get_morerows()
+    {
+        var query = new Parse.Query("Clients");
+        
+        query.include("MainClient");
+        
+        query.ascending("Name");
+        
+        query.skip(rowcounter);
+        
+        /* COMPANY */
+        query.equalTo("Company", {__type: "Pointer", className: "Companies", objectId: user.get("Company").id});
+        
+        /* OBTENER TODOS LOS QUE SEAN MAINCLIENT */
+        query.equalTo("MainClient", undefined);
+        
+        query.notContainedIn('Status', ["Active", "Pending"]);
+        
+            
+        /* FILTERBY */
+        
+        if($("#filterby").val() != "All")
+        {
+            switch($("#filterby").val())
+            {
+
+                case "Name":
+                    query.startsWith("Name", $("#searchtext").val().toUpperCase());
+                    break;
+                case "AccountID":
+                    query.startsWith("AccountID", $("#searchtext").val() );
+                    break;
+                case "Country":
+                    query.matches("Country", $("#searchtext").val(), 'i');
+                    break;
+                case "Telephone":
+                    query.startsWith("Telephone", $("#searchtext").val() );
+                    break;
+                case "Email":
+                    query.startsWith("Email", $("#searchtext").val() );
+                    break;
+                    
+            }
+        }
+        
+        query.find({success: function(results){
+            
+                console.log( results.length + " rows returned");
+                
+                lastrowcount = results.length;
+                rowcounter += results.length;
+                
+                for(i in results)
+                {
+                                        
+                    var row = "<tr><td><a href='#openModal' onclick=\"fillClient('" + results[i].id + "', '" + results[i].get("Name") + "', '" + results[i].get("Telephone") + "', '" + results[i].get("Email") + "')\">Activate</a></td><td><a onclick='openSubClients(\""+results[i].id+"\")'>"+ 
+                                results[i].get("Name") +"</a><ul id='"+results[i].id+"' class='nav'></ul></td><td>"+
+                                /*tryget(results[i].get("Company").get("Name")) +"</td><td>"+*/
+                                tryget(results[i].get("Country")) +"</td><td>"+
+                                tryget(results[i].get("Telephone")) +"</td><td>"+
+                                tryget(results[i].get("Email")) +"</td><td>"+
+                                tryget(results[i].get("AccountID")) +"</td>"+
+                                "<td align='center' style='white-space:nowrap'><a href='#modalEditClient' onclick='onEditClient(\""+ results[i].id +"\")' class='btn btn-border btn-orange'><i class='fa fa-pencil-square-o'></i> Edit</a> &nbsp &nbsp <a class='btn btn-border btn-danger' id='"+results[i].id+"' onclick='byeByeClient(this.id, \"" + user.get("Company").id + "\" )'><i class='fa fa-trash-o'></i></a></td></tr>";
+                                
+                    $("#inactiveClientsTable > tbody").append(row);
+                }
+                
+            }});
+    }
     </script>
         
     </body>

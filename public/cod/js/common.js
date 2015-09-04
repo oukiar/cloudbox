@@ -513,6 +513,29 @@ function byeByeClient(clientId, companyId){
                 
             });
 }
+
+function byeByeConsignee(clientId){
+    swal({   
+                title: "This user will be deleted permanently!",   
+                text: "Do you want to continue?",   
+                type: "warning",   
+                showCancelButton: true,   
+                confirmButtonColor: "#DD6B55",   
+                confirmButtonText: "Yes, delete it!",   
+                closeOnConfirm: true
+            },
+            function()
+            {    
+                var query = new Parse.Query("Clients");
+                
+                query.get(clientId, {success: function(client){
+                        client.destroy({success:function(){
+                                update_consigneestable();
+                            }});
+                    }});
+                
+            });
+}
   
   function byeByeStaff(staffId, companyId, url){
     swal({   

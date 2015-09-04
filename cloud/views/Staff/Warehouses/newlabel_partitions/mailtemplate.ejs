@@ -55,7 +55,7 @@
                    
                         <div style="position:relative; left:55%; top:-122px;">
                         <p style="font-size: 12px;
-	color: #666;"><b>Shipper:</b> <%=receipt.get("Shipper").get("Name")%></p>
+	color: #666;"><b>Shipper:</b> <%if(typeof(receipt.get("Shipper"))!="undefined"){%><%=receipt.get("Shipper").get("Name")%><%}else{%><%=receipt.get("ShipperConsignee").get("Name")%><%}%></p>
                         <p style="font-size: 12px;
 	color: #666;"><b>Destination:</b> <%=receipt.get("Destination")%></p>
                         </div>

@@ -225,6 +225,28 @@ Parse.Cloud.define("regClientByStaff", function(request, response){
     
 });
 
+//Update password for active users with account
+Parse.Cloud.define("updateUserPassword", function(request, response) {
+	Parse.Cloud.useMasterKey();
+    
+	var User = Parse.Object.extend("User");
+	var user = new User;
+    
+    user.id = request.params.userId;
+    user.set("password", request.params.newpass);
+    
+    user.save({success:function(user){
+        
+            Parse.User.become("session-token-here").then(function (user) {
+                    
+                }, function (error) {
+                // The token could not be validated.
+            });
+        
+        
+            response.success("OK");
+        }});
+});
 
 //Edit Staff Info
 Parse.Cloud.define("editStaffInfo", function(request, response) {
@@ -254,5 +276,6 @@ Parse.Cloud.afterDelete("Clients", function(request) {
         }
     );
 });
+
 
 
