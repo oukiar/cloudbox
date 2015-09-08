@@ -571,13 +571,15 @@
             query.get(objectId, {success: function(client){
                             
                     $("#tdCName").html(tryget(client.get("Name") ));
+                    $("#tdCAddress").html(tryget(client.get("Address")));
                     $("#tdCAccount").html(tryget(client.get("AccountID")));
+                    $("#tdCState").html(tryget(client.get("State")));
                     $("#tdCCountry").html(tryget(client.get("Country")));
+                    $("#tdCZip").html(tryget(client.get("Zip")));
+                    $("#tdCCel").html(tryget(client.get("Cellphone")));
                     $("#tdCEmail").html(tryget(client.get("Email")) );
                     $("#tdCTel").html(tryget(client.get("Telephone")));
                     $("#tdCID").html(tryget(client.get("ID1")));
-                    /*$("#tdCDest").html(tryget(client.get("Name"));*/
-                    $("#tdCStatus").html(tryget(client.get("Status")));
                 }});
             
         }
