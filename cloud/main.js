@@ -225,6 +225,42 @@ Parse.Cloud.define("regClientByStaff", function(request, response){
     
 });
 
+//CLIENT SIGNUP FROM LOGIN FORM
+Parse.Cloud.define("regClient", function(request, response){
+
+    var newuser = new Parse.User();
+
+    newuser.set('username', request.params.user + "@" + request.params.companyName.toLowerCase() );
+    newuser.set('password', request.params.pass);
+
+    newuser.set('Class', "client");
+    newuser.set('ClientID', {__type: "Pointer", className: "Clients", objectId:request.params.clientID});
+    newuser.set("Company", {__type: "Pointer", className: "Companies", objectId:request.params.companyID });
+
+    newuser.signUp(null, {success: function(newuser){
+        response.success("OK");
+    }});
+
+});
+
+//STORE SIGNUP FROM LOGIN FORM
+Parse.Cloud.define("regStore", function(request, response){
+
+    var newuser = new Parse.User();
+
+    newuser.set('username', request.params.user + "@" + request.params.companyName.toLowerCase() );
+    newuser.set('password', request.params.pass);
+
+    newuser.set('Class', "agency");
+    newuser.set('AgencyID', {__type: "Pointer", className: "Agencies", objectId:request.params.agencyID});
+    newuser.set("Company", {__type: "Pointer", className: "Companies", objectId:request.params.companyID });
+
+    newuser.signUp(null, {success: function(newuser){
+        response.success("OK");
+    }});
+
+});
+
 //Update password for active users with account
 Parse.Cloud.define("updateUserPassword", function(request, response) {
 	Parse.Cloud.useMasterKey();

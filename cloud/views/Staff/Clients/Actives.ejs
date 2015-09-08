@@ -1,1 +1,644 @@
-<% var companyID = Parse.User.current().get("Company").id%><!DOCTYPE html><html ng-app="myApp">    <head>		        <meta http-equiv="content-type" content="text/html;charset=UTF-8" />        <meta charset="utf-8" />        <title>LC Cargo</title>        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />        <meta content="" name="description" />        <meta content="" name="author" />		<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=VT323">        <!--ADMIN REQUIREMENTS-->           <% include ../../generals/ultraAdmin.ejs %>        <script src="/cod/js/moment.js"></script>        <script src="/cod/js/common.js"></script>        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/themes/smoothness/jquery-ui.css" />        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">        <script src="//code.jquery.com/jquery-1.10.2.js"></script>        <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>        <link rel="stylesheet" href="/resources/demos/style.css">                      <script src="//www.parsecdn.com/js/parse-1.4.2.min.js"></script>                 </head>        <!-- END HEAD -->        <!-- BEGIN BODY -->        <body class=" ">		<!--START TOPBAR-->		<% include ../../generals/topbar.ejs %>         <!-- START CONTAINER -->        <div class="page-container row-fluid">        <!-- SIDEBAR - START -->        <!--  SIDEBAR - END -->	        <!-- START CONTENT -->        <section class="wrapper" style="display:inline-block;width:100%;">        <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>        <div class="page-title">             <% include clientsMenu.ejs%>            <h1 class="title" style="font-family: 'VT323', serif; font-size:50px; padding-left:13px;">Clients - Active</h1>			<div id="content">			<% include pendings_partitions/table.ejs %>                        </div>                         </div>                    </div>                  </section>		               <!-- END CONTENT -->              </div><!-- END CONTAINER -->  		    </div>           <div id="openModal" class="modalDialog"> 	<div> 		<a href="#close" title="Close" class="close">X</a>				<img src="assets/images/client.png" width="89" height="89" alt="Client" style="margin-top:5px;">		<h2>Activate client's account.</h2>		<table>               <tr>     <td><b>Name:</b></td>	 <td style="padding:0 34px 0 2px;" id="clientName">Jose Abella Eggleton Ramirez</td>        <td style="padding:0 1px 0 2px;"><b></b></td>   	 <td></td>        </tr>           <tr>        <td><b>Tel:</b></td>   	 <td id="clientTel">Jose</td>        <td><b>Email:</b></td>   	 <td id="clientEmail">Jose</td>           </tr>	</table>	</br>    <form class="form-inline" method="POST" action="/activateClient">        <input type="hidden" name="clientID" id="clientID">        <button type="submit" class="btn btn-primary">Activate</button>    </form>	</br>	</br> </div>              </div><!-- END CONTAINER -->        <!-- LOAD FILES AT PAGE END FOR FASTER LOADING -->        <%include ../../generals/endFiles.ejs%>        <!-- modal end -->            <script>    Parse.initialize("XEPryFHrd5Tztu45du5Z3kpqxDsweaP1Q0lt8JOb", "MDhb1hBngr2tx2v9TjyzoUhMcOFeWGJ56TWvChqi");            /* GLOBAL USER */    var user;    /* OBTENCION Y ALMACENAMIENTO DEL CURRENT USER PARA USARSE CLIENTSIDE */    var query = new Parse.Query("User");        query.descending('createdAt');    query.include("Company");        query.get("<%= user.id%>", {        success:             function(object)            {                /* SAVE USER FOR FUTURE OPERATIONS */                user = object;                            }        });        function update_table()        {               conditions = {equalTo:{"Status":"Active",                                    "Company":{__type: "Pointer", className: "Companies", objectId: user.get("Company").id} }};                        InsertTable({                    cols:                            {                            "Name":"",                            "Country":"",                             "Company":{"Name":""},                            "Address":"",                            "Telephone":"",                            "Email":"",                            "Destination":"",                            "objectId":""                        },                    collection: "Clients",                     conditions: filter_conditions_with_dict({conditions:conditions}),                    like: filter_like(),                    document: "Staff/Clients/actives_partitions/dynamictable",                    itemid: "clientstable"                });                               }        $("#btn_search").click(function(){                if($("#searchtext").val() == "")                {                    alert("Search text void, please enter keyword to find");                }                else                    update_table();            });              $("#filterby").change(function()            {                filterby_changed();             });            </script>            </body>	</html>
+<% var companyID = Parse.User.current().get("Company").id%>
+<!DOCTYPE html>
+<html ng-app="myApp">
+    <head>
+		
+        <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+        <meta charset="utf-8" />
+        <title>LC Cargo</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <meta content="BY NAT" name="description" />
+        <meta content="By NAT" name="author" />
+		<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=VT323">
+	   
+        <!--ADMIN REQUIREMENTS-->   
+        <% include ../../generals/ultraAdmin.ejs %>
+        <script src="/cod/js/moment.js"></script>
+        <script src="/cod/js/common.js"></script>
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/themes/smoothness/jquery-ui.css" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>   
+		<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=VT323|Jura|EB+Garamond&amp;subset=all">
+		<link rel="stylesheet" type="text/css" href="cod/labels/css/registerConsignee.css">
+        <script src="//www.parsecdn.com/js/parse-1.4.2.min.js"></script>
+		
+	    <style>
+
+
+		#geocomplete { width: 200px}
+
+		.map_canvas1 { 
+		  width:100%; 
+		  height: 100%; 
+  
+		}
+
+		#multiple li { 
+		  cursor: pointer; 
+		  text-decoration: underline; 
+		}
+		
+		
+	    .modalDialogREGCL {
+	    	position: fixed;
+	    	font-family: Arial, Helvetica, sans-serif;
+	    	top: 0;
+	    	right: 0;
+	    	bottom: 0;
+	    	left: 0;
+	  	    height:100%;
+	    	background: rgba(116, 116, 116,0.5);
+	    	z-index: 99999;
+	    	opacity:0;
+	    	-webkit-transition: opacity 400ms ease-in;
+	    	-moz-transition: opacity 400ms ease-in;
+	    	transition: opacity 400ms ease-in;
+	    	pointer-events: none;
+	    }
+  
+	    .modalDialogREGCL:target {
+	    	opacity:1;
+	    	pointer-events: auto;
+	    }
+
+	    .modalDialogREGCL > div {
+	    	width: 544px;
+	    	position: relative;
+	    	margin: 10% auto;
+	    	padding: 5px 20px 13px 20px;
+	    	border-radius: 10px;
+	    	background: rgba(116, 116, 116,0.5);;
+	    }
+  
+  
+	    .close {
+	    	background: #606061;
+	    	color: #FFFFFF;
+	    	line-height: 25px;
+	    	position: absolute;
+	    	right: -12px;
+	    	text-align: center;
+	    	top: -10px;
+	    	width: 24px;
+	    	text-decoration: none;
+	    	font-weight: bold;
+	    	-webkit-border-radius: 12px;
+	    	-moz-border-radius: 12px;
+	    	border-radius: 12px;
+	    	-moz-box-shadow: 1px 1px 3px #000;
+	    	-webkit-box-shadow: 1px 1px 3px #000;
+	    	box-shadow: 1px 1px 3px #000;
+			 
+	    }
+        
+        .w200 {
+            width: 100px;
+        }
+
+	    .close:hover { background: #00d9ff; }
+	
+		</style>
+
+		<script>
+		function deleteRow(btn) {
+		  var row = btn.parentNode.parentNode;
+		  row.parentNode.removeChild(row);
+		}
+		</script>
+          
+        </head>
+        <!-- END HEAD -->
+        <!-- BEGIN BODY -->
+        <body class=" ">
+		<!--START TOPBAR-->
+		<% include ../../generals/topbar.ejs %> 
+        <!-- START CONTAINER -->
+        <div class="page-container row-fluid">
+        <!-- SIDEBAR - START -->
+        <!--  SIDEBAR - END -->	
+        <!-- START CONTENT -->
+        <section class="wrapper" style='display:inline-block;width:100%;'>
+        <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
+        <div class="page-title"> 
+            <% include clientsMenu.ejs%>
+       <h1 class="title" style="font-family: 'VT323', serif; font-size:50px; padding-left:13px; margin-top:50px;">Consignees - Active</h1>
+	   <div id="content">
+	   <% include actives_partitions/table.ejs %>
+       </div>   
+       </div>
+       </div>
+       </section>
+		
+               <!-- END CONTENT -->
+
+              </div><!-- END CONTAINER -->
+  		</div>
+        
+    <div id="openModal" class="modalDialog">
+        <div>
+            <a href="#close" title="Close" class="close">X</a>
+
+            <img src="assets/images/client.png" width="89" height="89" alt="Client" style="margin-top:5px;">
+            <h2>Activate client's account.</h2>
+            <table>
+
+            <tr>
+            <td><b>Name:</b></td>
+            <td style="padding:0 34px 0 2px;" id="clientName">Jose Abella Eggleton Ramirez</td>
+            <td style="padding:0 1px 0 2px;"><b></b></td>
+            <td></td>
+            </tr>
+            <tr>
+            <td><b>Tel:</b></td>
+            <td id="clientTel">Jose</td>
+            <td><b>Email:</b></td>
+            <td id="clientEmail">Jose</td>
+            </tr>
+
+            </table>
+            </br>
+            User: <input id="txt_user" type="text">
+            Password: <input id="txt_pass" type="password"><br><br>
+            
+            <a href="#close" class="btn btn-primary" id="btn_activate">Activate</a>
+            </br>
+            </br>
+        </div>
+    </div>
+
+    <div id="modalConsignees" class="modalDialog">
+        <div>
+            <a href="#close" title="Close" class="close">X</a>
+            <table id="consigneesTable" style="width:100%;">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Country</th>
+                        <th>Tel</th>
+                        <th>Email</th>
+                        <th>AccountID</th>
+                        <th>Actions</th>
+                    <tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="modalEditClient" class="modalDialog">
+        <a href="#close" title="Close" class="close">X</a>
+
+        <div>
+            <a href="#close" title="Close" class="closeB">X</a>
+            <h3>Consignee Information</h3>
+            
+            <br>
+            
+            <table class="table table-bordered" id="blueRow">
+                <tr>
+                    <td><b>Name:</b></td><td id="tdCName" contenteditable='true'><div id='clientNameInfo'></div></td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>Address</b>
+                    </td>
+                    <td id="tdCAddress" contenteditable='true'>
+                        <div id="clientAddress"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>Account #</b>
+                    </td>
+                    <td id="tdCAccount" contenteditable='true'>
+                        <div id="clientAccount"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>State:</b>
+                    </td>
+                    <td id="tdCState" contenteditable='true'>
+                        <div id='clientState'></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>Country:</b>
+                    </td>
+                    <td id="tdCCountry" contenteditable='true'>
+                        <div id='clientCountryInfo'></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>Zip:</b>
+                    </td>
+                    <td id="tdCZip" contenteditable='true'>
+                        <div id='clientZip'></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>Cellphone:</b>
+                    </td>
+                    <td id="tdCCel" contenteditable='true'>
+                        <div id='clientCel'></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>Email:</b>
+                    </td>
+                    <td id="tdCEmail" contenteditable='true'>
+                        <div id='clientEmailInfo'></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>Telephone:</b>
+                    </td>
+                    <td id="tdCTel" contenteditable='true'>
+                        <div id='clientTelephoneInfo'></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>ID:</b></td><td id="tdCID" contenteditable='true'>
+                        <div id='clientIDInfo'></div>
+                    </td>
+                </tr>
+                <!--<tr>
+                <td><b>Destinations:</b></td><td id="tdCDest" contenteditable='false'><div id='clientDestinationInfo'></div></td>
+                </tr>
+                <tr>
+                <td><b>Status:</b></td><td id="tdCStatus" contenteditable='false'><div id='clientStatusInfo'></div></td>
+                </tr>-->
+            </table>
+            
+            <a  href="#close" id="cancelConsignee" class="pure-button pure-button-primary" style="background:#E08566;">Cancel</a>
+            <a href="#close" id="saveConsignee" class="pure-button pure-button-primary" onclick="updateClientTable();">Save</a>
+        </div>
+
+    </div>
+         
+
+		
+    <script>
+        function clientTableEdit(){
+            $("#tdCName").attr('contentEditable', true);
+            $("#tdCAccount").attr('contentEditable', true);
+            $("#tdCCountry").attr('contentEditable',true);
+            $("#tdCEmail").attr('contentEditable',true);
+            $("#tdCTel").attr('contentEditable',true);
+            $("#tdCID").attr('contentEditable',true);
+            /*
+            $("#tdCDest").attr('contentEditable',true);
+            $("#tdCStatus").attr('contentEditable',true);
+            */
+            $("#btn_Cli_edit").hide();
+            $("#btn_Cli_cancel").show();
+            $("#btn_Cli_saveTable").show();
+        }
+        
+        function cancelClientEdit(){
+            $("#tdCName").attr('contentEditable', false);
+            $("#tdCAccount").attr('contentEditable', false);
+            $("#tdCCountry").attr('contentEditable',false);
+            $("#tdCEmail").attr('contentEditable',false);
+            $("#tdCTel").attr('contentEditable',false);
+            $("#tdCID").attr('contentEditable',false);
+            /*
+            $("#tdCDest").attr('contentEditable',false);
+            $("#tdCStatus").attr('contentEditable',false);
+            */
+            $("#btn_Cli_edit").show();
+            $("#btn_Cli_cancel").hide();
+            $("#btn_Cli_saveTable").hide();
+            /*location.reload();*/
+        }
+            
+        function updateClientTable(){
+            
+            if(consigneeID != -1)
+            {            
+                var Clients = Parse.Object.extend("Clients");
+                var client = new Clients();
+                client.id = consigneeID;
+                
+                client.set("Name", $("#tdCName").text() );
+                client.set("Address", $("#tdCAddress").text() );
+                client.set("AccountID", $("#tdCAccount").text() );
+                client.set("State", $("#tdCState").text() );
+                client.set("Country", $("#tdCCountry").text() );
+                client.set("Zip", $("#tdCZip").text() );
+                client.set("Cellphone", $("#tdCCel").text() );
+                
+                client.set("ID1", $("#tdCID").text() );
+                client.set("Telephone", $("#tdCTel").text() );
+                client.set("Email", $("#tdCEmail").text() );
+                
+                client.save(null, {success: function(){
+                        update_table();
+                    }});
+                
+            }
+            else alert("Consignee not selected");
+            
+        }
+    
+    </script>
+	          
+        <!-- END CONTAINER -->
+        <!-- LOAD FILES AT PAGE END FOR FASTER LOADING -->
+        <%include ../../generals/endFiles.ejs%>
+
+        <!-- modal end -->
+        <script src="/cod/js/jquery-1.11.2.min.js"></script>
+
+    <script>
+
+
+    if( window.location.href.indexOf("cloudbox.parseapp") !=-1 )
+        Parse.initialize("Slh0vzK6DCaarshvF1Vu0ku3Rx2hwDdTaYwW7DLU", "TkJgyQRuMqqKtzZ6bEjdESPiUZ6sVkg3QntIxmh7");
+    else
+        Parse.initialize("XEPryFHrd5Tztu45du5Z3kpqxDsweaP1Q0lt8JOb", "MDhb1hBngr2tx2v9TjyzoUhMcOFeWGJ56TWvChqi");
+        
+    /* GLOBAL USER */
+    var user;
+
+    /* OBTENCION Y ALMACENAMIENTO DEL CURRENT USER PARA USARSE CLIENTSIDE */
+    var query = new Parse.Query("User");
+    
+    query.descending('createdAt');
+    query.include("Company");
+    
+    query.get("<%= user.id%>", {
+        success: 
+            function(object)
+            {
+                /* SAVE USER FOR FUTURE OPERATIONS */
+                user = object;
+                
+                update_table();
+            }
+        });
+
+        
+        /* ClientsTable */
+        function update_table()
+        {            
+            var query = new Parse.Query("Clients");
+            
+            query.include("MainClient");
+            
+            query.ascending("Name");
+            
+            /* COMPANY */
+            query.equalTo("Company", {__type: "Pointer", className: "Companies", objectId: user.get("Company").id});
+            
+            /* SECTION CONDITIONS ... RECEIPT LIST IN THIS CASE */
+            /*query.containedIn("Status", ["Received","NotProcessed"]);*/
+            
+            /* OBTENER TODOS LOS QUE SEAN MAINCLIENT */
+            query.equalTo("MainClient", undefined);
+            
+            query.equalTo('Status', "Active");
+            
+                
+            /* FILTERBY */
+            
+            if($("#filterby").val() != "All")
+            {
+                switch($("#filterby").val())
+                {
+
+                    case "Name":
+                        query.startsWith("Name", $("#searchtext").val().toUpperCase());
+                        break;
+                    case "AccountID":
+                        query.startsWith("AccountID", $("#searchtext").val() );
+                        break;
+                    case "Country":
+                        query.matches("Country", $("#searchtext").val(), 'i');
+                        break;
+                    case "Telephone":
+                        query.startsWith("Telephone", $("#searchtext").val() );
+                        break;
+                    case "Email":
+                        query.startsWith("Email", $("#searchtext").val() );
+                        break;
+                        
+                }
+            }
+                        
+            query.find({success: function(results){
+                
+                    console.log( results.length + " rows returned");
+                                    
+                    /* LO SIGUIENTE ES PARA OBTENER MAS ROWS EN EL EVENTO BOTTOM DE LA PAGINA */
+                    lastrowcount = results.length;
+                    rowcounter = results.length;
+                                    
+                    $("#ClientsTable > tbody").html("");
+                
+                
+                    for(i in results)
+                    {
+                                            
+                        var row = "<tr><td>"+
+                                    results[i].get("Name") +"</td><td>"+
+                                    /*tryget(results[i].get("Company").get("Name")) +"</td><td>"+*/
+                                    tryget(results[i].get("Country")) +"</td><td>"+
+                                    tryget(results[i].get("Telephone")) +"</td><td>"+
+                                    tryget(results[i].get("Email")) +"</td><td>"+
+                                    tryget(results[i].get("AccountID")) +"</td><td><a onclick='openSubClients(\""+results[i].id+"\")' href='#modalConsignees'>View</a></td>"+
+                                    "<td align='center' style='white-space:nowrap'><a href='#modalEditClient' onclick='onEditClient(\""+ results[i].id +"\")' class='btn btn-border btn-orange'><i class='fa fa-pencil-square-o'></i> Edit</a> &nbsp &nbsp <a class='btn btn-border btn-danger' id='"+results[i].id+"' onclick='byeByeClient(this.id, \"" + user.get("Company").id + "\" )'><i class='fa fa-trash-o'></i></a></td></tr>";
+                                    
+                        $("#ClientsTable > tbody").append(row);
+                    }
+                    
+                }});
+        }
+
+        function openSubClients(objectId)
+        {
+
+
+            var query = new Parse.Query("Clients");
+            
+            /* OBTENER TODOS LOS QUE SEAN MAINCLIENT */
+            query.equalTo("MainClient", {__type: "Pointer", className:"Clients", objectId:objectId});
+            
+            query.find({success:function(results){
+                    
+                    /* CLEAR PREVIOUS */
+                    $("#consigneesTable > tbody").html("");
+                    
+                    for(i in results)
+                    {                        
+                        $("#consigneesTable > tbody").append("<tr><td>" + results[i].get("Name") +
+                                                        "</td><td>"+ tryget(results[i].get("Country")) +
+                                                        "</td><td>"+ tryget(results[i].get("Telephone")) +
+                                                        "</td><td>"+ tryget(results[i].get("Email")) +
+                                                        "</td><td>"+ tryget(results[i].get("AccountID")) +
+                                                        "<a href='#modalEditClient' onclick='onEditClient(\""+ results[i].id +
+                                                        "\")' </td><td align='center' style='white-space:nowrap'><a href='#modalEditClient' onclick='onEditClient(\""+ results[i].id +"\")' class='btn btn-border btn-orange'><i class='fa fa-pencil-square-o'></i> Edit</a> &nbsp &nbsp <a class='btn btn-border btn-danger' id='"+
+                                                        results[i].id+"' onclick='byeByeClient(this.id, \"" + user.get("Company").id + "\" )'><i class='fa fa-trash-o'></i></a>" +"</td></tr>");
+                    }
+
+                    
+                }});
+                
+            return false;
+        }
+
+        var consigneeID = -1;
+
+        function onEditClient(objectId)
+        {
+            consigneeID = objectId;
+        
+            var query = new Parse.Query("Clients");
+            
+            query.get(objectId, {success: function(client){
+                            
+                    $("#tdCName").html(tryget(client.get("Name") ));
+                    $("#tdCAccount").html(tryget(client.get("AccountID")));
+                    $("#tdCCountry").html(tryget(client.get("Country")));
+                    $("#tdCEmail").html(tryget(client.get("Email")) );
+                    $("#tdCTel").html(tryget(client.get("Telephone")));
+                    $("#tdCID").html(tryget(client.get("ID1")));
+                    /*$("#tdCDest").html(tryget(client.get("Name"));*/
+                    $("#tdCStatus").html(tryget(client.get("Status")));
+                }});
+            
+        }
+
+        $("#btn_search").click(function(){
+                
+                if($("#filterby").val() != "All")
+                {
+                    if($("#searchtext").val() == "")
+                    {
+                        alert("Search text void, please enter keyword to find");
+                        return;
+                    }
+                }
+                
+                update_table();
+            });        
+
+        $("#filterby").change(function()
+            {
+                filterby_changed(); 
+            });
+        
+        
+    /* VARIABLE USEFULL TO KNOW IF WE MUST GET MORE ROWS */
+    var lastrowcount = 0;
+    var rowcounter = 0;
+    
+    var totalboxes = 0;
+    var totalweight = 0;
+
+    /* EVENTO DE BOTTOM PAGE PARA CARGAR MAS REGISTROS ASINCRONAMENTE */
+    $(window).scroll(function(){
+            if($(window).scrollTop() + $(window).height() > $(document).height() - 10)
+            {                
+                if(lastrowcount == -1)
+                {
+                    console.log("No more rows to fetch");
+                    return;
+                }
+                
+                if(lastrowcount == 100)
+                {
+                    lastrowcount = -1;
+                    
+                    console.log("Fetching more 100 rows");
+                    
+                    get_morerows();
+                }
+                
+            }
+        });
+        
+    function get_morerows()
+    {
+        var query = new Parse.Query("Clients");
+        
+        query.include("MainClient");
+        
+        query.ascending("Name");
+        
+        query.skip(rowcounter);
+        
+        /* COMPANY */
+        query.equalTo("Company", {__type: "Pointer", className: "Companies", objectId: user.get("Company").id});
+        
+        /* OBTENER TODOS LOS QUE SEAN MAINCLIENT */
+        query.equalTo("MainClient", undefined);
+        
+        query.equalTo('Status', "Active");
+        
+            
+        /* FILTERBY */
+        
+        if($("#filterby").val() != "All")
+        {
+            switch($("#filterby").val())
+            {
+
+                case "Name":
+                    query.startsWith("Name", $("#searchtext").val().toUpperCase());
+                    break;
+                case "AccountID":
+                    query.startsWith("AccountID", $("#searchtext").val() );
+                    break;
+                case "Country":
+                    query.matches("Country", $("#searchtext").val(), 'i');
+                    break;
+                case "Telephone":
+                    query.startsWith("Telephone", $("#searchtext").val() );
+                    break;
+                case "Email":
+                    query.startsWith("Email", $("#searchtext").val() );
+                    break;
+                    
+            }
+        }
+        
+        query.find({success: function(results){
+            
+                console.log( results.length + " rows returned");
+                
+                lastrowcount = results.length;
+                rowcounter += results.length;
+                
+                for(i in results)
+                {
+                                        
+                    var row = "<tr><td><a href='#openModal' onclick=\"fillClient('" + results[i].id + "', '" + results[i].get("Name") + "', '" + results[i].get("Telephone") + "', '" + results[i].get("Email") + "')\">Activate</a></td><td><a onclick='openSubClients(\""+results[i].id+"\")'>"+ 
+                                results[i].get("Name") +"</a><ul id='"+results[i].id+"' class='nav'></ul></td><td>"+
+                                /*tryget(results[i].get("Company").get("Name")) +"</td><td>"+*/
+                                tryget(results[i].get("Country")) +"</td><td>"+
+                                tryget(results[i].get("Telephone")) +"</td><td>"+
+                                tryget(results[i].get("Email")) +"</td><td>"+
+                                tryget(results[i].get("AccountID")) +"</td>"+
+                                "<td align='center' style='white-space:nowrap'><a href='#modalEditClient' onclick='onEditClient(\""+ results[i].id +"\")' class='btn btn-border btn-orange'><i class='fa fa-pencil-square-o'></i> Edit</a> &nbsp &nbsp <a class='btn btn-border btn-danger' id='"+results[i].id+"' onclick='byeByeClient(this.id, \"" + user.get("Company").id + "\" )'><i class='fa fa-trash-o'></i></a></td></tr>";
+                                
+                    $("#ClientsTable > tbody").append(row);
+                }
+                
+            }});
+    }
+    </script>
+        
+    </body>
+	
+</html>
+v

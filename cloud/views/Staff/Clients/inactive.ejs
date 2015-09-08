@@ -167,7 +167,26 @@
             </br>
         </div>
     </div>
-     
+
+    <div id="modalConsignees" class="modalDialog">
+        <div>
+            <a href="#close" title="Close" class="close">X</a>
+            <table id="consigneesTable" style="width:100%;">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Country</th>
+                        <th>Tel</th>
+                        <th>Email</th>
+                        <th>AccountID</th>
+                        <th>Actions</th>
+                    <tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
 
     <div id="modalEditClient" class="modalDialog">
         <a href="#close" title="Close" class="close">X</a>
@@ -508,13 +527,13 @@
                     for(i in results)
                     {
                                             
-                        var row = "<tr><td><a href='#openModal' onclick=\"fillClient('" + results[i].id + "', '" + results[i].get("Name") + "', '" + results[i].get("Telephone") + "', '" + results[i].get("Email") + "')\">Activate</a></td><td><a onclick='openSubClients(\""+results[i].id+"\")'>"+ 
-                                    results[i].get("Name") +"</a><ul id='"+results[i].id+"' class='nav'></ul></td><td>"+
+                        var row = "<tr><td><a href='#openModal' onclick=\"fillClient('" + results[i].id + "', '" + results[i].get("Name") + "', '" + results[i].get("Telephone") + "', '" + results[i].get("Email") + "')\">Activate</a></td><td>"+
+                                    results[i].get("Name") +"</td><td>"+
                                     /*tryget(results[i].get("Company").get("Name")) +"</td><td>"+*/
                                     tryget(results[i].get("Country")) +"</td><td>"+
                                     tryget(results[i].get("Telephone")) +"</td><td>"+
                                     tryget(results[i].get("Email")) +"</td><td>"+
-                                    tryget(results[i].get("AccountID")) +"</td>"+
+                                    tryget(results[i].get("AccountID")) +"</td><td><a onclick='openSubClients(\""+results[i].id+"\")' href='#modalConsignees'>View</a></td>"+
                                     "<td align='center' style='white-space:nowrap'><a href='#modalEditClient' onclick='onEditClient(\""+ results[i].id +"\")' class='btn btn-border btn-orange'><i class='fa fa-pencil-square-o'></i> Edit</a> &nbsp &nbsp <a class='btn btn-border btn-danger' id='"+results[i].id+"' onclick='byeByeClient(this.id, \"" + user.get("Company").id + "\" )'><i class='fa fa-trash-o'></i></a></td></tr>";
                                     
                         $("#inactiveClientsTable > tbody").append(row);
@@ -522,12 +541,11 @@
                     
                 }});
         }
-        
-        $(".nav ul").hide();
-        
+
         function openSubClients(objectId)
         {
-            
+
+
             var query = new Parse.Query("Clients");
             
             /* OBTENER TODOS LOS QUE SEAN MAINCLIENT */
@@ -536,14 +554,20 @@
             query.find({success:function(results){
                     
                     /* CLEAR PREVIOUS */
-                    $("#"+objectId).html("");
+                    $("#consigneesTable > tbody").html("");
                     
                     for(i in results)
                     {                        
-                        $("#"+objectId).append("<li>" + results[i].get("Name") + "</li>");
+                        $("#consigneesTable > tbody").append("<tr><td>" + results[i].get("Name") +
+                                                        "</td><td>"+ tryget(results[i].get("Country")) +
+                                                        "</td><td>"+ tryget(results[i].get("Telephone")) +
+                                                        "</td><td>"+ tryget(results[i].get("Email")) +
+                                                        "</td><td>"+ tryget(results[i].get("AccountID")) +
+                                                        "<a href='#modalEditClient' onclick='onEditClient(\""+ results[i].id +
+                                                        "\")' </td><td align='center' style='white-space:nowrap'><a href='#modalEditClient' onclick='onEditClient(\""+ results[i].id +"\")' class='btn btn-border btn-orange'><i class='fa fa-pencil-square-o'></i> Edit</a> &nbsp &nbsp <a class='btn btn-border btn-danger' id='"+
+                                                        results[i].id+"' onclick='byeByeClient(this.id, \"" + user.get("Company").id + "\" )'><i class='fa fa-trash-o'></i></a>" +"</td></tr>");
                     }
-                    
-                    $("#"+objectId).slideToggle();
+
                     
                 }});
                 
