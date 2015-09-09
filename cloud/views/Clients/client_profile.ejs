@@ -181,7 +181,7 @@
                                     <div style="position:relative; left:144px;">  
                                         <h1 class="title">Destinations - Consignees</h1>
                                     </div>
-                                    
+                                    <a href="#modalEditClient" id="btn_addconsignee"><img src="/web/img/icons/newtab.png" style="float:right; width:64px; height:64px;"></a>
                                     <table id="lst_consignees" style="width:100%;" class="table table-bordered" >
                                         <thead>
                                             <tr>
@@ -350,7 +350,7 @@
             </table>
             
             <a  href="#close" id="cancelConsignee" class="pure-button pure-button-primary" style="background:#E08566;">Cancel</a>
-            <a href="#close" id="saveConsignee" class="pure-button pure-button-primary" onclick="updateClientTable();">Save</a>
+            <a href="#close" id="saveConsignee" class="pure-button pure-button-primary">Save</a>
         </div>
 
     </div>
@@ -387,6 +387,46 @@
                 
                 update_consigneestable();
             }});
+            
+    $("#btn_addconsignee").click(function(){    
+        
+            $("#saveConsignee").html("Add");
+            
+            $("#tdCName").html("");
+            $("#tdCAddress").html("");
+            $("#tdCAccount").html("");
+            $("#tdCState").html("");
+            $("#tdCCountry").html("");
+            $("#tdCZip").html("");
+            $("#tdCCel").html("");
+            $("#tdCEmail").html("");
+            $("#tdCTel").html("");
+            $("#tdCID").html("");
+            
+            return;
+                
+            $("#lst_consignees > tbody").append("<tr><td id='tdnewName' contenteditable></td><td id='tdnewCountry' contenteditable></td><td id='tdSave'><button id='btn_savenewConsignee'>SAVE</button></td></tr>");
+
+            /* THE CLICK EVENT FOR THIS NEW CONSIGNEE */
+            $("#btn_savenewConsignee").click(function(){
+                                            
+                    alert("SAVING");
+                    
+                    $("#tdnewName").attr('contentEditable', false);
+                    $("#tdnewCountry").attr('contentEditable', false);
+                    
+                    var clientid = "00";
+                    
+                    $("#tdSave").html("<a href='#modalEditClient' onclick='onEditClient(\""+ clientid +
+                                                                "\")' class='btn btn-border btn-orange'>"+
+                                                                "<i class='fa fa-pencil-square-o'></i> Edit</a><a class='btn btn-border btn-danger' onclick='byeByeConsignee(\""+clientid+"\")'><i class='fa fa-trash-o'></i></a>");
+                                                                
+                    alert("SAVED");
+                });
+
+        });
+        
+
          
      $("#btn_updateInformation").click(function(){
             
@@ -415,6 +455,8 @@
         
         function onEditClient(objectId)
         {
+            $("#saveConsignee").html("Save");
+            
             consigneeID = objectId;
         
             var query = new Parse.Query("Clients");
@@ -456,7 +498,10 @@
                 var Client = Parse.Object.extend("Clients");
                 var client = new Client();
                 
-                client.id = consigneeID;
+                if($("#saveConsignee").html() == "Save")
+                    client.id = consigneeID;
+                else
+                    client.set("MainClient", {__type:"Pointer", className:"Clients", objectId:user.get("ClientID").id} );
                 
                 client.set("Name", $("#tdCName").text() );
                 client.set("Address", $("#tdCAddress").text() );
@@ -465,14 +510,17 @@
                 client.set("Country", $("#tdCCountry").text() );
                 client.set("Zip", $("#tdCZip").text() );
                 client.set("Cellphone", $("#tdCCel").text() );
-                /*client.set("Language", $("#tdCName").text() );*/
                 client.set("ID1", $("#tdCID").text() );
                 client.set("Telephone", $("#tdCTel").text() );
                 client.set("Email", $("#tdCEmail").text() );
                 
-                client.save({success: function(){alert("SAVED");}});
+                client.save({success: function(client){
+                        alert("SAVED");
+                        update_consigneestable();
+                    }, error:function(){
+                        alert("Error in " + $("#saveConsignee").html());
+                    }});
                 
-                update_consigneestable();
             });
             
         function update_consigneestable()
