@@ -71,10 +71,42 @@ Parse.Cloud.define("updateClientInfo", function(request, response) {
 	 response.error("Sorry!");
  });
  
-//UPPER CASE THE CLIENTS NAME BEFORE SAVE
+function zeroPad(num, numZeros) {
+    var n = Math.abs(num);
+    var zeros = Math.max(0, numZeros - Math.floor(n).toString().length );
+    var zeroString = Math.pow(10,zeros).toString().substr(1);
+    if( num < 0 ) {
+        zeroString = '-' + zeroString;
+    }
+
+    return zeroString+n;
+}
+ 
+//UPPER CASE THE CLIENTS NAME BEFORE SAVE and SET THE ACCOUNTID ASCENDING
 Parse.Cloud.beforeSave("Clients", function(request, response){
+    
     request.object.set("Name", request.object.get("Name").toUpperCase() ); 
-    response.success();
+    
+    if(request.object.isNew())
+    {
+    
+        var query = new Parse.Query("Clients");
+        query.descending("AccountID");
+        
+        query.first({success: function(lastclient){
+                
+                var newid = Number(lastclient.get("AccountID").substring(1))+1;
+                
+                request.object.set("AccountID", "A" + zeroPad(newid,4) ); 
+                
+                response.success();
+            }});
+    }
+    else
+    {
+        response.success();
+    }
+    
 });
 
 //UPPER CASE THE STORES NAME BEFORE SAVE
