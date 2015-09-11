@@ -112,7 +112,26 @@ Parse.Cloud.beforeSave("Clients", function(request, response){
 //UPPER CASE THE STORES NAME BEFORE SAVE
 Parse.Cloud.beforeSave("Agencies", function(request, response){
     request.object.set("Name", request.object.get("Name").toUpperCase() ); 
-    response.success();
+    
+    if(request.object.isNew())
+    {
+    
+        var query = new Parse.Query("Agencies");
+        query.descending("AccountID");
+        
+        query.first({success: function(lastclient){
+                
+                var newid = Number(lastclient.get("AccountID").substring(1))+1;
+                
+                request.object.set("AccountID", "A" + zeroPad(newid,4) ); 
+                
+                response.success();
+            }});
+    }
+    else
+    {
+        response.success();
+    }
 });
 
 
@@ -150,86 +169,6 @@ Parse.Cloud.define("byeByeStaff", function(request, response) {
 		});  
 });
 
-
-//Create and save the PDF for best print times
-Parse.Cloud.define("createPDF", function(request, response) {
-
-    
-    var jsPDF = require('cloud/jspdf.debug.js');
-    //var jsPDF = require('cloud/split_text_to_size.js');
-       
-    /*var doc = new jsPDF('l', 'in', [6,4]);*/
-    var doc = new jsPDF('l', 'pt', [432,288]);
-    
-        company = 'LCCargo Xpress';
-        rcpData = '# 00124123       -       Destination';
-        headTable = 'Length | Width | Height | Volume | Weight-Vol. | Weight';
-        values = '134511 | 134511 | 134511 | 134511 | 134511 | 134511';
-        shipper = 'Shipper: Carlos hernandez';
-        zone = 'Zone: ABCD';
-        time = '15/07/2015 00:00';
-        box = '12/12';
-              
-        /*
-        doc.setFontSize(16);
-        * 
-        var offset=10;
-        
-        //var offset = doc.internal.pageSize.width/2 - (doc.getStringUnitWidth(company)*16)/2;
-        doc.text(offset, 20, company);
-        
-        //var offset = doc.internal.pageSize.width/2 - (doc.getStringUnitWidth(rcpData)*16)/2;
-        doc.text(offset, 40, rcpData);
-        
-        //var offset = doc.internal.pageSize.width/2 - (doc.getStringUnitWidth(headTable)*16)/2;
-        doc.text(offset, 60, headTable);
-        
-        //var offset = doc.internal.pageSize.width/2 - (doc.getStringUnitWidth(values)*16)/2;
-        doc.text(offset, 80, values);
-        
-        //var offset = doc.internal.pageSize.width/2 - (doc.getStringUnitWidth(shipper)*16)/2;
-        doc.text(offset, 100, shipper);
-        
-        //var offset = doc.internal.pageSize.width/2 - (doc.getStringUnitWidth(zone)*16)/2;
-        doc.text(offset, 120, zone);
-        
-        //var offset = doc.internal.pageSize.width/2 - (doc.getStringUnitWidth(time)*16)/2;
-        doc.text(offset, 140, time);
-		
-        //var offset = doc.internal.pageSize.width/2 - (doc.getStringUnitWidth(box)*16)/2;
-        doc.text(offset, 160, box);
-        */
-    
-	var query = new Parse.Query("Boxes");
-    
-    query.equalTo("Receipt", {__type:"Pointer", className:"Receipts", objectId:request.params.receiptId});
-    
-	query.find({success:function(results) {
-            
-            for(i=0; i<results.length; i++)
-            {
-                
-                var offset=10;
-                
-                //var w = doc.getStringUnitWidth("hello hello");
-                
-                doc.text(offset, 20, company);
-                doc.text(offset, 40, rcpData);
-                doc.text(offset, 60, headTable);
-                doc.text(offset, 80, values);
-                doc.text(offset, 100, shipper);
-                doc.text(offset, 120, w.toString() );
-                doc.text(offset, 140, time);
-                if(typeof results[i].get("Num") != "undefined")
-                    doc.text(offset, 160, results[i].get("Num"));
-                
-                doc.addPage();
-            }
-            
-            response.success( doc.output() ); 
-        }});
-});
-
 //CLIENT SIGNUP ADD FROM STAFF SESSION
 Parse.Cloud.define("regClientByStaff", function(request, response){
     
@@ -257,12 +196,32 @@ Parse.Cloud.define("regClientByStaff", function(request, response){
     
 });
 
+//CLIENT SIGNUP ADD FROM STAFF SESSION
+Parse.Cloud.define("regStoreByStaff", function(request, response){
+    
+    var currentUser = Parse.User.current();
+    
+    var newuser = new Parse.User();
+        
+    newuser.set('username', request.params.user + "@" + request.params.companyName.toLowerCase() );
+    newuser.set('password', request.params.pass);
+    
+    newuser.set('Class', "agency");
+    newuser.set('AgencyID', {__type: "Pointer", className: "Agencies", objectId:request.params.storeID});
+    newuser.set("Company", {__type: "Pointer", className: "Companies", objectId:request.params.companyID });
+    
+    newuser.signUp(null, {success: function(newuser){    
+        response.success("OK");
+    }});
+    
+});
+
 //CLIENT SIGNUP FROM LOGIN FORM
 Parse.Cloud.define("regClient", function(request, response){
 
     var newuser = new Parse.User();
 
-    newuser.set('username', request.params.user + "@" + request.params.companyName.toLowerCase() );
+    newuser.set('username', request.params.user + "@" + request.params.companyLink.toLowerCase() );
     newuser.set('password', request.params.pass);
 
     newuser.set('Class', "client");
@@ -280,7 +239,7 @@ Parse.Cloud.define("regStore", function(request, response){
 
     var newuser = new Parse.User();
 
-    newuser.set('username', request.params.user + "@" + request.params.companyName.toLowerCase() );
+    newuser.set('username', request.params.user + "@" + request.params.companyLink.toLowerCase() );
     newuser.set('password', request.params.pass);
 
     newuser.set('Class', "agency");
