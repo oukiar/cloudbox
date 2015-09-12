@@ -21,6 +21,11 @@
         <script src="http://yui.yahooapis.com/3.6.0/build/yui/yui-min.js"></script>
         <script src="//www.parsecdn.com/js/parse-1.4.2.min.js"></script>
         
+        <script src="/cod/js/moment.js"></script>
+        <script src="/cod/js/base64.min.js"></script>
+        <script src="/cod/js/jspdf.min.js"></script>
+        <script type="text/javascript" src="/cod/js/jquery.qrcode.js"></script>
+        <script type="text/javascript" src="/cod/js/qrcode.js"></script>
         
         <!--ADMIN REQUIREMENTS-->   
         <% include ../../generals/ultraAdmin.ejs %>
@@ -45,23 +50,23 @@
             <div style="position:absolute; left:250px; top:3px; width:1000px;">
             
             
-            <section class="wrapper" style='margin-top:13px;display:inline-block;width:100%;padding:15px 0 0 15px;'>
+            <section class="wrapper" style='margin-top:50px;display:inline-block;width:100%;padding:15px 0 0 15px;'>
 
 
 
-                <% include partitions/agency_labelForm.ejs %>
+                <% include LabelForm.ejs %>
                 
                 
                 <button id="btn_test" style="display:none;">User</button>
             </section>
        
             <!-- END CONTENT -->
-           
-<div id="openModal" class="modalDialog">
-	<div>
+
+<div id="openModalPrint" class="modalDialog">
+	        <div>
             <a href="#close" title="Close" class="close">X</a>
             <div id="modalmessage" style="margin-left:21%;">
-                <img src="/web/img/icons/loader_grey.gif">
+            <img src="/web/img/icons/loader_grey.gif">
             </div>
 	</div>
 </div>
@@ -74,10 +79,15 @@
 
         <!-- modal end -->
 
+
+
 <script>
 
 
-    Parse.initialize("XEPryFHrd5Tztu45du5Z3kpqxDsweaP1Q0lt8JOb", "MDhb1hBngr2tx2v9TjyzoUhMcOFeWGJ56TWvChqi");
+    if( window.location.href.indexOf("cloudbox.parseapp") !=-1 )
+        Parse.initialize("Slh0vzK6DCaarshvF1Vu0ku3Rx2hwDdTaYwW7DLU", "TkJgyQRuMqqKtzZ6bEjdESPiUZ6sVkg3QntIxmh7");
+    else
+        Parse.initialize("XEPryFHrd5Tztu45du5Z3kpqxDsweaP1Q0lt8JOb", "MDhb1hBngr2tx2v9TjyzoUhMcOFeWGJ56TWvChqi");
 
     /* GLOBAL USER */
     var user;
@@ -101,6 +111,8 @@
                 /* SAVE USER FOR FUTURE OPERATIONS */
                 user = object;
                 
+                shipperID = user.get("AgencyID").id;
+                
                 /* LLENADO DINAMICO DE SELECT DE BODEGAS DE ESTA EMPRESA */
                 var query = new Parse.Query("Cellars");
                 
@@ -123,6 +135,55 @@
                 
             }
         });
+        
+
+        function fillDestinations(consigneID)
+        {
+            consigneeID = consigneID;
+
+
+            /* GET THE CLIENT OBJECT, WE NEED THE DESTINATIONS */
+            var query = new Parse.Query("Clients");
+            query.get(consigneeID, {
+                success:
+                    function(object)
+                    {
+                        /*destinations = object.get("Destinations");*/
+
+                        var query = new Parse.Query("Destinations");
+                        query.equalTo("Client", {__type: "Pointer", className: "Clients", objectId: object.id});
+
+                        query.find({success:function(results){
+                                    country = document.getElementById("Country");
+                                    country.options.length = 0;
+
+                                    /* DESTINATIONS */
+                                    for(i in results)
+                                    {
+                                        country.options[country.options.length] = new Option(results[i].get("Alias"), results[i].get("Alias"));
+                                    }
+
+                                    /* COUNTRY */
+                                    if(typeof(object.get("Country")) != "undefined" )
+                                        country.options[country.options.length] = new Option(object.get("Country"), object.get("Country"));
+
+                                    /* CUSTOM DESTINATION */
+                                    country.options[country.options.length] = new Option("Custom", "Custom");
+
+                                    $("#Country").change(function(){
+                                    
+                                            if($("#Country").val() == "Custom")
+                                            {
+                                                $("#Country").hide();
+                                                $("#div_destination").show();
+                                            }
+                                        });
+                                }
+                            });
+
+                    }
+                });
+        }
 
 
 </script>

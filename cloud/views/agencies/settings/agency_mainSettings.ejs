@@ -10,180 +10,309 @@
     <% include ../../generals/ultraAdmin.ejs %>
     <!--ADMIN REQUIREMENTS-->   
 
-	   <script src="/cod/js/moment.js"></script>
-	   <script src="/cod/js/common.js"></script>
-	   <script src="/cod/js/jquery-1.11.2.min.js"></script>
-	   <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/themes/smoothness/jquery-ui.css"/>
-	   <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
+        <script src="/cod/js/moment.js"></script>
+        <script src="/cod/js/common.js"></script>
+        <script src="/cod/js/jquery-1.11.2.min.js"></script>
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/themes/smoothness/jquery-ui.css"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
+        <script src="//www.parsecdn.com/js/parse-1.4.2.min.js"></script>
+        <script>
+ /* 
+    	 Parse.initialize("1MlFlpCslJWzRjZtFfSeUWDRXAS2zbszG2PuQ5Dd", "dREeQXyg3Zn7C8GG1eELLpaaBsGtI6A7BAVwA2sU");
+  	  function updateClientInfo(){
+		  var clientName = document.getElementById("clientName");
+  		  Parse.Cloud.run('updateClientInfo', { clientName: clientName}, {
+  		    success: function() {
+  		  alert("success");
+  		    },
+  		    error: function() {
+				alert("Error, please refresh the website and try again! Sorry! :(");
+  		    }
+  		  });
+  	  }
+	  */
+	  
+	  	  
+  	  </script>
+	 
+	   
     </head>
     <!-- END HEAD -->
     <!-- BEGIN BODY -->
     <body>
  		<!--START TOPBAR-->
  		 
-		  <% include ../generals/topbar.ejs %>
-         <!-- START CONTAINER -->
-         <div class="page-container row-fluid">
-		<% include partitions/sidebarSettings.ejs %>
-         <!-- SIDEBAR - START -->
+		<% include ../../generals/topbar.ejs %>
+        <!-- START CONTAINER -->
+        <div class="page-container row-fluid">
+		<% include ../../generals/sideBar.ejs %>
+        <!-- SIDEBAR - START -->
  		
-         <!--  SIDEBAR - END -->
-			
-		
-			
-	              <!-- START CONTENT -->
-         <div style="position:relative; left:144px;">
-	             <section class="wrapper" style='margin-top:60px;display:inline-block;width:100%;'>
-
-	                <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
-	                <div class="page-title">
-	                <div class="pull-left">
+        <!--  SIDEBAR - END -->	
+        <!-- START CONTENT -->
+        <div style="position:relative; left:144px;">
+        <section class="wrapper" style='margin-top:60px;display:inline-block;width:100%;'>
+            <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
+                <div class="page-title">
+                    <div class="pull-left">
  			
-	              <div style="position:relative; left:144px;">  <h1 class="title">Store Information</h1></div>
-	  		       <div style="margin-left:30%; width:500px;">
+                        <div style="position:relative; left:144px;">  
+                            <h1 class="title">Personal Information</h1>
+                        </div>
+                        
+                        <div style="margin-left:30%; width:500px;">
 			  
-	  	<form name="clientEmails" action="/">
-	       <div class="content-body">    <div class="row">
-	               <div class="col-md-12 col-sm-12 col-xs-12">
+                        <form name="clientEmails" action="/">
+                            <div class="content-body">    
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
 
+                                       <div class="form-group">
+                                           <label class="form-label" for="field-1">Full Name:</label>
+                                           <div class="controls">
+                                               <input type="text" class="form-control" maxlength="55" id="clientName" name="clientName" value="<%= agency.get('Name') %>" >
+                                           </div>
+                                       </div>
+                                        
+                                        <div class="form-group">
+                                           <label class="form-label" for="field-1">Address:</label>
+                                           <div class="controls">
+                                               <input type="text" class="form-control" maxlength="55" id="clientAddress" name="clientAddress" value="<%= agency.get('Address') %>" >
+                                           </div>
+                                       </div>
+                                        
+                                        <div class="form-group">
+                                           <label class="form-label" for="field-1">Account #:</label>
+                                           <div class="controls">
+                                               <input type="text" class="form-control" maxlength="55" id="clientAccountID" name="clientAccountID" value="<%= agency.get('AccountID') %>" >
+                                           </div>
+                                       </div>
+                                       
+                                        <div class="form-group">
+                                           <label class="form-label" for="field-1">State:</label>
+                                           <div class="controls">
+                                               <input type="text" class="form-control" maxlength="55" id="clientState" name="clientState" value="<%= agency.get('State') %>" >
+                                           </div>
+                                       </div>
+                                       
+                                        <div class="form-group">
+                                           <label class="form-label" for="field-1">Country:</label>
+                                           <div class="controls">
+                                               <input type="text" class="form-control" maxlength="55" id="clientCountry" name="clientCountry" value="<%= agency.get('Country') %>" >
+                                           </div>
+                                       </div>
+                                       
+                                        <div class="form-group">
+                                           <label class="form-label" for="field-1">Zip code:</label>
+                                           <div class="controls">
+                                               <input type="text" class="form-control" maxlength="55" id="clientZip" name="clientZip" value="<%= agency.get('Zip') %>" >
+                                           </div>
+                                       </div>
+                                       
+                                        <div class="form-group">
+                                           <label class="form-label" for="field-1">Cel:</label>
+                                           <div class="controls">
+                                               <input type="text" class="form-control" maxlength="55" id="clientCel" name="clientCel" value="<%= agency.get('Cellphone') %>" >
+                                           </div>
+                                       </div>
 
-	                   <div class="form-group">
-	                       <label class="form-label" for="field-1">Store Name:</label>
-	                       <div class="controls">
-	                           <input type="text" class="form-control" maxlength="55" id="storeName" name="storeName" value="<%= agency.get('Name') %>" >
-	                       </div>
-	                   </div>
+                                       <div class="form-group">
+                                           <label class="form-label" for="field-1">Language:</label>
+                                           <div class="controls">
+                                                <select  class="multi-select" id="clientLanguage" name="clientLanguage">
+                                                <option value="Spanish">Spanish</option>
+                                                <option value="English">English</option>
+                                                </select>
+                                           </div>
+                                       </div>
 
-	                   <div class="form-group">
-                           <label class="form-label" for="field-1">Contact:</label>
-                           <div class="controls">
-							 <input type="text" class="form-control" maxlength="55" id="storeContact" name="storeContact" >
-                           </div>
-	                   </div>
+                                       <div class="form-group">
+                                           <label class="form-label" for="field-1">ID:</label>
+                                           <div class="controls">
+                                               <input type="text" class="form-control" maxlength="55" id="clientID1" name="clientID1" value="<%= agency.get('ID1') %>">
+                                           </div>
+                                       </div>
 
-                  
+                                       <div class="form-group">
+                                           <label class="form-label" for="field-1">Telephone:</label>
+                                           <div class="controls">
+                                               <input maxlength="55" id="clientTelephone" name="clientTelephone" type="text" class="form-control"  value="<%= agency.get('Telephone') %>">
+                                           </div>
+                                       </div>
 
-	                   <div class="form-group">
-	                       <label class="form-label" for="field-1">ID:</label>
-	                       <div class="controls">
-	                           <input type="text" class="form-control" maxlength="55" id="storeID1" name="storeID1" value="<%= agency.get('ID1') %>">
-	                       </div>
-	                   </div>
-
-	                   <div class="form-group">
-	                       <label class="form-label" for="field-1">Telephone:</label>
-	                       <div class="controls">
-	                           <input maxlength="55" id="storeTelephone" name="storeTelephone" type="text" class="form-control"  value="<%= agency.get('Telephone') %>">
-	                       </div>
-	                   </div>
-
-	                   <div class="form-group">
-	                       <label class="form-label" for="field-1">Email:</label>
-	                       <div class="controls">
-	                           <input type="text" class="form-control" maxlength="55" id="storeEmail" name="storeEmail" value="<%= agency.get('Email') %>" >
-	                       </div>
-	                   </div>
-					   
-	                   <div class="form-group">
-	                       <label class="form-label" for="field-1">Website:</label>
-	                       <div class="controls">
-	                           <input type="text" class="form-control" maxlength="55" id="storeEmail" name="storeEmail" value="<%= agency.get('Website') %>" >
-	                       </div>
-	                   </div>
+                                       <div class="form-group">
+                                           <label class="form-label" for="field-1">Email:</label>
+                                           <div class="controls">
+                                               <input type="text" class="form-control" maxlength="55" id="clientEmail" name="clientEmail" value="<%= agency.get('Email') %>" >
+                                           </div>
+                                       </div>
 				  
 	                   
 	     
-	 	<div class="form-group">
-	 	<input type="button" id="btn_registerStore" style="length:50px;" value="Update Information" class="pure-button pure-button-primary">
-	    </div>
+                                        <div class="form-group">
+                                            <input type="button" id="btn_updateInformation" style="length:50px;" value="Update Information" class="pure-button pure-button-primary">
+                                        </div>
 
-	                  </div>
-	               </div>
-	             </div>
-	        </section>
-	      </form>
-	    </div>
-	  		     </div>
-	              </div>
-	              </div>
-	              </section>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
 	             
-	              <!-- END CONTENT -->
-	              </div><!-- END CONTAINER -->
-	              <!-- LOAD FILES AT PAGE END FOR FASTER LOADING -->
-	              <!-- modal end -->
+        </div>
 		</div>
 		
-		
-	              <!-- START CONTENT -->
-        
 				  
-				  
-		  	       <!-- START CONTENT -->
-		           <div style="position:relative; left:346px; top:5px;">
-		  	          <section class="wrapper" style='display:inline-block;width:100%;'>
-		  	                <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
-		  	                <div class="page-title">
-		  	                <div class="pull-left">
- 			
-		  	              <div style="position:relative; left:155px;">  <h1 class="title">Password:</h1></div>
-		  	  		       <div style="margin-left:30%; width:500px;">
-			  
-		  	  	<form name="clientPass" action="/">
-		  	       <div class="content-body">
-		  			   <div class="row">
-		  	               <div class="col-md-12 col-sm-12 col-xs-12">
-	                   <div class="form-group">
-	                       <label class="form-label" for="field-1">New Password:</label>
-	                       <div class="controls">
-	                           <input type="password" class="form-control" maxlength="55" id="storePassword" name="storePassword"  >
-	                       </div>
-	                   </div>
-					   
-	                   <div class="form-group">
-	                       <label class="form-label" for="field-1">Re-type New Password:</label>
-	                       <div class="controls">
-	                           <input type="password" class="form-control" maxlength="55" id="storeRTPassword" name="storeRTPassword"  >
-	                       </div>
-	                   </div>
-		  	 	     
-			 	 	<div class="form-group">
-			 	 	<input type="button" id="btn_registerStore" style="length:50px;" value="Change Password" class="pure-button pure-button-primary">
-			 	    </div>
+            <!-- START CONTENT -->
+        <div style="position:relative; left:144px; top:5px;">
+            <section class="wrapper" style='display:inline-block;width:100%;'>
+                <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
+                    <div class="page-title">
+                        <div class="pull-left">
 
-		  	  		     </div>
-		  	              </div>
-		  	              </div>
-		  	              </section>
-	             
-		  	              <!-- END CONTENT -->
-		  	              </div><!-- END CONTAINER -->
-		  	              <!-- LOAD FILES AT PAGE END FOR FASTER LOADING -->
-		  	              <!-- modal end -->		  
-		                  </div>
-<%include ../../generals/endFiles.ejs%>
+                            <div style="position:relative; left:144px;">  
+                                <h1 class="title">Password:</h1>
+                            </div>
+                            
+                            <div style="margin-left:30%; width:500px;">
 
-<script>
-    /* REGISTRATION STORE PROCESS */
-    $("#btn_registerStore").click(function(){
-            var Agencies = Parse.Object.extend("Agencies");
-            var agency = new Agencies();
+                                <div class="content-body">
+                                    <div class="row">
+                                        <div class="col-md-12 col-sm-12 col-xs-12">
+                                            <div class="form-group">
+                                                <label class="form-label" for="field-1">New Password:</label>
+                                                <div class="controls">
+                                                    <input type="password" class="form-control" maxlength="55" id="clientPassword" name="clientPassword"  >
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="form-label" for="field-1">Re-type New Password:</label>
+                                                <div class="controls">
+                                                    <input type="password" class="form-control" maxlength="55" id="clientRTPassword" name="clientRTPassword"  >
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <input type="button" id="btn_changePassword" style="length:50px;" value="Change Password" class="pure-button pure-button-primary">
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                        
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+                
+        <!-- END CONTENT -->
+        </div><!-- END CONTAINER -->
+        <!-- LOAD FILES AT PAGE END FOR FASTER LOADING -->
+        <!-- modal end -->		  
+        </div>
 		
-            agency.set("Name", $("#storeName").val() );
-            agency.set("Email", $("#storeEmail").val() );
-			agency.set("Contact", $("#storeContact").val() );
-			agency.set("ID1", $("#storeID").val() );
-            agency.set("Telephone", $("#storeTelephone").val() );
-            agency.set("Address", $("#storeAddress").val() );
-            agency.set("Country", $("#storeCountry").val() );
-            agency.set("CountryCode", $("#storeCountryCode").val() );
-            agency.set("GeoCode", $("#storeGeoCode").val() );
-            agency.set("Company", user.get("Company") );
-            agency.save({success:function(agency){
+
+    
+    
+		
+    <%include ../../generals/endFiles.ejs%>
+	  
+    <script>
+         
+
+    if( window.location.href.indexOf("cloudbox.parseapp") !=-1 )
+        Parse.initialize("Slh0vzK6DCaarshvF1Vu0ku3Rx2hwDdTaYwW7DLU", "TkJgyQRuMqqKtzZ6bEjdESPiUZ6sVkg3QntIxmh7");
+    else
+        Parse.initialize("XEPryFHrd5Tztu45du5Z3kpqxDsweaP1Q0lt8JOb", "MDhb1hBngr2tx2v9TjyzoUhMcOFeWGJ56TWvChqi");
+
+
+    /* GLOBAL USER */
+    var user;
+
+    /* OBTENCION Y ALMACENAMIENTO DEL CURRENT USER PARA USARSE CLIENTSIDE */
+    var query = new Parse.Query("User");
+    
+    query.descending('createdAt');
+    query.include("Company");
+    query.include("ClientID");
+    
+    query.get("<%= Parse.User.current().id %>", {
+        success: 
+            function(object)
+            {                
+                /* SAVE USER FOR FUTURE OPERATIONS */
+                user = object;
+                
+            }});
             
-                }});
-        });
 
-</script>
+        
+
+         
+     $("#btn_updateInformation").click(function(){
+            
+            var Agency = Parse.Object.extend("Agencies");
+            var agency = new Agency();
+            
+            agency.id = user.get("AgencyID").id;
+            
+            agency.set("Name", $("#clientName").val() );
+            agency.set("Address", $("#clientAddress").val() );
+            agency.set("AccountID", $("#clientAccountID").val() );
+            agency.set("State", $("#clientState").val() );
+            agency.set("Country", $("#clientCountry").val() );
+            agency.set("Zip", $("#clientZip").val() );
+            agency.set("Cellphone", $("#clientCel").val() );
+            agency.set("Language", $("#clientLanguage").val() );
+            agency.set("ID1", $("#clientID1").val() );
+            agency.set("Telephone", $("#clientTelephone").val() );
+            agency.set("Email", $("#clientEmail").val() );
+            
+            agency.save({success: function(){alert("SAVED");}});
+            
+         });
+        
+        
+        $("#btn_changePassword").click(function(){
+                
+                if($("#clientRTPassword").val() != $("#clientPassword").val() || $("#clientRTPassword").val()=="" || $("#clientPassword").val()=="")
+                {
+                    alert("Please verify your password");
+                    return;
+                }
+                
+                console.log("Saving");
+                
+                
+                Parse.Cloud.run('updateUserPassword', 
+                                {userId:user.id, newpass:$("#clientPassword").val()}, 
+                                {success: function(result)
+                                            {
+                                                alert("Password updated");
+                                            },
+                                 error: function(){
+                                                alert("Password reset, please login again");
+                                                window.location = "/" + user.get("Company").get("companyLink");
+                                            }});
+                
+                console.log("End save");
+                
+                /*
+                user.set("password", $("#clientPassword").val());
+                
+                user.save({success:function(user){
+                        alert("passwordchanged");
+                    }});*/
+                
+            });
+         
+    </script>
+	 
     </body>
 </html>

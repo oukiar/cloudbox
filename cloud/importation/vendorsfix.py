@@ -28,7 +28,7 @@ while n == 100:
         clients.append(i)
         batchclients.append(i)
         
-        accountID =  "A" + str(counter+cc).zfill(4)
+        accountID =  "AV" + str(counter+cc).zfill(4)
         
         print accountID
         
