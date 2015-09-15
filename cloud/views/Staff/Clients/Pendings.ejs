@@ -115,15 +115,15 @@
 		<!--START TOPBAR-->
 		<% include ../../generals/topbar.ejs %> 
         <!-- START CONTAINER -->
-        <div class="page-container row-fluid">
-        <!-- SIDEBAR - START -->
-        <!--  SIDEBAR - END -->	
-        <!-- START CONTENT -->
-        <section class="wrapper" style='display:inline-block;width:100%;'>
-        <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
-        <div class="page-title"> 
+       <div class="page-container row-fluid">
+       <!-- SIDEBAR - START -->
+       <!--  SIDEBAR - END -->	
+       <!-- START CONTENT -->
+       <section class="wrapper" style='display:inline-block;width:100%; position:relative; top:70px;'>
+       <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12' style="top:-21px;">
+       <div class="page-title">
             <% include clientsMenu.ejs%>
-       <h1 class="title" style="font-family: 'VT323', serif; font-size:50px; padding-left:13px; margin-top:50px;">Consignees - Pendings</h1>
+       <h1 class="title" style="font-family: 'VT323', serif; font-size:50px; padding-left:13px; margin-top:13px;">Consignees - Pendings</h1>
 	   <div id="content">
 	   <% include pendings_partitions/table.ejs %>
        </div>   
@@ -206,6 +206,22 @@
                 </tr>
                 <tr>
                     <td>
+                        <b>Account #</b>
+                    </td>
+                    <td id="tdCAccount" contenteditable='false'>
+                        <div id="clientAccount"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>Company Name</b>
+                    </td>
+                    <td id="tdCCompanyName" contenteditable='true'>
+                        <div id="clientCompanyName"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
                         <b>Address</b>
                     </td>
                     <td id="tdCAddress" contenteditable='true'>
@@ -214,10 +230,10 @@
                 </tr>
                 <tr>
                     <td>
-                        <b>Account #</b>
+                        <b>City:</b>
                     </td>
-                    <td id="tdCAccount" contenteditable='true'>
-                        <div id="clientAccount"></div>
+                    <td id="tdCCity" contenteditable='true'>
+                        <div id='clientCity'></div>
                     </td>
                 </tr>
                 <tr>
@@ -246,6 +262,14 @@
                 </tr>
                 <tr>
                     <td>
+                        <b>Telephone:</b>
+                    </td>
+                    <td id="tdCTel" contenteditable='true'>
+                        <div id='clientTelephoneInfo'></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
                         <b>Cellphone:</b>
                     </td>
                     <td id="tdCCel" contenteditable='true'>
@@ -262,24 +286,11 @@
                 </tr>
                 <tr>
                     <td>
-                        <b>Telephone:</b>
-                    </td>
-                    <td id="tdCTel" contenteditable='true'>
-                        <div id='clientTelephoneInfo'></div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
                         <b>ID:</b></td><td id="tdCID" contenteditable='true'>
                         <div id='clientIDInfo'></div>
                     </td>
                 </tr>
-                <!--<tr>
-                <td><b>Destinations:</b></td><td id="tdCDest" contenteditable='false'><div id='clientDestinationInfo'></div></td>
-                </tr>
-                <tr>
-                <td><b>Status:</b></td><td id="tdCStatus" contenteditable='false'><div id='clientStatusInfo'></div></td>
-                </tr>-->
+                
             </table>
             
             <a  href="#close" id="cancelConsignee" class="pure-button pure-button-primary" style="background:#E08566;">Cancel</a>
@@ -333,8 +344,10 @@
                 client.id = consigneeID;
                 
                 client.set("Name", $("#tdCName").text() );
+                client.set("CompanyName", $("#tdCCompanyName").text() );
                 client.set("Address", $("#tdCAddress").text() );
                 client.set("AccountID", $("#tdCAccount").text() );
+                client.set("City", $("#tdCCity").text() );
                 client.set("State", $("#tdCState").text() );
                 client.set("Country", $("#tdCCountry").text() );
                 client.set("Zip", $("#tdCZip").text() );
@@ -364,13 +377,6 @@
 
     <script>
     
-    /*
-    - Tabla clientside
-    - Bottom event para seguir haciendo fetch de la tabla en caso de tener mas de 100 registros
-    
-    - Cliente con sus consignees
-    */
-
     if( window.location.href.indexOf("cloudbox.parseapp") !=-1 )
         Parse.initialize("Slh0vzK6DCaarshvF1Vu0ku3Rx2hwDdTaYwW7DLU", "TkJgyQRuMqqKtzZ6bEjdESPiUZ6sVkg3QntIxmh7");
     else
@@ -571,8 +577,10 @@
             query.get(objectId, {success: function(client){
                             
                     $("#tdCName").html(tryget(client.get("Name") ));
+                    $("#tdCCompanyName").html(tryget(client.get("CompanyName") ));
                     $("#tdCAddress").html(tryget(client.get("Address")));
                     $("#tdCAccount").html(tryget(client.get("AccountID")));
+                    $("#tdCCity").html(tryget(client.get("City")));
                     $("#tdCState").html(tryget(client.get("State")));
                     $("#tdCCountry").html(tryget(client.get("Country")));
                     $("#tdCZip").html(tryget(client.get("Zip")));
@@ -707,4 +715,4 @@
     </body>
 	
 </html>
-v
+

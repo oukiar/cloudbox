@@ -5,12 +5,14 @@
 		
         <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
         <meta charset="utf-8" />
-        <title>LC Cargo</title>
+        <title>Register Client</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="login/css/site.20150911194255.css">
         <meta content="" name="description" />
         <meta content="" name="author" />
 		<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=VT323|Jura|EB+Garamond&amp;subset=all">
 	    <link rel="stylesheet" type="text/css" href="cod/labels/css/registerConsignee.css">
+	    <link rel="stylesheet" type="text/css" href="login/css/site.20150911194255.css">
         <!--ADMIN REQUIREMENTS-->   
         <% include ../../generals/ultraAdmin.ejs %>
         <script src="/cod/js/moment.js"></script>
@@ -23,280 +25,579 @@
         <link rel="stylesheet" href="/resources/demos/style.css">     
         
         <script src="//www.parsecdn.com/js/parse-1.4.2.min.js"></script>
-		
-        <script src="https://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
-        <script src="cod/js/jquery.geocomplete.js"></script>
-	    <style>
-	  	#geocomplete { width: 200px}
-	 
-		.map_canvas1 { 
-		  width:100%; 
-		  height: 100%; 
-  
-		}
-	  	#multiple li { 
-	  	    cursor: pointer; 
-	  	    text-decoration: underline; 
-	  		}
-			</style>
+ 	        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+ 	        <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+ 	        <script src="//www.parsecdn.com/js/parse-1.4.2.min.js"></script>
 
-		<script>
-		function deleteRow(btn) {
-		  var row = btn.parentNode.parentNode;
-		  row.parentNode.removeChild(row);
-		}
-		</script>
+ 		<script>
+ 		function registerClient(){
+ 			document.getElementById("LoginDivForm").style.display='none';
+ 			document.getElementById("registerClientForm").style.display = '';
+		
+ 		}
+	
+ 		function gobacktoLogin(){
+ 			document.getElementById("registerClientForm").style.display = 'none';
+ 			document.getElementById("LoginDivForm").style.display='';
+ 		}
+ 		</script>
+
+ 		<style>
+
+ 		    .centerRow { margin-left:auto; margin-right:auto; }
+ 		    .spaceRow { margin-top:10px; margin-bottom:10px; }
+
+ 		    .inputText {
+ 	            width: 230px;
+ 	            height: 33px;
+ 	            font-size: 11.25pt;
+ 	            font-family: Jura;
+ 	            font-weight: 400;
+ 	            color: rgb(64,64,64);
+ 	            text-align: center;}
+
+ 	        .buttonLogin {
+ 	            text-decoration: none;
+ 	            width: 200px;
+ 	            height: 30px;
+ 	            background-color: slategray;
+ 	            font-size: 9.00pt;
+ 	            font-weight: 400;
+ 	            font-style: normal;
+ 	            color: rgb(255,255,255);
+ 	        }
+
+ 	        .buttonOK {
+ 	            text-decoration: none;
+ 	            width: 200px;
+ 	            height: 30px;
+ 	            background-color: rgb(200,10,10);
+ 	            font-size: 9.00pt;
+ 	            font-weight: 400;
+ 	            font-style: normal;
+ 	            color: rgb(255,255,255);
+ 	        }
+
+ 	        .buttonCancel {
+ 	            text-decoration: none;
+ 	            width: 200px;
+ 	            height: 30px;
+ 	            background-color: rgb(10,10,200);
+ 	            font-size: 9.00pt;
+ 	            font-weight: 400;
+ 	            font-style: normal;
+ 	            color: rgb(255,255,255);
+ 	        }
+
+ 	        @font-face {
+ 	            font-family:"VT323";
+ 	            src: url("fonts/VT323-Regular.ttf");
+ 	        }
+
+ 	        @font-face {
+ 	            font-family:"Jura";
+ 	            src: url("fonts/Jura-Regular.ttf");
+ 	        }
+
+ 		</style>
+		
+ 		<style>
+ 		.modalDialog {
+ 			position: fixed;
+ 			font-family: Arial, Helvetica, sans-serif;
+ 			top: 0;
+ 			right: 0;
+ 			bottom: 0;
+ 			left: 0;
+ 			background: rgba(0,0,0,0.8);
+ 			z-index: 99999;
+ 			opacity:0;
+ 			-webkit-transition: opacity 400ms ease-in;
+ 			-moz-transition: opacity 400ms ease-in;
+ 			transition: opacity 400ms ease-in;
+ 			pointer-events: none;
+ 		}
+
+ 		.modalDialog:target {
+ 			opacity:1;
+ 			pointer-events: auto;
+ 		}
+
+ 		.modalDialog > div {
+ 			width: 400px;
+ 			position: relative;
+ 			/*margin: 10% auto;*/
+ 			margin-left: auto;
+ 			margin-right: auto;
+ 			margin-top: 10px;
+ 			padding: 5px 20px 13px 20px;
+ 			border-radius: 10px;
+ 			background: white;			
+ 		}
+
+ 		.close {
+ 			background: #606061;
+ 			color: #FFFFFF;
+ 			line-height: 25px;
+ 			position: absolute;
+ 			right: -12px;
+ 			text-align: center;
+ 			top: -10px;
+ 			width: 24px;
+ 			text-decoration: none;
+ 			font-weight: bold;
+ 			-webkit-border-radius: 12px;
+ 			-moz-border-radius: 12px;
+ 			border-radius: 12px;
+ 			-moz-box-shadow: 1px 1px 3px #000;
+ 			-webkit-box-shadow: 1px 1px 3px #000;
+ 			box-shadow: 1px 1px 3px #000;
+ 		}
+
+ 		.close:hover { background: #00d9ff; }
+		
+		
+ 		.modalDialog-CLREG {
+ 			position: fixed;
+ 			font-family: Arial, Helvetica, sans-serif;
+ 			top: 0;
+ 			right: 0;
+ 			bottom: 0;
+ 			left: 0;
+ 			background: rgba(0,0,0,0.8);
+ 			z-index: 99999;
+ 			opacity:0;
+ 			-webkit-transition: opacity 400ms ease-in;
+ 			-moz-transition: opacity 400ms ease-in;
+ 			transition: opacity 400ms ease-in;
+ 			pointer-events: none;
+ 		}
+
+ 		.modalDialog-CLREG:target {
+ 			opacity:1;
+ 			pointer-events: auto;
+ 		}
+
+ 		.close-CLREG {
+ 			background: #606061;
+ 			color: #FFFFFF;
+ 			line-height: 25px;
+ 			position: absolute;
+ 			right: -12px;
+ 			text-align: center;
+ 			top: -10px;
+ 			width: 24px;
+ 			text-decoration: none;
+ 			font-weight: bold;
+ 			-webkit-border-radius: 12px;
+ 			-moz-border-radius: 12px;
+ 			border-radius: 12px;
+ 			-moz-box-shadow: 1px 1px 3px #000;
+ 			-webkit-box-shadow: 1px 1px 3px #000;
+ 			box-shadow: 1px 1px 3px #000;
+ 		}
+
+ 		.close:hover { background: #00d9ff; }
+ 		</style>
+  
+	    
           
         </head>
         <!-- END HEAD -->
         <!-- BEGIN BODY -->
         <body id="body-3">
-		<!--START TOPBAR-->
-		<div style="z-index:9999;">
-	<% include ../../generals/topbar.ejs %>
-</div> 
-	   	<!-- START CONTENT -->
-    
-		  <div style="position:absolute; left:8%; top:-1px;">
-	  		     		<form id="contactform" class="contactform" method="post" action="/" align="center">
-	  			<div class="section-3-REG" id="regClient">
-	  			<div class="cont-135-REG" id="regClient">
-	  			<div class="cont-136-REG" id="regClient">
-	  			<div class="cont-137-REG" id="regClient">
-	  			<div class="cont-138-REG" id="regClient"><p class="para-57">
-	  				<span class="font-57-REG">Register Client</span></p></div>
-	  								</div>
-	  							</div>
-	  				<div class="cont-139-REG" id="regClient">
-	  				<div class="colwrapper-42-REG" id="regClient">
-	  				<div class="cont-140-REG" id="regClient">
-	  				<div class="cont-141-REG" id="regClient"><p class="para-58-REG"><span class="font-58-REG">Full Name:</span></p></div>
-	  									  		  	</div>
-	  									  		  	</div>
-	  			<div class="colwrapper-43-REG" id="regClient">
-	  			<div class="cont-142-REG" id="regClient">
-	  			<input type="text" id="usrFullName" name="usrFullName" class="input-REG">
-	  			</div>
-	  			</div>
-	  			<div class="colwrapper-44-REG" id="regClient">
-	  			<div class="cont-143-REG" id="regClient">
-	  			<div class="cont-144-REG" id="regClient"><p class="para-59-REG"><span class="font-60-REG">Destinations:</span></p></div>
-	  			</div>
-	  			</div>
-	  			<div class="colwrapper-45-REG">
-	  			<div class="cont-145-REG">
-	  			<input id="geocomplete" type="text" placeholder="Type in an address" class="input-2-REG"/><button id="find" style="display:none;"  id="nesto-submit" class="btn btn-lg btn-nesto-o" style="top:-80px; left:40%;"/>Add</button>
-	  						</div>
-	  						</div>
-	  						</div>
-	  								<div class="cont-146-REG" id="regClient">
-	  								<div class="colwrapper-46-REG" id="regClient">
-	  								<div class="cont-147-REG" id="regClient">
-	  								<div class="cont-148-REG" id="regClient">
-	  							    <p class="para-60-REG">
-	  								<span class="font-61-REG">Language:</span>
-	  							</p></div>
-	  								</div>
-	  								<div class="cont-149-REG" id="regClient">
-	  								<div class="cont-150-REG" id="regClient"><p class="para-61-REG"><span class="font-63-REG">ID:</span></p></div>
-	  								</div>
-	  								</div>
-	  								<div class="colwrapper-47-REG" id="regClient">
-	  								<div class="cont-151-REG" id="regClient">
-	  		                        <input type="text" maxlength="55" id="usrLanguage" name="usrLanguage" class="input-3-REG">
-	  								</div>
-	  								<div class="cont-152-REG" id="regClient">
-	  								<input type="text" name="usrID1" id="usrID1" class="input-4-REG">
-	  								</div>
-	  								</div>
-	  								<div class="colwrapper-48-REG">
-	  								<div class="cont-153-REG">
-	  							    <pre><b>Destinations List:</b> 
-	  							    <table id="logger" style='overflow:scroll;'>
-	                                  </table>
-	  								</pre>
-	  								</div>
-	  								</div>
-	  								</div>
-	  								<div class="cont-154-REG" id="regClient" style="float:left;">
-	  								<div class="colwrapper-49-REG" id="regClient">
-	  								<div class="cont-155-REG" id="regClient">
-	  							    <div class="cont-156-REG" id="regClient">
-	  							    <p class="para-62-REG">
-	  							     <span class="font-65-REG">Tel:</span></p></div>
-	  									  		  						</div>
-	  									  		  					</div>
-	  								<div class="colwrapper-50-REG" id="regClient">
-	  								<div class="cont-157-REG" id="regClient">
-	  								<input type="text" maxlength="55" id="usrTel" name="usrTel" class="input-5-REG">
-	  									  		  						</div>
-	  									  		  					</div>
-	  									  		  				</div>
-	  								<div class="cont-158-REG" id="regClient">
-	  								<div class="colwrapper-51-REG" id="regClient">
-	  								<div class="cont-159-REG" id="regClient">
-	  								<div class="cont-160-REG" id="regClient">
-	  								<p class="para-63-REG"><span class="font-66-REG">Cel:</span></p>
-	  								</div>
-	  								</div>
-	  						<div class="cont-161-REG" id="regClient">
-	  						<div class="cont-162-REG" id="regClient">
-	  					<p class="para-64-REG"><span class="font-67-REG">Email:</span></p></div>
-	  									  		  		</div>
-	  				<div class="cont-163-REG" id="regClient">
-	  				<div class="cont-164-REG" id="regClient">
-	  				<p class="para-65-REG"><span class="font-68-REG">Username:</span></p></div>
-	  									  		  						</div>
-	  				<div class="cont-165-REG" id="regClient">
-	  				<div class="cont-166-REG" id="regClient">
-	  			<p class="para-66-REG">
-	  				<span class="font-69-REG">Password:</span>
-	  			</p></div>
-	  									  		  						</div>
-	  									  		  					</div>
-	  		<div class="colwrapper-52-REG" id="regClient">
-	  		<div class="cont-167-REG" id="regClient">
-	  	    <input type="text" name="text" class="input-6-REG">
-	  									  		  						</div>
-	  		<div class="cont-168-REG" id="regClient">
-	  		<input type="text" maxlength="55" id="usrEmail" name="usrEmail" class="input-7-REG">
-	  		</div>
-	  		<div class="cont-169-REG" id="regClient">
-	  		<input type="text" name="usrUsername" id="usrUsername" class="input-8-REG">
-	  		</div>
-	  		<div class="cont-170-REG" id="regClient">
-	  		<input type="password" name="usrPassword" id="usrPassword" class="input-9-REG">
-	  		</div>
-	  		</div>
-	  		<div class="colwrapper-53-REG" id="regClient">
-				<div class="cont-171-REG">
-         
-                             <div class="map_canvas1" >
+		
+		
+				 		<div class="section-2-CLREG" id="sparks">
+				 			<div class="cont-33-CLREG" id="sparks">
+				 				<div class="colwrapper-13-CLREG" id="sparks">
+				 					<div class="cont-34-CLREG" id="sparks">
+				 						<div class="colwrapper-14-CLREG" id="sparks">
+				 							<div class="cont-35-CLREG" id="sparks">
+				 								<div class="cont-36-CLREG" id="sparks">
+				 									<div class="cont-37-CLREG" id="sparks"><p class="para-10-CLREG"><span class="font-10-CLREG">CLIENT REGISTRATION</span></p></div>
+				 								</div>
+				 							</div>
+				 							<div class="cont-38-CLREG" id="sparks"></div>
+				 						</div>
+				 					</div>
+				 					<div class="cont-39-CLREG" id="sparks">
+				 						<div class="cont-40-CLREG" id="sparks">
+				 							<div class="colwrapper-15-CLREG" id="sparks">
+				 								<div class="cont-41-CLREG" id="sparks">
+				 									<div class="cont-42-CLREG" id="sparks"><p class="para-11-CLREG"><span class="font-11-CLREG">Full Name:</span></p></div>
+				 								</div>
+				 							</div>
+				 							<div class="colwrapper-16-CLREG" id="sparks">
+				 								<div class="cont-43-CLREG" id="sparks">
+				 									<input id="RegClientFullName" type="text" class="input-3-CLREG">
+				 								</div>
+				 							</div>
+				 							<div class="colwrapper-17-CLREG" id="sparks">
+				 								<div class="cont-44-CLREG" id="sparks">
+				 									<div class="cont-45-CLREG" id="sparks"><p class="para-12-CLREG"><span class="font-12-CLREG">Address:</span></p></div>
+				 								</div>
+				 							</div>
+				 							<div class="colwrapper-18-CLREG" id="sparks">
+				 								<div class="cont-46-CLREG" id="sparks">
+				 									<input id="RegClientAddress" type="text" class="input-4-CLREG">
+				 								</div>
+				 							</div>
+				 						</div>
+				 						<div class="cont-47-CLREG" id="sparks">
+				 							<div class="colwrapper-19-CLREG" id="sparks">
+				 								<div class="cont-48-CLREG" id="sparks">
+				 									<div class="cont-49-CLREG" id="sparks"><p class="para-13-CLREG"><span class="font-13-CLREG">Company Name</span><span class="font-14-CLREG">:</span></p></div>
+				 								</div>
+				 							</div>
+				 							<div class="colwrapper-20-CLREG" id="sparks">
+				 								<div class="cont-50-CLREG" id="sparks">
+				 									<input type="text" id="RegClientAccount" class="input-5-CLREG">
+				 								</div>
+				 							</div>
+				 							<div class="colwrapper-21-CLREG" id="sparks">
+				 								<div class="cont-51-CLREG" id="sparks">
+				 									<div class="cont-52-CLREG" id="sparks"><p class="para-14-CLREG"><span class="font-15-CLREG">City:</span></p></div>
+				 								</div>
+				 							</div>
+				 							<div class="colwrapper-22-CLREG" id="sparks">
+				 								<div class="cont-53-CLREG" id="sparks">
+				 									<input type="text" name="text" class="input-6-CLREG">
+				 								</div>
+				 							</div>
+				 						</div>
+				 						<div class="cont-54-CLREG" id="sparks">
+				 							<div class="colwrapper-23-CLREG" id="sparks">
+				 								<div class="cont-55-CLREG" id="sparks">
+				 									<div class="cont-56-CLREG" id="sparks"><p class="para-15-CLREG"><span class="font-16-CLREG">ID:</span><span class="font-17-CLREG">:</span></p></div>
+				 								</div>
+				 							</div>
+				 							<div class="colwrapper-24-CLREG" id="sparks">
+				 								<div class="cont-57-CLREG" id="sparks">
+				 									<input type="text" id="RegClientID" class="input-7-CLREG">
+				 								</div>
+				 							</div>
+				 							<div class="colwrapper-25-CLREG" id="sparks">
+				 								<div class="cont-58-CLREG" id="sparks">
+				 									<div class="cont-59-CLREG" id="sparks"><p class="para-16-CLREG"><span class="font-18-CLREG">State:</span></p></div>
+				 								</div>
+				 							</div>
+				 							<div class="colwrapper-26-CLREG" id="sparks">
+				 								<div class="cont-60-CLREG" id="sparks">
+				 									<input type="text" id="RegClientState" class="input-8-CLREG">
+				 								</div>
+				 							</div>
+				 						</div>
+				 						<div class="cont-61-CLREG" id="sparks">
+				 							<div class="colwrapper-27-CLREG" id="sparks">
+				 								<div class="cont-62-CLREG" id="sparks">
+				 									<div class="cont-63-CLREG" id="sparks"><p class="para-17-CLREG"><span class="font-19-CLREG">Tel</span><span class="font-20-CLREG">:</span></p></div>
+				 								</div>
+				 							</div>
+				 							<div class="colwrapper-28-CLREG" id="sparks">
+				 								<div class="cont-64-CLREG" id="sparks">
+				 									<input type="text" id="RegClientTel" class="input-9-CLREG">
+				 								</div>
+				 							</div>
+				 							<div class="colwrapper-29-CLREG" id="sparks">
+				 								<div class="cont-65-CLREG" id="sparks">
+				 									<div class="cont-66-CLREG" id="sparks"><p class="para-18-CLREG"><span class="font-21-CLREG">Country:</span></p></div>
+				 								</div>
+				 							</div>
+				 							<div class="colwrapper-30-CLREG" id="sparks">
+				 								<div class="cont-67-CLREG" id="sparks">
+				 									<input type="text" id="RegClientCountry" class="input-10-CLREG">
+				 								</div>
+				 							</div>
+				 						</div>
+				 						<div class="cont-68-CLREG" id="sparks">
+				 							<div class="colwrapper-31-CLREG" id="sparks">
+				 								<div class="cont-69-CLREG" id="sparks">
+				 									<div class="cont-70-CLREG" id="sparks"><p class="para-19-CLREG"><span class="font-22-CLREG">Cel:</span></p></div>
+				 								</div>
+				 							</div>
+				 							<div class="colwrapper-32-CLREG" id="sparks">
+				 								<div class="cont-71-CLREG" id="sparks">
+				 									<input type="text" id="RegClientCel" class="input-11-CLREG">
+				 								</div>
+				 							</div>
+				 							<div class="colwrapper-33-CLREG" id="sparks">
+				 								<div class="cont-72-CLREG" id="sparks">
+				 									<div class="cont-73-CLREG" id="sparks"><p class="para-20-CLREG"><span class="font-23-CLREG">ZIP:</span></p></div>
+				 								</div>
+				 							</div>
+				 							<div class="colwrapper-34-CLREG" id="sparks">
+				 								<div class="cont-74-CLREG" id="sparks">
+				 									<input type="text" id="RegClientZip" class="input-12-CLREG">
+				 								</div>
+				 							</div>
+				 						</div>
+				 						<div class="cont-75-CLREG" id="sparks">
+				 							<div class="colwrapper-35-CLREG" id="sparks">
+				 								<div class="cont-76-CLREG" id="sparks">
+				 									<div class="cont-77-CLREG" id="sparks"><p class="para-21-CLREG"><span class="font-24-CLREG">Email:</span></p></div>
+				 								</div>
+				 							</div>
+				 							<div class="colwrapper-36-CLREG" id="sparks">
+				 								<div class="cont-78-CLREG" id="sparks">
+				 									<input type="text" id="RegClientEmail" class="input-13-CLREG">
+				 								</div>
+				 							</div>
+				 							<div class="colwrapper-37-CLREG" id="sparks">
+				 								<div class="cont-79-CLREG" id="sparks">
+				 									<input id="RegClientSHIP" type="checkbox" class="input-14-CLREG" checked>
+				 								</div>
+				 							</div>
+				 							<div class="colwrapper-38-CLREG" id="sparks">
+				 								<div class="cont-80-CLREG" id="sparks">
+				 									<div class="cont-81-CLREG" id="sparks"><p class="para-22-CLREG"><span class="font-25-CLREG">Shipper</span></p></div>
+				 								</div>
+				 							</div>
+				 							<div class="colwrapper-39-CLREG" id="sparks">
+				 								<div class="cont-82-CLREG" id="sparks">
+				 									<input id="RegClientCONS" type="checkbox" class="input-15-CLREG" checked>
+				 								</div>
+				 							</div>
+				 							<div class="colwrapper-40-CLREG" id="sparks">
+				 								<div class="cont-83-CLREG" id="sparks">
+				 									<div class="cont-84-CLREG" id="sparks"><p class="para-23-CLREG"><span class="font-26-CLREG">Consignee</span></p></div>
+				 								</div>
+				 							</div>
+				 						</div>
+				 						<div class="cont-85-CLREG" id="sparks"></div>
+				 						<div class="cont-86-CLREG" id="sparks">
+				 							<div class="colwrapper-41-CLREG" id="sparks">
+				 								<div class="cont-87-CLREG" id="sparks">
+				 									<div class="cont-88-CLREG" id="sparks"><p class="para-24-CLREG"><span class="font-27-CLREG">Username:</span></p></div>
+				 								</div>
+				 							</div>
+				 							<div class="colwrapper-42-CLREG" id="sparks">
+				 								<div class="cont-89-CLREG" id="sparks">
+				 									<input type="text" id="txt_user" class="input-16-CLREG">
+				 								</div>
+				 							</div>
+				 							<div class="colwrapper-43-CLREG" id="sparks">
+				 								<div class="cont-90-CLREG" id="sparks">
+				 									<div class="cont-91-CLREG" id="sparks"><p class="para-25-CLREG"><span class="font-28-CLREG">Password:</span></p></div>
+				 								</div>
+				 							</div>
+				 							<div class="colwrapper-44-CLREG" id="sparks">
+				 								<div class="cont-92-CLREG" id="sparks">
+				 									<input type="password" id="txt_pass" class="input-17-CLREG">
+				 								</div>
+				 							</div>
+				 						</div>
+				 						<div class="cont-93-CLREG" id="sparks">
+				 							<div class="colwrapper-45-CLREG" id="sparks">
+				 								<div class="cont-94-CLREG" id="sparks"></div>
+				 								<div class="cont-95-CLREG" id="sparks">
+				 									<div class="cont-96-CLREG" id="sparks"><p class="para-26-CLREG"><span class="font-29-CLREG">To add more names you would like to use to send or receive your merchandise add consignees.</span></p></div>
+				 								</div>
+				 							</div>
+				 						</div>
+				 						<div class="cont-97-CLREG" id="sparks">
+				 							<div class="colwrapper-46-CLREG" id="sparks">
+				 								<div class="cont-98-CLREG" id="sparks">
+				 									<div class="colwrapper-47-CLREG" id="sparks">
+				 										<div class="cont-99-CLREG" id="sparks">
+				 											<div class="cont-100-CLREG" id="sparks"><p class="para-27-CLREG"><span class="font-30-CLREG">Consignees (<span id="consigneesCount">0</span>) <a href="#consigneesList">View All</a></span></p></div>
+				 										</div>
+				 									</div>
+				 									<div class="colwrapper-48-CLREG" id="sparks">
+				 										<div class="cont-101-CLREG" id="sparks">
+				 											<a class="button-2-CLREG" href="#addConsigneeForm" style="text-decoration: none;">ADD</a>
+				 										</div>
+				 									</div>
+				 								</div>
+				 								<div class="cont-102-CLREG" id="sparks"></div>
+				 							</div>
+				 						</div>
+				 						<div class="cont-103-CLREG" id="sparks">
+				 							<div class="colwrapper-49-CLREG" id="sparks">
+				 								<div class="cont-104-CLREG" id="sparks">
+				 									<a class="button-3-CLREG" href="#close">Cancel</a>
+				 								</div>
+				 							</div>
+				 							<div class="colwrapper-50-CLREG" id="sparks">
+				 								<div class="cont-105-CLREG" id="sparks">
+				 									<button class="button-4-CLREG" type="submit" id="btn_regConsignee">Register</button>
+				 								</div>
+				 							</div>
+				 						</div>
+				 					</div>
+				 				</div>
+				 			</div>
+				 		</div>
+				 		<script type="text/javascript">
+				 			var androidBrowserVersion = RegExp(/Mozilla\/5\.0 \(Linux; .; Android ([\d.]+)/).exec(navigator.userAgent);
+				 if(androidBrowserVersion && parseFloat(androidBrowserVersion[1]) < 5) { document.getElementsByTagName('body')[0].className+=' whitespacefix'; }
+				 		</script>
+			 
+   
+	    </div>
 
-                             </div>                       
-              
-				</div>
-	  		<div>
-                              
-			                              
-	  									  		  						</div>
-	  									  		  					</div>
-	  									  		  				</div>
-	  	<div class="cont-172-REG" id="regClient">
-	  	<div class="colwrapper-54-REG" id="regClient">
-	  	<div class="cont-173-REG" id="regClient">
-	  	<div class="cont-174-REG" id="regClient">
-	  		<p class="para-67-REG"><span class="font-71-REG">Re-type Password:</span></p></div>
-	  									  		  						</div>
-	  									  		  					</div>
-	  			<div class="colwrapper-55-REG" id="regClient">
-	  			<div class="cont-175-REG" id="regClient">
-	  			<input type="password" id="usrRePassword" name="usrRePassword" class="input-10-REG">
-	  			</div>
-	  			</div>
-	  			<div class="colwrapper-56-REG" id="regClient">
-	  			<div class="cont-176-REG" id="regClient">
-	  		
-	  			</div>
-	  			</div>
-	  			<div class="colwrapper-57-REG" id="regClient">
-	  			<div class="cont-177-REG" id="regClient">
-	  		    <input type="hidden" name="companyID" value="<!-- company.id%>">
-	  			<input type="submit" class="button-2-REG">Save</a>
-	  			</div>
-	  									  		  					</div>
-	  									  		  				</div>
-	  			<div class="cont-178-REG" id="regClient"></div>
-	  									  		  			</div>
-	  				</div>
-	  			</form>
-	  	    <script type="text/javascript">
-	  		var androidBrowserVersion = RegExp(/Mozilla\/5\.0 \(Linux; .; Android ([\d.]+)/).exec(navigator.userAgent);
-	  		if(androidBrowserVersion && parseFloat(androidBrowserVersion[1]) < 5) { document.getElementsByTagName('body')[0].className+=' whitespacefix'; }
-	  		</script>
-	  						</div>
-		  </div>
+
+	    <div id="addConsigneeForm" class="modalDialog-CLREG">
+	            <a href="#registerClientForm" title="Close" class="close">X</a>
+
+						<div id="sparks" class="section-3-ADCO" > 
+							<div id="sparks" class="cont-106-ADCO" >
+								<div id="sparks" class="cont-107-ADCO" >
+									<div id="sparks" class="cont-108-ADCO" ><p class="para-28-ADCO"><span class="font-31-ADCO">CONSIGNEE INFORMATION</span></p></div>
+								</div>
+							</div>
+							<div id="sparks" class="cont-109-ADCO" >
+								<div id="sparks" class="colwrapper-51-ADCO" >
+									<div id="sparks" class="cont-110-ADCO" ></div>
+									<div id="sparks" class="cont-111-ADCO" >
+										<div id="sparks" class="cont-112-ADCO" >
+											<div id="sparks" class="colwrapper-52-ADCO" >
+												<div id="sparks" class="cont-113-ADCO" >
+													<div id="sparks" class="cont-114-ADCO" ><p class="para-29-ADCO"><span class="font-32-ADCO">Full Name:</span></p></div>
+												</div>
+											</div>
+											<div id="sparks" class="colwrapper-53-ADCO" >
+												<div id="sparks" class="cont-115-ADCO" >
+													<input type="text" id="FullnameMainClient" class="input-18-ADCO">
+												</div>
+											</div>
+											<div id="sparks" class="colwrapper-54-ADCO" >
+												<div id="sparks" class="cont-116-ADCO" >
+													<div id="sparks" class="cont-117-ADCO" ><p class="para-30-ADCO"><span class="font-33-ADCO">Address:</span></p></div>
+												</div>
+											</div>
+											<div id="sparks" class="colwrapper-55-ADCO">
+												<div id="sparks" class="cont-118-ADCO">
+													<input type="text" id="AddressMainClient" class="input-19-ADCO">
+												</div>
+											</div>
+										</div>
+										<div id="sparks" class="cont-119-ADCO">
+											<div id="sparks" class="colwrapper-56-ADCO">
+												<div id="sparks" class="cont-120-ADCO">
+													<div id="sparks" class="cont-121-ADCO"><p class="para-31-ADCO"><span class="font-34-ADCO">Tel:</span></p></div>
+												</div>
+											</div>
+											<div id="sparks" class="colwrapper-57-ADCO">
+												<div id="sparks" class="cont-122-ADCO">
+													<input type="text" id="TelMainClient" class="input-20-ADCO">
+												</div>
+											</div>
+											<div id="sparks" class="colwrapper-58-ADCO">
+												<div id="sparks" class="cont-123-ADCO">
+													<div id="sparks" class="cont-124-ADCO"><p class="para-32-ADCO"><span class="font-35-ADCO">City:</span></p></div>
+												</div>
+											</div>
+											<div id="sparks" class="colwrapper-59-ADCO">
+												<div id="sparks" class="cont-125-ADCO">
+													<input type="text" name="text" class="input-21-ADCO">
+												</div>
+											</div>
+										</div>
+										<div id="sparks" class="cont-126-ADCO">
+											<div id="sparks" class="colwrapper-60-ADCO">
+												<div id="sparks" class="cont-127-ADCO">
+													<div id="sparks" class="cont-128-ADCO"><p class="para-33-ADCO"><span class="font-36-ADCO">Cel:</span></p></div>
+												</div>
+											</div>
+											<div id="sparks" class="colwrapper-61-ADCO">
+												<div id="sparks" class="cont-129-ADCO">
+													<input type="text" id="CelMainClient" class="input-22-ADCO">
+												</div>
+											</div>
+											<div id="sparks" class="colwrapper-62-ADCO">
+												<div id="sparks" class="cont-130-ADCO">
+													<div id="sparks" class="cont-131-ADCO"><p class="para-34-ADCO"><span class="font-37-ADCO">State:</span></p></div>
+												</div>
+											</div>
+											<div id="sparks" class="colwrapper-63-ADCO">
+												<div id="sparks" class="cont-132-ADCO">
+													<input type="text" id="StateMainClient" class="input-23-ADCO">
+												</div>
+											</div>
+										</div>
+										<div id="sparks" class="cont-133-ADCO">
+											<div id="sparks" class="colwrapper-64-ADCO">
+												<div id="sparks" class="cont-134-ADCO">
+													<div id="sparks" class="cont-135-ADCO"><p class="para-35-ADCO"><span class="font-38-ADCO">Email:</span></p></div>
+												</div>
+											</div>
+											<div id="sparks" class="colwrapper-65-ADCO">
+												<div id="sparks" class="cont-136-ADCO">
+													<input type="text" name="text" class="input-24-ADCO">
+												</div>
+											</div>
+											<div id="sparks" class="colwrapper-66-ADCO">
+												<div id="sparks" class="cont-137-ADCO">
+													<div id="sparks" class="cont-138-ADCO"><p class="para-36-ADCO"><span class="font-39-ADCO">Country:</span></p></div>
+												</div>
+											</div>
+											<div id="sparks" class="colwrapper-67-ADCO">
+												<div id="sparks" class="cont-139-ADCO">
+													<input type="text" id="CountryMainClient" class="input-25-ADCO">
+												</div>
+											</div>
+										</div>
+										<div id="sparks" class="cont-140-ADCO">
+											<div id="sparks" class="colwrapper-68-ADCO">
+												<div id="sparks" class="cont-141-ADCO">
+													<div id="sparks" class="cont-142-ADCO"><p class="para-37-ADCO"><span class="font-40-ADCO">ZIP:</span></p></div>
+												</div>
+											</div>
+											<div id="sparks" class="colwrapper-69-ADCO">
+												<div id="sparks" class="cont-143-ADCO">
+													<input type="text" id="ZipMainClient" class="input-26-ADCO">
+												</div>
+											</div>
+										</div>
+										<div id="sparks" class="cont-144-ADCO">
+											<div id="sparks" class="colwrapper-70-ADCO">
+												<div id="sparks" class="cont-145-ADCO">
+													<a class="button-5-ADCO" href="#registerClientForm">Cancel</a>
+												</div>
+											</div>
+											<div id="sparks" class="colwrapper-71-ADCO">
+												<div id="sparks" class="cont-146-ADCO">
+													<button class="button-6-ADCO" id="btn_addconsignee">Add Consignee</button>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<script type="text/javascript">
+							var androidBrowserVersion = RegExp(/Mozilla\/5\.0 \(Linux; .; Android ([\d.]+)/).exec(navigator.userAgent);
+				if(androidBrowserVersion && parseFloat(androidBrowserVersion[1]) < 5) { document.getElementsByTagName('body')[0].className+=' whitespacefix'; }
+						</script>
+	        </div>
+	    </div>
+
+
+	    <div id="consigneesList" class="modalDialog">
+	        <div style="width:600px;">
+	            <a href="#registerClientForm" title="Close" class="close">X</a>
+
+	            <table style="width:100%;" border=0 id="lst_consignees" >
+	                <thead>
+	                    <tr>
+	                        <th>Name</th>
+	                        <th>Country</th>
+	                        <th>X</th>
+	                    </tr>
+	                </thead>
+
+	                <tbody>
+	                </tbody>
+	            </table>
+	        </div>
+	    </div>
+		
 		  	  
         <%include ../../generals/endFiles.ejs%>
 
         <!-- modal end -->
    
-    <!-- modal end -->
-   <script>
-     var nwarehouses = 1;
-         $(function(){
-			 
-             var options = {
-           
-             };
-
-               $("#geocomplete").geocomplete(options)
-                 .bind("geocode:result", function(event, result){
-                     /*alert(JSON.stringify(result) );*/
-                   $.log(result);
-                 })
-
-                 .bind("geocode:error", function(event, status){
-                   /*$j.log("ERROR: " + status);*/
-                 })
-
-                 .bind("geocode:multiple", function(event, results){
-                   /*$j.log("Multiple: " + results.length + " results found");*/
-                 });
-             });
-
-             $("#find").click(function(){
-               $("#geocomplete").val('');
-             });
-
-
-             $.log = function(result){
-               var message = result.formatted_address;
-               var wareName = result["address_components"][0]["long_name"];
-
-               var long_name;
-               var short_name;
-
-               for( i in result["address_components"] )
-               {
-                   if( $.inArray("country", result["address_components"][i]["types"]) > -1)
-                   {
-                       wareName += " - " + result["address_components"][i]["long_name"];
-                       long_name = result["address_components"][i]["long_name"];
-                       short_name = result["address_components"][i]["short_name"];
-                       break;
-                   }
-               }
-
-               var logger = $("#logger");
-               logger.html(logger.html()+ "<tr><td style='white-space: nowrap; padding-top: 0px;' align='left'>" + 
-             "<a onclick='deleteRow(this)' style='color:#E64016;'>Delete</a>"  +
-                               "\n * " + message + "\n" + "<b><font color='#E08566'>Destination Name:</font></b>" + "\n" + 
-                               "<input type='text' id='Alias" + nwarehouses.toString() + "' value='"+ wareName +
-                               "' placeholder='Destination Name' style='width:34%; background:white; height:34px;'><input type='hidden' value='" + message +
-                               "' id='Address"+ nwarehouses.toString() +"'>"+  
-                               "<input type='hidden' id='Country"+ nwarehouses.toString() +"' value='"+ long_name +"'>" +
-                               "<input type='hidden' id='CountryCode"+ nwarehouses.toString() +"' value='"+ short_name +"'>" +
-                               "<input type='hidden' id='GeoCode"+ nwarehouses.toString() +"' value='"+ JSON.stringify(result) +"'></td></tr>");
-     
-               nwarehouses += 1;
-
-               $("#geocomplete").val('');
-   			$("#clientAddress").val(result.formatted_address);
-               $("#clientAlias").val(wareName);
-               $("#clientCountry").val(long_name);
-               $("#clientCountryCode").val(short_name);
-               $("#clientGeoCode").val(JSON.stringify(result) );
-
-             };
-
-     		function deleteRow(btn) {
-     		  var row = btn.parentNode.parentNode;
-     		  row.parentNode.removeChild(row);
-     		}
-   
-   </script>
-    
         
     </body>
 	

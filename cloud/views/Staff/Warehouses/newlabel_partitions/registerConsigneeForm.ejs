@@ -11,27 +11,28 @@
                         
                        <table border=0 style="margin-left:20px; margin-top:10px; height:150px; background-color:white;">
                                 <tr>
-                                    <td><span class="input-LOGIN">Full Name:</span></td><td> <input id="RegClientFullName" type="text" class="textboxform"></td>
+                                    <td><span class="font-24-REG">Full Name:*</span></td><td> <input id="RegClientFullName" type="text" class="textboxform"></td>
                                     <td><span class="font-24-REG">Address:</span></td><td> <input  id="RegClientAddress" type="text" class="formInputText"></td>
                                 </tr>
                                 <tr>
-                                    <td><span class="font-24-REG">Account #:</span></td><td> <input  id="RegClientAccount" type="text" class="formInputText"></td>
-                                    <td><span class="font-24-REG">State:</span></td><td> <input  id="RegClientState" type="text" class="formInputText"></td>
+                                    <td><span class="font-24-REG">Company Name:</span></td><td> <input  id="RegClientCompanyName" type="text" class="formInputText"></td>
+                                    <td><span class="font-24-REG">City:</span></td><td> <input  id="RegClientCity" type="text" class="formInputText"></td>
                                 </tr>
                                 <tr>
                                     <td><span class="font-24-REG">ID:</span></td><td> <input  id="RegClientID" type="text" class="formInputText"></td>
-                                    <td><span class="font-24-REG">Country:</span></td><td> <input  id="RegClientCountry" type="text" class="formInputText"></td>
+                                    <td><span class="font-24-REG">State:</span></td><td> <input  id="RegClientState" type="text" class="formInputText"></td>
                                 </tr>
                                 <tr>
                                     <td><span class="font-24-REG">Tel:</span></td><td> <input id="RegClientTel"  type="text" class="formInputText"></td>
-                                    <td><span class="font-24-REG">Zip code:</span></td><td> <input  id="RegClientZip"type="text" class="formInputText"></td>
+                                    <td><span class="font-24-REG">Country:</span></td><td> <input  id="RegClientCountry" type="text" class="formInputText"></td>
                                 </tr>
                                 <tr>
                                     <td><span class="font-24-REG">Cel:</span></td><td> <input  id="RegClientCel" type="text" class="formInputText"></td>
-                                    <td colspan="2"><input  id="RegClientSHIP" type="checkbox" checked> Shipper <input  id="RegClientCONS" type="checkbox" checked> Consignee</td>
+                                    <td><span class="font-24-REG">Zip code:</span></td><td> <input  id="RegClientZip"type="text" class="formInputText"></td>
                                 </tr>
                                 <tr>
                                     <td><span class="font-24-REG">Email:</span></td><td> <input  id="RegClientEmail" type="text" class="formInputText"></td>
+                                    <td colspan="2"><input  id="RegClientSHIP" type="checkbox" checked> Shipper <input  id="RegClientCONS" type="checkbox" checked> Consignee</td>
                                 </tr>
                         </table>
                         <br>
@@ -40,16 +41,13 @@
                         </div>
                         <table style="margin-left:30px; margin-top:20px; width:300px; height:150px; background-color:white;">
                             <tr>
-                                <td width=200><span class="font-24-REG">Full Name:</span><td><td> <input  id="FullnameMainClient" type="text" class="formInputText"></td>
+                                <td width=200><span class="font-24-REG">Full Name:*</span><td><td> <input  id="FullnameMainClient" type="text" class="formInputText"></td>
                             </tr>
                             <tr>
                                 <td><span class="font-24-REG">Address:</span><td><td> <input id="AddressMainClient" type="text" class="formInputText"></td>
                             </tr>
                             <tr>
-                                <td><span class="font-24-REG">TEL:</span><td><td> <input  id="TelMainClient" type="text" class="formInputText"></td>
-                            </tr>
-                            <tr>
-                                <td><span class="font-24-REG">CEL:</span><td><td> <input  id="CelMainClient" type="text" class="formInputText"></td>
+                                <td><span class="font-24-REG">City:</span><td><td> <input id="CityMainClient" type="text" class="formInputText"></td>
                             </tr>
                             <tr>
                                 <td><span class="font-24-REG">State:</span><td><td> <input id="StateMainClient" type="text" class="formInputText"></td>
@@ -60,6 +58,12 @@
                             <tr>
                                 <td><span class="font-24-REG">Zip Code:</span><td><td> <input id="ZipMainClient" type="text" class="formInputText"></td>
                             </tr>
+                            <tr>
+                                <td><span class="font-24-REG">TEL:</span><td><td> <input  id="TelMainClient" type="text" class="formInputText"></td>
+                            </tr>
+                            <tr>
+                                <td><span class="font-24-REG">Email:</span><td><td> <input  id="EmailMainClient" type="text" class="formInputText"></td>
+                            </tr>
                         </table>
                         
                         <button id="btn_addconsignee" style="height:20px; margin-left:20px; margin-top:10px; background-color:#FF4444;">Add Consignee</button>
@@ -69,7 +73,7 @@
                                 <tr>
                                     <th>Name</th>
                                     <th>Country</th>
-                                    <th>X</th>
+                                    <th>Delete</th>
                                 </tr>
                             </thead>
 
@@ -94,9 +98,11 @@
         $("#btn_addconsignee").click(function(){
                 
                 /* VERIFICAR CAMPOS VALIDOS */
-                if($("#FullnameMainClient").val() == "")
+                if($("#FullnameMainClient").val() == "" /*||
+                    $("#CountryMainClient").val() == "" ||
+                    $("#EmailMainClient").val() == "" */)
                 {
-                    alert("You must specify the Name of this consignee");
+                    alert("You must fill the fields with *");
                     return;
                 }
                 
@@ -106,27 +112,44 @@
                 client.set("Name", $("#FullnameMainClient").val() );
                 client.set("Address", $("#AddressMainClient").val() );
                 client.set("Telephone", $("#TelMainClient").val() );
-                /*client.set("Telephone2", $("#Tel2MainClient").val() );*/
-                client.set("Cellphone", $("#CelMainClient").val() );
+                client.set("City", $("#CityMainClient").val() );
                 client.set("State", $("#StateMainClient").val() );
                 client.set("Country", $("#CountryMainClient").val() );
                 client.set("Zip", $("#ZipMainClient").val() );
+                client.set("Email", $("#EmailMainClient").val() );
                 client.set("Company", user.get("Company") );
                 
                 consignees.push(client);
                 
-                $("#lst_consignees > tbody").append("<tr><td>"+ $("#FullnameMainClient").val() +"</td><td>"+ $("#CountryMainClient").val() +"</td><td><i class='fa fa-trash-o'></i></td></tr>");
+                $("#lst_consignees > tbody").append("<tr id='"+client.get("Name")+"'><td>"+ $("#FullnameMainClient").val() +"</td><td>"+ $("#CountryMainClient").val() +"</td><td><button onclick=\"on_deleteConsignee('"+client.get("Name")+"');\" class='btn_deleteConsignee'>DELETE</button></tr>");
                                 
                 /* LIMPIAR CONTROLES */
                 $("#FullnameMainClient").val("");
                 $("#AddressMainClient").val("");
                 $("#TelMainClient").val("");
                 
-                $("#CelMainClient").val("");
+                $("#EmailMainClient").val("");
                 $("#StateMainClient").val("");
+                $("#CityMainClient").val("");
                 $("#CountryMainClient").val("");
                 $("#ZipMainClient").val("");
             });
+        
+        function on_deleteConsignee(Name)
+        {
+            /* REMOVE THIS ROW */
+            $("#" + Name).remove();
+                        
+            /* REMOVE THIS CLIENT FROM THE LIST */
+            for(i in consignees)
+            {
+                if(consignees[i].get("Name") == Name)
+                {
+                    consignees.splice( consignees.indexOf(consignees[i]), 1 );  
+                }
+            }
+            
+        }
         
         $("#btn_cancelConsignee").click(function(){
                 hideClient();
@@ -135,9 +158,12 @@
         $("#btn_regConsignee").click(function(){
                 
                 /* VALIDAR CAMPOS VALIDOS */
-                if($("#RegClientFullName").val() == "")
+                if($("#RegClientFullName").val() == "" /*||
+                    $("#RegClientCompanyName").val() == "" ||
+                    $("#RegClientCountry").val() == "" ||
+                    $("#RegClientEmail").val() == ""*/)
                 {
-                    alert("You must specify the Name of this consignee");
+                    alert("You must fill the fields with *");
                     return;
                 }
                 
@@ -146,11 +172,12 @@
                 var client = new Clients();
                 
                 client.set("Name", $("#RegClientFullName").val() );
+                client.set("CompanyName", $("#RegClientCompanyName").val() );
                 client.set("Address", $("#RegClientAddress").val() );
-                client.set("Account", $("#RegClientAccount").val() );
-                client.set("AccountID", $("#RegClientID").val() );
+                client.set("ID1", $("#RegClientID").val() );
                 client.set("Telephone", $("#RegClientTel").val() );
                 client.set("Cellphone", $("#RegClientCel").val() );
+                client.set("City", $("#RegClientCity").val() );
                 client.set("State", $("#RegClientState").val() );
                 client.set("Country", $("#RegClientCountry").val() );
                 client.set("Zip", $("#RegClientZip").val() );

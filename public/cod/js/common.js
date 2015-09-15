@@ -493,7 +493,7 @@ function filterby_changed(filterby, searchtext, filterdate, updatetable)
 
 function byeByeClient(clientId, companyId){
     swal({   
-                title: "This user will be deleted permanently!",   
+                title: "This client will be deleted permanently!",   
                 text: "Do you want to continue?",   
                 type: "warning",   
                 showCancelButton: true,   
@@ -531,6 +531,29 @@ function byeByeConsignee(clientId){
                 query.get(clientId, {success: function(client){
                         client.destroy({success:function(){
                                 update_consigneestable();
+                            }});
+                    }});
+                
+            });
+}
+
+function byeByeVendor(vendorId){
+    swal({   
+                title: "This vendor will be deleted permanently!",   
+                text: "Do you want to continue?",   
+                type: "warning",   
+                showCancelButton: true,   
+                confirmButtonColor: "#DD6B55",   
+                confirmButtonText: "Yes, delete it!",   
+                closeOnConfirm: true
+            },
+            function()
+            {    
+                var query = new Parse.Query("Agencies");
+                
+                query.get(vendorId, {success: function(client){
+                        client.destroy({success:function(){
+                                update_table();
                             }});
                     }});
                 

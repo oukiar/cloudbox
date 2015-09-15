@@ -28,27 +28,28 @@
                 
                 <table border=0 style="margin-left:20px; margin-top:20px; height:180px; background-color:white;">
                     <tr>
-                        <td><span class="font-24-REG">Full Name:</span></td><td> <input id="RegStoreName" type="text" class="formInputText"></td>
+                        <td><span class="font-24-REG">Full Name:*</span></td><td> <input id="RegStoreName" type="text" class="formInputText"></td>
                         <td><span class="font-24-REG">Address:</span></td><td> <input  id="RegStoreAddress" type="text" class="formInputText"></td>
                     </tr>
                     <tr>
-                        <td><span class="font-24-REG">Account #:</span></td><td> <input  id="RegStoreAccount" type="text" class="formInputText"></td>
-                        <td><span class="font-24-REG">State:</span></td><td> <input  id="RegStoreState" type="text" class="formInputText"></td>
+                        <td><span class="font-24-REG">Company Name:</span></td><td> <input  id="RegStoreCompanyName" type="text" class="formInputText"></td>
+                        <td><span class="font-24-REG">City:</span></td><td> <input  id="RegStoreCity" type="text" class="formInputText"></td>
                     </tr>
                     <tr>
                         <td><span class="font-24-REG">Contact:</span></td><td> <input  id="RegStoreContact" type="text" class="formInputText"></td>
-                        <td><span class="font-24-REG">Country:</span></td><td> <input  id="RegStoreCountry" type="text" class="formInputText"></td>
+                        <td><span class="font-24-REG">State:</span></td><td> <input  id="RegStoreState" type="text" class="formInputText"></td>
                     </tr>
                     <tr>
                         <td><span class="font-24-REG">Tel:</span></td><td> <input id="RegStoreTel"  type="text" class="formInputText"></td>
-                        <td><span class="font-24-REG">Zip code:</span></td><td> <input  id="RegStoreZip"type="text" class="formInputText"></td>
+                        <td><span class="font-24-REG">Country:</span></td><td> <input  id="RegStoreCountry" type="text" class="formInputText"></td>
                     </tr>
                     <tr>
                         <td><span class="font-24-REG">Cel:</span></td><td><input  id="RegStoreCel" type="text" class="formInputText"></td>
-                        <td><span class="font-24-REG">Website:</span></td><td><input id="RegStoreWebsite" type="text" class="formInputText"></td>
+                        <td><span class="font-24-REG">Zip code:</span></td><td> <input  id="RegStoreZip"type="text" class="formInputText"></td>
                     </tr>
                     <tr>
                         <td><span class="font-24-REG">Email:</span></td><td> <input  id="RegStoreEmail" type="text" class="formInputText"></td>
+                        <td><span class="font-24-REG">Website:</span></td><td><input id="RegStoreWebsite" type="text" class="formInputText"></td>
                     </tr>
                 </table>
                 
@@ -60,22 +61,34 @@
         
         <script>
         
+        $("#btn_cancelStore").click(function(){
+                hideStore();
+            });
+            
         $("#btn_regStore").click(function(){
-        
+                if($("#RegStoreFullName").val() == "" /*||
+                    $("#RegStoreCompanyName").val() == "" ||
+                    $("#RegStoreCountry").val() == "" ||
+                    $("#RegStoreEmail").val() == ""*/)
+                {
+                    alert("You must fill the fields with *");
+                    return;
+                }
         
                 var Agencies = Parse.Object.extend("Agencies");
                 var store = new Agencies();
                 
                 store.set("Name", $("#RegStoreName").val() );
+                store.set("CompanyName", $("#RegStoreCompanyName").val() );
                 store.set("Address", $("#RegStoreAddress").val() );
-                store.set("Account", $("#RegStoreAccount").val() );
+                store.set("City", $("#RegStoreCity").val() );
                 store.set("State", $("#RegStoreState").val() );
-                store.set("Contact", $("#RegStoreContact").val() );
                 store.set("Country", $("#RegStoreCountry").val() );
                 store.set("Telephone", $("#RegStoreTel").val() );
                 store.set("Zip", $("#RegStoreZip").val() );
                 store.set("Cel", $("#RegStoreCel").val() );
                 store.set("Website", $("#RegStoreWebsite").val() );
+                store.set("Contact", $("#RegStoreContact").val() );
                 store.set("Email", $("#RegStoreEmail").val() );
                 store.set("Company", user.get("Company") );
                                 
@@ -83,21 +96,14 @@
                                                                 
                         $("#Shipper").val(store.get("Name") );
                         shipperID = store.id;
-                                                
-                        $("#storeNameInfo").html(store.get("Name") );
-                        $("#storeCountryInfo").html(store.get("Country") );
-                        $("#storeEmailInfo").html(store.get("Email") );
-                        $("#storeTelephoneInfo").html(store.get("Telephone") );
-                        $("#storeAddressInfo").html(store.get("Address") );
-                        $("#storeWebsiteInfo").html(store.get("Website") );
-                        $("#storeStatusInfo").html(store.get("Status") );
-                
+                        
                         hideStore();
                         
                         /* LIMPIAR CONTROLES */
                         $("#RegStoreName").val("");
                         $("#RegStoreAddress").val("");
-                        $("#RegStoreAccount").val("");
+                        $("#RegStoreCompanyName").val("");
+                        $("#RegStoreCity").val("");
                         $("#RegStoreState").val("");
                         $("#RegStoreContact").val("");
                         $("#RegStoreCountry").val("");

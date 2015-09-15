@@ -115,15 +115,16 @@
 		<!--START TOPBAR-->
 		<% include ../../generals/topbar.ejs %> 
         <!-- START CONTAINER -->
-        <div class="page-container row-fluid">
-        <!-- SIDEBAR - START -->
-        <!--  SIDEBAR - END -->	
-        <!-- START CONTENT -->
-        <section class="wrapper" style='display:inline-block;width:100%;'>
-        <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
-        <div class="page-title"> 
+        <!-- START CONTAINER -->
+       <div class="page-container row-fluid">
+       <!-- SIDEBAR - START -->
+       <!--  SIDEBAR - END -->	
+       <!-- START CONTENT -->
+       <section class="wrapper" style='display:inline-block;width:100%; position:relative; top:70px;'>
+       <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12' style="top:-21px;">
+       <div class="page-title">
             <% include clientsMenu.ejs%>
-       <h1 class="title" style="font-family: 'VT323', serif; font-size:50px; padding-left:13px; margin-top:50px;">Consignees - Inactive</h1>
+       <h1 class="title" style="font-family: 'VT323', serif; font-size:50px; padding-left:13px; margin-top:13px;">Consignees - Inactive</h1>
 	   <div id="content">
 	   <% include pendings_partitions/table.ejs %>
        </div>   
@@ -203,6 +204,22 @@
                 </tr>
                 <tr>
                     <td>
+                        <b>Account #</b>
+                    </td>
+                    <td id="tdCAccount" contenteditable='false'>
+                        <div id="clientAccount"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>Company Name</b>
+                    </td>
+                    <td id="tdCCompanyName" contenteditable='true'>
+                    
+                    </td>
+                </tr>
+                <tr>
+                    <td>
                         <b>Address</b>
                     </td>
                     <td id="tdCAddress" contenteditable='true'>
@@ -211,10 +228,10 @@
                 </tr>
                 <tr>
                     <td>
-                        <b>Account #</b>
+                        <b>City:</b>
                     </td>
-                    <td id="tdCAccount" contenteditable='true'>
-                        <div id="clientAccount"></div>
+                    <td id="tdCCity" contenteditable='true'>
+                        <div id='clientState'></div>
                     </td>
                 </tr>
                 <tr>
@@ -243,6 +260,14 @@
                 </tr>
                 <tr>
                     <td>
+                        <b>Telephone:</b>
+                    </td>
+                    <td id="tdCTel" contenteditable='true'>
+                        <div id='clientTelephoneInfo'></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
                         <b>Cellphone:</b>
                     </td>
                     <td id="tdCCel" contenteditable='true'>
@@ -259,24 +284,11 @@
                 </tr>
                 <tr>
                     <td>
-                        <b>Telephone:</b>
-                    </td>
-                    <td id="tdCTel" contenteditable='true'>
-                        <div id='clientTelephoneInfo'></div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
                         <b>ID:</b></td><td id="tdCID" contenteditable='true'>
                         <div id='clientIDInfo'></div>
                     </td>
                 </tr>
-                <!--<tr>
-                <td><b>Destinations:</b></td><td id="tdCDest" contenteditable='false'><div id='clientDestinationInfo'></div></td>
-                </tr>
-                <tr>
-                <td><b>Status:</b></td><td id="tdCStatus" contenteditable='false'><div id='clientStatusInfo'></div></td>
-                </tr>-->
+                
             </table>
             
             <a  href="#close" id="cancelConsignee" class="pure-button pure-button-primary" style="background:#E08566;">Cancel</a>
@@ -288,38 +300,6 @@
 
 		
     <script>
-        function clientTableEdit(){
-            $("#tdCName").attr('contentEditable', true);
-            $("#tdCAccount").attr('contentEditable', true);
-            $("#tdCCountry").attr('contentEditable',true);
-            $("#tdCEmail").attr('contentEditable',true);
-            $("#tdCTel").attr('contentEditable',true);
-            $("#tdCID").attr('contentEditable',true);
-            /*
-            $("#tdCDest").attr('contentEditable',true);
-            $("#tdCStatus").attr('contentEditable',true);
-            */
-            $("#btn_Cli_edit").hide();
-            $("#btn_Cli_cancel").show();
-            $("#btn_Cli_saveTable").show();
-        }
-        
-        function cancelClientEdit(){
-            $("#tdCName").attr('contentEditable', false);
-            $("#tdCAccount").attr('contentEditable', false);
-            $("#tdCCountry").attr('contentEditable',false);
-            $("#tdCEmail").attr('contentEditable',false);
-            $("#tdCTel").attr('contentEditable',false);
-            $("#tdCID").attr('contentEditable',false);
-            /*
-            $("#tdCDest").attr('contentEditable',false);
-            $("#tdCStatus").attr('contentEditable',false);
-            */
-            $("#btn_Cli_edit").show();
-            $("#btn_Cli_cancel").hide();
-            $("#btn_Cli_saveTable").hide();
-            /*location.reload();*/
-        }
             
         function updateClientTable(){
             
@@ -330,16 +310,17 @@
                 client.id = consigneeID;
                 
                 client.set("Name", $("#tdCName").text() );
+                client.set("CompanyName", $("#tdCCompanyName").text() );
                 client.set("Address", $("#tdCAddress").text() );
-                client.set("AccountID", $("#tdCAccount").text() );
+                /*client.set("AccountID", $("#tdCAccount").text() );*/
+                client.set("City", $("#tdCCity").text() );
                 client.set("State", $("#tdCState").text() );
                 client.set("Country", $("#tdCCountry").text() );
                 client.set("Zip", $("#tdCZip").text() );
-                client.set("Cellphone", $("#tdCCel").text() );
-                
-                client.set("ID1", $("#tdCID").text() );
                 client.set("Telephone", $("#tdCTel").text() );
+                client.set("Cellphone", $("#tdCCel").text() );
                 client.set("Email", $("#tdCEmail").text() );
+                client.set("ID1", $("#tdCID").text() );
                 
                 client.save(null, {success: function(){
                         update_table();
@@ -543,10 +524,6 @@
                 }});
         }
 
-        function nl2br (str, is_xhtml) {   
-            var breakTag = (is_xhtml || typeof is_xhtml === 'undefined') ? '<br />' : '<br>';    
-            return (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1'+ breakTag +'$2');
-        }
 
         function openSubClients(objectId)
         {
@@ -591,8 +568,10 @@
             query.get(objectId, {success: function(client){
                             
                     $("#tdCName").html(tryget(client.get("Name") ));
+                    $("#tdCCompanyName").html(tryget(client.get("CompanyName") ));
                     $("#tdCAddress").html(tryget(client.get("Address")));
                     $("#tdCAccount").html(tryget(client.get("AccountID")));
+                    $("#tdCCity").html(tryget(client.get("City")));
                     $("#tdCState").html(tryget(client.get("State")));
                     $("#tdCCountry").html(tryget(client.get("Country")));
                     $("#tdCZip").html(tryget(client.get("Zip")));

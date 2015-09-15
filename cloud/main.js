@@ -121,9 +121,9 @@ Parse.Cloud.beforeSave("Agencies", function(request, response){
         
         query.first({success: function(lastclient){
                 
-                var newid = Number(lastclient.get("AccountID").substring(1))+1;
+                var newid = Number(lastclient.get("AccountID").substring(2))+1;
                 
-                request.object.set("AccountID", "A" + zeroPad(newid,4) ); 
+                request.object.set("AccountID", "AV" + zeroPad(newid,4) ); 
                 
                 response.success();
             }});
