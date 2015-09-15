@@ -2,387 +2,483 @@
 <html ng-app="myApp">
     <head>
 		
-        <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
-        <meta charset="utf-8" />
-        <title>LC Cargo</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-        <meta content="" name="description" />
-        <meta content="" name="author" />
-       
-			
-        <!--ADMIN REQUIREMENTS-->   
-        <% include ../generals/ultraAdmin.ejs %>
-        <script src="/cod/js/moment.js"></script>
-        <script src="/cod/js/common.js"></script>
-
-        <script src="/cod/js/jquery-1.11.2.min.js"></script>
-        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/themes/smoothness/jquery-ui.css" />
-        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
-        <script src="//www.parsecdn.com/js/parse-1.4.2.min.js"></script>
-    </head>
+       <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+       <meta charset="utf-8" />
+       <title>Warehouse</title>
+       <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+       <meta content="" name="description" />
+       <meta content="" name="author" />
+	   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=VT323">	
+	    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Jura&amp;subset=all">
+       <!--ADMIN REQUIREMENTS-->
+       <% include ../generals/ultraAdmin.ejs %>
+       <script src="/cod/js/common.js"></script>
+       <script src="/cod/js/moment.js"></script>
+       <script src="/cod/js/jquery-1.11.2.min.js"></script>
+       <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/themes/smoothness/jquery-ui.css" />
+       <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
+       <script src="http://yui.yahooapis.com/3.6.0/build/yui/yui-min.js"></script>
+       <script src="//www.parsecdn.com/js/parse-1.4.2.min.js"></script>
+        <link rel="stylesheet" href="cod/css/styleWareHouse.css">
+        <script src="/cod/js/jspdf.min.js"></script>
+        <script src="/cod/js/base64.min.js"></script>
+        <!--<script src="/cod/js/qrcode/qrcode.min.js"></script>-->
+        <script type="text/javascript" src="/cod/js/jquery.qrcode.js"></script>
+        <script type="text/javascript" src="/cod/js/qrcode.js"></script>
+        <!-- QR CODE GENERATOR 
+        <script src="/cod/js/VanillaQR.min.js"></script>-->
+			<style>
+			#footer {
+			   position:fixed;
+			   bottom:0;
+			   width:100%;
+			   height:28px;   /* Height of the footer */
+			   background:#52646F;
+		   }
+			</style>
+	 </head>
 	 
     <!--END HEAD-->
     <!--BEGIN BODY-->
 	
     <body class=" ">
-		<!--START TOPBAR-->
-		 <% include generals/topbar.ejs %>
-		 
-        <!--START CONTAINER-->
-        <div class="page-container row-fluid">
-        <!--SIDEBAR-START -->
-        <% include generals/sideBar.ejs %>
-        <!--SIDEBAR-END-->
 		
-        <section>
-            <div style="position:absolute; margin-left:220px; margin-top:80px; ">
-                <h1 class="title" style="font-family: 'VT323', serif; font-size:50px; padding-left:13px;">Receipts</h1>
-                
-                <table style="display:inline; position:relative; top:13px;"> 
-                    <tr>
-                        <th style="text-align: center;">Warehouse</th>
-                        <th style="text-align: center;"><label for="filterby" class="pfont">By:</label></th>
-                        <th></th>
-                        <th style="text-align: center;"><label class="pfont">Date:</label></th>
-                    </tr>
-                    <tr>
-                        <td style="padding: 13px;">
-                            <select  id="warehousefilter" name="warehousefilter">
-                                <option value="All">All</option>
-                            </select>
-                        </td>
-                      
-                        <td style="padding: 8px;">
-                            <select  id="filterby" name="filterby">
-                            <option value="All">All</option>
-                            <option value="Shipper">Store</option>
-                            <option value="Consignee">Client</option>
-                            <option value="ReceiptNum">Receipt #</option>
-                            <option value="Destination">Destination</option>
-                        </select>
-                        </td>
-                        
-                        <td style="padding: 5px;"> 
-                            <!-- IF ALL OR DATE SELECTED THIS SEARCH INPUT IS NOT USE-->
-                            <input type="hidden" placeholder="Search"  id="searchtext" name="searchtext">
-                        </td> 
-                        
-                        <td style="padding: 8px;">
-                        <select id="filterdate" name="filterdate">
-                             <option value="">All</option>
-                             <option value="DateRange">Date Range</option>
-                             <option value="Today">Today</option>
-                             <option value="Yesterday">Yesterday</option>
-                             <option value="This week">This week</option>
-                             <option value="This month">This month</option>
-                             <option value="Last month">Last month</option>	
-                             <option value="Current year">Current Year</option>
-                        </select>	
-                        </td>		
-                          <td style="padding: 8px;">
-                              <input type="text" id="fromdate" style="display:none;" size="13">
-                          </td>
-                            <td style="padding: 8px;">
-                                <input type="text" id="todate" style="display:none;" size="13">
-                            </td>   
-                   
-                        <td style="padding: 8px;">
-                            <button id="btn_search" class="pure-button pure-button-primary">Search</button>
-                        </td>
-                        
-                        <td id="printDiv" style="padding: 8px;">
-                            <a href="#openModalPrint" class="pure-button"><font color="#52646F"><i class="fa fa-print"></i></font></a>
-                        </td>
-                        
-                    </tr>
-                </table>
-                
-                <br><br>
-                
-                <table class="table table-bordered" id="receiptsTable" style="margin-left:50px;">
-                    <style>
-                    #not:nth-child(even) {background: white}
-                    #not:nth-child(odd) {background: #FBFBFC}
-                    
-                    </style>
-                    <thead>
-                        <tr>
-                            <th>Rcpt.</th>
-                            <th style="cursor:pointer;">Consignee <i id="orderby_consignee" class="fa fa-chevron-down" style="float:right;"></i></th>
-                            <th style="cursor:pointer;">Shipper <i id="orderby_shipper" class="fa fa-chevron-down" style="float:right;"></i></th>
-                            <th>Repacked</th>
-                            <th>Boxes</th>
-                            <th style="cursor:pointer;">Date <i id="orderby_date" class="fa fa-chevron-down" style="float:right;"></i></th>
-                            <th style="cursor:pointer;">Destination <i id="orderby_destination" class="fa fa-chevron-down" style="float:right;"></i></th>
-                            <th>Weight</th>
-                            <th>WareHouse</th>
-                            <th id="classifycolumn" style="display:none">Ship</th>
-                            <th id="deletecolumn" style="display:none">Delete</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
-            </div>
+        <style>
+	     nav ul ul {
+					display: none;
+				  }
+
+			   	nav ul li:hover > ul {
+					display:block;
+			   		position: absolute;
+					width:100%;
+				   	}
+						
+		nav ul li:hover {
+					background: none;			
+							}
+						</style>
+							 
+   			<nav class="navbar navbar-inverse" style="z-index:9999; background:#677A85;">
+                      <div class="container-fluid" style="background:#52646F;">
+                       <!-- Ultra Admin and toggle get grouped for better mobile display -->
+                          <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-9">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                             </button>
+                       </div>
+                  <!-- Collect the nav links, forms, and other content for toggling -->
+           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-9" style="z-index:9999;">
+           <ul class="nav navbar-nav" style="z-index:9999;">
+        <li>
+        <a href="/profile" style="color:white;">
+   	 <i class="fa fa-home"></i>
+        <span class="title">Home</span>
+        </a>
+   	 </li>
+																	
+   		 <li>
+   		 <a href="/clientWarehouse">
+   		 <i class="fa fa-table" style="color:white;"></i>
+   		 <span class="title" style="color:white;">Warehouse</span><span class="arrow "></span>
+   		 </a>	 
+   		 </li>
+         <li>
+   		 <a href="/client_profile" style="color:white;">
+         <i class="fa fa-wrench" style="color:white;"></i>
+   	     <span class="title" style="color:white;">Profile</span>
+   		 </a>
+   		 </li>
+		 <li>
+   		 <a href="/logout_staff" style="color:white;">
+   		 <i class="fa fa-lock" style="color:white;"></i>
+   		 <span class="title" style="color:white;">Logout</span>
+   		 </a>
+   		 </li>
+		 </ul>
+         </div><!-- /.navbar-collapse -->
+         </div><!-- /.container-fluid -->
+         </nav>
+		 
+ 
+        <div class="page-container row-fluid">
+        <!-- SIDEBAR - START -->
+        <!--  SIDEBAR - END -->	
+        <!-- START CONTENT -->
+        <section class="wrapper" style='display:inline-block;width:100%; position:relative; top:7px;'>
+        <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12' style="top:-21px;">
+        <div class="page-title">
+       
+        <h1 class="title" style="font-family: 'VT323', serif; font-size:50px; padding-left:13px;">Receipts</h1>
+        <div id="content">
+			
+
+			<div class="col-md-6 col-xs-6" style="margin-top:5px; width:100%; min-width: 850px;">
+
+			    <div class="panel">
+       <table style="display:inline; position:relative; top:21px; left:21px;"> 
+           <tr>
+               <th style="text-align: center;">Warehouse</th>
+               <th style="text-align: center;"><label for="filterby" class="pfont">By:</label></th>
+               <th></th>
+               <th style="text-align: center;"><label class="pfont">Date:</label></th>
+           </tr>
+           <tr>
+               <td style="padding: 13px;">
+                   <select  id="warehousefilter" name="warehousefilter">
+                       <option value="All">All</option>
+                   </select>
+               </td>
+             
+               <td style="padding: 8px;">
+                   <select  id="filterby" name="filterby">
+                   <option value="All">All</option>
+                   <option value="Shipper">Store</option>
+                   <option value="Consignee">Client</option>
+                   <option value="ReceiptNum">Receipt #</option>
+                   <option value="Destination">Destination</option>
+               </select>
+               </td>
+               
+               <td style="padding: 5px;"> 
+                   <!-- IF ALL OR DATE SELECTED THIS SEARCH INPUT IS NOT USE-->
+                   <input type="hidden" placeholder="Search"  id="searchtext" name="searchtext">
+               </td> 
+               
+               <td style="padding: 8px;">
+               <select id="filterdate" name="filterdate">
+                    <option value="">All</option>
+                    <option value="DateRange">Date Range</option>
+                    <option value="Today">Today</option>
+                    <option value="Yesterday">Yesterday</option>
+                    <option value="This week">This week</option>
+                    <option value="This month">This month</option>
+                    <option value="Last month">Last month</option>	
+                    <option value="Current year">Current Year</option>
+               </select>	
+               </td>		
+                 <td style="padding: 8px;">
+                     <input type="text" id="fromdate" style="display:none;" size="13">
+                 </td>
+                   <td style="padding: 8px;">
+                       <input type="text" id="todate" style="display:none;" size="13">
+                   </td>   
+          
+               <td style="padding: 8px;">
+                   <button id="btn_search" class="pure-button pure-button-primary">Search</button>
+               </td>
+               
+               <td id="printDiv" style="padding: 8px;">
+                   <a href="#openModalPrint" class="pure-button"><font color="#52646F"><i class="fa fa-print"></i></font></a>
+               </td>
+               
+           </tr>
+       </table>
+       
+       <br><br>
+       
+	   
+       <div class="panel-body">
+           <ul id="list">
+       <table class="table table-bordered" id="receiptsTable" style="position:relative; top:-21px; margin-left:5px;">
+           <style>
+           #not:nth-child(even) {background: white}
+           #not:nth-child(odd) {background: #FBFBFC}
+           
+           </style>
+           <thead>
+               <tr>
+                   <th>Rcpt.</th>
+                   <th style="cursor:pointer;">Consignee <i id="orderby_consignee" class="fa fa-chevron-down" style="float:right;"></i></th>
+                   <th style="cursor:pointer;">Shipper <i id="orderby_shipper" class="fa fa-chevron-down" style="float:right;"></i></th>
+                   <th>Repacked</th>
+                   <th>Boxes</th>
+                   <th style="cursor:pointer;">Date <i id="orderby_date" class="fa fa-chevron-down" style="float:right;"></i></th>
+                   <th style="cursor:pointer;">Destination <i id="orderby_destination" class="fa fa-chevron-down" style="float:right;"></i></th>
+                   <th>Weight</th>
+                   <th>WareHouse</th>
+                   <th id="classifycolumn" style="display:none">Ship</th>
+                   <th id="deletecolumn" style="display:none">Delete</th>
+               </tr>
+           </thead>
+           <tbody>
+           </tbody>
+       </table>
+	   
+	               </ul>
+	           </div>
+	       </div>
+	   </div>
+	   
+	   
+	   
+        </div>   
+        </div>
+        </div>
         </section>
+        <!-- END CONTENT -->
+        </div><!-- END CONTAINER -->
+		</div>
+		 
+		 <script>
+
+		     var consignees = [];
+
+		     if( window.location.href.indexOf("cloudbox.parseapp") !=-1 )
+		         Parse.initialize("Slh0vzK6DCaarshvF1Vu0ku3Rx2hwDdTaYwW7DLU", "TkJgyQRuMqqKtzZ6bEjdESPiUZ6sVkg3QntIxmh7");
+		     else
+		         Parse.initialize("XEPryFHrd5Tztu45du5Z3kpqxDsweaP1Q0lt8JOb", "MDhb1hBngr2tx2v9TjyzoUhMcOFeWGJ56TWvChqi");
+
+                
+		     /* OBTENCION Y ALMACENAMIENTO DEL CURRENT USER PARA USARSE CLIENTSIDE */
+		     var query = new Parse.Query("User");
     
+		     query.descending('createdAt');
+		     query.include("Company");
+    
+		     query.get("<%= Parse.User.current().id%>", {
+		         success: 
+		             function(object)
+		             {
+		                 /* SAVE USER FOR FUTURE OPERATIONS */
+		                 user = object;
+                
+		                 consignees.push(user.get("ClientID"));
+                
+		                 /* LIST ALL CONSIGNEES FOR THIS CLIENT */
+		                 q = new Parse.Query("Clients");
+		                 q.equalTo("MainClient", user.get("ClientID"));
+		                 q.find({success:function(results){
+		                         for(i in results)
+		                         {
+		                             consignees.push({__type:"Pointer", className:"Clients", objectId:results[i].id});
+		                         }
+                        
+		                         update_table();
+                        
+		                     }});
+                
+                
+                
+                
+		                 /* FILL THE WAREHOUSES SELECT FILTER */
+		                 var query = new Parse.Query("Cellars");
+                
+		                 query.equalTo("Company", {__type: "Pointer", className: "Companies", objectId: user.get("Company").id} );
+		                 query.descending('createdAt');
+                
+		                 query.find({
+		                     success: 
+		                         function(results)
+		                         {
+		                             for(i in results)
+		                             {
+                                
+		                                 wareselect = document.getElementById("warehousefilter");
+		                                 wareselect.options[wareselect.options.length] = new Option(results[i].get("Name"), results[i].id);
+                                
+		                             }
+                            
+                            
+		                         }
+		                     });
+		             }
+		         });
+
+		     var orderby = "ConsigneeName";
+
+		     function update_table()
+		     {
+		             var query = new Parse.Query("Receipts");
+            
+		             query.include("Shipper");
+		             query.include("Consignee");
+		             query.include("Warehouse");
+            
+		             query.ascending(orderby);
+            
+		             /* ONLY FOR THIS CLIENT AS CONSIGNEE */
+		             /*query.equalTo("Consignee", user.get("ClientID"));*/
+		             query.containedIn("Consignee", consignees);
+            
+		             /* WAREHOUSE FILTER */
+		             if($("#warehousefilter").val() != "All")
+		                 query.equalTo("Warehouse", {__type: "Pointer", className: "Cellars", objectId: $("#warehousefilter").val()});
+            
+		             /* COMPANY */
+		             query.equalTo("Company", {__type: "Pointer", className: "Companies", objectId: user.get("Company").id});
+            
+		             /* SECTION CONDITIONS ... RECEIPT LIST IN THIS CASE */
+		             query.containedIn("Status", ["Received","NotProcessed"]);
+                
+		             /* FILTERBY */
+		             if($("#filterby").val() != "All")
+		             {
+		                 switch($("#filterby").val())
+		                 {
+		                     case "Shipper":
+		                         var querymatch = new Parse.Query("Agencies");
+		                         querymatch.startsWith("Name", $("#searchtext").val().toUpperCase());
+		                         query.matchesQuery("Shipper", querymatch);
+		                         /*
+		                         var querymatch2 = new Parse.Query("Clients");
+		                         querymatch2.startsWith("Name", $("#searchtext").val().toUpperCase());
+		                         query.matchesQuery("ShipperConsignee", querymatch2);
+		                         */
+		                         break;
+		                     case "Consignee":
+		                         var querymatch = new Parse.Query("Clients");
+		                         querymatch.startsWith("Name", $("#searchtext").val().toUpperCase());
+		                         query.matchesQuery("Consignee", querymatch);
+		                         break;
+		                     case "ReceiptNum":
+		                         query.equalTo("ReceiptNum", parseInt($("#searchtext").val()));
+		                         break;
+		                     case "Destination":
+		                         /*querymatch.startsWith("Destination", $("#searchtext").val().toUpperCase());*/
+		                         query.matches("Destination", $("#searchtext").val(), 'i');
+		                         break;
+		                 }
+		             }
+            
+		             if($("#filterby").val() != "ReceiptNum")
+		             {        
+		                 /* FILTER DATE */
+		                 if($("#filterdate").val() != "All")
+		                 {
+		                     if($("#filterdate").val() == "DateRange")
+		                     {
+		                         var begindate = new Date($("#fromdate").val() );
+		                         var enddate = new Date($("#todate").val() );
+                        
+		                         query.greaterThanOrEqualTo('ReceiptDate', moment( begindate ).format("YYYYMMDD"));
+		                         query.lessThanOrEqualTo('ReceiptDate', moment( enddate).format("YYYYMMDD"));
+                        
+		                     }
+		                     else
+		                     {
+		                         clientDateConditions(query);
+		                     }
+		                 }
+		             }
+            
+		             query.find({success: function(results){
+                
+		                     console.log( results.length + " rows returned");
+                    
+		                     lastrowcount = results.length;
+		                     rowcounter = results.length;
+                    
+		                     totalboxes = 0;
+		                     totalweight = 0;
+                
+		                     $("#receiptsTable > tbody").html("");
+                
+		                     for(i in results)
+		                     {
+		                         totalboxes += results[i].get("TotalBoxes");
+		                         totalweight += parseInt(results[i].get("Weight"));
+                        
+		                         var destination = results[i].get("Destination");
+		                         if( destination == null)
+		                             destination = results[i].get("Consignee").get("Country");
+                            
+		                         var hour = "";
+		                         if(typeof(results[i].get("Hour") ) != "undefined")
+		                             hour = results[i].get("Hour");
+                        
+                        
+		                         if(typeof(results[i].get("ShipperName"))!="undefined")
+		                         {
+		                             shippername = results[i].get("ShipperName");
+		                         }
+		                         else
+		                         {
+		                             shippername = results[i].get("Shipper").get("Name");
+		                         }
+                                                
+		                         if(typeof(results[i].get("ConsigneeName"))!="undefined")
+		                         {
+		                             consigneename = results[i].get("ConsigneeName");
+		                         }
+		                         else
+		                         {
+		                             consigneename = results[i].get("Consignee").get("Name");
+		                         }
+                        
+		                         var row = "<tr><td>"+
+                                        
+		                                         "<a class=' pop' data-container='body' data-toggle='popover' data-placement='right' data-content=\"" +
+		                                         "<a href='#openModalB' onclick=&quot;fillEditable('" + results[i].id + "')&quot;>Edit Receipt</a></br>" +
+		                                         "<a onclick=&quot;window.open('/printreceipt/' + '" + results[i].id + "','Microsoft')&quot;>Print Receipt</a></br>" + 
+		                                         "<a onclick=&quot;printLabel('" + results[i].id + "')&quot;>Print Labels</a></br>" +
+		                                         "<a href='#openEmail' onclick=&quot;openedEmail('" +results[i].id + "')&quot;>Email</a></br>" +
+		                                         "<a href='#openReceiptLog' onclick=&quot;showlogs('" + results[i].id + "')&quot;>Receipt Log</a></br>\"" +
+		                                                     "data-original-title='' title='' style='cursor:crosshair'>" +
+		                                         "<div style='width:100%;'><b>" + results[i].get("ReceiptNum") + "</b></div></a>" +  
+		                                         /*results[i].get("ReceiptNum") +*/
+		                                     "</td><td>"+consigneename+
+		                                     "</td><td>"+shippername+
+		                                     "</td><td align='center'><a onclick='showboxesWarehouse(\""+results[i].id+"\")' href='#openReceiptBoxes'><b>"+ results[i].get("PackedBoxes") +"</b></a>"+
+		                                     "</td><td align='center'><a onclick='showboxes(\""+results[i].id+"\")' href='#openReceiptBoxes'><b>"+ results[i].get("TotalBoxes") +"</b></a>"+
+		                                     "</td><td>"+ moment(results[i].get("ReceiptDate"), "YYYYMMDD").format("MM/DD/YYYY") + " " + hour +
+		                                     "</td><td>"+destination+
+		                                     "</td><td>"+results[i].get("Weight")+
+		                                     "</td><td><a onclick='opentransfer(\""+results[i].id+ "\")' href='#openModalC'><b>" + results[i].get("Warehouse").get("Name") + "</b></a></td>" +
+		                                     "<td style='display:none' class='checkship'><input name='checkship' id='"+JSON.stringify({objectId:results[i].id, ReceiptNum:results[i].get("ReceiptNum")}) + "' type='checkbox'></td>"+
+		                                     "<td style='display:none' class='checkdelete'><input name='checkdelete' id='"+JSON.stringify({objectId:results[i].id, ReceiptNum:results[i].get("ReceiptNum")}) + "' type='checkbox'></td></tr>";
+                                    
+		                         $("#receiptsTable > tbody").append(row);
+		                     }
+                    
+		                     /* calcular el total real del filtro */
+                    
+		                     async_counter=0;
+		                     async_totalboxes=0;
+		                     async_totalweight=0;
+                    
+		                     /*window.setTimeout(calc_Total, 1);*/
+		                 }});
+		     }
+    
+    
+		     $("#filterdate").change(function(){
+		         if($("#filterdate").val() == "DateRange")
+		         {
+		             $("#fromdate").show();
+		             $("#todate").show();
+            
+		             $("#fromdate").datepicker();
+		             $("#todate").datepicker();
+		         }
+		         else
+		         {
+		             $("#fromdate").hide();
+		             $("#todate").hide();
+		         }
+		     });          
+
+		     $("#filterby").change(function(){
+		         filterby_changed();
+		     });
+    
+		     $("#btn_search").click(function(){
+		             if($("#searchtext").val() == "" && $("#filterby").val() != "All")
+		             {
+		                 alert("Search text void, please enter keyword to find");
+		             }
+		             else
+		                 update_table();
+		         });
+        
+		 </script>
+		 
         <!-- LOAD FILES AT PAGE END FOR FASTER LOADING -->
-        <%include ../generals/endFiles.ejs%>
+<%include ../generals/endFiles.ejs%>
 
         <!-- modal end -->
-        
-<script>
-
-    var consignees = [];
-
-    if( window.location.href.indexOf("cloudbox.parseapp") !=-1 )
-        Parse.initialize("Slh0vzK6DCaarshvF1Vu0ku3Rx2hwDdTaYwW7DLU", "TkJgyQRuMqqKtzZ6bEjdESPiUZ6sVkg3QntIxmh7");
-    else
-        Parse.initialize("XEPryFHrd5Tztu45du5Z3kpqxDsweaP1Q0lt8JOb", "MDhb1hBngr2tx2v9TjyzoUhMcOFeWGJ56TWvChqi");
-
-                
-    /* OBTENCION Y ALMACENAMIENTO DEL CURRENT USER PARA USARSE CLIENTSIDE */
-    var query = new Parse.Query("User");
-    
-    query.descending('createdAt');
-    query.include("Company");
-    
-    query.get("<%= Parse.User.current().id%>", {
-        success: 
-            function(object)
-            {
-                /* SAVE USER FOR FUTURE OPERATIONS */
-                user = object;
-                
-                consignees.push(user.get("ClientID"));
-                
-                /* LIST ALL CONSIGNEES FOR THIS CLIENT */
-                q = new Parse.Query("Clients");
-                q.equalTo("MainClient", user.get("ClientID"));
-                q.find({success:function(results){
-                        for(i in results)
-                        {
-                            consignees.push({__type:"Pointer", className:"Clients", objectId:results[i].id});
-                        }
-                        
-                        update_table();
-                        
-                    }});
-                
-                
-                
-                
-                /* FILL THE WAREHOUSES SELECT FILTER */
-                var query = new Parse.Query("Cellars");
-                
-                query.equalTo("Company", {__type: "Pointer", className: "Companies", objectId: user.get("Company").id} );
-                query.descending('createdAt');
-                
-                query.find({
-                    success: 
-                        function(results)
-                        {
-                            for(i in results)
-                            {
-                                
-                                wareselect = document.getElementById("warehousefilter");
-                                wareselect.options[wareselect.options.length] = new Option(results[i].get("Name"), results[i].id);
-                                
-                            }
-                            
-                            
-                        }
-                    });
-            }
-        });
-
-    var orderby = "ConsigneeName";
-
-    function update_table()
-    {
-            var query = new Parse.Query("Receipts");
-            
-            query.include("Shipper");
-            query.include("Consignee");
-            query.include("Warehouse");
-            
-            query.ascending(orderby);
-            
-            /* ONLY FOR THIS CLIENT AS CONSIGNEE */
-            /*query.equalTo("Consignee", user.get("ClientID"));*/
-            query.containedIn("Consignee", consignees);
-            
-            /* WAREHOUSE FILTER */
-            if($("#warehousefilter").val() != "All")
-                query.equalTo("Warehouse", {__type: "Pointer", className: "Cellars", objectId: $("#warehousefilter").val()});
-            
-            /* COMPANY */
-            query.equalTo("Company", {__type: "Pointer", className: "Companies", objectId: user.get("Company").id});
-            
-            /* SECTION CONDITIONS ... RECEIPT LIST IN THIS CASE */
-            query.containedIn("Status", ["Received","NotProcessed"]);
-                
-            /* FILTERBY */
-            if($("#filterby").val() != "All")
-            {
-                switch($("#filterby").val())
-                {
-                    case "Shipper":
-                        var querymatch = new Parse.Query("Agencies");
-                        querymatch.startsWith("Name", $("#searchtext").val().toUpperCase());
-                        query.matchesQuery("Shipper", querymatch);
-                        /*
-                        var querymatch2 = new Parse.Query("Clients");
-                        querymatch2.startsWith("Name", $("#searchtext").val().toUpperCase());
-                        query.matchesQuery("ShipperConsignee", querymatch2);
-                        */
-                        break;
-                    case "Consignee":
-                        var querymatch = new Parse.Query("Clients");
-                        querymatch.startsWith("Name", $("#searchtext").val().toUpperCase());
-                        query.matchesQuery("Consignee", querymatch);
-                        break;
-                    case "ReceiptNum":
-                        query.equalTo("ReceiptNum", parseInt($("#searchtext").val()));
-                        break;
-                    case "Destination":
-                        /*querymatch.startsWith("Destination", $("#searchtext").val().toUpperCase());*/
-                        query.matches("Destination", $("#searchtext").val(), 'i');
-                        break;
-                }
-            }
-            
-            if($("#filterby").val() != "ReceiptNum")
-            {        
-                /* FILTER DATE */
-                if($("#filterdate").val() != "All")
-                {
-                    if($("#filterdate").val() == "DateRange")
-                    {
-                        var begindate = new Date($("#fromdate").val() );
-                        var enddate = new Date($("#todate").val() );
-                        
-                        query.greaterThanOrEqualTo('ReceiptDate', moment( begindate ).format("YYYYMMDD"));
-                        query.lessThanOrEqualTo('ReceiptDate', moment( enddate).format("YYYYMMDD"));
-                        
-                    }
-                    else
-                    {
-                        clientDateConditions(query);
-                    }
-                }
-            }
-            
-            query.find({success: function(results){
-                
-                    console.log( results.length + " rows returned");
-                    
-                    lastrowcount = results.length;
-                    rowcounter = results.length;
-                    
-                    totalboxes = 0;
-                    totalweight = 0;
-                
-                    $("#receiptsTable > tbody").html("");
-                
-                    for(i in results)
-                    {
-                        totalboxes += results[i].get("TotalBoxes");
-                        totalweight += parseInt(results[i].get("Weight"));
-                        
-                        var destination = results[i].get("Destination");
-                        if( destination == null)
-                            destination = results[i].get("Consignee").get("Country");
-                            
-                        var hour = "";
-                        if(typeof(results[i].get("Hour") ) != "undefined")
-                            hour = results[i].get("Hour");
-                        
-                        
-                        if(typeof(results[i].get("ShipperName"))!="undefined")
-                        {
-                            shippername = results[i].get("ShipperName");
-                        }
-                        else
-                        {
-                            shippername = results[i].get("Shipper").get("Name");
-                        }
-                                                
-                        if(typeof(results[i].get("ConsigneeName"))!="undefined")
-                        {
-                            consigneename = results[i].get("ConsigneeName");
-                        }
-                        else
-                        {
-                            consigneename = results[i].get("Consignee").get("Name");
-                        }
-                        
-                        var row = "<tr><td>"+
-                                        
-                                        "<a class=' pop' data-container='body' data-toggle='popover' data-placement='right' data-content=\"" +
-                                        "<a href='#openModalB' onclick=&quot;fillEditable('" + results[i].id + "')&quot;>Edit Receipt</a></br>" +
-                                        "<a onclick=&quot;window.open('/printreceipt/' + '" + results[i].id + "','Microsoft')&quot;>Print Receipt</a></br>" + 
-                                        "<a onclick=&quot;printLabel('" + results[i].id + "')&quot;>Print Labels</a></br>" +
-                                        "<a href='#openEmail' onclick=&quot;openedEmail('" +results[i].id + "')&quot;>Email</a></br>" +
-                                        "<a href='#openReceiptLog' onclick=&quot;showlogs('" + results[i].id + "')&quot;>Receipt Log</a></br>\"" +
-                                                    "data-original-title='' title='' style='cursor:crosshair'>" +
-                                        "<div style='width:100%;'><b>" + results[i].get("ReceiptNum") + "</b></div></a>" +  
-                                        /*results[i].get("ReceiptNum") +*/
-                                    "</td><td>"+consigneename+
-                                    "</td><td>"+shippername+
-                                    "</td><td align='center'><a onclick='showboxesWarehouse(\""+results[i].id+"\")' href='#openReceiptBoxes'><b>"+ results[i].get("PackedBoxes") +"</b></a>"+
-                                    "</td><td align='center'><a onclick='showboxes(\""+results[i].id+"\")' href='#openReceiptBoxes'><b>"+ results[i].get("TotalBoxes") +"</b></a>"+
-                                    "</td><td>"+ moment(results[i].get("ReceiptDate"), "YYYYMMDD").format("MM/DD/YYYY") + " " + hour +
-                                    "</td><td>"+destination+
-                                    "</td><td>"+results[i].get("Weight")+
-                                    "</td><td><a onclick='opentransfer(\""+results[i].id+ "\")' href='#openModalC'><b>" + results[i].get("Warehouse").get("Name") + "</b></a></td>" +
-                                    "<td style='display:none' class='checkship'><input name='checkship' id='"+JSON.stringify({objectId:results[i].id, ReceiptNum:results[i].get("ReceiptNum")}) + "' type='checkbox'></td>"+
-                                    "<td style='display:none' class='checkdelete'><input name='checkdelete' id='"+JSON.stringify({objectId:results[i].id, ReceiptNum:results[i].get("ReceiptNum")}) + "' type='checkbox'></td></tr>";
-                                    
-                        $("#receiptsTable > tbody").append(row);
-                    }
-                    
-                    /* calcular el total real del filtro */
-                    
-                    async_counter=0;
-                    async_totalboxes=0;
-                    async_totalweight=0;
-                    
-                    /*window.setTimeout(calc_Total, 1);*/
-                }});
-    }
-    
-    
-    $("#filterdate").change(function(){
-        if($("#filterdate").val() == "DateRange")
-        {
-            $("#fromdate").show();
-            $("#todate").show();
-            
-            $("#fromdate").datepicker();
-            $("#todate").datepicker();
-        }
-        else
-        {
-            $("#fromdate").hide();
-            $("#todate").hide();
-        }
-    });          
-
-    $("#filterby").change(function(){
-        filterby_changed();
-    });
-    
-    $("#btn_search").click(function(){
-            if($("#searchtext").val() == "" && $("#filterby").val() != "All")
-            {
-                alert("Search text void, please enter keyword to find");
-            }
-            else
-                update_table();
-        });
-        
-</script>
-        
     </body>
 </html>
