@@ -118,52 +118,52 @@
                                        <div class="form-group">
                                            <label class="form-label" for="field-1">Full Name:</label>
                                            <div class="controls">
-                                               <input type="text" class="form-control" maxlength="55" id="clientName" name="clientName" value="<%= client.get('Name') %>" >
+                                               <input disabled type="text" class="form-control" maxlength="55" id="clientName" name="clientName" value="<%= client.get('Name') %>" >
                                            </div>
                                        </div>
                                         
                                         <div class="form-group">
                                            <label class="form-label" for="field-1">Address:</label>
                                            <div class="controls">
-                                               <input type="text" class="form-control" maxlength="55" id="clientAddress" name="clientAddress" value="<%= client.get('Address') %>" >
+                                               <input disabled type="text" class="form-control" maxlength="55" id="clientAddress" name="clientAddress" value="<%= client.get('Address') %>" >
                                            </div>
                                        </div>
                                         
                                         <div class="form-group">
                                            <label class="form-label" for="field-1">Account #:</label>
                                            <div class="controls">
-                                               <input type="text" class="form-control" maxlength="55" id="clientAccountID" name="clientAccountID" value="<%= client.get('AccountID') %>" >
+                                               <input disabled type="text" class="form-control" maxlength="55" id="clientAccountID" name="clientAccountID" value="<%= client.get('AccountID') %>" >
                                            </div>
                                        </div>
                                        
                                         <div class="form-group">
                                            <label class="form-label" for="field-1">State:</label>
                                            <div class="controls">
-                                               <input type="text" class="form-control" maxlength="55" id="clientState" name="clientState" value="<%= client.get('State') %>" >
+                                               <input disabled type="text" class="form-control" maxlength="55" id="clientState" name="clientState" value="<%= client.get('State') %>" >
                                            </div>
                                        </div>
                                        
                                         <div class="form-group">
                                            <label class="form-label" for="field-1">Country:</label>
                                            <div class="controls">
-                                               <input type="text" class="form-control" maxlength="55" id="clientCountry" name="clientCountry" value="<%= client.get('Country') %>" >
+                                               <input disabled type="text" class="form-control" maxlength="55" id="clientCountry" name="clientCountry" value="<%= client.get('Country') %>" >
                                            </div>
                                        </div>
                                        
                                         <div class="form-group">
                                            <label class="form-label" for="field-1">Zip code:</label>
                                            <div class="controls">
-                                               <input type="text" class="form-control" maxlength="55" id="clientZip" name="clientZip" value="<%= client.get('Zip') %>" >
+                                               <input disabled type="text" class="form-control" maxlength="55" id="clientZip" name="clientZip" value="<%= client.get('Zip') %>" >
                                            </div>
                                        </div>
                                        
                                         <div class="form-group">
                                            <label class="form-label" for="field-1">Cel:</label>
                                            <div class="controls">
-                                               <input type="text" class="form-control" maxlength="55" id="clientCel" name="clientCel" value="<%= client.get('Cellphone') %>" >
+                                               <input disabled type="text" class="form-control" maxlength="55" id="clientCel" name="clientCel" value="<%= client.get('Cellphone') %>" >
                                            </div>
                                        </div>
-
+                                        <!--
                                        <div class="form-group">
                                            <label class="form-label" for="field-1">Language:</label>
                                            <div class="controls">
@@ -172,35 +172,35 @@
                                                 <option value="English">English</option>
                                                 </select>
                                            </div>
-                                       </div>
+                                       </div>-->
 
                                        <div class="form-group">
                                            <label class="form-label" for="field-1">ID:</label>
                                            <div class="controls">
-                                               <input type="text" class="form-control" maxlength="55" id="clientID1" name="clientID1" value="<%= client.get('ID1') %>">
+                                               <input disabled type="text" class="form-control" maxlength="55" id="clientID1" name="clientID1" value="<%= client.get('ID1') %>">
                                            </div>
                                        </div>
 
                                        <div class="form-group">
                                            <label class="form-label" for="field-1">Telephone:</label>
                                            <div class="controls">
-                                               <input maxlength="55" id="clientTelephone" name="clientTelephone" type="text" class="form-control"  value="<%= client.get('Telephone') %>">
+                                               <input disabled maxlength="55" id="clientTelephone" name="clientTelephone" type="text" class="form-control"  value="<%= client.get('Telephone') %>">
                                            </div>
                                        </div>
 
                                        <div class="form-group">
                                            <label class="form-label" for="field-1">Email:</label>
                                            <div class="controls">
-                                               <input type="text" class="form-control" maxlength="55" id="clientEmail" name="clientEmail" value="<%= client.get('Email') %>" >
+                                               <input disabled type="text" class="form-control" maxlength="55" id="clientEmail" name="clientEmail" value="<%= client.get('Email') %>" >
                                            </div>
                                        </div>
 				  
 	                   
-	     
+                                        <!--
                                         <div class="form-group">
                                             <input type="button" id="btn_updateInformation" style="length:50px;" value="Update Information" class="pure-button pure-button-primary">
                                         </div>
-
+                                        -->
                                     </div>
                                 </div>
                             </div>
@@ -229,13 +229,13 @@
                                     <div style="position:relative; left:144px;">  
                                         <h1 class="title">Destinations - Consignees</h1>
                                     </div>
-                                    <a href="#modalEditClient" id="btn_addconsignee"><img src="/web/img/icons/newtab.png" style="float:right; width:64px; height:64px;"></a>
+                                    <!--<a href="#modalEditClient" id="btn_addconsignee"><img src="/web/img/icons/newtab.png" style="float:right; width:64px; height:64px;"></a>-->
                                     <table id="lst_consignees" style="width:100%;" class="table table-bordered" >
                                         <thead>
                                             <tr>
                                                 <th>Name</th>
                                                 <th>Country</th>
-                                                <th>Actions</th>
+                                                <!--<th>Actions</th>-->
                                             </tr>
                                         </thead>
 
@@ -587,10 +587,11 @@
                     {
                         $("#lst_consignees > tbody").append("<tr><td>"+ 
                                                         results[i].get("Name") +"</td><td>"+ 
-                                                        results[i].get("Country") +"</td><td><a href='#modalEditClient' onclick='onEditClient(\""+ results[i].id +
+                                                        results[i].get("Country") +"</td></tr>"); /*<td><a href='#modalEditClient' onclick='onEditClient(\""+ results[i].id +
                                                         "\")' class='btn btn-border btn-orange'>"+
                                                         "<i class='fa fa-pencil-square-o'></i> Edit</a><a class='btn btn-border btn-danger' onclick='byeByeConsignee(\""+results[i].id+"\")'><i class='fa fa-trash-o'></i></a></td></tr>");
-                    }
+                                                        */
+                    }               
                 }});
         }
         
