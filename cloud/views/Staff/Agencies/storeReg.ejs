@@ -1,0 +1,531 @@
+<% var companyID = Parse.User.current().get("Company").id%>
+<!DOCTYPE html>
+<html ng-app="myApp">
+    <head>
+		
+        <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+        <meta charset="utf-8" />
+        <title>Register Vendor</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="login/css/site.20150911194255.css">
+        <meta content="" name="description" />
+        <meta content="" name="author" />
+		<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=VT323|Jura|EB+Garamond&amp;subset=all">
+	    <link rel="stylesheet" type="text/css" href="cod/labels/css/registerConsignee.css">
+	    <link rel="stylesheet" type="text/css" href="login/css/site.20150911194255.css">
+        <!--ADMIN REQUIREMENTS-->   
+        <% include ../../generals/ultraAdmin.ejs %>
+        <script src="/cod/js/moment.js"></script>
+        <script src="/cod/js/common.js"></script>
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/themes/smoothness/jquery-ui.css" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+        <link rel="stylesheet" href="/resources/demos/style.css">     
+        
+        <script src="//www.parsecdn.com/js/parse-1.4.2.min.js"></script>
+ 	        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+ 	        <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+ 	        <script src="//www.parsecdn.com/js/parse-1.4.2.min.js"></script>
+
+ 		<script>
+ 		function registerClient(){
+ 			document.getElementById("LoginDivForm").style.display='none';
+ 			document.getElementById("registerClientForm").style.display = '';
+		
+ 		}
+	
+ 		function gobacktoLogin(){
+ 			document.getElementById("registerClientForm").style.display = 'none';
+ 			document.getElementById("LoginDivForm").style.display='';
+ 		}
+ 		</script>
+
+ 		<style>
+
+ 		    .centerRow { margin-left:auto; margin-right:auto; }
+ 		    .spaceRow { margin-top:10px; margin-bottom:10px; }
+
+ 		    .inputText {
+ 	            width: 230px;
+ 	            height: 33px;
+ 	            font-size: 11.25pt;
+ 	            font-family: Jura;
+ 	            font-weight: 400;
+ 	            color: rgb(64,64,64);
+ 	            text-align: center;}
+
+ 	        .buttonLogin {
+ 	            text-decoration: none;
+ 	            width: 200px;
+ 	            height: 30px;
+ 	            background-color: slategray;
+ 	            font-size: 9.00pt;
+ 	            font-weight: 400;
+ 	            font-style: normal;
+ 	            color: rgb(255,255,255);
+ 	        }
+
+ 	        .buttonOK {
+ 	            text-decoration: none;
+ 	            width: 200px;
+ 	            height: 30px;
+ 	            background-color: rgb(200,10,10);
+ 	            font-size: 9.00pt;
+ 	            font-weight: 400;
+ 	            font-style: normal;
+ 	            color: rgb(255,255,255);
+ 	        }
+
+ 	        .buttonCancel {
+ 	            text-decoration: none;
+ 	            width: 200px;
+ 	            height: 30px;
+ 	            background-color: rgb(10,10,200);
+ 	            font-size: 9.00pt;
+ 	            font-weight: 400;
+ 	            font-style: normal;
+ 	            color: rgb(255,255,255);
+ 	        }
+
+ 	        @font-face {
+ 	            font-family:"VT323";
+ 	            src: url("fonts/VT323-Regular.ttf");
+ 	        }
+
+ 	        @font-face {
+ 	            font-family:"Jura";
+ 	            src: url("fonts/Jura-Regular.ttf");
+ 	        }
+
+ 		</style>
+		
+ 		<style>
+ 		.modalDialog {
+ 			position: fixed;
+ 			font-family: Arial, Helvetica, sans-serif;
+ 			top: 0;
+ 			right: 0;
+ 			bottom: 0;
+ 			left: 0;
+ 			background: rgba(0,0,0,0.8);
+ 			z-index: 99999;
+ 			opacity:0;
+ 			-webkit-transition: opacity 400ms ease-in;
+ 			-moz-transition: opacity 400ms ease-in;
+ 			transition: opacity 400ms ease-in;
+ 			pointer-events: none;
+ 		}
+
+ 		.modalDialog:target {
+ 			opacity:1;
+ 			pointer-events: auto;
+ 		}
+
+ 		.modalDialog > div {
+ 			width: 400px;
+ 			position: relative;
+ 			/*margin: 10% auto;*/
+ 			margin-left: auto;
+ 			margin-right: auto;
+ 			margin-top: 10px;
+ 			padding: 5px 20px 13px 20px;
+ 			border-radius: 10px;
+ 			background: white;			
+ 		}
+
+ 		.close {
+ 			background: #606061;
+ 			color: #FFFFFF;
+ 			line-height: 25px;
+ 			position: absolute;
+ 			right: -12px;
+ 			text-align: center;
+ 			top: -10px;
+ 			width: 24px;
+ 			text-decoration: none;
+ 			font-weight: bold;
+ 			-webkit-border-radius: 12px;
+ 			-moz-border-radius: 12px;
+ 			border-radius: 12px;
+ 			-moz-box-shadow: 1px 1px 3px #000;
+ 			-webkit-box-shadow: 1px 1px 3px #000;
+ 			box-shadow: 1px 1px 3px #000;
+ 		}
+
+ 		.close:hover { background: #00d9ff; }
+		
+		
+ 		.modalDialog-CLREG {
+ 			position: fixed;
+ 			font-family: Arial, Helvetica, sans-serif;
+ 			top: 0;
+ 			right: 0;
+ 			bottom: 0;
+ 			left: 0;
+ 			background: rgba(0,0,0,0.8);
+ 			z-index: 99999;
+ 			opacity:0;
+ 			-webkit-transition: opacity 400ms ease-in;
+ 			-moz-transition: opacity 400ms ease-in;
+ 			transition: opacity 400ms ease-in;
+ 			pointer-events: none;
+ 		}
+
+ 		.modalDialog-CLREG:target {
+ 			opacity:1;
+ 			pointer-events: auto;
+ 		}
+
+ 		.close-CLREG {
+ 			background: #606061;
+ 			color: #FFFFFF;
+ 			line-height: 25px;
+ 			position: absolute;
+ 			right: -12px;
+ 			text-align: center;
+ 			top: -10px;
+ 			width: 24px;
+ 			text-decoration: none;
+ 			font-weight: bold;
+ 			-webkit-border-radius: 12px;
+ 			-moz-border-radius: 12px;
+ 			border-radius: 12px;
+ 			-moz-box-shadow: 1px 1px 3px #000;
+ 			-webkit-box-shadow: 1px 1px 3px #000;
+ 			box-shadow: 1px 1px 3px #000;
+ 		}
+
+ 		.close:hover { background: #00d9ff; }
+ 		</style>
+  
+	    
+          
+        </head>
+        <!-- END HEAD -->
+        <!-- BEGIN BODY -->
+        <body id="body-3">
+
+
+    <div id="registerStoreForm">
+      
+            <a href="#close" title="Close" class="close">X</a>
+
+		   		<div class="section-4" id="sparks">
+		   			<div class="cont-147" id="sparks">
+		   				<div class="colwrapper-72" id="sparks">
+		   					<div class="cont-148" id="sparks">
+		   						<div class="colwrapper-73" id="sparks">
+		   							<div class="cont-149" id="sparks">
+		   								<div class="cont-150" id="sparks">
+		   									<div class="cont-151" id="sparks"><p class="para-38"><span class="font-41">VENDOR REGISTRATION</span></p></div>
+		   								</div>
+		   							</div>
+		   							<div class="cont-152"></div>
+		   						</div>
+		   					</div>
+		   					<div class="cont-153" id="sparks">
+		   						<div class="cont-154" id="sparks">
+		   							<div class="colwrapper-74" id="sparks">
+		   								<div class="cont-155" id="sparks">
+		   									<div class="cont-156" id="sparks"><p class="para-39"><span class="font-42">Full Name:*</span></p></div>
+		   								</div>
+		   							</div>
+		   							<div class="colwrapper-75" id="sparks">
+		   								<div class="cont-157" id="sparks">
+		   									<input type="text" id="RegStoreName" class="input-27">
+		   								</div>
+		   							</div>
+		   							<div class="colwrapper-76" id="sparks">
+		   								<div class="cont-158" id="sparks">
+		   									<div class="cont-159" id="sparks"><p class="para-40"><span class="font-43">Website:</span></p></div>
+		   								</div>
+		   							</div>
+		   							<div class="colwrapper-77" id="sparks">
+		   								<div class="cont-160" id="sparks">
+		   									<input type="text" id="RegStoreWebsite" class="input-28">
+		   								</div>
+		   							</div>
+		   						</div>
+		   						<div class="cont-161" id="sparks">
+		   							<div class="colwrapper-78" id="sparks">
+		   								<div class="cont-162" id="sparks">
+		   									<div class="cont-163" id="sparks"><p class="para-41"><span class="font-44">Company Name:</span></p></div>
+		   								</div>
+		   							</div>
+		   							<div class="colwrapper-79" id="sparks">
+		   								<div class="cont-164" id="sparks">
+		   									<input type="text" id="RegStoreCompanyName" class="input-29">
+		   								</div>
+		   							</div>
+		   							<div class="colwrapper-80" id="sparks">
+		   								<div class="cont-165" id="sparks">
+		   									<div class="cont-166" id="sparks"><p class="para-42"><span class="font-45">Address:</span></p></div>
+		   								</div>
+		   							</div>
+		   							<div class="colwrapper-81" id="sparks">
+		   								<div class="cont-167" id="sparks">
+		   									<input type="text" id="RegStoreAddress" class="input-30">
+		   								</div>
+		   							</div>
+		   						</div>
+		   						<div class="cont-168" id="sparks">
+		   							<div class="colwrapper-82" id="sparks">
+		   								<div class="cont-169" id="sparks">
+		   									<div class="cont-170" id="sparks"><p class="para-43"><span class="font-46">Contact:</span></p></div>
+		   								</div>
+		   							</div>
+		   							<div class="colwrapper-83" id="sparks">
+		   								<div class="cont-171" id="sparks">
+		   									<input type="text" id="RegStoreContact" class="input-31">
+		   								</div>
+		   							</div>
+		   							<div class="colwrapper-84" id="sparks">
+		   								<div class="cont-172" id="sparks">
+		   									<div class="cont-173" id="sparks"><p class="para-44"><span class="font-47">City:</span></p></div>
+		   								</div>
+		   							</div>
+		   							<div class="colwrapper-85" id="sparks">
+		   								<div class="cont-174" id="sparks">
+		   									<input type="text" id="RegStoreCity" class="input-32">
+		   								</div>
+		   							</div>
+		   						</div>
+		   						<div class="cont-175" id="sparks">
+		   							<div class="colwrapper-86" id="sparks">
+		   								<div class="cont-176" id="sparks">
+		   									<div class="cont-177" id="sparks"><p class="para-45"><span class="font-48">Tel:</span></p></div>
+		   								</div>
+		   							</div>
+		   							<div class="colwrapper-87" id="sparks">
+		   								<div class="cont-178" id="sparks">
+		   									<input type="text" id="RegStoreTel" class="input-33">
+		   								</div>
+		   							</div>
+		   							<div class="colwrapper-88" id="sparks">
+		   								<div class="cont-179" id="sparks">
+		   									<div class="cont-180" id="sparks"><p class="para-46"><span class="font-49">State:</span></p></div>
+		   								</div>
+		   							</div>
+		   							<div class="colwrapper-89" id="sparks">
+		   								<div class="cont-181" id="sparks">
+		   									<input type="text" id="RegStoreState" class="input-34">
+		   								</div>
+		   							</div>
+		   						</div>
+		   						<div class="cont-182" id="sparks">
+		   							<div class="colwrapper-90" id="sparks">
+		   								<div class="cont-183" id="sparks">
+		   									<div class="cont-184" id="sparks"><p class="para-47"><span class="font-50">Cel:</span></p></div>
+		   								</div>
+		   							</div>
+		   							<div class="colwrapper-91" id="sparks">
+		   								<div class="cont-185" id="sparks">
+		   									<input type="text" id="RegStoreCel" class="input-35">
+		   								</div>
+		   							</div>
+		   							<div class="colwrapper-92" id="sparks">
+		   								<div class="cont-186" id="sparks">
+		   									<div class="cont-187" id="sparks"><p class="para-48"><span class="font-51">Country:</span></p></div>
+		   								</div>
+		   							</div>
+		   							<div class="colwrapper-93" id="sparks">
+		   								<div class="cont-188" id="sparks">
+		   									<input type="text" id="RegStoreCountry" class="input-36">
+		   								</div>
+		   							</div>
+		   						</div>
+		   						<div class="cont-189" id="sparks">
+		   							<div class="colwrapper-94" id="sparks">
+		   								<div class="cont-190" id="sparks">
+		   									<div class="cont-191" id="sparks"><p class="para-49"><span class="font-52">Email:</span></p></div>
+		   								</div>
+		   							</div>
+		   							<div class="colwrapper-95" id="sparks">
+		   								<div class="cont-192" id="sparks">
+		   									<input type="text" id="RegStoreEmail" class="input-37">
+		   								</div>
+		   							</div>
+		   							<div class="colwrapper-96" id="sparks">
+		   								<div class="cont-193" id="sparks">
+		   									<div class="cont-194" id="sparks"><p class="para-50"><span class="font-53">ZIP:</span></p></div>
+		   								</div>
+		   							</div>
+		   							<div class="colwrapper-97" id="sparks">
+		   								<div class="cont-195" id="sparks">
+		   									<input type="text" id="RegStoreZip" class="input-38">
+		   								</div>
+		   							</div>
+		   						</div>
+		   						<div class="cont-196" id="sparks"></div>
+		   						<div class="cont-197" id="sparks">
+		   							<div class="colwrapper-98" id="sparks">
+		   								<div class="cont-198" id="sparks">
+		   									<div class="cont-199" id="sparks"><p class="para-51"><span class="font-54">Username:</span></p></div>
+		   								</div>
+		   							</div>
+		   							<div class="colwrapper-99" id="sparks">
+		   								<div class="cont-200" id="sparks">
+		   									<input type="text" id="txt_storeuser" class="input-39">
+		   								</div>
+		   							</div>
+		   							<div class="colwrapper-100" id="sparks">
+		   								<div class="cont-201" id="sparks">
+		   									<div class="cont-202"><p class="para-52"><span class="font-55">Password:</span></p></div>
+		   								</div>
+		   							</div>
+		   							<div class="colwrapper-101" id="sparks">
+		   								<div class="cont-203" id="sparks">
+		   									<input type="password" id="txt_storepass" class="input-40">
+		   								</div>
+		   							</div>
+		   						</div>
+		   						<div class="cont-204" id="sparks">
+		   							<div class="colwrapper-102" id="sparks">
+		   								<div class="cont-205" id="sparks"></div>
+		   								<div class="cont-206" id="sparks">
+		   									<div class="colwrapper-103" id="sparks">
+		   										<div class="cont-207" id="sparks">
+		   											<!--<a class="button-7" <a href="#close">Cancel</a>-->
+		   										</div>
+		   									</div>
+		   									<div class="colwrapper-104" id="sparks">
+		   										<div class="cont-208" id="sparks">
+		   											<a class="button-8" id="btn_regStore">Register</a>
+		   										</div>
+		   									</div>
+		   								</div>
+		   							</div>
+		   						</div>
+		   					</div>
+		   				</div>
+		   			</div>
+		   		</div>
+		   		<script type="text/javascript">
+		   			var androidBrowserVersion = RegExp(/Mozilla\/5\.0 \(Linux; .; Android ([\d.]+)/).exec(navigator.userAgent);
+		   if(androidBrowserVersion && parseFloat(androidBrowserVersion[1]) < 5) { document.getElementsByTagName('body')[0].className+=' whitespacefix'; }
+		   		</script>
+
+        </div>		
+
+		  	  
+        <%include ../../generals/endFiles.ejs%>
+
+        <!-- modal end -->
+   
+    
+    <script>
+    
+        if( window.location.href.indexOf("cloudbox.parseapp") !=-1 )
+            Parse.initialize("Slh0vzK6DCaarshvF1Vu0ku3Rx2hwDdTaYwW7DLU", "TkJgyQRuMqqKtzZ6bEjdESPiUZ6sVkg3QntIxmh7");
+        else
+            Parse.initialize("XEPryFHrd5Tztu45du5Z3kpqxDsweaP1Q0lt8JOb", "MDhb1hBngr2tx2v9TjyzoUhMcOFeWGJ56TWvChqi");
+
+
+        $("#btn_regStore").click(function(){
+
+                if($("#txt_storeuser").val() == "" || $("#txt_storepass").val() == "")
+                {
+                    alert("User or pass is empty");
+                    return;
+                }
+
+                /* VALIDAR CAMPOS VALIDOS */
+                if($("#RegStoreName").val() == "" /*||
+                    $("#RegStoreCompanyName").val() == "" ||
+                    $("#RegStoreCountry").val() == "" ||
+                    $("#RegStoreEmail").val() == ""*/)
+                {
+                    alert("You must fill the fields with *");
+                    return;
+                }
+
+                var Agencies = Parse.Object.extend("Agencies");
+                var store = new Agencies();
+
+                store.set("Status", "Active" );
+                store.set("Name", $("#RegStoreName").val() );
+                store.set("CompanyName", $("#RegStoreCompanyName").val() );
+                store.set("Address", $("#RegStoreAddress").val() );
+                store.set("Account", $("#RegStoreAccount").val() );
+                store.set("State", $("#RegStoreState").val() );
+                store.set("Contact", $("#RegStoreContact").val() );
+                store.set("Country", $("#RegStoreCountry").val() );
+                store.set("City", $("#RegStoreCity").val() );
+                store.set("Telephone", $("#RegStoreTel").val() );
+                store.set("Zip", $("#RegStoreZip").val() );
+                store.set("Cel", $("#RegStoreCel").val() );
+                store.set("Website", $("#RegStoreWebsite").val() );
+                store.set("Email", $("#RegStoreEmail").val() );
+                store.set("Company", {__type:"Pointer", className:"Companies", objectId:"<%=company.id%>"} );
+
+                store.save({success: function(store){
+
+                        /* CREATE THE USER ACCOUNT */
+                        Parse.Cloud.run('regStore',
+                            {user:$("#txt_storeuser").val(), pass:$("#txt_storepass").val(), agencyID:store.id, companyID:"<%=company.id%>", companyLink:"<%= company.get("companyLink")%>"},
+                            {
+                                success: function(result){
+                                    
+                                    /* EMAIL PARAMETERS */
+                                    emailparams = {
+                                                    "text": "Account information:<br><br>User: " + $("#txt_storeuser").val() + "<br>Pass: " + $("#txt_storepass").val(),
+                                                    "subject": "Vendor account created",
+                                                    "from_email": "no-reply@lccargoxpress.com",
+                                                    "from_name":"Notifier",
+                                                    "to_email": store.get("Email"),
+                                                    "to_name":store.get("Name")
+                                                };
+
+                                    /* SEND EMAIL */
+                                    Parse.Cloud.run('sendMail', emailparams, {
+                                        success:
+                                            function(result)
+                                            {
+                                                /*alert(result);*/
+                                            },
+                                        error:
+                                            function()
+                                            {
+                                            }
+                                        });
+                                    
+                                    /*window.location = "/pendingRegistration/<%=company.get("companyLink").toLowerCase()%>" ;*/
+                                    alert("Vendor registered");
+                                    
+                                    $("#txt_storeuser").val("");
+                                    $("#txt_storepass").val("");
+                                    
+                                    $("#RegStoreName").val("");
+                                    $("#RegStoreCompanyName").val("");
+                                    $("#RegStoreWebsite").val("");
+                                    $("#RegStoreAddress").val("");
+                                    $("#RegStoreContact").val("");
+                                    $("#RegStoreAccount").val("");
+                                    $("#RegStoreState").val("");
+                                    $("#RegStoreID").val("");
+                                    $("#RegStoreCountry").val("");
+                                    $("#RegStoreCity").val("");
+                                    $("#RegStoreTel").val("");
+                                    $("#RegStoreZip").val("");
+                                    $("#RegStoreCel").val("");
+                                    $("#RegStoreEmail").val("");
+                                    
+                                },
+                                error: function(){
+                                    alert("Error al crear cuenta User");
+                                }
+                            });
+
+                    }, error: function(store, error){
+                        alert(error.message);
+                    }});
+
+            });
+
+    
+    </script>
+    </body>
+	
+</html>

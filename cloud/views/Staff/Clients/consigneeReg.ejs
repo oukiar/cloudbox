@@ -225,7 +225,7 @@
 				 						<div class="cont-40-CLREG" id="sparks">
 				 							<div class="colwrapper-15-CLREG" id="sparks">
 				 								<div class="cont-41-CLREG" id="sparks">
-				 									<div class="cont-42-CLREG" id="sparks"><p class="para-11-CLREG"><span class="font-11-CLREG">Full Name:</span></p></div>
+				 									<div class="cont-42-CLREG" id="sparks"><p class="para-11-CLREG"><span class="font-11-CLREG">Full Name*:</span></p></div>
 				 								</div>
 				 							</div>
 				 							<div class="colwrapper-16-CLREG" id="sparks">
@@ -405,7 +405,7 @@
 				 									</div>
 				 									<div class="colwrapper-48-CLREG" id="sparks">
 				 										<div class="cont-101-CLREG" id="sparks">
-				 											<a class="button-2-CLREG" href="#addConsigneeForm" style="text-decoration: none;">ADD</a>
+				 											<a class="button-2-CLREG" href="#addConsigneeForm" id="btn_addConsigneeForm" style="text-decoration: none;">ADD</a>
 				 										</div>
 				 									</div>
 				 								</div>
@@ -415,7 +415,7 @@
 				 						<div class="cont-103-CLREG" id="sparks">
 				 							<div class="colwrapper-49-CLREG" id="sparks">
 				 								<div class="cont-104-CLREG" id="sparks">
-				 									<a class="button-3-CLREG" href="#close">Cancel</a>
+				 									<!--<a class="button-3-CLREG" href="#close">Cancel</a>-->
 				 								</div>
 				 							</div>
 				 							<div class="colwrapper-50-CLREG" id="sparks">
@@ -453,7 +453,7 @@
 										<div id="sparks" class="cont-112-ADCO" >
 											<div id="sparks" class="colwrapper-52-ADCO" >
 												<div id="sparks" class="cont-113-ADCO" >
-													<div id="sparks" class="cont-114-ADCO" ><p class="para-29-ADCO"><span class="font-32-ADCO">Full Name:</span></p></div>
+													<div id="sparks" class="cont-114-ADCO" ><p class="para-29-ADCO"><span class="font-32-ADCO">Full Name:*</span></p></div>
 												</div>
 											</div>
 											<div id="sparks" class="colwrapper-53-ADCO" >
@@ -558,7 +558,8 @@
 											</div>
 											<div id="sparks" class="colwrapper-71-ADCO">
 												<div id="sparks" class="cont-146-ADCO">
-													<button class="button-6-ADCO" id="btn_addconsignee">Add Consignee</button>
+													<!--<button class="button-6-ADCO" id="btn_addconsignee">Add Consignee</button>-->
+                                                    <a href="#registerClientForm" class="button-6-ADCO" id="btn_addconsignee">Add Consignee</a>
 												</div>
 											</div>
 										</div>
@@ -598,7 +599,184 @@
 
         <!-- modal end -->
    
-        
+    
+    <script>
+    
+        if( window.location.href.indexOf("cloudbox.parseapp") !=-1 )
+            Parse.initialize("Slh0vzK6DCaarshvF1Vu0ku3Rx2hwDdTaYwW7DLU", "TkJgyQRuMqqKtzZ6bEjdESPiUZ6sVkg3QntIxmh7");
+        else
+            Parse.initialize("XEPryFHrd5Tztu45du5Z3kpqxDsweaP1Q0lt8JOb", "MDhb1hBngr2tx2v9TjyzoUhMcOFeWGJ56TWvChqi");
+
+        var consignees = [];
+
+        $("#btn_addConsigneeForm").click(function(){
+                /* LIMPIAR CONTROLES */
+                $("#FullnameMainClient").val("");
+                $("#AddressMainClient").val("");
+                $("#TelMainClient").val("");
+                
+                $("#CelMainClient").val("");
+                $("#StateMainClient").val("");
+                $("#CountryMainClient").val("");
+                $("#CityMainClient").val("");
+                $("#EmailMainClient").val("");
+                $("#ZipMainClient").val("");
+            });
+
+        $("#btn_addconsignee").click(function(){
+                
+                /* VERIFICAR CAMPOS VALIDOS */
+                if($("#FullnameMainClient").val() == "" /*||
+                	$("#CountryMainClient").val() == "" ||
+                	$("#EmailMainClient").val() == ""*/)
+                {
+                    alert("You must fill the fields with *");
+                    return false;
+                }
+                
+                var Clients = Parse.Object.extend("Clients");
+                var client = new Clients();
+                
+                client.set("Name", $("#FullnameMainClient").val() );
+                client.set("Address", $("#AddressMainClient").val() );
+                client.set("Telephone", $("#TelMainClient").val() );
+                /*client.set("Telephone2", $("#Tel2MainClient").val() );*/
+                client.set("Cellphone", $("#CelMainClient").val() );
+                client.set("State", $("#StateMainClient").val() );
+                client.set("Country", $("#CountryMainClient").val() );
+                client.set("City", $("#CityMainClient").val() );
+                client.set("Zip", $("#ZipMainClient").val() );
+                client.set("Email", $("#EmailMainClient").val() );
+                client.set("Company", {__type:"Pointer", className:"Companies", objectId:"<%=companyID%>"} );
+                
+                consignees.push(client);
+                
+                $("#consigneesCount").html(consignees.length.toString() );
+                
+                $("#lst_consignees > tbody").append("<tr id='"+client.get("Name")+"'><td style='text-align:center;'>"+ $("#FullnameMainClient").val() +"</td><td style='text-align:center;'>"+ $("#CountryMainClient").val() +"</td><td style='text-align:center;'><button onclick=\"on_deleteConsignee('"+client.get("Name")+"');\" class='btn_deleteConsignee'>DELETE</button></td></tr>");
+
+            });
+    
+
+        $("#btn_regConsignee").click(function(){
+
+                if($("#txt_user").val() == "" || $("#txt_pass").val() == "")
+                {
+                    alert("Please fill the user and password section");
+                    return;
+                }
+
+                /* VALIDAR CAMPOS VALIDOS */
+                if($("#RegClientFullName").val() == "" /*||
+                	$("#RegClientCountry").val() == "" ||
+                	$("#RegClientCompanyName").val() == "" ||
+                	$("#RegClientEmail").val() == ""*/)
+                {
+                    alert("You must fill the fields with *");
+                    return;
+                }
+
+                var Clients = Parse.Object.extend("Clients");
+                var client = new Clients();
+
+                client.set("Status", "Active" );
+                client.set("Name", $("#RegClientFullName").val() );
+                client.set("CompanyName", $("#RegClientCompanyName").val() );
+                client.set("Address", $("#RegClientAddress").val() );
+                client.set("Account", $("#RegClientAccount").val() );
+                client.set("AccountID", $("#RegClientID").val() );
+                client.set("Telephone", $("#RegClientTel").val() );
+                client.set("Cellphone", $("#RegClientCel").val() );
+                client.set("State", $("#RegClientState").val() );
+                client.set("Country", $("#RegClientCountry").val() );
+                client.set("City", $("#RegClientCity").val() );
+                client.set("Zip", $("#RegClientZip").val() );
+                client.set("Email", $("#RegClientEmail").val() );
+                client.set("IsShipper", $("#RegClientSHIP").is(':checked') );
+                client.set("IsConsignee", $("#RegClientCONS").is(':checked') );
+                client.set("Company", {__type:"Pointer", className:"Companies", objectId:"<%=companyID%>"} );
+
+                client.save({success: function(client){
+
+                        for(i in consignees)
+                        {
+                            consignees[i].set("MainClient", client);
+                            consignees[i].set("CompanyName", client.get("CompanyName"));
+                            
+                        }
+
+                        /* SAVE THE SUBCONSIGNEES */
+                        Parse.Object.saveAll(consignees,{success:function(result){
+
+                                /* CREATE THE USER ACCOUNT */
+
+                                Parse.Cloud.run('regClient',
+                                    {user:$("#txt_user").val(), pass:$("#txt_pass").val(), clientID:client.id, companyID:"<%= companyID%>", companyLink:"<%= company.get("companyLink")%>"},
+                                    {
+                                        success: function(result){
+                                            
+                                            /* EMAIL PARAMETERS */
+                                            emailparams = {
+                                                            "text": "Account information:<br><br>User: " + $("#txt_user").val() + "<br>Pass: " + $("#txt_pass").val(),
+                                                            "subject": "Client account created",
+                                                            "from_email": "no-reply@lccargoxpress.com",
+                                                            "from_name":"Notifier",
+                                                            "to_email": client.get("Email"),
+                                                            "to_name":client.get("Name")
+                                                        };
+
+                                            /* SEND EMAIL */
+                                            Parse.Cloud.run('sendMail', emailparams, {
+                                                success:
+                                                    function(result)
+                                                    {
+                                                        /*alert(result);*/
+                                                    },
+                                                error:
+                                                    function()
+                                                    {
+                                                    }
+                                                });
+                                            
+                                            
+                                            /*window.location = "/pendingRegistration/<%=company.get("companyLink").toLowerCase()%>" ;*/
+                                            alert("Client registered");
+                                            
+                                            /* CLEAR CONTROLS */
+                                            $("#txt_user").val("");
+                                            $("#txt_pass").val("");
+                                            
+                                            $("#RegClientFullName").val("");
+                                            $("#RegClientCompanyName").val("");
+                                            $("#RegClientAddress").val("");
+                                            $("#RegClientAccount").val("");
+                                            $("#RegClientState").val("");
+                                            $("#RegClientID").val("");
+                                            $("#RegClientCountry").val("");
+                                            $("#RegClientCity").val("");
+                                            $("#RegClientTel").val("");
+                                            $("#RegClientZip").val("");
+                                            $("#RegClientCel").val("");
+                                            $("#RegClientEmail").val("");
+                                            
+                                            consignees = [];
+                                            
+                                            $("#consigneesCount").html(consignees.length.toString() );
+                                            
+                                        },
+                                        error: function(){
+                                            alert("Error al crear cuenta User");
+                                        }
+                                    });
+                            }});
+
+                    }, error:function(){
+                        alert("Error guardando clientes consignees");
+                    }});
+
+            });
+    
+    </script>
     </body>
 	
 </html>
