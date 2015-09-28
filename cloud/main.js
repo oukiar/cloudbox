@@ -86,9 +86,12 @@ function zeroPad(num, numZeros) {
 Parse.Cloud.beforeSave("Clients", function(request, response){
     
     request.object.set("Name", request.object.get("Name").toUpperCase() ); 
+    var name = request.object.get("Name");
+    request.object.set("Name", name.replace(/[()]/g, '') ); 
     
     if(request.object.isNew())
     {
+        
     
         var query = new Parse.Query("Clients");
         query.descending("AccountID");

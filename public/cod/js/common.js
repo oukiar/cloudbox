@@ -2,10 +2,17 @@
 
 function tryget(myvar)
 {
+
     if(typeof(myvar)!="undefined" || myvar == "")
+    {        
+        if(myvar.charCodeAt(0) == 10)
+            myvar = "";
+        
         return myvar;
+    }
     else return "-";
 }
+
 
 function InsertForm(kwargs)
 {
@@ -514,6 +521,29 @@ function byeByeClient(clientId, companyId){
             });
 }
 
+function byeByeClientCB(clientId, companyId, callback){
+    swal({   
+                title: "This client will be deleted permanently!",   
+                text: "Do you want to continue?",   
+                type: "warning",   
+                showCancelButton: true,   
+                confirmButtonColor: "#DD6B55",   
+                confirmButtonText: "Yes, delete it!",   
+                closeOnConfirm: true
+            },
+            function()
+            {    
+                var query = new Parse.Query("Clients");
+                
+                query.get(clientId, {success: function(client){
+                        client.destroy({success:function(){
+                                callback(client.get("MainClient").id);
+                            }});
+                    }});
+                
+            });
+}
+
 function byeByeConsignee(clientId){
     swal({   
                 title: "This user will be deleted permanently!",   
@@ -559,6 +589,30 @@ function byeByeVendor(vendorId){
                 
             });
 }
+
+function byeByeVendorCB(vendorId, callback){
+    swal({   
+                title: "This vendor will be deleted permanently!",   
+                text: "Do you want to continue?",   
+                type: "warning",   
+                showCancelButton: true,   
+                confirmButtonColor: "#DD6B55",   
+                confirmButtonText: "Yes, delete it!",   
+                closeOnConfirm: true
+            },
+            function()
+            {    
+                var query = new Parse.Query("Agencies");
+                
+                query.get(vendorId, {success: function(client){
+                        client.destroy({success:function(){
+                                callback();
+                            }});
+                    }});
+                
+            });
+}
+
   
   function byeByeStaff(staffId, companyId, url){
     swal({   

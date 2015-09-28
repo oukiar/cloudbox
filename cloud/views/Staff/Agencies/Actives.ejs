@@ -300,7 +300,12 @@
                 store.set("Email", $("#tdCEmail").text() );
                 
                 store.save(null, {success: function(){
-                        update_table();
+                        /*update_table();*/
+                        $("#name-" + store.id).html(store.get("Name") );
+                        $("#country-" + store.id).html(store.get("Country") );
+                        $("#telephone-" + store.id).html(store.get("Telephone") );
+                        $("#email-" + store.id).html(store.get("Email") );
+                        $("#accountid-" + store.id).html(store.get("AccountID") );
                     }});
                 
             }
@@ -403,17 +408,16 @@
                 
                     for(i in results)
                     {
-                                            
-                        var row = "<tr><td>"+
+
+                        var row = "<tr><td id='name-"+results[i].id+"'>"+
                         
-                                    results[i].get("Name") +"</td><td>"+
-                                    /*tryget(results[i].get("Company").get("Name")) +"</td><td>"+*/
-                                    tryget(results[i].get("Country")) +"</td><td>"+
-                                    tryget(results[i].get("Telephone")) +"</td><td>"+
-                                    tryget(results[i].get("Email")) +"</td><td>"+
+                                    results[i].get("Name") +"</td><td id='country-"+results[i].id+"'>"+
+                                    tryget(results[i].get("Country")) +"</td><td id='telephone-"+results[i].id+"'>"+
+                                    tryget(results[i].get("Telephone")) +"</td><td id='email-"+results[i].id+"'>"+
+                                    tryget(results[i].get("Email")) +"</td><td id='accountid-"+results[i].id+"'>"+
                                     tryget(results[i].get("AccountID")) +"</td>"+
                                     "<td align='center' style='white-space:nowrap'><a href='#modalEditClient' onclick='onEditClient(\""+ results[i].id +"\")' class='btn btn-border btn-orange'><i class='fa fa-pencil-square-o'></i> Edit</a> &nbsp &nbsp <a class='btn btn-border btn-danger' id='"+results[i].id+"' onclick='byeByeVendor(this.id, \"" + user.get("Company").id + "\" )'><i class='fa fa-trash-o'></i></a></td></tr>";
-                                    
+                                        
                         $("#inactiveVendorsTable > tbody").append(row);
                     }
                     
@@ -544,18 +548,14 @@
                 
                 for(i in results)
                 {
-                                        
-                    
-                        var row = "<tr><td>"+
-                        
-                                    results[i].get("Name") +"</td><td>"+
-                                    /*tryget(results[i].get("Company").get("Name")) +"</td><td>"+*/
-                                    tryget(results[i].get("Country")) +"</td><td>"+
-                                    tryget(results[i].get("Telephone")) +"</td><td>"+
-                                    tryget(results[i].get("Email")) +"</td><td>"+
+                    var row = "<tr><td id='name-"+results[i].id+"'>"+
+                                    results[i].get("Name") +"</td><td id='country-"+results[i].id+"'>"+
+                                    tryget(results[i].get("Country")) +"</td><td id='telephone-"+results[i].id+"'>"+
+                                    tryget(results[i].get("Telephone")) +"</td><td id='email-"+results[i].id+"'>"+
+                                    tryget(results[i].get("Email")) +"</td><td id='accountid-"+results[i].id+"'>"+
                                     tryget(results[i].get("AccountID")) +"</td>"+
                                     "<td align='center' style='white-space:nowrap'><a href='#modalEditClient' onclick='onEditClient(\""+ results[i].id +"\")' class='btn btn-border btn-orange'><i class='fa fa-pencil-square-o'></i> Edit</a> &nbsp &nbsp <a class='btn btn-border btn-danger' id='"+results[i].id+"' onclick='byeByeVendor(this.id, \"" + user.get("Company").id + "\" )'><i class='fa fa-trash-o'></i></a></td></tr>";
-                                    
+                                        
                     $("#inactiveVendorsTable > tbody").append(row);
                 }
                 
