@@ -89,10 +89,11 @@ Parse.Cloud.beforeSave("Clients", function(request, response){
     var name = request.object.get("Name");
     request.object.set("Name", name.replace(/[()]/g, '') ); 
     
+    var email = request.object.get("Email");
+    request.object.set("Email", email.replace(/ /g,'') )
+    
     if(request.object.isNew())
     {
-        
-    
         var query = new Parse.Query("Clients");
         query.descending("AccountID");
         

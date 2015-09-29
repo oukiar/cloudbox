@@ -664,7 +664,8 @@
                 {
 
                     case "Name":
-                        query.startsWith("Name", $("#searchtext").val().toUpperCase());
+                        /*query.startsWith("Name", $("#searchtext").val().toUpperCase());*/
+                        query.matches("Name", $("#searchtext").val().toUpperCase(), 'i');
                         break;
                     case "AccountID":
                         query.startsWith("AccountID", $("#searchtext").val() );

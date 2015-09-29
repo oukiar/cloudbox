@@ -63,7 +63,7 @@
   </table>
 
 
-<form action="/charge" method="POST">
+<form action="/charge" method="POST" id="frm_payment" style="display:none;">
   <script
     src="https://checkout.stripe.com/checkout.js" class="stripe-button"
     data-key="pk_live_ovIjic999tome3FRU8VcyI1t"
@@ -84,7 +84,12 @@
 
       </div>
 
-
+    <script>
+    
+        if( window.location.href.indexOf("cloudbox.parseapp") !=-1 )
+            $("#frm_payment").show();
+    
+    </script>
     
         <!-- LOAD FILES AT PAGE END FOR FASTER LOADING -->
 <%include ../generals/endFiles.ejs%>
