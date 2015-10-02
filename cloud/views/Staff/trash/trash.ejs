@@ -75,8 +75,8 @@
 							<% results.forEach(function(label){%>
 							<tr>
 							  <td><%=label.get("ReceiptNum")%></td>
-							  <td><%=label.get("Consignee").get("Name")%></td>
-							  <td><%if(typeof label.get("Shipper") != "undefined"){%><%=label.get("Shipper").get("Name")%><%}%></td>
+							  <td><%=label.get("ConsigneeName")%></td>
+							  <td><%if(typeof label.get("ShipperName") != "undefined"){%><%=label.get("ShipperName")%><%}%></td>
 							  <td><%=label.updatedAt%></td>
 							  <td id='<%=label.id%>'><button class="pure-button pure-button-primary" onclick="Restore('<%=label.id%>');">Restore</button></td>
 							  <td><a id="<%= label.id %>" class="pure-button pure-button-primary deleteperm" style="background:#E08566;">Delete Permanently</a></td>
